@@ -14,11 +14,15 @@ public class Hook : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E)) { 
             RaycastHit2D hit = Physics2D.Raycast(this.transform.position, dir);
-            Debug.DrawRay(this.transform.position, hit.transform.position);
 
             if ((hit.collider != null) && (hit.collider.tag == "Hookable"))
             {
-                rope.transform.localScale = new Vector3(0, 0, Mathf.Sqrt(Mathf.Pow(Mathf.Abs(hit.transform.position.x - this.transform.position.x), 2) + Mathf.Pow(Mathf.Abs(hit.transform.position.y - this.transform.position.y), 2)));
+                Debug.DrawRay(this.transform.position, hit.transform.position);
+                if (Mathf.Sqrt(Mathf.Pow(Mathf.Abs(hit.transform.position.x - this.transform.position.x), 2) + Mathf.Pow(Mathf.Abs(hit.transform.position.y - this.transform.position.y), 2)) <= 4) { 
+                    rope.transform.localScale = new Vector3(0, 0, Mathf.Sqrt(Mathf.Pow(Mathf.Abs(hit.transform.position.x - this.transform.position.x), 2) + Mathf.Pow(Mathf.Abs(hit.transform.position.y - this.transform.position.y), 2)));
+                    rope.transform.position = this.transform.position;
+                    rope.transform.LookAt(hit.transform);
+                }
             }
         }
     }
