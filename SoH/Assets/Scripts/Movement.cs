@@ -6,7 +6,8 @@ public class Movement : MonoBehaviour
 {
     public float speed;
     public float jumpforce;
-    bool grounded;
+    public bool moveable = true;
+    public bool grounded;
     Rigidbody2D rb;
 
     private void Start()
@@ -16,7 +17,8 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        if (moveable) rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        else rb.velocity = new Vector2(0, rb.velocity.y);
         if (Input.GetKey(KeyCode.Space) && grounded && rb.velocity.y <= jumpforce)
         {
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
