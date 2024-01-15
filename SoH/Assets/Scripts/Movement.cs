@@ -25,8 +25,8 @@ public class Movement : MonoBehaviour
             grounded = false;
         }
 
-        Vector2 location = new Vector2(transform.position.x, transform.position.y - 0.6f);
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, -Vector2.up, 0.75f);
+        Vector2 location = new Vector3(transform.position.x - 0.50f, transform.position.y - 0.75f, 0);
+        RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1);
 
         if (hit.collider != null) grounded = true;
         else grounded = false;

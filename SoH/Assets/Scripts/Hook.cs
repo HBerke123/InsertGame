@@ -20,10 +20,10 @@ public class Hook : MonoBehaviour
         Vector3 dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position).normalized * 10;
         dir.z = 0;
 
-
         if (Input.GetKeyDown(KeyCode.E))
         {
-            RaycastHit2D hit = Physics2D.Raycast(this.transform.position, dir);
+            LayerMask mask = LayerMask.GetMask("Hookables");
+            RaycastHit2D hit = Physics2D.Raycast(this.transform.position, dir, 4, mask);
 
             if ((hit.collider != null) && (hit.collider.tag == "Hookable") && !(matched))
             {
@@ -45,13 +45,14 @@ public class Hook : MonoBehaviour
             {
                 rope.transform.localScale = Vector3.zero;
                 matched = false;
+                movement.moveable = true;
                 Destroy(gdj);
             }
         }
 
         if (matched)
         {
-            rope.transform.localScale = new Vector3(0, 0, gdj.distance);
+            rope.transform.localScale = new Vector3(0, 0, Mathf.Sqrt(Mathf.Pow(Mathf.Abs(this.transform.position.x - target.transform.position.x) , 2)  +  Mathf.Pow(Mathf.Abs(this.transform.position.y - target.transform.position.y) , 2)));
             rope.transform.position = this.transform.position;
             rope.transform.LookAt(target.transform);
             movement.moveable = movement.grounded;
