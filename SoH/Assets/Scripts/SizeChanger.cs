@@ -6,6 +6,7 @@ public class SizeChanger : MonoBehaviour
 {
     public GameObject ray;
     bool rayed = false;
+    float t = 0;
     Movement movement;
     RaycastHit2D target;
     Vector3 maxscale;
@@ -29,7 +30,7 @@ public class SizeChanger : MonoBehaviour
             if ((hit.collider != null) && (hit.collider.tag == "Changeable") && !(rayed))
             {
                 maxscale = new Vector3(hit.transform.localScale.x + 1, hit.transform.localScale.y + 1, 0);
-                maxscale = new Vector3(hit.transform.localScale.x + 1, hit.transform.localScale.y + 1, 0);
+                minscale = new Vector3(hit.transform.localScale.x - 1, hit.transform.localScale.y - 1, 0);
                 target = hit;
                 rayed = true;
             }
@@ -49,18 +50,47 @@ public class SizeChanger : MonoBehaviour
                 ray.transform.LookAt(target.transform);
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    target.transform.localScale = maxscale;
+                    StartCoroutine(Schange(-1));
                 }
                 else if (Input.GetKeyDown(KeyCode.X))
                 {
-                    target.transform.localScale = minscale;
-                    if (minscale == new Vector3(0, 0, 0))
-                    {
-                        Destroy(target.collider);
-                        rayed = false;
-                    }
+                    StartCoroutine(Schange(1));
                 }
             }
+            else
+            {
+                rayed = false;
+                ray.transform.localScale = Vector3.zero;
+            }
+        }
+    }
+
+    IEnumerator Schange(int value, int lastvalue = 0)
+    {
+        if (value == -1) {
+            if (lastvalue != -1) t = 0;
+            if (target.transform.localScale == Vector3.zero)
+            {
+                Destroy(target.collider.gameObject);
+                rayed = false;
+                ray.transform.localScale = Vector3.zero;
+            }
+            target.transform.localScale = Vector3.Lerp(target.transform.localScale, minscale, t);
+        }
+        else
+        {
+            if (lastvalue != 1) t = 0;
+            target.transform.localScale = Vector3.Lerp(target.transform.localScale, maxscale, t);
+        }
+        yield return new WaitForSeconds(1f);
+        t += 0.1f;
+        if (Input.GetKey(KeyCode.Z))
+        {
+            StartCoroutine(Schange(-1, value));
+        }
+        else if (Input.GetKey(KeyCode.X))
+        {
+            StartCoroutine(Schange(1, value));
         }
     }
 }

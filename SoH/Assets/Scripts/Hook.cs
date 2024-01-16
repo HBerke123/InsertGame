@@ -25,7 +25,7 @@ public class Hook : MonoBehaviour
             LayerMask mask = LayerMask.GetMask("Hookables");
             RaycastHit2D hit = Physics2D.Raycast(this.transform.position, dir, 4, mask);
 
-            if ((hit.collider != null) && (hit.collider.tag == "Hookable") && !(matched))
+            if ((hit.collider != null) && hit.collider.CompareTag("Hookable") && !matched)
             {
                 DistanceJoint2D dj = gameObject.AddComponent(typeof(DistanceJoint2D)) as DistanceJoint2D;
                 dj.enableCollision = true;
