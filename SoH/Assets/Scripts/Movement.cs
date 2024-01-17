@@ -24,20 +24,26 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded && rb.velocity.y <= jumpforce)
         {
             timePressed = Time.time;
+            rb.AddForce(Vector2.up * jumpforce * agilityFactor / 4, ForceMode2D.Impulse);
             grounded = false;
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && grounded && rb.velocity.y <= jumpforce)
         {
             timePressed = Time.time - timePressed;
-            if (timePressed < 3)
+            if (timePressed < 1)
             {
                 rb.AddForce(Vector2.up * jumpforce * agilityFactor / 4, ForceMode2D.Impulse);
                 grounded = false;
             }
-            else if (timePressed >= 3)
+            else if (timePressed >= 5)
             {
-                rb.AddForce(Vector2.up * jumpforce * 1.5f * agilityFactor / 4, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * jumpforce * 1.5f * Mathf.Sqrt(5) / 4, ForceMode2D.Impulse);
+                grounded = false;
+            }
+            else
+            {
+                rb.AddForce(Vector2.up * jumpforce * 1.5f * Mathf.Sqrt(timePressed) * agilityFactor / 4, ForceMode2D.Impulse);
                 grounded = false;
             }
         }
