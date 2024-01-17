@@ -21,8 +21,10 @@ public class Movement : MonoBehaviour
     {
         if (leapJumpCooldown > 0)
         {
-            leapJumpCooldown -= 0.004;
-            Debug.Log(leapJumpCooldown);
+            if (Time.time - leapJumpCooldown >= 5) {
+                leapJumpCooldown = 0;
+            }
+            Debug.Log(5 - (Time.time - leapJumpCooldown));
         }
         if (moveable) rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
         else rb.velocity = new Vector2(0, rb.velocity.y);
@@ -52,7 +54,7 @@ public class Movement : MonoBehaviour
                         grounded = false;
                         if (leapJumpCooldown <= 0 && !(Input.GetKeyDown(KeyCode.Space)))
                         {
-                            leapJumpCooldown = 5;
+                            leapJumpCooldown = Time.time;
                         }
                     }
                     else if (timePressed >= 3 && Input.GetKeyUp(KeyCode.Space))
@@ -61,7 +63,7 @@ public class Movement : MonoBehaviour
                         grounded = false;
                         if (leapJumpCooldown <= 0 && !(Input.GetKeyDown(KeyCode.Space)))
                         {
-                            leapJumpCooldown = 5;
+                            leapJumpCooldown = Time.time;
                         }
                     }
                     
