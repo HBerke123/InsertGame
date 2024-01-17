@@ -39,6 +39,7 @@ public class Movement : MonoBehaviour
             timePressed = Time.time;
             rb.AddForce(Vector2.up * jumpforce * agilityFactor / 4, ForceMode2D.Impulse);
             grounded = false;
+            
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && grounded && rb.velocity.y <= jumpforce)
@@ -59,6 +60,7 @@ public class Movement : MonoBehaviour
                 rb.AddForce(Vector2.up * jumpforce * 1.5f * Mathf.Sqrt(timePressed) * agilityFactor / 4, ForceMode2D.Impulse);
                 grounded = false;
             }
+            Debug.Log(timePressed);
         }
 
         Vector2 location = new Vector3(transform.position.x - 0.50f, transform.position.y - 0.75f, 0);
