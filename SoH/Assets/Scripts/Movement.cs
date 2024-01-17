@@ -18,7 +18,20 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        if (moveable) rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        if (moveable)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                speed *= 2;
+                this.GetComponent<Renderer>().material.color = new Color(255, 255, 0);
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                speed /= 2;
+                this.GetComponent<Renderer>().material.color = new Color(1.1f, 1.1f, 0);
+            }
+            rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        }
         else rb.velocity = new Vector2(0, rb.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && grounded && rb.velocity.y <= jumpforce)
