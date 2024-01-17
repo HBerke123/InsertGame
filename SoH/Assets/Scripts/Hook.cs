@@ -31,13 +31,9 @@ public class Hook : MonoBehaviour
                 dj.enableCollision = true;
                 dj.maxDistanceOnly = true;
                 dj.connectedBody = hit.collider.GetComponent<Rigidbody2D>();
-                if (dj.distance <= 20)
+                if (dj.distance <= 4)
                 {
                     dj.autoConfigureDistance = false;
-                    if (dj.distance > 7){
-                        dj.distance -= 1;
-                    }
-                    
                     gdj = dj;
                     target = hit;
                     matched = true;
