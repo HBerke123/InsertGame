@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
     Rigidbody2D rb;
     float timePressed = 0f;
     public float agilityFactor = 5;
-    public double leapJumpCooldown = 0D;
     private void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -19,59 +18,29 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        if (leapJumpCooldown > 0)
-        {
-            if (Time.time - leapJumpCooldown >= 5) {
-                leapJumpCooldown = 0;
-            }
-            Debug.Log(5 - (Time.time - leapJumpCooldown));
-        }
         if (moveable) rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
         else rb.velocity = new Vector2(0, rb.velocity.y);
+
         if (Input.GetKeyDown(KeyCode.Space) && grounded && rb.velocity.y <= jumpforce)
         {
             timePressed = Time.time;
-            rb.AddForce(Vector2.up * jumpforce * agilityFactor / 4, ForceMode2D.Impulse);
             grounded = false;
         }
+
         if (Input.GetKeyUp(KeyCode.Space) && grounded && rb.velocity.y <= jumpforce)
         {
-            
-            
             timePressed = Time.time - timePressed;
-            if (timePressed < 1)
+            Debug.Log(timePressed);
+            if (timePressed < 3)
             {
                 rb.AddForce(Vector2.up * jumpforce * agilityFactor / 4, ForceMode2D.Impulse);
                 grounded = false;
             }
-            else
+            else if (timePressed >= 3)
             {
-                if (leapJumpCooldown <= 0)
-                {
-                    if (timePressed < 3 && Input.GetKeyUp(KeyCode.Space))
-                    {
-                        rb.AddForce(Vector2.up * jumpforce * timePressed * agilityFactor / 4, ForceMode2D.Impulse);
-                        grounded = false;
-                        if (leapJumpCooldown <= 0 && !(Input.GetKeyDown(KeyCode.Space)))
-                        {
-                            leapJumpCooldown = Time.time;
-                        }
-                    }
-                    else if (timePressed >= 3 && Input.GetKeyUp(KeyCode.Space))
-                    {
-                        rb.AddForce(Vector2.up * jumpforce * 5 * agilityFactor / 4, ForceMode2D.Impulse);
-                        grounded = false;
-                        if (leapJumpCooldown <= 0 && !(Input.GetKeyDown(KeyCode.Space)))
-                        {
-                            leapJumpCooldown = Time.time;
-                        }
-                    }
-                    
-                }
-                
-                
+                rb.AddForce(Vector2.up * jumpforce * 3 * agilityFactor / 4, ForceMode2D.Impulse);
+                grounded = false;
             }
-            Debug.Log("Pressed for : " + timePressed + " Seconds");
         }
 
         Vector2 location = new Vector3(transform.position.x - 0.50f, transform.position.y - 0.75f, 0);
