@@ -39,7 +39,6 @@ public class Movement : MonoBehaviour
             timePressed = Time.time;
             rb.AddForce(Vector2.up * jumpforce * agilityFactor / 4, ForceMode2D.Impulse);
             grounded = false;
-            
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && grounded && rb.velocity.y <= jumpforce)
