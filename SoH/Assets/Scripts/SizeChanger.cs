@@ -48,14 +48,9 @@ public class SizeChanger : MonoBehaviour
                 ray.transform.localScale = new Vector3(0, 0, distance);
                 ray.transform.position = this.transform.position;
                 ray.transform.LookAt(target.transform);
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    StartCoroutine(Schange(-1));
-                }
-                else if (Input.GetKeyDown(KeyCode.X))
-                {
-                    StartCoroutine(Schange(1));
-                }
+
+                if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(Schange(-1));
+                else if (Input.GetKeyDown(KeyCode.X)) StartCoroutine(Schange(1));
             }
             else
             {
@@ -69,6 +64,7 @@ public class SizeChanger : MonoBehaviour
     {
         if (value == -1) {
             if (lastvalue != -1) t = 0;
+
             if (target.transform.localScale == Vector3.zero)
             {
                 Destroy(target.collider.gameObject);
@@ -84,13 +80,7 @@ public class SizeChanger : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         t += 0.1f;
-        if (Input.GetKey(KeyCode.Z))
-        {
-            StartCoroutine(Schange(-1, value));
-        }
-        else if (Input.GetKey(KeyCode.X))
-        {
-            StartCoroutine(Schange(1, value));
-        }
+        if (Input.GetKey(KeyCode.Z)) StartCoroutine(Schange(-1, value));
+        else if (Input.GetKey(KeyCode.X)) StartCoroutine(Schange(1, value));
     }
 }

@@ -9,13 +9,7 @@ public class TimeChanger : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            foreach (GameObject Item in gameObjects)
-            {
-                Item.GetComponent<TimeSource>().Tchanger(timevalue);
-            }
-        }
+        if (Input.GetKeyDown(KeyCode.Y)) foreach (GameObject Item in gameObjects) Item.GetComponent<TimeSource>().Tchanger(timevalue);
     }
 
     public IEnumerator Goback()

@@ -14,21 +14,11 @@ public class Movement : MonoBehaviour
     public float CheckRadius = Mathf.Sqrt(2);
     public LayerMask layerMask;
     public bool touching = false;
-    private void Start()
-    {
-        rb = this.GetComponent<Rigidbody2D>();
-    }
+
+    private void Start() => rb = this.GetComponent<Rigidbody2D>();
 
     private void Update()
     {
-        if (touching)
-        {
-            Debug.Log("touching");
-        }
-        else
-        {
-            Debug.Log("not touching");
-        }
         if (moveable)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -70,7 +60,6 @@ public class Movement : MonoBehaviour
                 rb.AddForce(Vector2.up * jumpforce * 1.5f * Mathf.Sqrt(timePressed) * agilityFactor / 4, ForceMode2D.Impulse);
                 grounded = false;
             }
-            Debug.Log(timePressed);
         }
 
         Vector2 location = new Vector3(transform.position.x - 0.50f, transform.position.y - 0.75f, 0);

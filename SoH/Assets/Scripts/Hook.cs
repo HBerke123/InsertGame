@@ -10,10 +10,7 @@ public class Hook : MonoBehaviour
     RaycastHit2D target;
     DistanceJoint2D gdj;
 
-    private void Start()
-    {
-        movement = this.GetComponent<Movement>();
-    }
+    private void Start() => movement = this.GetComponent<Movement>();
 
     private void Update()
     {
@@ -33,6 +30,7 @@ public class Hook : MonoBehaviour
                 dj.connectedBody = hit.collider.GetComponent<Rigidbody2D>();
                 if (dj.distance <= 4)
                 {
+                    dj.distance = 4;
                     dj.autoConfigureDistance = false;
                     gdj = dj;
                     target = hit;
