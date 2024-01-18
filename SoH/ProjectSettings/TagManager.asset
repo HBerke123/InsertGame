@@ -7,6 +7,7 @@ TagManager:
   - Hookable
   - Changeable
   - SprintParticle
+  - Orbitable
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Hookables
   - Changeable
   - SprintParticle
-  - 
+  - Orbitable
   - 
   - 
   - 

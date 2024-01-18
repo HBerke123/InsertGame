@@ -11,6 +11,9 @@ public class Movement : MonoBehaviour
     Rigidbody2D rb;
     float timePressed = 0f;
     public float agilityFactor = 5;
+    public float CheckRadius = Mathf.Sqrt(2);
+    public LayerMask layerMask;
+    public bool touching = false;
     private void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -18,6 +21,14 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        if (touching)
+        {
+            Debug.Log("touching");
+        }
+        else
+        {
+            Debug.Log("not touching");
+        }
         if (moveable)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -34,7 +45,7 @@ public class Movement : MonoBehaviour
         }
         else rb.velocity = new Vector2(0, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && grounded && rb.velocity.y <= jumpforce)
+        if (Input.GetKeyDown(KeyCode.Space) && (grounded || touching) && rb.velocity.y <= jumpforce)
         {
             timePressed = Time.time;
             rb.AddForce(Vector2.up * jumpforce * agilityFactor / 4, ForceMode2D.Impulse);
@@ -67,5 +78,14 @@ public class Movement : MonoBehaviour
 
         if (hit.collider != null) grounded = true;
         else grounded = false;
+    }
+    void OnCollisionEnter2D(Collision2D collision2D)
+    {
+        touching = true;
+    }
+
+    void OnCollisionExit2D(Collision2D collision2D)
+    {
+        touching = false;
     }
 }
