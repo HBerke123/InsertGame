@@ -8,6 +8,7 @@ TagManager:
   - Changeable
   - SprintParticle
   - Orbitable
+  - player
   layers:
   - Default
   - TransparentFX
