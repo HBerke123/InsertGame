@@ -9,8 +9,12 @@ public class Hook : MonoBehaviour
     Movement movement;
     RaycastHit2D target;
     DistanceJoint2D gdj;
+    Rigidbody2D rb;
 
-    private void Start() => movement = this.GetComponent<Movement>();
+    private void Start() {
+        movement = this.GetComponent<Movement>();
+        rb = this.GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
@@ -19,6 +23,7 @@ public class Hook : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Vector2 vel = rb.velocity;
             LayerMask mask = LayerMask.GetMask("Hookables");
             RaycastHit2D hit = Physics2D.Raycast(this.transform.position, dir, 4, mask);
 
@@ -30,6 +35,9 @@ public class Hook : MonoBehaviour
                 dj.connectedBody = hit.collider.GetComponent<Rigidbody2D>();
                 if (dj.distance <= 4)
                 {
+                    movement.speed = 10;
+                    this.GetComponent<Renderer>().material.color = new Color(1.1f, 1.1f, 0);
+                    rb.velocity = vel;
                     dj.distance = 4;
                     dj.autoConfigureDistance = false;
                     gdj = dj;
