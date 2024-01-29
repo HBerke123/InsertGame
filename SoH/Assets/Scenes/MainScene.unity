@@ -2307,6 +2307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 980212537}
   speed: 5
+  jumpforce: 0
+  grounded: 0
 --- !u!1 &1197158861
 GameObject:
   m_ObjectHideFlags: 0
