@@ -6,6 +6,8 @@ public class EnemyMovement : MonoBehaviour
 {
     public GameObject player;
     public float speed = 5;
+    public float jumpforce = 6.25f;
+    public bool grounded;
     Rigidbody2D rb;
 
     private void Start()
@@ -20,6 +22,18 @@ public class EnemyMovement : MonoBehaviour
         {
             if (player.transform.position.x > this.transform.position.x) rb.velocity = new Vector2(speed, rb.velocity.y);
             else rb.velocity = new Vector2(-speed, rb.velocity.y);
+
+            if ((player.transform.position.y > this.transform.position.y) && grounded)
+            {
+                rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+                grounded = false;
+            }
         }
+
+        Vector2 location = new Vector3(transform.position.x - 0.50f, transform.position.y - 0.75f, 0);
+        RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1);
+
+        if (hit.collider != null) grounded = true;
+        else grounded = false;
     }
 }
