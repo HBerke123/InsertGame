@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
         }
         else rb.velocity = new Vector2(0, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && (grounded || touching) && rb.velocity.y <= jumpforce)
+        if (Input.GetKeyDown(KeyCode.Space) && (grounded || touching) && rb.velocity.y <= jumpforce / rb.mass)
         {
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
             grounded = false;
