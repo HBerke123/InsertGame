@@ -30,10 +30,6 @@ public class EnemyMovement : MonoBehaviour
                 grounded = false;
             }
         }
-        else
-        {
-            rb.AddForce(new Vector2(-speed, 0));
-        }
 
         Vector2 location = new Vector3(transform.position.x - 0.50f, transform.position.y - 0.75f, 0);
         RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1);
