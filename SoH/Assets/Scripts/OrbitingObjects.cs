@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class OrbitingObjects : MonoBehaviour
 {
-    public GameObject rope;
     bool matched = false;
     Movement movement;
     RaycastHit2D target;
@@ -42,7 +41,6 @@ public class OrbitingObjects : MonoBehaviour
             }
             else
             {
-                rope.transform.localScale = Vector3.zero;
                 matched = false;
                 movement.moveable = true;
                 Destroy(gdj);
@@ -51,9 +49,6 @@ public class OrbitingObjects : MonoBehaviour
 
         if (matched)
         {
-            rope.transform.localScale = new Vector3(0, 0, Mathf.Sqrt(Mathf.Pow(Mathf.Abs(this.transform.position.x - target.transform.position.x) , 2)  +  Mathf.Pow(Mathf.Abs(this.transform.position.y - target.transform.position.y) , 2)));
-            rope.transform.position = this.transform.position;
-            rope.transform.LookAt(target.transform);
             movement.moveable = movement.grounded;
         }
     }
