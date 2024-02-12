@@ -5,8 +5,7 @@ using UnityEngine;
 public class Respawn : MonoBehaviour
 {
     void Update()
-    {
-        
+    {       
         if (this.transform.position.y < -30)
         {
             if (this.CompareTag("Player")) {
