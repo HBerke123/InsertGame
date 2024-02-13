@@ -45,13 +45,9 @@ public class Movement : MonoBehaviour
         if (hit.collider != null) grounded = true;
         else grounded = false;
     }
-    void OnCollisionEnter2D(Collision2D collision2D)
-    {
-        touching = true;
-    }
+    void OnCollisionEnter2D(Collision2D collision2D) => touching = true;
 
-    void OnCollisionExit2D(Collision2D collision2D)
-    {
-        touching = false;
-    }
+    void OnCollisionExit2D(Collision2D collision2D) => touching = false;
+
+    
 }
