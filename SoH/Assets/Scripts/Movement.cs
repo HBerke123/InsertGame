@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public bool extracondition;
+    public float extraspeed;
     public float speed;
     public float jumpforce;
+    public bool jumpable;
     public bool moveable = true;
     public bool grounded;
     Rigidbody2D rb;
@@ -29,11 +32,14 @@ public class Movement : MonoBehaviour
                 speed = 10;
                 this.GetComponent<Renderer>().material.color = new Color(1.1f, 1.1f, 0);
             }
-            rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+            rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal") + extraspeed, rb.velocity.y);
+        }
+        else if (extracondition) {
+            rb.velocity = new Vector2(extraspeed, rb.velocity.y);
         }
         else rb.velocity = new Vector2(0, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && (grounded || touching) && rb.velocity.y <= jumpforce / rb.mass)
+        if (Input.GetKeyDown(KeyCode.Space) && (grounded || touching) && (rb.velocity.y <= jumpforce / rb.mass) && jumpable)
         {
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
             grounded = false;
@@ -48,6 +54,4 @@ public class Movement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision2D) => touching = true;
 
     void OnCollisionExit2D(Collision2D collision2D) => touching = false;
-
-    
 }

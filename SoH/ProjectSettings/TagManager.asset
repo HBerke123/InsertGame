@@ -13,14 +13,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Hookables
   - Changeable
   - SprintParticle
   - Orbitables
-  - 
+  - Enemy
   - 
   - 
   - 
