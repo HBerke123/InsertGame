@@ -40,14 +40,12 @@ public class Dash : MonoBehaviour
 
     IEnumerator Optimeover(int rotation)
     {
-        this.gameObject.layer = 3;
         mv.jumpable = false;
         mv.extraspeed += dashforce * rotation;
         dashable = false;
         mv.moveable = false;
         mv.extracondition = true;
         yield return new WaitForSeconds(0.125f);
-        this.gameObject.layer = 0;
         if (rotation == 1) mv.extraspeed -= dashforce;
         else mv.extraspeed += dashforce;
         dashable = true;
