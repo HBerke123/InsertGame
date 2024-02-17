@@ -11,6 +11,10 @@ public class Respawn : MonoBehaviour
             if (this.CompareTag("Player")) {
                 this.transform.position = new Vector3(0f, 0f, 0f);
             }
+            else if (this.CompareTag("Changeable"))
+            {
+                this.transform.position = new Vector3(35f, 1f, 0f);
+            }
             else
             {
                 this.transform.position = new Vector3(180f, 0f, 0f);

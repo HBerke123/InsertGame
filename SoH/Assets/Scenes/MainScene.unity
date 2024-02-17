@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 261074597}
   - component: {fileID: 261074596}
   - component: {fileID: 261074599}
+  - component: {fileID: 261074600}
   m_Layer: 7
   m_Name: Resizable2
   m_TagString: Changeable
@@ -470,6 +471,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &261074600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261074595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fc6a5e84687fc47ae7757f180df217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &265256327
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -348.6, y: 169.1}
   m_SizeDelta: {x: 150, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &265256329
@@ -1549,6 +1562,7 @@ GameObject:
   - component: {fileID: 1128998123}
   - component: {fileID: 1128998122}
   - component: {fileID: 1128998125}
+  - component: {fileID: 1128998126}
   m_Layer: 7
   m_Name: Resizable1
   m_TagString: Changeable
@@ -1670,6 +1684,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1128998126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128998121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fc6a5e84687fc47ae7757f180df217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1161060580
 GameObject:
   m_ObjectHideFlags: 0
