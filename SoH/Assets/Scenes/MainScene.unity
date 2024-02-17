@@ -1566,6 +1566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashforce: 48
   optime: 0
+  cooldown: 3
   dashable: 1
   arrow: {fileID: 1399225949}
 --- !u!1 &1128998121
@@ -61020,7 +61021,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
