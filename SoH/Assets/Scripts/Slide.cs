@@ -38,13 +38,13 @@ public class Slide : MonoBehaviour
         mv.extraspeed += slideforce * rotation;
         slideable = false;
         mv.moveable = false;
-        mv.extracondition = true;
+        mv.extracondition[0] = true;
         yield return new WaitForSeconds(0.25f);
         this.gameObject.layer = 0;
         if (rotation == 1) mv.extraspeed -= slideforce;
         else mv.extraspeed += slideforce;
         slideable = true;
-        mv.extracondition = false;
+        mv.extracondition[0] = false;
         mv.moveable = true;
         mv.jumpable = true;
     }

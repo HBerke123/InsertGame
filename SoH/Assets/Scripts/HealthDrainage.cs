@@ -37,7 +37,6 @@ public class HealthDrainage : MonoBehaviour
                 health = 100;
                 this.transform.position = new Vector3(0f, 0f, 0f);
             }
-            Debug.Log(health);
         }
 
         
@@ -52,7 +51,6 @@ public class HealthDrainage : MonoBehaviour
         if (target.gameObject.CompareTag("Enemy"))
         {
             collisionTime = Time.time;
-            Debug.Log(collisionTime);
             hurt = true;
         }
         else

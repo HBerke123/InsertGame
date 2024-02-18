@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public bool extracondition;
+    public List<bool> extracondition = new List<bool>();
     public float extraspeed;
     public float speed;
     public float jumpforce;
+    public float walljumpforce;
     public bool jumpable;
     public bool moveable = true;
     public bool grounded;
     Rigidbody2D rb;
+    WallJump wj;
     public float CheckRadius = Mathf.Sqrt(2);
     public LayerMask layerMask;
-    public bool touching = false;
 
-    private void Start() => rb = this.GetComponent<Rigidbody2D>();
+    private void Start()
+    {
+        rb = this.GetComponent<Rigidbody2D>();
+        wj = this.GetComponent<WallJump>();
+        for (int i = 0; i < 2; i++) extracondition.Add(false);
+    }
 
     private void Update()
     {
@@ -34,15 +40,28 @@ public class Movement : MonoBehaviour
             }
             rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal") + extraspeed, rb.velocity.y);
         }
-        else if (extracondition) {
+        else if (extracondition[0]) {
             rb.velocity = new Vector2(extraspeed, rb.velocity.y);
         }
         else rb.velocity = new Vector2(0, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && (grounded || touching) && (rb.velocity.y <= jumpforce / rb.mass) && jumpable)
+        if (Input.GetKeyDown(KeyCode.Space) && (rb.velocity.y <= jumpforce / rb.mass) && jumpable)
         {
-            rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-            grounded = false;
+            if (grounded)
+            {
+                rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+                grounded = false;
+            }   
+            else if (extracondition[1])
+            {
+                rb.velocity = Vector2.zero;
+                rb.AddForce(Vector2.up * walljumpforce, ForceMode2D.Impulse);
+                extraspeed += walljumpforce / 8 * -wj.rotation;
+                extracondition[1] = false;
+                extracondition[0] = true;
+                moveable = false;
+                StartCoroutine(Jumpend(-wj.rotation));
+            }
         }
 
         Vector2 location = new Vector3(transform.position.x - 0.50f, transform.position.y - 0.75f, 0);
@@ -51,7 +70,12 @@ public class Movement : MonoBehaviour
         if (hit.collider != null) grounded = true;
         else grounded = false;
     }
-    void OnCollisionEnter2D(Collision2D collision2D) => touching = true;
 
-    void OnCollisionExit2D(Collision2D collision2D) => touching = false;
+    IEnumerator Jumpend(int rotation)
+    {
+        yield return new WaitForSeconds(0.1f);
+        moveable = true;
+        extracondition[0] = false;
+        extraspeed -= walljumpforce / 8 * rotation;
+    }
 }

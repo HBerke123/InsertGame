@@ -44,12 +44,12 @@ public class Dash : MonoBehaviour
         mv.extraspeed += dashforce * rotation;
         dashable = false;
         mv.moveable = false;
-        mv.extracondition = true;
+        mv.extracondition[0] = true;
         yield return new WaitForSeconds(0.125f);
         if (rotation == 1) mv.extraspeed -= dashforce;
         else mv.extraspeed += dashforce;
         dashable = true;
-        mv.extracondition = false;
+        mv.extracondition[0] = false;
         mv.moveable = true;
         mv.jumpable = true;
         StartCoroutine(Cooldown());
