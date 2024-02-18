@@ -9,6 +9,7 @@ TagManager:
   - SprintParticle
   - Orbitable
   - player
+  - Enemy
   layers:
   - Default
   - TransparentFX

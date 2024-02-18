@@ -1587,6 +1587,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthBarImage: {fileID: 0}
   slider: {fileID: 0}
+  playerCollider: {fileID: 0}
+  enemyCollider: {fileID: 0}
+  collisionTime: 0
 --- !u!1 &1128998121
 GameObject:
   m_ObjectHideFlags: 0
@@ -56766,6 +56769,10 @@ PrefabInstance:
     - target: {fileID: 1951744259890861754, guid: dbbfd4e94b4fcda4297a01c882552928, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951744259890861754, guid: dbbfd4e94b4fcda4297a01c882552928, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1951744259890861755, guid: dbbfd4e94b4fcda4297a01c882552928, type: 3}
       propertyPath: m_Mass

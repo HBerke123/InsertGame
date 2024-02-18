@@ -5,39 +5,59 @@ using UnityEngine.UI;
 
 public class HealthDrainage : MonoBehaviour
 {
-    public float health = 0, maxHealth = 1;
+    public float health = 0, maxHealth = 100;
     public GameObject healthBar;
     public Image healthBarImage;
     public Slider slider;
+    public Collider2D playerCollider;
+    public Collider2D enemyCollider;
+    public float collisionTime;
+    public bool hurt;
 
     public void Start()
     {
         healthBar = GameObject.Find("HP Bar");
-        health = 1;
+        health = 100;
         slider = healthBar.GetComponent<Slider>();
+        playerCollider = this.GetComponent<Collider2D>();
 
     }
-    public void TakeDamage()
+    public void TakeDamage(float dmg)
     {
-        // Use your own damage handling code, or this example one.
-        health -= 0.1f;
-        UpdateHealthBar(health);
-        Debug.Log(health);
-        if(health < 0)
-        {
-            health = 0;
-        }
+        health -= dmg;
+        UpdateHealthBar(health / 100);
     }
     void Update()
     {
-        // Example so we can test the Health Bar functionality
-        if (Input.GetKeyDown(KeyCode.J))
+        if (hurt)
         {
-            TakeDamage();
+            TakeDamage(0.1f);
+            if (health <= 0)
+            {
+                health = 100;
+                this.transform.position = new Vector3(0f, 0f, 0f);
+            }
+            Debug.Log(health);
         }
+
+        
     }
     public void UpdateHealthBar(float newHealth)
     {
         slider.value = newHealth;
+    }
+
+    void OnCollisionEnter2D(Collision2D target)
+    {
+        if (target.gameObject.CompareTag("Enemy"))
+        {
+            collisionTime = Time.time;
+            Debug.Log(collisionTime);
+            hurt = true;
+        }
+        else
+        {
+            hurt = false;
+        }
     }
 }
