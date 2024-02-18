@@ -6,14 +6,14 @@ using TMPro;
 
 public class HealthDrainage : MonoBehaviour
 {
-    public float health = 0, maxHealth = 100;
+    public static float health = 0, maxHealth = 100;
     public GameObject healthBar;
     public GameObject healthDisplay;
     public Image healthBarImage;
-    public Slider slider;
+    public static Slider slider;
     public Collider2D playerCollider;
     public Collider2D enemyCollider;
-    public TextMeshProUGUI hpDisplayText;
+    public static TextMeshProUGUI hpDisplayText;
     public float collisionTime;
     public bool hurt;
     public float cooldown;
@@ -57,7 +57,7 @@ public class HealthDrainage : MonoBehaviour
 
         
     }
-    public void UpdateHealthBar(float newHealth)
+    public static void UpdateHealthBar(float newHealth)
     {
         slider.value = newHealth;
         hpDisplayText.text = health + "/" + Mathf.Round(maxHealth);
