@@ -48,7 +48,7 @@ public class HealthDrainage : MonoBehaviour
             }
             if (health <= 0)
             {
-                health = 100;
+                health = maxHealth;
                 this.transform.position = new Vector3(0f, 0f, 0f);
                 UpdateHealthBar(health / maxHealth);
             }

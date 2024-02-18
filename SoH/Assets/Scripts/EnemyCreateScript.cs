@@ -10,6 +10,13 @@ public class EnemyCreate : MonoBehaviour
     public GameObject Enemy1;
     public GameObject Enemy2;
     public GameObject Enemy3;
+    public GameObject Enemy4;
+    public GameObject Enemy5;
+    public GameObject Enemy6;
+    public GameObject Enemy7;
+    public GameObject Enemy8;
+    public GameObject Enemy9;
+    public GameObject Enemy10;
     public float collisionTime;
     void Start()
     {
@@ -18,6 +25,13 @@ public class EnemyCreate : MonoBehaviour
         Enemy1 = Instantiate(EnemyPrefab, new Vector3(165f, 0f, 0f), transform.rotation);
         Enemy2 = Instantiate(EnemyPrefab, new Vector3(170f, 0f, 0f), transform.rotation);
         Enemy3 = Instantiate(EnemyPrefab, new Vector3(175f, 0f, 0f), transform.rotation);
+        Enemy4 = Instantiate(EnemyPrefab, new Vector3(165f, 1f, 0f), transform.rotation);
+        Enemy5 = Instantiate(EnemyPrefab, new Vector3(170f, 1f, 0f), transform.rotation);
+        Enemy6 = Instantiate(EnemyPrefab, new Vector3(175f, 1f, 0f), transform.rotation);
+        Enemy7 = Instantiate(EnemyPrefab, new Vector3(165f, 2f, 0f), transform.rotation);
+        Enemy8 = Instantiate(EnemyPrefab, new Vector3(170f, 2f, 0f), transform.rotation);
+        Enemy9 = Instantiate(EnemyPrefab, new Vector3(175f, 2f, 0f), transform.rotation);
+        Enemy10 = Instantiate(EnemyPrefab, new Vector3(175f, 3f, 0f), transform.rotation);
     }
     void Update()
     {

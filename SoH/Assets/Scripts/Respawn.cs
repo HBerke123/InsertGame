@@ -22,5 +22,5 @@ public class Respawn : MonoBehaviour
                 this.transform.position = new Vector3(180f, 0f, 0f);
             }
         }
-    }
+    }   
 }

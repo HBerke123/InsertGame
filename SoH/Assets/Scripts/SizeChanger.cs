@@ -49,8 +49,14 @@ public class SizeChanger : MonoBehaviour
                 ray.transform.position = this.transform.position;
                 ray.transform.LookAt(target.transform);
 
-                if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(Schange(-1));
-                else if (Input.GetKeyDown(KeyCode.X)) StartCoroutine(Schange(1));
+                if (Input.GetKeyDown(KeyCode.Z)) {
+                    StartCoroutine(Schange(-1));
+                    STEDrainage.ste -= 50;
+                }
+                else if (Input.GetKeyDown(KeyCode.X)) {
+                    StartCoroutine(Schange(1));
+                    STEDrainage.ste -= 50;
+                }
             }
             else
             {
