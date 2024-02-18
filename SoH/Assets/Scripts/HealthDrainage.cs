@@ -16,7 +16,8 @@ public class HealthDrainage : MonoBehaviour
     public TextMeshProUGUI hpDisplayText;
     public float collisionTime;
     public bool hurt;
-
+    public float cooldown;
+    public float cooldownHolder;
     public void Start()
     {
         healthBar = GameObject.Find("HP Bar");
@@ -33,17 +34,23 @@ public class HealthDrainage : MonoBehaviour
         health -= dmg;
         Mathf.Round(health);
         UpdateHealthBar(health / maxHealth);
+        cooldownHolder = Time.time;
 
     }
     void Update()
     {
         if (hurt)
         {
-            TakeDamage(0.1f);
+            cooldown = Time.time;
+            if(cooldown - cooldownHolder >= 2)
+            {
+                TakeDamage(50.0f);
+            }
             if (health <= 0)
             {
                 health = 100;
                 this.transform.position = new Vector3(0f, 0f, 0f);
+                UpdateHealthBar(health / maxHealth);
             }
             Debug.Log(health);
         }
@@ -54,6 +61,8 @@ public class HealthDrainage : MonoBehaviour
     {
         slider.value = newHealth;
         hpDisplayText.text = health + "/" + Mathf.Round(maxHealth);
+
+
     }
 
     void OnCollisionEnter2D(Collision2D target)
