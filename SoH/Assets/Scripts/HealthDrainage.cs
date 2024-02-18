@@ -44,7 +44,7 @@ public class HealthDrainage : MonoBehaviour
             cooldown = Time.time;
             if (cooldown - cooldownHolder >= 2)
             {
-                TakeDamage(50.0f);
+                TakeDamage(5.0f);
             }
             if (health <= 0)
             {
