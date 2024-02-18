@@ -2,30 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthDrainage : MonoBehaviour
 {
     public float health = 0, maxHealth = 100;
     public GameObject healthBar;
+    public GameObject healthDisplay;
     public Image healthBarImage;
     public Slider slider;
     public Collider2D playerCollider;
     public Collider2D enemyCollider;
+    public TextMeshProUGUI hpDisplayText;
     public float collisionTime;
     public bool hurt;
 
     public void Start()
     {
         healthBar = GameObject.Find("HP Bar");
+        healthDisplay = GameObject.Find("HP Display");
         health = 100;
         slider = healthBar.GetComponent<Slider>();
         playerCollider = this.GetComponent<Collider2D>();
-
+        hpDisplayText = healthDisplay.GetComponent<TextMeshProUGUI>();
+        hpDisplayText.text = health + "/" + maxHealth;
+        
     }
     public void TakeDamage(float dmg)
     {
         health -= dmg;
-        UpdateHealthBar(health / 100);
+        Mathf.Round(health);
+        UpdateHealthBar(health / maxHealth);
+
     }
     void Update()
     {
@@ -45,6 +53,7 @@ public class HealthDrainage : MonoBehaviour
     public void UpdateHealthBar(float newHealth)
     {
         slider.value = newHealth;
+        hpDisplayText.text = health + "/" + Mathf.Round(maxHealth);
     }
 
     void OnCollisionEnter2D(Collision2D target)
