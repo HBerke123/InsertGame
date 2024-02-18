@@ -51,11 +51,11 @@ public class SizeChanger : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Z)) {
                     StartCoroutine(Schange(-1));
-                    STEDrainage.ste -= 50;
+                    
                 }
                 else if (Input.GetKeyDown(KeyCode.X)) {
                     StartCoroutine(Schange(1));
-                    STEDrainage.ste -= 50;
+                    
                 }
             }
             else
@@ -68,6 +68,7 @@ public class SizeChanger : MonoBehaviour
 
     IEnumerator Schange(int value, int lastvalue = 0)
     {
+        STEDrainage.ste -= 50;
         if (value == -1) {
             if (lastvalue != -1) t = 0;
 
