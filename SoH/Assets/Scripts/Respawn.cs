@@ -10,6 +10,8 @@ public class Respawn : MonoBehaviour
         {
             if (this.CompareTag("Player")) {
                 this.transform.position = new Vector3(0f, 0f, 0f);
+                HealthDrainage.health = HealthDrainage.maxHealth;
+                HealthDrainage.UpdateHealthBar(HealthDrainage.health / HealthDrainage.maxHealth);
             }
             else if (this.CompareTag("Changeable"))
             {
