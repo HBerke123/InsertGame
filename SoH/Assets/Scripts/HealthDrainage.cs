@@ -69,10 +69,6 @@ public class HealthDrainage : MonoBehaviour
     {
         if (target.gameObject.CompareTag("Enemy"))
         {
-<<<<<<< HEAD
-=======
-            collisionTime = Time.time;
->>>>>>> b727eef3a8c145a1b2f530ff7efe703408c9b207
             hurt = true;
         }
         else

@@ -11,6 +11,7 @@ TagManager:
   - player
   - Enemy
   - HP Orb
+  - STE Tube
   layers:
   - Default
   - TransparentFX
