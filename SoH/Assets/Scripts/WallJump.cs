@@ -39,7 +39,6 @@ public class WallJump : MonoBehaviour
                 rotation = 1;
                 hold = true;
             }
-
         }
     }
 
