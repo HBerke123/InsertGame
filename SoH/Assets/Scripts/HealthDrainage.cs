@@ -14,18 +14,19 @@ public class HealthDrainage : MonoBehaviour
     public static Slider slider;
     public Collider2D playerCollider;
     public Collider2D enemyCollider;
-    public float collisionTime;
     public bool hurt;
     public float cooldown;
     public float cooldownHolder;
+
     public void Start()
     {
         healthBar = GameObject.Find("HP Bar");
         healthDisplay = GameObject.Find("HP Display");
-        health = 100;
+        health = 50;
         slider = healthBar.GetComponent<Slider>();
         playerCollider = this.GetComponent<Collider2D>();
         hpDisplayText = healthDisplay.GetComponent<TextMeshProUGUI>();
+        UpdateHealthBar(health / maxHealth);
         hpDisplayText.text = health + "/" + maxHealth;
 
     }
@@ -52,7 +53,6 @@ public class HealthDrainage : MonoBehaviour
                 this.transform.position = new Vector3(0f, 0f, 0f);
                 UpdateHealthBar(health / maxHealth);
             }
-            Debug.Log(health);
         }
 
 
@@ -69,8 +69,6 @@ public class HealthDrainage : MonoBehaviour
     {
         if (target.gameObject.CompareTag("Enemy"))
         {
-            collisionTime = Time.time;
-            Debug.Log(collisionTime);
             hurt = true;
         }
         else

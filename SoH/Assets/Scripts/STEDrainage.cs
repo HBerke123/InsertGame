@@ -21,10 +21,11 @@ public class STEDrainage : MonoBehaviour
     {
         steBar = GameObject.Find("STE Bar");
         steDisplay = GameObject.Find("STE Display");
-        ste = 1000;
+        ste = 600;
         steSlider = steBar.GetComponent<Slider>();
         playerCollider = this.GetComponent<Collider2D>();
         steDisplayText = steDisplay.GetComponent<TextMeshProUGUI>();
+        UpdateSTEBar(ste / maxSTE);
         steDisplayText.text = ste + "/" + maxSTE;
 
     }
@@ -50,7 +51,6 @@ public class STEDrainage : MonoBehaviour
             this.transform.position = new Vector3(0f, 0f, 0f);
             loseSTE(ste / maxSTE);
         }
-        Debug.Log(ste);
     }
 
 
