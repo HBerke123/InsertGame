@@ -7,14 +7,10 @@ public class Collectibles : MonoBehaviour
     public GameObject healthBar;
     public GameObject healthDisplay;
     public Collider2D playerCollider;
-<<<<<<< HEAD
     public float healCooldown = 2;
     public float healCooldownHolder = 0;
-    
+
     // Start is called before the first frame update
-=======
-    public
->>>>>>> b727eef3a8c145a1b2f530ff7efe703408c9b207
     void Start()
     {
         healthBar = GameObject.Find("HP Bar");
@@ -23,27 +19,19 @@ public class Collectibles : MonoBehaviour
 
     }
 
+    // Update is called once per frame
     void Update()
     {
-        
-<<<<<<< HEAD
-        
-=======
-        if (HealthDrainage.health >= HealthDrainage.maxHealth)
-        {
-            HealthDrainage.health = HealthDrainage.maxHealth;
-            UpdateHealthBar(HealthDrainage.health / HealthDrainage.maxHealth);
-        }
->>>>>>> b727eef3a8c145a1b2f530ff7efe703408c9b207
-        
+
+
     }
     public void Heal(float healed)
     {
         HealthDrainage.health += healed;
         if (HealthDrainage.health > HealthDrainage.maxHealth)
         {
-            HealthDrainage.health = HealthDrainage.maxHealth;   
-        }   
+            HealthDrainage.health = HealthDrainage.maxHealth;
+        }
         Mathf.Round(HealthDrainage.health);
         UpdateHealthBar(HealthDrainage.health / HealthDrainage.maxHealth);
 
@@ -68,7 +56,7 @@ public class Collectibles : MonoBehaviour
         if (target.gameObject.CompareTag("HP Orb"))
         {
             healCooldown = Time.time;
-            if(healCooldown - healCooldownHolder >= 0.10)
+            if (healCooldown - healCooldownHolder >= 0.10)
             {
                 Destroy(target.gameObject);
                 Heal(20.0f);
