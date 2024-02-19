@@ -43,7 +43,6 @@ public class Movement : MonoBehaviour
         else if (extracondition[0]) {
             rb.velocity = new Vector2(extraspeed, rb.velocity.y);
         }
-        else rb.velocity = new Vector2(0, rb.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && (rb.velocity.y <= jumpforce / rb.mass) && jumpable)
         {
@@ -54,13 +53,7 @@ public class Movement : MonoBehaviour
             }   
             else if (extracondition[1])
             {
-                rb.velocity = Vector2.zero;
-                rb.AddForce(Vector2.up * walljumpforce, ForceMode2D.Impulse);
-                extraspeed += walljumpforce / 8 * -wj.rotation;
-                extracondition[1] = false;
-                extracondition[0] = true;
-                moveable = false;
-                StartCoroutine(Jumpend(-wj.rotation));
+                rb.gravityScale = 0;
             }
         }
 
@@ -77,5 +70,16 @@ public class Movement : MonoBehaviour
         moveable = true;
         extracondition[0] = false;
         extraspeed -= walljumpforce / 8 * rotation;
+    }
+
+    public void onWallJump()
+    {
+        rb.velocity = Vector2.zero;
+        rb.AddForce(Vector2.up * walljumpforce, ForceMode2D.Impulse);
+        extraspeed += walljumpforce / 8 * -wj.rotation;
+        extracondition[1] = false;
+        extracondition[0] = true;
+        moveable = false;
+        StartCoroutine(Jumpend(-wj.rotation));
     }
 }

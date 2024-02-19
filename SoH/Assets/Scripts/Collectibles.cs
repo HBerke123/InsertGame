@@ -8,7 +8,6 @@ public class Collectibles : MonoBehaviour
     public GameObject healthDisplay;
     public Collider2D playerCollider;
     public
-    // Start is called before the first frame update
     void Start()
     {
         healthBar = GameObject.Find("HP Bar");
@@ -16,7 +15,6 @@ public class Collectibles : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -25,7 +23,6 @@ public class Collectibles : MonoBehaviour
             HealthDrainage.health = HealthDrainage.maxHealth;
             UpdateHealthBar(HealthDrainage.health / HealthDrainage.maxHealth);
         }
-        Debug.Log(HealthDrainage.health);
         
     }
     public void Heal(float healed)

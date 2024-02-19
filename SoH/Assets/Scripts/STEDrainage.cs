@@ -50,7 +50,6 @@ public class STEDrainage : MonoBehaviour
             this.transform.position = new Vector3(0f, 0f, 0f);
             loseSTE(ste / maxSTE);
         }
-        Debug.Log(ste);
     }
 
 

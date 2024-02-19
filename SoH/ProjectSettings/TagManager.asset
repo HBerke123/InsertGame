@@ -10,6 +10,7 @@ TagManager:
   - Orbitable
   - player
   - Enemy
+  - HP Orb
   layers:
   - Default
   - TransparentFX
