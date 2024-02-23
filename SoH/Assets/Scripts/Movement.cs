@@ -53,7 +53,11 @@ public class Movement : MonoBehaviour
             }   
             else if (extracondition[1])
             {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
                 rb.gravityScale = 0;
+                moveable = false;
+                wj.timepassed = Time.time;
+                StartCoroutine(wj.OnLeave());
             }
         }
 
