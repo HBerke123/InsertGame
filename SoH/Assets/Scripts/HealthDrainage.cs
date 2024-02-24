@@ -69,6 +69,7 @@ public class HealthDrainage : MonoBehaviour
     {
         if (target.gameObject.CompareTag("Enemy"))
         {
+            
             hurt = true;
         }
         else
