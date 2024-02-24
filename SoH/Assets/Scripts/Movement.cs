@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         wj = this.GetComponent<WallJump>();
         for (int i = 0; i < 2; i++) extracondition.Add(false);
+        this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0);
     }
 
     private void Update()
@@ -31,12 +32,34 @@ public class Movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 speed = 20;
-                this.GetComponent<Renderer>().material.color = new Color(255, 255, 0);
+                if(PrimaryItems.itemEquipped == "Unarmed") {
+                    this.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 0);
+                }
+                else if (PrimaryItems.itemEquipped == "Sword")
+                {
+                    this.GetComponent<Renderer>().material.color = new Color(1.0f, 0, 0);
+                }
+                else if (PrimaryItems.itemEquipped == "Gun")
+                {
+                    this.GetComponent<Renderer>().material.color = new Color(1.0f, 0, 1.0f);
+                }
+
             }
             else if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 speed = 10;
-                this.GetComponent<Renderer>().material.color = new Color(1.1f, 1.1f, 0);
+                if (PrimaryItems.itemEquipped == "Unarmed")
+                {
+                    this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0);
+                }
+                else if (PrimaryItems.itemEquipped == "Sword")
+                {
+                    this.GetComponent<Renderer>().material.color = new Color(0.8f, 0, 0);
+                }
+                else if (PrimaryItems.itemEquipped == "Gun")
+                {
+                    this.GetComponent<Renderer>().material.color = new Color(0.8f, 0, 0.8f);
+                }
             }
             rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal") + extraspeed, rb.velocity.y);
         }
