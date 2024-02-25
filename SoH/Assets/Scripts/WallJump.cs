@@ -9,18 +9,18 @@ public class WallJump : MonoBehaviour
     public int rotation;
     public float timepassed;
     public bool hold;
+    public LayerMask mask;
     private void Start()
     {
         mv = this.GetComponent<Movement>();
         rb = this.GetComponent<Rigidbody2D>();
+        LayerMask mask = LayerMask.GetMask("Ground");
     }
 
     private void Update()
     {
         if (hold == false)
         {
-            LayerMask mask = LayerMask.GetMask("Ground");
-
             Vector3 location = new Vector3(transform.position.x - 0.75f, transform.position.y + 0.5f, 0);
             RaycastHit2D hit = Physics2D.Raycast(location, Vector3.down, 1, mask);
             location = new Vector3(transform.position.x + 0.75f, transform.position.y + 0.5f, 0);
@@ -31,22 +31,33 @@ public class WallJump : MonoBehaviour
             {
                 mv.extracondition[1] = true;
                 rotation = -1;
-                hold = true;
             }     
             else if (hit2.collider != null)
             {
                 mv.extracondition[1] = true;
                 rotation = 1;
-                hold = true;
             }
+            else mv.extracondition[1] = false;
         }
     }
 
     public IEnumerator OnLeave()
     {
+        hold = true;
+        Vector3 location = new Vector3(transform.position.x - 0.75f, transform.position.y + 0.5f, 0);
+        RaycastHit2D hit = Physics2D.Raycast(location, Vector3.down, 1, mask);
+        location = new Vector3(transform.position.x + 0.75f, transform.position.y + 0.5f, 0);
+        RaycastHit2D hit2 = Physics2D.Raycast(location, Vector3.down, 1, mask);
+
+
+        if ((hit.collider != null) || (hit2.collider != null))
+        {
+            mv.extracondition[1] = true;
+        }
+
         yield return new WaitForEndOfFrame();
-        if (Input.GetKey(KeyCode.Space) && (Time.time - timepassed <= 1)) StartCoroutine(OnLeave());
-        else if (Time.time - timepassed <= 1) 
+        if (Input.GetKey(KeyCode.Space) && (Time.time - timepassed <= 1) && mv.extracondition[1]) StartCoroutine(OnLeave());
+        else if ((Time.time - timepassed <= 1) && mv.extracondition[1]) 
         {
             hold = false;
             rb.gravityScale = 1;
@@ -57,6 +68,7 @@ public class WallJump : MonoBehaviour
             hold = false;
             rb.gravityScale = 1;
             mv.moveable = true;
+            mv.extracondition[1] = false;
         }
     }
 }

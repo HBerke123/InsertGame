@@ -11,9 +11,11 @@ public class SizeChanger : MonoBehaviour
     RaycastHit2D target;
     Vector3 maxscale;
     Vector3 minscale;
+    STEDrainage sTEDrainage;
 
     private void Start()
     {
+        sTEDrainage = this.GetComponent<STEDrainage>();
         movement = this.GetComponent<Movement>();
     }
 
@@ -68,7 +70,7 @@ public class SizeChanger : MonoBehaviour
 
     IEnumerator Schange(int value, int lastvalue = 0)
     {
-        STEDrainage.ste -= 50;
+        sTEDrainage.ste -= 50;
         if (value == -1) {
             if (lastvalue != -1) t = 0;
 

@@ -6,17 +6,17 @@ using TMPro;
 
 public class STEDrainage : MonoBehaviour
 {
-    public static float ste = 0, maxSTE = 1000;
+    public float ste = 0, maxSTE = 1000;
     public GameObject steBar;
     public GameObject steDisplay;
     public static TextMeshProUGUI steDisplayText;
     public Image steBarImage;
-    public static Slider steSlider;
     public Collider2D playerCollider;
     public Collider2D enemyCollider;
     public float collisionTime;
     public float steCooldown;
     public float steCooldownHolder;
+    public Slider steSlider;
     public void Start()
     {
         steBar = GameObject.Find("STE Bar");
@@ -55,7 +55,7 @@ public class STEDrainage : MonoBehaviour
 
 
     
-    public static void UpdateSTEBar(float newSTE)
+    public void UpdateSTEBar(float newSTE)
     {
         steSlider.value = newSTE;
         steDisplayText.text = ste + "/" + Mathf.Round(maxSTE);
