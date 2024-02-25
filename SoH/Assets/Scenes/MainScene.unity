@@ -2046,6 +2046,9 @@ MonoBehaviour:
   rotation: 0
   timepassed: 0
   hold: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &980212556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2058,6 +2061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08f150adca66694e859686605aa4deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ste: 0
+  maxSTE: 1000
   steBar: {fileID: 0}
   steDisplay: {fileID: 0}
   steBarImage: {fileID: 0}
@@ -2066,6 +2071,7 @@ MonoBehaviour:
   collisionTime: 0
   steCooldown: 0
   steCooldownHolder: 0
+  steSlider: {fileID: 0}
 --- !u!114 &980212557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2081,6 +2087,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthDisplay: {fileID: 0}
   playerCollider: {fileID: 0}
+  sTEDrainage: {fileID: 0}
   healCooldown: 0
   healCooldownHolder: 0
 --- !u!114 &980212558
