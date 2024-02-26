@@ -1718,7 +1718,6 @@ GameObject:
   m_Component:
   - component: {fileID: 980212541}
   - component: {fileID: 980212540}
-  - component: {fileID: 980212550}
   - component: {fileID: 980212551}
   - component: {fileID: 980212538}
   - component: {fileID: 980212544}
@@ -1736,6 +1735,7 @@ GameObject:
   - component: {fileID: 980212557}
   - component: {fileID: 980212558}
   - component: {fileID: 980212559}
+  - component: {fileID: 980212560}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1938,22 +1938,6 @@ MonoBehaviour:
   Enemy1: {fileID: 0}
   Enemy2: {fileID: 0}
   Enemy3: {fileID: 0}
---- !u!58 &980212550
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980212537}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 0b9c0340f688d8e40a7989ad5956b449, type: 2}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.037917614, y: -0.013022184}
-  serializedVersion: 2
-  m_Radius: 3.179925
 --- !u!61 &980212551
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2116,6 +2100,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inRange: 0
+--- !u!58 &980212560
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980212537}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 0b9c0340f688d8e40a7989ad5956b449, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1128998121
 GameObject:
   m_ObjectHideFlags: 0
@@ -57423,6 +57423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1399225950}
+  - component: {fileID: 1399225951}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -57445,6 +57446,22 @@ Transform:
   m_Father: {fileID: 980212541}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1399225951
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399225949}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.179925
 --- !u!1001 &1409625005
 PrefabInstance:
   m_ObjectHideFlags: 0
