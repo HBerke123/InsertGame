@@ -5,10 +5,12 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     public bool inRange = false;
+    public Collider2D circleCollider;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        circleCollider = this.GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
