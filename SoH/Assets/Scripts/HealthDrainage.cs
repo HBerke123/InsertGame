@@ -61,15 +61,12 @@ public class HealthDrainage : MonoBehaviour
     {
         slider.value = newHealth;
         hpDisplayText.text = health + "/" + Mathf.Round(maxHealth);
-
-
     }
 
     void OnCollisionEnter2D(Collision2D target)
     {
         if (target.gameObject.CompareTag("Enemy"))
         {
-            
             hurt = true;
         }
         else

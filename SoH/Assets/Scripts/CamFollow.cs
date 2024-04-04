@@ -9,7 +9,6 @@ public class CamFollow : MonoBehaviour
     public float smoothTime = 0.25f;
     Vector3 currentVelocity;
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.SmoothDamp(transform.position, target.position + offset, ref currentVelocity, smoothTime);

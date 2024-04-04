@@ -8,6 +8,7 @@ public class Dash : MonoBehaviour
     public float optime;
     public float cooldown = 3;
     public bool dashable = true;
+    public bool dashing = false;
     public GameObject arrow;
     Rigidbody2D rb;
     Movement mv;
@@ -40,12 +41,14 @@ public class Dash : MonoBehaviour
 
     IEnumerator Optimeover(int rotation)
     {
+        dashing = true;
         mv.jumpable = false;
         mv.extraspeed += dashforce * rotation;
         dashable = false;
         mv.moveable = false;
         mv.extracondition[0] = true;
         yield return new WaitForSeconds(0.125f);
+        dashing = false;
         if (rotation == 1) mv.extraspeed -= dashforce;
         else mv.extraspeed += dashforce;
         dashable = true;

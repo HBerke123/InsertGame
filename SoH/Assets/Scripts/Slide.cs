@@ -7,6 +7,7 @@ public class Slide : MonoBehaviour
     public float slideforce;
     public float optime;
     public bool slideable = true;
+    public bool sliding = false;
     Rigidbody2D rb;
     Movement mv;
 
@@ -33,6 +34,7 @@ public class Slide : MonoBehaviour
 
     IEnumerator Optimeover(int rotation)
     {
+        sliding = true;
         this.gameObject.layer = 3;
         mv.jumpable = false;
         mv.extraspeed += slideforce * rotation;
@@ -40,6 +42,7 @@ public class Slide : MonoBehaviour
         mv.moveable = false;
         mv.extracondition[0] = true;
         yield return new WaitForSeconds(0.25f);
+        sliding = false;
         this.gameObject.layer = 0;
         if (rotation == 1) mv.extraspeed -= slideforce;
         else mv.extraspeed += slideforce;
