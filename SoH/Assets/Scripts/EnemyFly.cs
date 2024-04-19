@@ -10,7 +10,7 @@ public class EnemyFly : MonoBehaviour
     public float distancey;
     public float speed = 10;
     public float flyspeed;
-    public float attackspeed = 1;
+    public float attackspeed = 5;
     bool attacking = false;
 
     void Start()
