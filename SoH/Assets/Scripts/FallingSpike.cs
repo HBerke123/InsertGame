@@ -8,6 +8,7 @@ public class FallingSpike : MonoBehaviour
     BoxCollider2D boxCollider2D;
     public float distance;
     bool isFalling = false;
+    public HealthDrainage hpCode;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,6 +41,7 @@ public class FallingSpike : MonoBehaviour
         if(other.collider.tag == "Player")
         {
             Destroy(gameObject);
+            hpCode.TakeDamage(10.0f);
         }
         else
         {
