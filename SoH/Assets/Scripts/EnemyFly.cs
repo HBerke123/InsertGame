@@ -6,8 +6,12 @@ public class EnemyFly : MonoBehaviour
 {
     Rigidbody2D rb;
     GameObject player;
-    public float distance;
+    public float distancex;
+    public float distancey;
     public float speed = 10;
+    public float flyspeed;
+    public float attackspeed = 1;
+    bool attacking = false;
 
     void Start()
     {
@@ -24,14 +28,38 @@ public class EnemyFly : MonoBehaviour
 
     void Update()
     {
-        distance = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(this.transform.position.x - player.transform.position.x), 2) + Mathf.Pow(Mathf.Abs(this.transform.position.y - player.transform.position.y), 2));
-        if ((3 <= distance) && (distance <= 12))
+        distancey = Mathf.Abs(this.transform.position.y - player.transform.position.y);
+        distancex = Mathf.Abs(this.transform.position.x - player.transform.position.x);
+        if ((3 <= distancex) && (distancex <= 12))
         {
-            rb.velocity = new Vector2((player.transform.position.x - this.transform.position.x) / Mathf.Abs(player.transform.position.x - this.transform.position.x) * speed, rb.velocity.y);
+            rb.velocity = new Vector2((player.transform.position.x - this.transform.position.x) / distancex * speed, rb.velocity.y);
         }
         else
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            if (attacking && (0.5f <= distancex))
+            {
+                rb.velocity = new Vector2((player.transform.position.x - this.transform.position.x) / distancex * speed, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+            
+        }
+
+        if ((5 >= distancey) && !attacking)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, flyspeed);
+            flyspeed = 7 - distancey;
+            attacking = false;
+        }
+        else if (((5 < distancey) || (attacking)) && (0.5f < distancey)) {
+            rb.velocity = new Vector2(rb.velocity.x, -attackspeed);
+            attacking = true;
+        }
+        else
+        {
+            attacking = false;
         }
     }
 }
