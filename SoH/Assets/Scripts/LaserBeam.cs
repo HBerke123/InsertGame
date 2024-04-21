@@ -45,6 +45,12 @@ public class LaserBeam : MonoBehaviour
             if (collider.tag == "Player")
             {
                 hpdrain.TakeDamage(15.0f);
+                if (hpdrain.health <= 0)
+                {
+                    hpdrain.health = hpdrain.maxHealth;
+                    this.transform.position = new Vector3(0f, 0f, 0f);
+                    hpdrain.UpdateHealthBar(hpdrain.health / hpdrain.maxHealth);
+                }
             }
         }
     }

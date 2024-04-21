@@ -10,6 +10,7 @@ public class Collectibles : MonoBehaviour
     public STEDrainage sTEDrainage;
     public float healCooldown = 2;
     public float healCooldownHolder = 0;
+    public HealthDrainage hpdrain;
 
     void Start()
     {
@@ -22,13 +23,13 @@ public class Collectibles : MonoBehaviour
 
     public void Heal(float healed)
     {
-        HealthDrainage.health += healed;
-        if (HealthDrainage.health > HealthDrainage.maxHealth)
+        hpdrain.health += healed;
+        if (hpdrain.health > hpdrain.maxHealth)
         {
-            HealthDrainage.health = HealthDrainage.maxHealth;
+            hpdrain.health = hpdrain.maxHealth;
         }
-        Mathf.Round(HealthDrainage.health);
-        UpdateHealthBar(HealthDrainage.health / HealthDrainage.maxHealth);
+        Mathf.Round(hpdrain.health);
+        UpdateHealthBar(hpdrain.health / hpdrain.maxHealth);
 
     }
     public void RegainSTE(float regained)
@@ -44,7 +45,7 @@ public class Collectibles : MonoBehaviour
     public static void UpdateHealthBar(float newHealth)
     {
         HealthDrainage.slider.value = newHealth;
-        HealthDrainage.hpDisplayText.text = HealthDrainage.health + "/" + Mathf.Round(HealthDrainage.maxHealth);
+        HealthDrainage.hpDisplayText.text = hpdrain.health.ToString() + "/" + Mathf.Round(hpdrain.maxHealth).ToString();
     }
     void OnTriggerEnter2D(Collider2D target)
     {
