@@ -84,10 +84,16 @@ public class Movement : MonoBehaviour
             }
         }
 
-        Vector2 location = new Vector3(transform.position.x - 0.50f, transform.position.y - 0.75f, 0);
+        Vector2 location = new Vector2(transform.position.x - 0.50f, transform.position.y - 0.75f);
         RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1);
+        Debug.DrawRay(location,Vector2.right);
+        Debug.Log(hit.collider);
 
-        if (hit.collider != null) grounded = true;
+        if ((hit.collider != null) && (hit.collider.tag != "Player"))
+        {
+            grounded = true;
+            Debug.Log(hit.collider.name);
+        }
         else grounded = false;
     }
 
