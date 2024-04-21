@@ -48,7 +48,8 @@ public class LaserBeam : MonoBehaviour
                 if (hpdrain.health <= 0)
                 {
                     hpdrain.health = hpdrain.maxHealth;
-                    this.transform.position = new Vector3(0f, 0f, 0f);
+                    collider.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+                    hpdrain.health = hpdrain.maxHealth;
                     hpdrain.UpdateHealthBar(hpdrain.health / hpdrain.maxHealth);
                 }
             }

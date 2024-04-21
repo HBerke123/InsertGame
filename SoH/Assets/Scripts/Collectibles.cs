@@ -42,7 +42,7 @@ public class Collectibles : MonoBehaviour
         Mathf.Round(sTEDrainage.ste);
         sTEDrainage.UpdateSTEBar(sTEDrainage.ste / sTEDrainage.maxSTE);
     }
-    public static void UpdateHealthBar(float newHealth)
+    public void UpdateHealthBar(float newHealth)
     {
         HealthDrainage.slider.value = newHealth;
         HealthDrainage.hpDisplayText.text = hpdrain.health.ToString() + "/" + Mathf.Round(hpdrain.maxHealth).ToString();

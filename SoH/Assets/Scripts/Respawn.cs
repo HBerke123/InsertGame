@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
+    public HealthDrainage hpdrain;
     void Update()
     {       
         if (this.transform.position.y < -30)
         {
             if (this.CompareTag("Player")) {
                 this.transform.position = new Vector3(0f, 0f, 0f);
-                HealthDrainage.health = HealthDrainage.maxHealth;
-                HealthDrainage.UpdateHealthBar(HealthDrainage.health / HealthDrainage.maxHealth);
+                hpdrain.health = hpdrain.maxHealth;
+                hpdrain.UpdateHealthBar(hpdrain.health / hpdrain.maxHealth);
             }
             else if (this.CompareTag("Changeable"))
             {

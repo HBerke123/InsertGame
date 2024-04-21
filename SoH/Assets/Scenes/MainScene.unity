@@ -1210,6 +1210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6a5e84687fc47ae7757f180df217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpdrain: {fileID: 0}
 --- !u!1 &265256327
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,6 +3368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6a5e84687fc47ae7757f180df217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpdrain: {fileID: 0}
 --- !u!114 &980212548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3469,6 +3471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e434cfcd5f9099644b18fbc87accd595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 100
   healthBar: {fileID: 0}
   healthDisplay: {fileID: 0}
   healthBarImage: {fileID: 0}
@@ -3511,6 +3515,7 @@ MonoBehaviour:
   maxSTE: 1000
   steBar: {fileID: 0}
   steDisplay: {fileID: 0}
+  steDisplayText: {fileID: 1659462660}
   steBarImage: {fileID: 0}
   playerCollider: {fileID: 0}
   enemyCollider: {fileID: 0}
@@ -3536,6 +3541,7 @@ MonoBehaviour:
   sTEDrainage: {fileID: 0}
   healCooldown: 0
   healCooldownHolder: 0
+  hpdrain: {fileID: 0}
 --- !u!114 &980212558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3844,6 +3850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6a5e84687fc47ae7757f180df217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpdrain: {fileID: 0}
 --- !u!4 &1134962082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7850132618367359588, guid: 147e8d84de3f5af42a93d320f3ca9946, type: 3}
@@ -60399,6 +60406,7 @@ MonoBehaviour:
   isLaserOn: 1
   timetoStart: 3
   laserTime: 3
+  hpdrain: {fileID: 980212554}
 --- !u!61 &1583242471
 BoxCollider2D:
   m_ObjectHideFlags: 0
