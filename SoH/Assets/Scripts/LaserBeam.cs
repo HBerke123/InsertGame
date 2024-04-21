@@ -9,7 +9,7 @@ public class LaserBeam : MonoBehaviour
     public bool isLaserOn;
     public float timetoStart;
     public float laserTime;
-
+    public HealthDrainage hpdrain;
     void Start()
     {
         laserCollider = GetComponent<BoxCollider2D>();
@@ -39,5 +39,21 @@ public class LaserBeam : MonoBehaviour
         yield return new WaitForSeconds(laserTime);
         isLaserOn = false;
     }
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        {
+            if (collider.tag == "Player")
+            {
+                hpdrain.TakeDamage(15.0f);
+                if (hpdrain.health <= 0)
+                {
+                    hpdrain.health = hpdrain.maxHealth;
+                    this.transform.position = new Vector3(0f, 0f, 0f);
+                    hpdrain.UpdateHealthBar(hpdrain.health / hpdrain.maxHealth);
+                }
+            }
+        }
+    }
+
 
 }
