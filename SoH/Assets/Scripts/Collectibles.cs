@@ -56,7 +56,6 @@ public class Collectibles : MonoBehaviour
             {
                 Destroy(target.gameObject);
                 Heal(20.0f);
-                Debug.Log("+20 HP");
                 healCooldownHolder = Time.time;
             }
         }
@@ -67,7 +66,6 @@ public class Collectibles : MonoBehaviour
             {
                 Destroy(target.gameObject);
                 RegainSTE(200.0f);
-                Debug.Log("+200 STE");
                 healCooldownHolder = Time.time;
 
             }

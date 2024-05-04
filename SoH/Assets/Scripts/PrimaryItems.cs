@@ -4,43 +4,59 @@ using UnityEngine;
 
 public class PrimaryItems : MonoBehaviour
 {
-    public static string itemEquipped = "Unarmed";
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string itemEquipped = "Unarmed";
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if(itemEquipped == "Sword")
             {
-                Debug.Log("Unarmed");
                 itemEquipped = "Unarmed";
                 this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0f);
             }
             else
             {
-                Debug.Log("Sword");
                 itemEquipped = "Sword";
                 this.GetComponent<Renderer>().material.color = new Color(0.8f, 0f, 0f);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (itemEquipped == "Gun")
             {
-                Debug.Log("Unarmed");
                 itemEquipped = "Unarmed";
                 this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0f);
             }
             else
             {
-                Debug.Log("Gun");
                 itemEquipped = "Gun";
+                this.GetComponent<Renderer>().material.color = new Color(0.8f, 0f, 0.8f);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (itemEquipped == "Hammer")
+            {
+                itemEquipped = "Unarmed";
+                this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0f);
+            }
+            else
+            {
+                itemEquipped = "Hammer";
+                this.GetComponent<Renderer>().material.color = new Color(0.8f, 0f, 0.8f);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (itemEquipped == "Spear")
+            {
+                itemEquipped = "Unarmed";
+                this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0f);
+            }
+            else
+            {
+                itemEquipped = "Spear";
                 this.GetComponent<Renderer>().material.color = new Color(0.8f, 0f, 0.8f);
             }
         }
