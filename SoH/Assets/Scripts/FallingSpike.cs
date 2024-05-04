@@ -13,6 +13,7 @@ public class FallingSpike : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
+        hpCode = GetComponent<HealthDrainage>();
     }
 
     // Update is called once per frame

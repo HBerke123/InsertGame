@@ -18,7 +18,7 @@ public class Collectibles : MonoBehaviour
         healthBar = GameObject.Find("HP Bar");
         healthDisplay = GameObject.Find("HP Display");
         playerCollider = this.GetComponent<Collider2D>();
-
+        hpdrain = GetComponent<HealthDrainage>();
     }
 
     public void Heal(float healed)

@@ -16,6 +16,7 @@ public class LaserBeam : MonoBehaviour
         laserCollider = GetComponent<BoxCollider2D>();
         laserImage = GetComponent<SpriteRenderer>();
         isLaserOn = false;
+        hpdrain = GetComponent<HealthDrainage>();
     }
 
     // Update is called once per frame
