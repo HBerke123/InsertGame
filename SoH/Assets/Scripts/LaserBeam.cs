@@ -11,11 +11,15 @@ public class LaserBeam : MonoBehaviour
     public float laserTime;
     public HealthDrainage hpdrain;
     public float cooldownHolder = 0.0f;
+    private GameObject player;
+
     void Start()
     {
         laserCollider = GetComponent<BoxCollider2D>();
         laserImage = GetComponent<SpriteRenderer>();
         isLaserOn = false;
+        player = GameObject.Find("Player");
+        hpdrain = player.GetComponent<HealthDrainage>();
     }
 
     // Update is called once per frame
