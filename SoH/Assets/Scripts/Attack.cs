@@ -28,15 +28,15 @@ public class Attack : MonoBehaviour
 
             if (this.transform.position.x <= Camera.main.ScreenToWorldPoint(Input.mousePosition).x)
             {
-                Swordhboxs = new Vector3(Mathf.Abs(Swordhboxp.x), Swordhboxp.y, 0);
-                Spearhboxs = new Vector3(Mathf.Abs(Spearhboxp.x), Spearhboxp.y, 0);
-                Hammerhboxs = new Vector3(Mathf.Abs(Hammerhboxp.x), Hammerhboxp.y, 0);
+                Swordhboxp = new Vector3(Mathf.Abs(Swordhboxp.x), Swordhboxp.y, 0);
+                Spearhboxp = new Vector3(Mathf.Abs(Spearhboxp.x), Spearhboxp.y, 0);
+                Hammerhboxp = new Vector3(Mathf.Abs(Hammerhboxp.x), Hammerhboxp.y, 0);
             }
             else
             {
-                Swordhboxs = new Vector3(-Mathf.Abs(Swordhboxp.x), Swordhboxp.y, 0);
-                Spearhboxs = new Vector3(-Mathf.Abs(Spearhboxp.x), Spearhboxp.y, 0);
-                Hammerhboxs = new Vector3(-Mathf.Abs(Hammerhboxp.x), Hammerhboxp.y, 0);
+                Swordhboxp = new Vector3(-Mathf.Abs(Swordhboxp.x), Swordhboxp.y, 0);
+                Spearhboxp = new Vector3(-Mathf.Abs(Spearhboxp.x), Spearhboxp.y, 0);
+                Hammerhboxp = new Vector3(-Mathf.Abs(Hammerhboxp.x), Hammerhboxp.y, 0);
             }
 
             if (pItems.itemEquipped == "Sword")
@@ -56,6 +56,8 @@ public class Attack : MonoBehaviour
             }
 
             bcol.enabled = true;
+
+            StartCoroutine(Release());
         }
     }
 

@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
-    public static float enemyHealth = 100;
-    // Start is called before the first frame update
-    void Start()
+    public Bar bar;
+    public float enemyHealth = 100;
+
+    private void Start()
     {
-        
+        bar.maxValue = 100;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        bar.curValue = enemyHealth;
     }
 }

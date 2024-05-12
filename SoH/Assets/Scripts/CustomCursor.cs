@@ -4,42 +4,39 @@ using UnityEngine;
 
 public class CustomCursor : MonoBehaviour
 {
-    public Sprite unarmedS;
-    public Sprite swordS;
-    public Sprite hammerS;
-    public Sprite spearS;
-    public Sprite gunS;
+    public Texture2D unarmedS;
+    public Texture2D swordS;
+    public Texture2D hammerS;
+    public Texture2D spearS;
+    public Texture2D gunS;
     public PrimaryItems pItems;
 
     private void Start()
     {
-        Cursor.visible = false;
-        this.GetComponent<SpriteRenderer>().sprite = unarmedS;
+        Cursor.SetCursor(unarmedS, new Vector2(16, 16), CursorMode.Auto);
     }
 
     private void FixedUpdate()
-    {
-        this.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-        
+    {         
         if (pItems.itemEquipped == "Unarmed")
         {
-            this.GetComponent<SpriteRenderer>().sprite = unarmedS;
+            Cursor.SetCursor(unarmedS, new Vector2(16, 16), CursorMode.Auto);
         }
         else if (pItems.itemEquipped == "Sword")
         {
-            this.GetComponent<SpriteRenderer>().sprite = swordS;
+            Cursor.SetCursor(swordS, new Vector2(16, 16), CursorMode.Auto);
         }
         else if (pItems.itemEquipped == "Hammer")
         {
-            this.GetComponent<SpriteRenderer>().sprite = hammerS;
+            Cursor.SetCursor(hammerS, new Vector2(16, 16), CursorMode.Auto);
         }
         else if (pItems.itemEquipped == "Gun")
         {
-            this.GetComponent<SpriteRenderer>().sprite = gunS;
+            Cursor.SetCursor(gunS, new Vector2(16, 16), CursorMode.Auto);
         }
         else if (pItems.itemEquipped == "Spear")
         {
-            this.GetComponent<SpriteRenderer>().sprite = spearS;
+            Cursor.SetCursor(spearS, new Vector2(16, 16), CursorMode.Auto);
         }
     }
 }
