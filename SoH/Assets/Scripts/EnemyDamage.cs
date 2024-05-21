@@ -10,11 +10,23 @@ public class EnemyDamage : MonoBehaviour
     {
         ehp = this.GetComponent<EnemyHP>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Weapon"))
         {
-            ehp.enemyHealth -= 10;
+            if (collision.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword")
+            {
+                ehp.enemyHealth -= 10;
+            } 
+            else if (collision.GetComponentInParent<PrimaryItems>().itemEquipped == "Spear")
+            {
+                ehp.enemyHealth -= 5;
+            } 
+            else if (collision.GetComponentInParent<PrimaryItems>().itemEquipped == "Hammer")
+            {
+                ehp.enemyHealth -= 20;
+            }
         }
     }
 }

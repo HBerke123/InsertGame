@@ -12,6 +12,7 @@ public class Attack : MonoBehaviour
     public Vector3 Spearhboxs;
     public Vector3 Hammerhboxs;
     public bool ready = true;
+    public int[] loops = {1, 3, 6};
     BoxCollider2D bcol;
 
     private void Start()
@@ -21,10 +22,9 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && (pItems.itemEquipped != "Gun"))
         {
-            ready = false;
-
+            ready = false; 
 
             if (this.transform.position.x <= Camera.main.ScreenToWorldPoint(Input.mousePosition).x)
             {
@@ -57,13 +57,34 @@ public class Attack : MonoBehaviour
 
             bcol.enabled = true;
 
-            StartCoroutine(Release());
+            StartCoroutine(Release(pItems.itemEquipped));
         }
     }
 
-    IEnumerator Release()
+    IEnumerator Release(string itemname)
     {
-        yield return new WaitForSeconds(0.1f);
+        if (itemname == "Spear")
+        {
+            for (int i = 0; i < loops[0]; i++)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        else if (itemname == "Sword")
+        {
+            for (int i = 0; i < loops[0]; i++)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        else if (itemname == "Hammer")
+        {
+            for (int i = 0; i < loops[0]; i++)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        
         ready = true;
         bcol.enabled = false;
     }
