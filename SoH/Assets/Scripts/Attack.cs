@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    public Bar cdbar;
     public PrimaryItems pItems; 
     public Vector3 Swordhboxp;
     public Vector3 Spearhboxp;
@@ -65,22 +66,28 @@ public class Attack : MonoBehaviour
     {
         if (itemname == "Spear")
         {
+            cdbar.maxValue = loops[0] * 2;
             for (int i = 0; i < loops[0]; i++)
             {
+                cdbar.curValue = i;
                 yield return new WaitForSeconds(0.5f);
             }
         }
         else if (itemname == "Sword")
         {
-            for (int i = 0; i < loops[0]; i++)
+            cdbar.maxValue = loops[1];
+            for (int i = 0; i < loops[1]; i++)
             {
+                cdbar.curValue = i;
                 yield return new WaitForSeconds(0.5f);
             }
         }
         else if (itemname == "Hammer")
         {
-            for (int i = 0; i < loops[0]; i++)
+            cdbar.maxValue = loops[2];
+            for (int i = 0; i < loops[2]; i++)
             {
+                cdbar.curValue = i;
                 yield return new WaitForSeconds(0.5f);
             }
         }

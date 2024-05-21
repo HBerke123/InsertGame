@@ -7,6 +7,7 @@ public class Bar : MonoBehaviour
     public float maxValue;
     public float curValue;
     private float percentage;
+    public float length = 2.4f;
 
     private void Update()
     {
@@ -18,7 +19,7 @@ public class Bar : MonoBehaviour
             percentage = curValue / maxValue;
         }
 
-        this.transform.localScale = new Vector3( 2.4f * percentage, 0.4f, 0);
-        this.transform.localPosition = new Vector3( (1 - percentage) * -1.2f , 1, 0);
+        this.transform.localScale = new Vector3( length * percentage, this.transform.localScale.y, 0);
+        this.transform.localPosition = new Vector3( (1 - percentage) * -length/2 , 1, 0);
     }
 }
