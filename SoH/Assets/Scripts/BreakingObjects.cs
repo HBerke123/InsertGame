@@ -22,8 +22,9 @@ public class BreakingObjects : MonoBehaviour
         slide = player.GetComponent<Slide>();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void Update()
     {
-        if ((dash.dashing == true) || (slide.sliding == true)) Destroy(this.gameObject);
+        float distance = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(this.transform.position.y - player.transform.position.y), 2) + Mathf.Pow(Mathf.Abs(this.transform.position.x - player.transform.position.x), 2));
+        if ((distance <= 1.45) && ((dash.dashing) || (slide.sliding))) Destroy(this.gameObject);    
     }
 }

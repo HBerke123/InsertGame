@@ -9,10 +9,13 @@ public class FallingSpike : MonoBehaviour
     public float distance;
     bool isFalling = false;
     public HealthDrainage hpCode;
+    private GameObject player;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
+        player = GameObject.Find("Player");
+        hpCode = player.GetComponent<HealthDrainage>();
     }
 
     // Update is called once per frame

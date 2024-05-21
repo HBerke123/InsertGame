@@ -10,6 +10,7 @@ public class Collectibles : MonoBehaviour
     public STEDrainage sTEDrainage;
     public float healCooldown = 2;
     public float healCooldownHolder = 0;
+    public HealthDrainage hpdrain;
 
     void Start()
     {
@@ -17,18 +18,18 @@ public class Collectibles : MonoBehaviour
         healthBar = GameObject.Find("HP Bar");
         healthDisplay = GameObject.Find("HP Display");
         playerCollider = this.GetComponent<Collider2D>();
-
+        hpdrain = GetComponent<HealthDrainage>();
     }
 
     public void Heal(float healed)
     {
-        HealthDrainage.health += healed;
-        if (HealthDrainage.health > HealthDrainage.maxHealth)
+        hpdrain.health += healed;
+        if (hpdrain.health > hpdrain.maxHealth)
         {
-            HealthDrainage.health = HealthDrainage.maxHealth;
+            hpdrain.health = hpdrain.maxHealth;
         }
-        Mathf.Round(HealthDrainage.health);
-        UpdateHealthBar(HealthDrainage.health / HealthDrainage.maxHealth);
+        Mathf.Round(hpdrain.health);
+        UpdateHealthBar(hpdrain.health / hpdrain.maxHealth);
 
     }
     public void RegainSTE(float regained)
@@ -41,10 +42,10 @@ public class Collectibles : MonoBehaviour
         Mathf.Round(sTEDrainage.ste);
         sTEDrainage.UpdateSTEBar(sTEDrainage.ste / sTEDrainage.maxSTE);
     }
-    public static void UpdateHealthBar(float newHealth)
+    public void UpdateHealthBar(float newHealth)
     {
         HealthDrainage.slider.value = newHealth;
-        HealthDrainage.hpDisplayText.text = HealthDrainage.health + "/" + Mathf.Round(HealthDrainage.maxHealth);
+        HealthDrainage.hpDisplayText.text = hpdrain.health.ToString() + "/" + Mathf.Round(hpdrain.maxHealth).ToString();
     }
     void OnTriggerEnter2D(Collider2D target)
     {
@@ -55,7 +56,6 @@ public class Collectibles : MonoBehaviour
             {
                 Destroy(target.gameObject);
                 Heal(20.0f);
-                Debug.Log("+20 HP");
                 healCooldownHolder = Time.time;
             }
         }
@@ -66,7 +66,6 @@ public class Collectibles : MonoBehaviour
             {
                 Destroy(target.gameObject);
                 RegainSTE(200.0f);
-                Debug.Log("+200 STE");
                 healCooldownHolder = Time.time;
 
             }

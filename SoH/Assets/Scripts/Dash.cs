@@ -27,6 +27,7 @@ public class Dash : MonoBehaviour
             if ((arrow.transform.localRotation.eulerAngles.x > 45) && (90 >= arrow.transform.localRotation.eulerAngles.x))
             {
                 rb.velocity = new Vector2(rb.velocity.x, -dashforce);
+                StartCoroutine(Optimeover(0));
             }
             else if (arrow.transform.localRotation.eulerAngles.y == 90)
             {
@@ -42,19 +43,24 @@ public class Dash : MonoBehaviour
     IEnumerator Optimeover(int rotation)
     {
         dashing = true;
-        mv.jumpable = false;
-        mv.extraspeed += dashforce * rotation;
-        dashable = false;
-        mv.moveable = false;
-        mv.extracondition[0] = true;
+        if ((rotation == -1) || (rotation == 1)) { 
+            mv.jumpable = false;
+            mv.extraspeed += dashforce * rotation;
+            dashable = false;
+            mv.moveable = false;
+            mv.extracondition[0] = true;
+        } 
         yield return new WaitForSeconds(0.125f);
         dashing = false;
-        if (rotation == 1) mv.extraspeed -= dashforce;
-        else mv.extraspeed += dashforce;
-        dashable = true;
-        mv.extracondition[0] = false;
-        mv.moveable = true;
-        mv.jumpable = true;
+        if ((rotation == -1) || (rotation == 1))
+        {
+            if (rotation == 1) mv.extraspeed -= dashforce;
+            else mv.extraspeed += dashforce;
+            dashable = true;
+            mv.extracondition[0] = false;
+            mv.moveable = true;
+            mv.jumpable = true;
+        }
         StartCoroutine(Cooldown());
     }
 

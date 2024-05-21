@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - HP Orb
   - STE Tube
+  - Weapon
   layers:
   - Default
   - TransparentFX

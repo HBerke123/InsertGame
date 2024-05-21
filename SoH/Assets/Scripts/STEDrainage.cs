@@ -9,7 +9,7 @@ public class STEDrainage : MonoBehaviour
     public float ste = 0, maxSTE = 1000;
     public GameObject steBar;
     public GameObject steDisplay;
-    public static TextMeshProUGUI steDisplayText;
+    public TextMeshProUGUI steDisplayText;
     public Image steBarImage;
     public Collider2D playerCollider;
     public Collider2D enemyCollider;

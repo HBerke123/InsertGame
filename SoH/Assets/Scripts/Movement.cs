@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     WallJump wj;
     public float CheckRadius = Mathf.Sqrt(2);
     public LayerMask layerMask;
+    public PrimaryItems pItems;
 
     private void Start()
     {
@@ -32,14 +33,14 @@ public class Movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 speed = 20;
-                if(PrimaryItems.itemEquipped == "Unarmed") {
+                if(pItems.itemEquipped == "Unarmed") {
                     this.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 0);
                 }
-                else if (PrimaryItems.itemEquipped == "Sword")
+                else if (pItems.itemEquipped == "Sword")
                 {
                     this.GetComponent<Renderer>().material.color = new Color(1.0f, 0, 0);
                 }
-                else if (PrimaryItems.itemEquipped == "Gun")
+                else if (pItems.itemEquipped == "Gun")
                 {
                     this.GetComponent<Renderer>().material.color = new Color(1.0f, 0, 1.0f);
                 }
@@ -48,15 +49,15 @@ public class Movement : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 speed = 10;
-                if (PrimaryItems.itemEquipped == "Unarmed")
+                if (pItems.itemEquipped == "Unarmed")
                 {
                     this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0);
                 }
-                else if (PrimaryItems.itemEquipped == "Sword")
+                else if (pItems.itemEquipped == "Sword")
                 {
                     this.GetComponent<Renderer>().material.color = new Color(0.8f, 0, 0);
                 }
-                else if (PrimaryItems.itemEquipped == "Gun")
+                else if (pItems.itemEquipped == "Gun")
                 {
                     this.GetComponent<Renderer>().material.color = new Color(0.8f, 0, 0.8f);
                 }
@@ -84,10 +85,10 @@ public class Movement : MonoBehaviour
             }
         }
 
-        Vector2 location = new Vector3(transform.position.x - 0.50f, transform.position.y - 0.75f, 0);
+        Vector2 location = new Vector2(transform.position.x - 0.50f, transform.position.y - 0.75f);
         RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1);
 
-        if (hit.collider != null) grounded = true;
+        if ((hit.collider != null) && (hit.collider.tag != "Player")) grounded = true;
         else grounded = false;
     }
 

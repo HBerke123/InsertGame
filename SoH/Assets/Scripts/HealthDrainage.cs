@@ -6,7 +6,7 @@ using TMPro;
 
 public class HealthDrainage : MonoBehaviour
 {
-    public static float health = 0, maxHealth = 100;
+    public float health = 0, maxHealth = 100;
     public GameObject healthBar;
     public GameObject healthDisplay;
     public static TextMeshProUGUI hpDisplayText;
@@ -57,7 +57,7 @@ public class HealthDrainage : MonoBehaviour
 
 
     }
-    public static void UpdateHealthBar(float newHealth)
+    public void UpdateHealthBar(float newHealth)
     {
         slider.value = newHealth;
         hpDisplayText.text = health + "/" + Mathf.Round(maxHealth);
