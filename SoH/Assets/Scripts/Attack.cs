@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    public GameObject cdbargr;
     public Bar cdbar;
     public PrimaryItems pItems; 
     public Vector3 Swordhboxp;
@@ -13,12 +14,13 @@ public class Attack : MonoBehaviour
     public Vector3 Spearhboxs;
     public Vector3 Hammerhboxs;
     public bool ready = true;
-    public int[] loops = {1, 3, 6};
+    public int[] loops = {2, 6, 12};
     BoxCollider2D bcol;
 
     private void Start()
     {
         bcol = this.GetComponent<BoxCollider2D>();
+        cdbargr.SetActive(false);
     }
 
     private void Update()
@@ -64,13 +66,14 @@ public class Attack : MonoBehaviour
 
     IEnumerator Release(string itemname)
     {
+        cdbargr.SetActive(true);
         if (itemname == "Spear")
         {
-            cdbar.maxValue = loops[0] * 2;
+            cdbar.maxValue = loops[0];
             for (int i = 0; i < loops[0]; i++)
             {
                 cdbar.curValue = i;
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.25f / loops[0]);
             }
         }
         else if (itemname == "Sword")
@@ -79,7 +82,7 @@ public class Attack : MonoBehaviour
             for (int i = 0; i < loops[1]; i++)
             {
                 cdbar.curValue = i;
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.25f / loops[0]);
             }
         }
         else if (itemname == "Hammer")
@@ -88,11 +91,12 @@ public class Attack : MonoBehaviour
             for (int i = 0; i < loops[2]; i++)
             {
                 cdbar.curValue = i;
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.25f / loops[0]);
             }
         }
         
         ready = true;
         bcol.enabled = false;
+        cdbargr.SetActive(false);
     }
 }

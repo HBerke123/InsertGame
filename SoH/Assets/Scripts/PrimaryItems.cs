@@ -13,12 +13,10 @@ public class PrimaryItems : MonoBehaviour
             if(itemEquipped == "Sword")
             {
                 itemEquipped = "Unarmed";
-                this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0f);
             }
             else
             {
                 itemEquipped = "Sword";
-                this.GetComponent<Renderer>().material.color = new Color(0.8f, 0f, 0f);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -26,12 +24,10 @@ public class PrimaryItems : MonoBehaviour
             if (itemEquipped == "Gun")
             {
                 itemEquipped = "Unarmed";
-                this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0f);
             }
             else
             {
                 itemEquipped = "Gun";
-                this.GetComponent<Renderer>().material.color = new Color(0.8f, 0f, 0.8f);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -39,12 +35,10 @@ public class PrimaryItems : MonoBehaviour
             if (itemEquipped == "Hammer")
             {
                 itemEquipped = "Unarmed";
-                this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0f);
             }
             else
             {
                 itemEquipped = "Hammer";
-                this.GetComponent<Renderer>().material.color = new Color(0.8f, 0f, 0.8f);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -52,12 +46,10 @@ public class PrimaryItems : MonoBehaviour
             if (itemEquipped == "Spear")
             {
                 itemEquipped = "Unarmed";
-                this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0f);
             }
             else
             {
                 itemEquipped = "Spear";
-                this.GetComponent<Renderer>().material.color = new Color(0.8f, 0f, 0.8f);
             }
         }
     }

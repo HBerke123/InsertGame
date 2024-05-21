@@ -23,7 +23,6 @@ public class Movement : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         wj = this.GetComponent<WallJump>();
         for (int i = 0; i < 2; i++) extracondition.Add(false);
-        this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0);
     }
 
     private void Update()
@@ -33,36 +32,16 @@ public class Movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 speed = 20;
-                if(pItems.itemEquipped == "Unarmed") {
-                    this.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 0);
-                }
-                else if (pItems.itemEquipped == "Sword")
-                {
-                    this.GetComponent<Renderer>().material.color = new Color(1.0f, 0, 0);
-                }
-                else if (pItems.itemEquipped == "Gun")
-                {
-                    this.GetComponent<Renderer>().material.color = new Color(1.0f, 0, 1.0f);
-                }
-
             }
             else if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 speed = 10;
-                if (pItems.itemEquipped == "Unarmed")
-                {
-                    this.GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0);
-                }
-                else if (pItems.itemEquipped == "Sword")
-                {
-                    this.GetComponent<Renderer>().material.color = new Color(0.8f, 0, 0);
-                }
-                else if (pItems.itemEquipped == "Gun")
-                {
-                    this.GetComponent<Renderer>().material.color = new Color(0.8f, 0, 0.8f);
-                }
             }
             rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal") + extraspeed, rb.velocity.y);
+            if (Input.GetAxisRaw("Horizontal") != 0)
+            {
+                this.transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal") * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+            }
         }
         else if (extracondition[0]) {
             rb.velocity = new Vector2(extraspeed, rb.velocity.y);
@@ -85,8 +64,9 @@ public class Movement : MonoBehaviour
             }
         }
 
-        Vector2 location = new Vector2(transform.position.x - 0.50f, transform.position.y - 0.75f);
+        Vector2 location = new Vector2(transform.position.x - 0.75f, transform.position.y - 2);
         RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1);
+        Debug.DrawRay(location, Vector2.right);
 
         if ((hit.collider != null) && (hit.collider.tag != "Player")) grounded = true;
         else grounded = false;
