@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public List<bool> extracondition = new List<bool>();
+    public List<bool> extracondition = new();
     public float extraspeed;
     public float speed;
     public float jumpforce;
@@ -41,7 +41,14 @@ public class Movement : MonoBehaviour
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
                 this.GetComponent<Animator>().SetBool("Walking", true);
-                this.transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal") * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+                if (Input.GetAxisRaw("Horizontal") == 1)
+                {
+                    this.GetComponent<SpriteRenderer>().flipX = false;
+                }
+                else
+                {
+                    this.GetComponent<SpriteRenderer>().flipX = true;
+                }
             }
             else
             {
@@ -69,10 +76,16 @@ public class Movement : MonoBehaviour
             }
         }
 
-        Vector2 location = new Vector2(transform.position.x - 0.6f, transform.position.y - 1.8f);
-        RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1.2f);
+        if (Input.GetKeyDown(KeyCode.S) && rb.velocity.y > 0)
+        {
+            rb.velocity = new(rb.velocity.x,0);
+        }
 
-        if ((hit.collider != null) && (hit.collider.tag != "Player")) grounded = true;
+        Vector2 location = new(transform.position.x - 0.5f, transform.position.y - 1.5f);
+        RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1);
+        Debug.DrawRay(location, Vector2.right * 1);
+
+        if ((hit.collider != null) && (!hit.collider.CompareTag("Player"))) grounded = true;
         else grounded = false;
     }
 
@@ -84,7 +97,7 @@ public class Movement : MonoBehaviour
         extraspeed -= walljumpforce / 8 * rotation;
     }
 
-    public void onWallJump()
+    public void OnWallJump()
     {
         rb.velocity = Vector2.zero;
         rb.AddForce(Vector2.up * walljumpforce, ForceMode2D.Impulse);

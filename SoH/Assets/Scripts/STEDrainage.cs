@@ -29,7 +29,7 @@ public class STEDrainage : MonoBehaviour
         steDisplayText.text = ste + "/" + maxSTE;
 
     }
-    public void loseSTE(float dmg)
+    public void LoseSTE(float dmg)
     {
         ste -= dmg;
         Mathf.Round(ste);
@@ -43,13 +43,13 @@ public class STEDrainage : MonoBehaviour
         steCooldown = Time.time;
         if (steCooldown - steCooldownHolder >= 2)
         {
-            loseSTE(1f);
+            LoseSTE(1f);
         }
         if (ste <= 0)
         {
             ste = maxSTE;
             this.transform.position = new Vector3(0f, 0f, 0f);
-            loseSTE(ste / maxSTE);
+            LoseSTE(ste / maxSTE);
         }
     }
 

@@ -7,8 +7,6 @@ public class Platform : MonoBehaviour
     public float uplimit;
     public float downlimit;
     public float speed;
-    public TimeChanger time;
-    int privatetime;
     bool up = true;
 
     private void FixedUpdate()
@@ -18,6 +16,4 @@ public class Platform : MonoBehaviour
         if ((this.transform.position.y > downlimit) && !up) transform.position += Vector3.down * speed;
         else up = true;
     }
-
-    public int Tsc(int value) => privatetime = value;
 }

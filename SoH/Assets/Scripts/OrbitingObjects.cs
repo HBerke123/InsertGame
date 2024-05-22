@@ -6,7 +6,6 @@ public class OrbitingObjects : MonoBehaviour
 {
     bool matched = false;
     Movement movement;
-    RaycastHit2D target;
     DistanceJoint2D gdj;
 
     private void Start()
@@ -34,7 +33,6 @@ public class OrbitingObjects : MonoBehaviour
                 {
                     dj.autoConfigureDistance = false;
                     gdj = dj;
-                    target = hit;
                     matched = true;
                 }
                 else Destroy(dj);

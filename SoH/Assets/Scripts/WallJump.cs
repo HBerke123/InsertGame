@@ -14,16 +14,16 @@ public class WallJump : MonoBehaviour
     {
         mv = this.GetComponent<Movement>();
         rb = this.GetComponent<Rigidbody2D>();
-        LayerMask mask = LayerMask.GetMask("Ground");
+        mask = LayerMask.GetMask("Ground");
     }
 
     private void Update()
     {
         if (hold == false)
         {
-            Vector3 location = new Vector3(transform.position.x - 0.75f, transform.position.y + 0.5f, 0);
+            Vector3 location = new(transform.position.x - 0.75f, transform.position.y + 0.5f, 0);
             RaycastHit2D hit = Physics2D.Raycast(location, Vector3.down, 1, mask);
-            location = new Vector3(transform.position.x + 0.75f, transform.position.y + 0.5f, 0);
+            location = new(transform.position.x + 0.75f, transform.position.y + 0.5f, 0);
             RaycastHit2D hit2 = Physics2D.Raycast(location, Vector3.down, 1, mask);
 
 
@@ -44,9 +44,9 @@ public class WallJump : MonoBehaviour
     public IEnumerator OnLeave()
     {
         hold = true;
-        Vector3 location = new Vector3(transform.position.x - 0.75f, transform.position.y + 0.5f, 0);
+        Vector3 location = new(transform.position.x - 0.75f, transform.position.y + 0.5f, 0);
         RaycastHit2D hit = Physics2D.Raycast(location, Vector3.down, 1, mask);
-        location = new Vector3(transform.position.x + 0.75f, transform.position.y + 0.5f, 0);
+        location = new(transform.position.x + 0.75f, transform.position.y + 0.5f, 0);
         RaycastHit2D hit2 = Physics2D.Raycast(location, Vector3.down, 1, mask);
 
 
@@ -61,7 +61,7 @@ public class WallJump : MonoBehaviour
         {
             hold = false;
             rb.gravityScale = 1;
-            mv.onWallJump();
+            mv.OnWallJump();
         }
         else
         {

@@ -25,7 +25,7 @@ public class EnemyCreate : MonoBehaviour
     }
     void OnCollisionEnter(Collider target)
     {
-        if (target.gameObject.tag.Equals("Enemy") == true)
+        if (target.gameObject.CompareTag("Enemy"))
         {
             collisionTime = Time.time;
             

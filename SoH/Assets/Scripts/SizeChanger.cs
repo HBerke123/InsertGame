@@ -29,7 +29,7 @@ public class SizeChanger : MonoBehaviour
             LayerMask mask = LayerMask.GetMask("Changeable");
             RaycastHit2D hit = Physics2D.Raycast(this.transform.position, dir, 4, mask);
 
-            if ((hit.collider != null) && (hit.collider.tag == "Changeable") && !(rayed))
+            if ((hit.collider != null) && (hit.collider.CompareTag("Changeable") && !(rayed)))
             {
                 maxscale = new Vector3(hit.transform.localScale.x + 1, hit.transform.localScale.y + 1, 0);
                 minscale = new Vector3(hit.transform.localScale.x - 1, hit.transform.localScale.y - 1, 0);
