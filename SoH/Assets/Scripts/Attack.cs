@@ -37,11 +37,23 @@ public class Attack : MonoBehaviour
             Swordhboxp = new Vector3(Mathf.Abs(Swordhboxp.x), Swordhboxp.y, 0);
             Spearhboxp = new Vector3(Mathf.Abs(Spearhboxp.x), Spearhboxp.y, 0);
             Hammerhboxp = new Vector3(Mathf.Abs(Hammerhboxp.x), Hammerhboxp.y, 0);
+            UpSwordhboxp = new Vector3(Mathf.Abs(UpSwordhboxp.x), UpSwordhboxp.y, 0);
+            UpSpearhboxp = new Vector3(Mathf.Abs(UpSpearhboxp.x), UpSpearhboxp.y, 0);
+            UpHammerhboxp = new Vector3(Mathf.Abs(UpHammerhboxp.x), UpHammerhboxp.y, 0);
+            DownSwordhboxp = new Vector3(Mathf.Abs(DownSwordhboxp.x), DownSwordhboxp.y, 0);
+            DownSpearhboxp = new Vector3(Mathf.Abs(DownSpearhboxp.x), DownSpearhboxp.y, 0);
+            DownHammerhboxp = new Vector3(Mathf.Abs(DownHammerhboxp.x), DownHammerhboxp.y, 0);
             if (this.GetComponentInParent<SpriteRenderer>().flipX)
             {
                 Swordhboxp = new Vector3(-Mathf.Abs(Swordhboxp.x), Swordhboxp.y, 0);
                 Spearhboxp = new Vector3(-Mathf.Abs(Spearhboxp.x), Spearhboxp.y, 0);
                 Hammerhboxp = new Vector3(-Mathf.Abs(Hammerhboxp.x), Hammerhboxp.y, 0);
+                UpSwordhboxp = new Vector3(-Mathf.Abs(UpSwordhboxp.x), UpSwordhboxp.y, 0);
+                UpSpearhboxp = new Vector3(-Mathf.Abs(UpSpearhboxp.x), UpSpearhboxp.y, 0);
+                UpHammerhboxp = new Vector3(-Mathf.Abs(UpHammerhboxp.x), UpHammerhboxp.y, 0);
+                DownSwordhboxp = new Vector3(-Mathf.Abs(DownSwordhboxp.x), DownSwordhboxp.y, 0);
+                DownSpearhboxp = new Vector3(-Mathf.Abs(DownSpearhboxp.x), DownSpearhboxp.y, 0);
+                DownHammerhboxp = new Vector3(-Mathf.Abs(DownHammerhboxp.x), DownHammerhboxp.y, 0);
             }
 
             if (Input.GetKey(KeyCode.Space))

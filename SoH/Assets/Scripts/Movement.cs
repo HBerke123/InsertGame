@@ -78,7 +78,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S) && rb.velocity.y > 0)
         {
-            rb.velocity = new(rb.velocity.x,0);
+            rb.velocity = new(rb.velocity.x, -6);
         }
 
         Vector2 location = new(transform.position.x - 0.5f, transform.position.y - 1.5f);
