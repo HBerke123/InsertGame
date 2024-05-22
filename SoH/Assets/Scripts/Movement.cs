@@ -40,7 +40,12 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal") + extraspeed, rb.velocity.y);
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
+                this.GetComponent<Animator>().SetBool("Walking", true);
                 this.transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal") * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+            }
+            else
+            {
+                this.GetComponent<Animator>().SetBool("Walking", false);
             }
         }
         else if (extracondition[0]) {
@@ -64,9 +69,8 @@ public class Movement : MonoBehaviour
             }
         }
 
-        Vector2 location = new Vector2(transform.position.x - 0.75f, transform.position.y - 2);
-        RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1);
-        Debug.DrawRay(location, Vector2.right);
+        Vector2 location = new Vector2(transform.position.x - 0.6f, transform.position.y - 1.8f);
+        RaycastHit2D hit = Physics2D.Raycast(location, Vector2.right, 1.2f);
 
         if ((hit.collider != null) && (hit.collider.tag != "Player")) grounded = true;
         else grounded = false;

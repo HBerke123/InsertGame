@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CustomCursor : MonoBehaviour
 {
+    public GameObject cdbargr;
     public Texture2D unarmedS;
     public Texture2D swordS;
     public Texture2D hammerS;
@@ -17,7 +18,7 @@ public class CustomCursor : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {         
+    {
         if (pItems.itemEquipped == "Unarmed")
         {
             Cursor.SetCursor(unarmedS, new Vector2(16, 16), CursorMode.Auto);

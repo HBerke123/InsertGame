@@ -25,7 +25,7 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && (pItems.itemEquipped != "Gun"))
+        if (Input.GetMouseButtonDown(0) && (pItems.itemEquipped != "Gun") && ready)
         {
             ready = false; 
 
