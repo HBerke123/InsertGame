@@ -11,9 +11,10 @@ public class EnemyEmperorBirdFly : MonoBehaviour
     GameObject player;
     public GameObject redbullet;
     public GameObject bluebullet;
-    public GameObject arrow;
+    public float bulletspeed = 1;
     public float distancey;
     public float distancex;
+    public float distance;
 
     private void Start()
     {
@@ -32,6 +33,8 @@ public class EnemyEmperorBirdFly : MonoBehaviour
     {
         distancex = Mathf.Abs(this.transform.position.x - player.transform.position.x);
         distancey = Mathf.Abs(this.transform.position.y - player.transform.position.y);
+        distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
+        
         if ((distancex < 12) && (distancey < 12))
         {
             if ((6 <= distancex))
@@ -62,10 +65,27 @@ public class EnemyEmperorBirdFly : MonoBehaviour
 
     IEnumerator Attack()
     {
-        arrow.transform.LookAt(player.transform.position);
-        arrow.transform.rotation = Quaternion.Euler(0, 0, -arrow.transform.rotation.eulerAngles.x);
         ready = false;
         yield return new WaitForSeconds(5);
+        for (int i = 0; i < 3; i++) {
+            GameObject bullet = Instantiate(redbullet, this.transform.position, this.transform.rotation);
+            if (distancex != 0)
+            {
+                if (distancey != 0)
+                {
+                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletspeed * (distancex / distance * (player.transform.position.x - this.transform.position.x) / distancex + Mathf.Sqrt(3) / 2 * (i - 1)), bulletspeed * (distancey / distance * (player.transform.position.y - this.transform.position.y) / distancey + 0.5f * (i - 1)));
+                }
+                else
+                {
+                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletspeed * (distancex / distance * (player.transform.position.x - this.transform.position.x) / distancex + Mathf.Sqrt(3) / 2 * (i - 1)), 0);
+                }
+            }
+            else
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0 , bulletspeed * (distancey / distance * (player.transform.position.y - this.transform.position.y) / distancey + 0.5f * (i - 1)));
+            }
+        }
+
         ready = true;
     }
 }
