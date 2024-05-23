@@ -23,12 +23,12 @@ public class EnemyCreate : MonoBehaviour
     {
         Debug.Log(collisionTime);
     }
-    void OnCollisionEnter(Collider target)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (target.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             collisionTime = Time.time;
-            
+
         }
     }
 }

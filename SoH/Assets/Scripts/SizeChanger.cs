@@ -7,7 +7,6 @@ public class SizeChanger : MonoBehaviour
     public GameObject ray;
     bool rayed = false;
     float t = 0;
-    Movement movement;
     RaycastHit2D target;
     Vector3 maxscale;
     Vector3 minscale;
@@ -16,7 +15,6 @@ public class SizeChanger : MonoBehaviour
     private void Start()
     {
         sTEDrainage = this.GetComponent<STEDrainage>();
-        movement = this.GetComponent<Movement>();
     }
 
     private void Update()

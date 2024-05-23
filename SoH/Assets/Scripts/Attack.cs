@@ -56,7 +56,7 @@ public class Attack : MonoBehaviour
                 DownHammerhboxp = new Vector3(-Mathf.Abs(DownHammerhboxp.x), DownHammerhboxp.y, 0);
             }
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && (this.GetComponentInParent<Rigidbody2D>().velocity.y > 0.1f))
             {
                 if (pItems.itemEquipped == "Sword")
                 {
@@ -74,7 +74,8 @@ public class Attack : MonoBehaviour
                     bcol.size = Spearhboxs;
                 }
             }
-            else if (Input.GetKey(KeyCode.S)) {
+            else if (Input.GetKey(KeyCode.S) && (this.GetComponentInParent<Rigidbody2D>().velocity.y > 0.1f))
+            {
                 if (pItems.itemEquipped == "Sword")
                 {
                     bcol.offset = DownSwordhboxp;
@@ -113,7 +114,15 @@ public class Attack : MonoBehaviour
 
             bcol.enabled = true;
 
-            if (Input.GetKey(KeyCode.Space) ||Input.GetKey(KeyCode.S)) { 
+            if (Input.GetKey(KeyCode.Space) && (this.GetComponentInParent<Rigidbody2D>().velocity.y > 0.1f)) {
+                Debug.Log(this.GetComponentInParent<Rigidbody2D>().velocity.y);
+                GetComponentInParent<Rigidbody2D>().velocity = new(GetComponentInParent<Rigidbody2D>().velocity.x, GetComponentInParent<Rigidbody2D>().velocity.y + 3);
+                StartCoroutine(Release(pItems.itemEquipped, true));
+            }
+            else if (Input.GetKey(KeyCode.S) && (this.GetComponentInParent<Rigidbody2D>().velocity.y > 0.1f))
+            {
+                Debug.Log(this.GetComponentInParent<Rigidbody2D>().velocity.y);
+                GetComponentInParent<Rigidbody2D>().velocity = new(GetComponentInParent<Rigidbody2D>().velocity.x, GetComponentInParent<Rigidbody2D>().velocity.y - 6);
                 StartCoroutine(Release(pItems.itemEquipped, true));
             }
             else
@@ -159,8 +168,9 @@ public class Attack : MonoBehaviour
                 yield return new WaitForSeconds(0.25f / loops[0]);
             }
         }
-        
-        ready = true;
+
         cdbargr.SetActive(false);
+        yield return new WaitUntil(() => this.GetComponentInParent<Movement>().grounded == true);
+        ready = true;
     }
 }

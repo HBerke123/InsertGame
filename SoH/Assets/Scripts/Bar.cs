@@ -20,6 +20,6 @@ public class Bar : MonoBehaviour
         }
 
         this.transform.localScale = new Vector3( length * percentage, this.transform.localScale.y, 0);
-        this.transform.localPosition = new Vector3( (1 - percentage) * -length/2 , 1, 0);
+        this.transform.localPosition = new Vector3( (1 - percentage) * -length/2 , this.transform.localPosition.y, 0);
     }
 }
