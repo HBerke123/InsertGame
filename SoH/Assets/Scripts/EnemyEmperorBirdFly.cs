@@ -8,6 +8,8 @@ public class EnemyEmperorBirdFly : MonoBehaviour
     public float speed;
     public float flyspeed;
     bool ready = true;
+    public bool replaceable = true;
+    bool replacing = false;
     GameObject player;
     public GameObject redbullet;
     public GameObject bluebullet;
@@ -37,19 +39,18 @@ public class EnemyEmperorBirdFly : MonoBehaviour
         
         if ((distancex < 12) && (distancey < 12))
         {
-            if ((6 <= distancex))
+            if (6 <= distancex && !replaceable && !replacing)
             {
                 rb.velocity = new Vector2((player.transform.position.x - this.transform.position.x) / distancex * speed, rb.velocity.y);
             }
-            else
+            else if (!replaceable && !replacing)
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
-            if ((distancex <= 8) && ready)
-            {
-                StartCoroutine(Attack());
-            }
+            if ((distancex <= 8) && ready) StartCoroutine(Attack());
+
+            if (replaceable) StartCoroutine(Replace());
 
             if (distancey <= 5)
             {
@@ -67,25 +68,56 @@ public class EnemyEmperorBirdFly : MonoBehaviour
     {
         ready = false;
         yield return new WaitForSeconds(5);
-        for (int i = 0; i < 3; i++) {
-            GameObject bullet = Instantiate(redbullet, this.transform.position, this.transform.rotation);
-            if (distancex != 0)
+        FireBullet(distancex / distance, distancey / distance);
+        FireBullet(Mathf.Cos((Mathf.Rad2Deg * Mathf.Acos(distancex / distance) + 30) * Mathf.Deg2Rad), Mathf.Sin((Mathf.Rad2Deg * Mathf.Acos(distancex / distance) + 30) * Mathf.Deg2Rad));
+        FireBullet(Mathf.Cos((Mathf.Rad2Deg * Mathf.Acos(distancex / distance) - 30) * Mathf.Deg2Rad), Mathf.Sin((Mathf.Rad2Deg * Mathf.Acos(distancex / distance) - 30) * Mathf.Deg2Rad));
+        ready = true;
+    }
+
+    IEnumerator Replace()
+    {
+        replaceable = false;
+        yield return new WaitForSeconds(15);
+        replaceable = true;
+        replacing = true;
+        if (this.transform.position.x > player.transform.position.x)
+        {
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
+            yield return new WaitUntil(() => (distancex > 6) && (this.transform.position.x < player.transform.position.x));
+            replacing = false;
+        }
+        else
+        {
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+            yield return new WaitUntil(() => (distancex > 6) && (this.transform.position.x > player.transform.position.x));
+            replacing = false;
+        }
+    }
+
+    public void FireBullet(float speedx, float speedy)
+    {
+        GameObject bullet = Instantiate(redbullet, this.transform.position, this.transform.rotation);
+        if (distancex != 0)
+        {
+            if (distancey != 0)
             {
-                if (distancey != 0)
-                {
-                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletspeed * (distancex / distance * (player.transform.position.x - this.transform.position.x) / distancex + Mathf.Sqrt(3) / 2 * (i - 1)), bulletspeed * (distancey / distance * (player.transform.position.y - this.transform.position.y) / distancey + 0.5f * (i - 1)));
-                }
-                else
-                {
-                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletspeed * (distancex / distance * (player.transform.position.x - this.transform.position.x) / distancex + Mathf.Sqrt(3) / 2 * (i - 1)), 0);
-                }
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletspeed  * speedx * (player.transform.position.x - this.transform.position.x) / distancex, bulletspeed * speedy * (player.transform.position.y - this.transform.position.y) / distancey);
             }
             else
             {
-                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0 , bulletspeed * (distancey / distance * (player.transform.position.y - this.transform.position.y) / distancey + 0.5f * (i - 1)));
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletspeed * speedx * (player.transform.position.x - this.transform.position.x) / distancex, 0);
             }
         }
-
-        ready = true;
+        else
+        {
+            if (distancey != 0)
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, bulletspeed * speedy * (player.transform.position.y - this.transform.position.y) / distancey);
+            }
+            else
+            {
+                Destroy(bullet);
+            }
+        }
     }
 }

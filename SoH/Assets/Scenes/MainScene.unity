@@ -69947,7 +69947,7 @@ MonoBehaviour:
   flyspeed: 0
   redbullet: {fileID: 5486173086897563203, guid: 73fe2af5e1784a24b864286bd71f393c, type: 3}
   bluebullet: {fileID: 7670786067178894980, guid: b8cf587012e9935438ce94264f4abf2d, type: 3}
-  bulletspeed: 5
+  bulletspeed: 8
   distancey: 0
   distancex: 0
   distance: 0
