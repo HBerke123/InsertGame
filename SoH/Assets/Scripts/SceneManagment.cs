@@ -6,11 +6,6 @@ public class SceneManagment : MonoBehaviour
 {
     public float timeHold;
 
-    private void Start()
-    {
-        timeHold = Time.time;
-    }
-
     public int curscenenum;
     public void LoadScene()
     {

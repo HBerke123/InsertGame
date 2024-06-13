@@ -5,6 +5,16 @@ using System.IO;
 
 public class SaveManagment : MonoBehaviour
 {
+    private void Start()
+    {
+        string path = Application.dataPath + "/Saves/GSave.txt";
+
+        if (File.Exists(path))
+        {
+
+        }
+    }
+
     public void Fsave(int num)
     {
         string path = Application.dataPath + "/Saves/Save" + num.ToString() + ".txt";
@@ -37,7 +47,7 @@ public class SaveManagment : MonoBehaviour
 
         if (File.Exists(path))
         {
-            File.WriteAllText(path, "Played" + time.ToString());
+            File.WriteAllText(path, "Played: " + time.ToString());
         }
     }
 }
