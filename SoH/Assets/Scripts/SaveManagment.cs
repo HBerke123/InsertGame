@@ -9,9 +9,9 @@ public class SaveManagment : MonoBehaviour
     {
         string path = Application.dataPath + "/Saves/GSave.txt";
 
-        if (File.Exists(path))
+        if (!File.Exists(path))
         {
-
+            Gsave(0);
         }
     }
 
@@ -31,14 +31,7 @@ public class SaveManagment : MonoBehaviour
     {
         string path = Application.dataPath + "/Saves/GSave.txt";
 
-        if (!File.Exists(path))
-        {
-            File.WriteAllText(path, "Save" + num.ToString());
-        }
-        else
-        {
-            File.WriteAllText(path, "Save" + num.ToString());
-        }
+        File.WriteAllText(path, "Save" + num.ToString());
     }
 
     public void Wsave(int num, float time)
