@@ -62,6 +62,10 @@ public class EnemyEmperorBirdFly : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, 0);
             }
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     IEnumerator Attack()
