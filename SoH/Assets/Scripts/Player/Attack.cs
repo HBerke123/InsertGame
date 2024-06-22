@@ -170,7 +170,6 @@ public class Attack : MonoBehaviour
         }
 
         cdbargr.SetActive(false);
-        yield return new WaitUntil(() => this.GetComponentInParent<Movement>().grounded == true);
         ready = true;
     }
 }
