@@ -33,7 +33,10 @@ public class Movement : MonoBehaviour
 
             rb.velocity = new Vector2(aspeed + pspeed, rb.velocity.y);
         }
-        
+
+        if (pspeed != 0) this.GetComponent<SpriteRenderer>().flipX = pspeed / Mathf.Abs(pspeed) != 1;
+
+
         lspeed = pspeed;
     }
 }
