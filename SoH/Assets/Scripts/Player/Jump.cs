@@ -31,8 +31,7 @@ public class Jump : MonoBehaviour
             }
             else
             {
-                if (Time.time - stime > jumptime / 2) rb.velocity = new Vector2(rb.velocity.x, maxspeed * jumptime - (Time.time - stime ));
-                else rb.velocity = new Vector2(rb.velocity.x, maxspeed);
+                rb.velocity = new Vector2(rb.velocity.x, maxspeed * jumptime - (Time.time - stime ));
             }
         }
     }
