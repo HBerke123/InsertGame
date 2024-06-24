@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6470826072759974538}
   - component: {fileID: 6470826072759974533}
   - component: {fileID: 6470826072759974539}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bird
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
