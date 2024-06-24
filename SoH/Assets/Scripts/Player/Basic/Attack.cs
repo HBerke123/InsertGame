@@ -4,172 +4,45 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public GameObject cdbargr;
-    public Bar cdbar;
-    public PrimaryItems pItems; 
-    public Vector3 Swordhboxp;
-    public Vector3 Spearhboxp;
-    public Vector3 Hammerhboxp;
-    public Vector3 Swordhboxs;
-    public Vector3 Spearhboxs;
-    public Vector3 Hammerhboxs;
-    public Vector3 UpHammerhboxp;
-    public Vector3 UpSwordhboxp;
-    public Vector3 UpSpearhboxp;
-    public Vector3 DownHammerhboxp;
-    public Vector3 DownSwordhboxp;
-    public Vector3 DownSpearhboxp;
-    public bool ready = true;
-    public int[] loops = {2, 6, 12};
-    BoxCollider2D bcol;
-
-    private void Start()
-    {
-        bcol = this.GetComponent<BoxCollider2D>();
-        cdbargr.SetActive(false);
-    }
+    public float attackcooldown;
+    public float attacktime;
+    bool attackable = true;
+    int attacknum;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && (pItems.itemEquipped != "Gun") && ready)
+        if (Input.GetMouseButtonDown(0) && attackable) {
+            attackable = false;
+            attacknum = 0;
+            this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1);
+            if (this.GetComponentInParent<SpriteRenderer>().flipX && attackable) this.transform.localScale = new Vector3(-1, 1, 1);
+            else this.transform.localScale = new Vector3(1, 1, 1);
+            this.GetComponent<BoxCollider2D>().enabled = true;
+            StartCoroutine(Attackend());
+            StartCoroutine(Cooldown());
+        }
+        else if (Input.GetMouseButtonDown(1) && attackable)
         {
-            ready = false; 
-            Swordhboxp = new Vector3(Mathf.Abs(Swordhboxp.x), Swordhboxp.y, 0);
-            Spearhboxp = new Vector3(Mathf.Abs(Spearhboxp.x), Spearhboxp.y, 0);
-            Hammerhboxp = new Vector3(Mathf.Abs(Hammerhboxp.x), Hammerhboxp.y, 0);
-            UpSwordhboxp = new Vector3(Mathf.Abs(UpSwordhboxp.x), UpSwordhboxp.y, 0);
-            UpSpearhboxp = new Vector3(Mathf.Abs(UpSpearhboxp.x), UpSpearhboxp.y, 0);
-            UpHammerhboxp = new Vector3(Mathf.Abs(UpHammerhboxp.x), UpHammerhboxp.y, 0);
-            DownSwordhboxp = new Vector3(Mathf.Abs(DownSwordhboxp.x), DownSwordhboxp.y, 0);
-            DownSpearhboxp = new Vector3(Mathf.Abs(DownSpearhboxp.x), DownSpearhboxp.y, 0);
-            DownHammerhboxp = new Vector3(Mathf.Abs(DownHammerhboxp.x), DownHammerhboxp.y, 0);
-            if (this.GetComponentInParent<SpriteRenderer>().flipX)
-            {
-                Swordhboxp = new Vector3(-Mathf.Abs(Swordhboxp.x), Swordhboxp.y, 0);
-                Spearhboxp = new Vector3(-Mathf.Abs(Spearhboxp.x), Spearhboxp.y, 0);
-                Hammerhboxp = new Vector3(-Mathf.Abs(Hammerhboxp.x), Hammerhboxp.y, 0);
-                UpSwordhboxp = new Vector3(-Mathf.Abs(UpSwordhboxp.x), UpSwordhboxp.y, 0);
-                UpSpearhboxp = new Vector3(-Mathf.Abs(UpSpearhboxp.x), UpSpearhboxp.y, 0);
-                UpHammerhboxp = new Vector3(-Mathf.Abs(UpHammerhboxp.x), UpHammerhboxp.y, 0);
-                DownSwordhboxp = new Vector3(-Mathf.Abs(DownSwordhboxp.x), DownSwordhboxp.y, 0);
-                DownSpearhboxp = new Vector3(-Mathf.Abs(DownSpearhboxp.x), DownSpearhboxp.y, 0);
-                DownHammerhboxp = new Vector3(-Mathf.Abs(DownHammerhboxp.x), DownHammerhboxp.y, 0);
-            }
-
-            if (Input.GetKey(KeyCode.Space) && (this.GetComponentInParent<Rigidbody2D>().velocity.y > 0.1f))
-            {
-                if (pItems.itemEquipped == "Sword")
-                {
-                    bcol.offset = UpSwordhboxp;
-                    bcol.size = Swordhboxs;
-                }
-                else if (pItems.itemEquipped == "Hammer")
-                {
-                    bcol.offset = UpHammerhboxp;
-                    bcol.size = Hammerhboxs;
-                }
-                else if (pItems.itemEquipped == "Spear")
-                {
-                    bcol.offset = UpSpearhboxp;
-                    bcol.size = Spearhboxs;
-                }
-            }
-            else if (Input.GetKey(KeyCode.S) && (this.GetComponentInParent<Rigidbody2D>().velocity.y > 0.1f))
-            {
-                if (pItems.itemEquipped == "Sword")
-                {
-                    bcol.offset = DownSwordhboxp;
-                    bcol.size = Swordhboxs;
-                }
-                else if (pItems.itemEquipped == "Hammer")
-                {
-                    bcol.offset = DownHammerhboxp;
-                    bcol.size = Hammerhboxs;
-                }
-                else if (pItems.itemEquipped == "Spear")
-                {
-                    bcol.offset = DownSpearhboxp;
-                    bcol.size = Spearhboxs;
-                }
-            }
-            else
-            {
-                if (pItems.itemEquipped == "Sword")
-                {
-                    bcol.offset = Swordhboxp;
-                    bcol.size = Swordhboxs;
-                }
-                else if (pItems.itemEquipped == "Hammer")
-                {
-                    bcol.offset = Hammerhboxp;
-                    bcol.size = Hammerhboxs;
-                }
-                else if (pItems.itemEquipped == "Spear")
-                {
-                    bcol.offset = Spearhboxp;
-                    bcol.size = Spearhboxs;
-                }
-            }
-            
-
-            bcol.enabled = true;
-
-            if (Input.GetKey(KeyCode.Space) && (this.GetComponentInParent<Rigidbody2D>().velocity.y > 0.1f)) {
-                Debug.Log(this.GetComponentInParent<Rigidbody2D>().velocity.y);
-                GetComponentInParent<Rigidbody2D>().velocity = new(GetComponentInParent<Rigidbody2D>().velocity.x, GetComponentInParent<Rigidbody2D>().velocity.y + 3);
-                StartCoroutine(Release(pItems.itemEquipped, true));
-            }
-            else if (Input.GetKey(KeyCode.S) && (this.GetComponentInParent<Rigidbody2D>().velocity.y > 0.1f))
-            {
-                Debug.Log(this.GetComponentInParent<Rigidbody2D>().velocity.y);
-                GetComponentInParent<Rigidbody2D>().velocity = new(GetComponentInParent<Rigidbody2D>().velocity.x, GetComponentInParent<Rigidbody2D>().velocity.y - 6);
-                StartCoroutine(Release(pItems.itemEquipped, true));
-            }
-            else
-            {
-                StartCoroutine(Release(pItems.itemEquipped, false));
-            }
+            attackable = false;
+            attacknum = 1;
+            this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 0.75f);
+            if (this.GetComponentInParent<SpriteRenderer>().flipX && attackable) this.transform.localScale = new Vector3(-1, 1, 1);
+            else this.transform.localScale = new Vector3(1, 1, 1);
+            this.GetComponent<BoxCollider2D>().enabled = true;
+            StartCoroutine(Attackend());
+            StartCoroutine(Cooldown());
         }
     }
 
-    IEnumerator Release(string itemname, bool istilt)
+    IEnumerator Attackend()
     {
-        if (!istilt)
-        {
-            yield return new WaitForSeconds(0.125f / loops[0]);
-        }
-        yield return new WaitForSeconds(0.125f / loops[0]);
-        bcol.enabled = false;
-        cdbargr.SetActive(true);
-        if (itemname == "Spear")
-        {
-            cdbar.maxValue = loops[0];
-            for (int i = 1; i < loops[0]; i++)
-            {
-                cdbar.curValue = i;
-                yield return new WaitForSeconds(0.25f / loops[0]);
-            }
-        }
-        else if (itemname == "Sword")
-        {
-            cdbar.maxValue = loops[1];
-            for (int i = 1; i < loops[1]; i++)
-            {
-                cdbar.curValue = i;
-                yield return new WaitForSeconds(0.25f / loops[0]);
-            }
-        }
-        else if (itemname == "Hammer")
-        {
-            cdbar.maxValue = loops[2];
-            for (int i = 1; i < loops[2]; i++)
-            {
-                cdbar.curValue = i;
-                yield return new WaitForSeconds(0.25f / loops[0]);
-            }
-        }
+        yield return new WaitForSeconds(attacktime + attacknum * attacktime);
+        this.GetComponent<BoxCollider2D>().enabled = false;
+    }
 
-        cdbargr.SetActive(false);
-        ready = true;
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(attackcooldown + attacknum * attackcooldown);
+        attackable = true;
     }
 }

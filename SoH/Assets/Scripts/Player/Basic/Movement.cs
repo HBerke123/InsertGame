@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody2D rb;
+    public BoxCollider2D Attackhbox;
     public float speed = 5;
     public float sspeed = 5;
     public float dspeed;
@@ -43,8 +44,7 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector2(aspeed + dspeed, rb.velocity.y);
         }
 
-        if (pspeed != 0) this.GetComponent<SpriteRenderer>().flipX = pspeed / Mathf.Abs(pspeed) != 1;
-
+        if ((pspeed != 0) && !Attackhbox.enabled) this.GetComponent<SpriteRenderer>().flipX = pspeed / Mathf.Abs(pspeed) != 1;
 
         lspeed = pspeed;
     }
