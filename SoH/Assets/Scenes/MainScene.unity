@@ -15598,6 +15598,7 @@ MonoBehaviour:
   dashcooldown: 0.32
   dashtime: 0.025
   dashable: 1
+  cecost: 50
 --- !u!114 &980212563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16058,6 +16059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackcooldown: 0.5
   attacktime: 0.1
+  ceregaintime: 1
+  cecost: 10
 --- !u!4 &1020916748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 441357531901635475, guid: 9e5f77498d935b14a8d68c5f00802f13, type: 3}
