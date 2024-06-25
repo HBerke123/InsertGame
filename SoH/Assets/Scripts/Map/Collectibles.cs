@@ -7,14 +7,14 @@ public class Collectibles : MonoBehaviour
     public GameObject healthBar;
     public GameObject healthDisplay;
     public Collider2D playerCollider;
-    public STEDrainage sTEDrainage;
+    public CEDrainage ceDrainage;
     public float healCooldown = 2;
     public float healCooldownHolder = 0;
     public HealthDrainage hpdrain;
 
     void Start()
     {
-        sTEDrainage = this.GetComponent<STEDrainage>();
+        ceDrainage = this.GetComponent<CEDrainage>();
         healthBar = GameObject.Find("HP Bar");
         healthDisplay = GameObject.Find("HP Display");
         playerCollider = this.GetComponent<Collider2D>();
@@ -34,13 +34,13 @@ public class Collectibles : MonoBehaviour
     }
     public void RegainSTE(float regained)
     {
-        sTEDrainage.ste += regained;
-        if (sTEDrainage.ste > sTEDrainage.maxSTE)
+        ceDrainage.ce += regained;
+        if (ceDrainage.ce > ceDrainage.maxCE)
         {
-            sTEDrainage.ste = sTEDrainage.maxSTE;
+            ceDrainage.ce = ceDrainage.maxCE;
         }
-        Mathf.Round(sTEDrainage.ste);
-        sTEDrainage.UpdateSTEBar(sTEDrainage.ste / sTEDrainage.maxSTE);
+        Mathf.Round(ceDrainage.ce);
+        ceDrainage.UpdateCEBar();
     }
     public void UpdateHealthBar(float newHealth)
     {

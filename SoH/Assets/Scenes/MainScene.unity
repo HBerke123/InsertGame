@@ -9468,7 +9468,7 @@ GameObject:
   - component: {fileID: 599488890}
   - component: {fileID: 599488889}
   m_Layer: 5
-  m_Name: STE Bar Image
+  m_Name: CE Bar Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13342,7 +13342,7 @@ GameObject:
   - component: {fileID: 825645531}
   - component: {fileID: 825645532}
   m_Layer: 5
-  m_Name: STE Bar
+  m_Name: CE Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15324,6 +15324,7 @@ GameObject:
   - component: {fileID: 980212560}
   - component: {fileID: 980212561}
   - component: {fileID: 980212562}
+  - component: {fileID: 980212563}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -15514,18 +15515,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08f150adca66694e859686605aa4deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ste: 0
-  maxSTE: 1000
-  steBar: {fileID: 0}
-  steDisplay: {fileID: 0}
-  steDisplayText: {fileID: 1659462660}
-  steBarImage: {fileID: 0}
-  playerCollider: {fileID: 0}
-  enemyCollider: {fileID: 0}
-  collisionTime: 0
-  steCooldown: 0
-  steCooldownHolder: 0
-  steSlider: {fileID: 0}
+  ce: 0
+  maxCE: 1000
+  ceBar: {fileID: 825645530}
+  ceDisplay: {fileID: 1659462658}
 --- !u!114 &980212557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15541,7 +15534,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthDisplay: {fileID: 0}
   playerCollider: {fileID: 0}
-  sTEDrainage: {fileID: 0}
+  ceDrainage: {fileID: 0}
   healCooldown: 0
   healCooldownHolder: 0
   hpdrain: {fileID: 0}
@@ -15605,6 +15598,20 @@ MonoBehaviour:
   dashcooldown: 0.32
   dashtime: 0.025
   dashable: 1
+--- !u!114 &980212563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980212537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4526075f2ff73e4895ed2228ec4822d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CEproduceCd: 2
+  CEproduceVa: 1
 --- !u!4 &981450861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 441357531901635475, guid: 9e5f77498d935b14a8d68c5f00802f13, type: 3}
@@ -72866,7 +72873,7 @@ GameObject:
   - component: {fileID: 1419307676}
   - component: {fileID: 1419307675}
   m_Layer: 5
-  m_Name: STE Bar Border
+  m_Name: CE Bar Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76459,7 +76466,7 @@ GameObject:
   - component: {fileID: 1659462661}
   - component: {fileID: 1659462660}
   m_Layer: 5
-  m_Name: STE Display
+  m_Name: CE Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

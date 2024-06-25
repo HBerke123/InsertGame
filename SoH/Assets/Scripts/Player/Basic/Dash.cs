@@ -8,6 +8,7 @@ public class Dash : MonoBehaviour
     public float dashcooldown = 0.5f;
     public float dashtime = 0.1f;
     public bool dashable = true;
+    public int cecost = 50;
     Movement mv;
 
     private void Start()
@@ -19,6 +20,7 @@ public class Dash : MonoBehaviour
     {
         if (dashable && Input.GetKeyDown(KeyCode.LeftControl))
         {
+            this.GetComponent<CEDrainage>().LoseCE(cecost);
             dashable = false;
             mv.movable = false;
             if (this.GetComponent<SpriteRenderer>().flipX) mv.dspeed = -dashspeed;
