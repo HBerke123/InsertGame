@@ -16,7 +16,7 @@ public class CEProduce : MonoBehaviour
 
     IEnumerator Pce()
     {
-        yield return new WaitForSeconds(CEproduceCd);
+        yield return new WaitForSecondsRealtime(CEproduceCd);
         ced.GainCE(CEproduceVa);
         StartCoroutine(Pce());
     }

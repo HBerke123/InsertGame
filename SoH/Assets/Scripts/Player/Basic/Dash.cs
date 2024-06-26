@@ -32,14 +32,14 @@ public class Dash : MonoBehaviour
 
     IEnumerator Dashend()
     {
-        yield return new WaitForSeconds(dashtime);
+        yield return new WaitForSecondsRealtime(dashtime);
         mv.dspeed = 0;
         mv.movable = true;
     }
 
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(dashcooldown);
+        yield return new WaitForSecondsRealtime(dashcooldown);
         dashable = true;
     }
 }
