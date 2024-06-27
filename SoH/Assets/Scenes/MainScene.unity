@@ -15997,6 +15997,8 @@ GameObject:
   - component: {fileID: 1013556173}
   - component: {fileID: 1013556174}
   - component: {fileID: 1013556175}
+  - component: {fileID: 1013556177}
+  - component: {fileID: 1013556176}
   m_Layer: 0
   m_Name: AttackHitBox
   m_TagString: Weapon
@@ -16061,6 +16063,7 @@ MonoBehaviour:
   attackcooldown: 0.5
   attacktime: 0.1
   ceregaintime: 1
+  skillholdtime: 0.5
   cecost: 10
 --- !u!114 &1013556175
 MonoBehaviour:
@@ -16074,12 +16077,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48530a41e2f4a4f4697f06ea33f68946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxyscale: 4
+  maxyscale: 6
   minyscale: 1
-  distance: 3.5
-  totaltime: 0.25
-  softness: 60
+  speed: 12
+  totaltime: 0.5
   SkillBox: {fileID: 1594184177369678583, guid: 1100776aeb4ed774099bc70e5e6787ed, type: 3}
+--- !u!114 &1013556176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013556170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88e76850925cfb40a5cb39491e64447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totaltime: 1.5
+  speed: 15
+  BigWave: {fileID: 1594184177369678583, guid: f233faf8b302bcb4a88a464d7b11a835, type: 3}
+  SmallWave: {fileID: 1594184177369678583, guid: 6c51d4d6147628540bb1bd2a69754a56, type: 3}
+--- !u!114 &1013556177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013556170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3d0c670681af24ab682c9f0ec931a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdtime: 0.5
+  cooldown: 1.5
 --- !u!4 &1020916748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 441357531901635475, guid: 9e5f77498d935b14a8d68c5f00802f13, type: 3}

@@ -6,9 +6,9 @@ public class Attack : MonoBehaviour
 {
     public float attackcooldown;
     public float attacktime;
-    public float ceregaintime = 1;
-    public float skillholdtime = 0.5f;
-    public int cecost = 10;
+    public float ceregaintime;
+    public float skillholdtime;
+    public int cecost;
     float th = 0;
     bool attackable = true;
     int attacknum;
@@ -40,7 +40,8 @@ public class Attack : MonoBehaviour
                 attackable = false;
                 attacknum = 1;
 
-                StartCoroutine(this.GetComponent<SwordSkill>().SkillStart());
+                if (this.GetComponentInParent<SpriteRenderer>().flipX) this.GetComponent<SwordSkill>().SkillStart(-1);
+                else this.GetComponent<SwordSkill>().SkillStart(1);
 
                 this.GetComponentInParent<CEDrainage>().LoseCE(cecost * 4);
 

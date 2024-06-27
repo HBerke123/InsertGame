@@ -4,32 +4,20 @@ using UnityEngine;
 
 public class SwordSkill : MonoBehaviour
 {
-    public float maxyscale = 4;
-    public float minyscale = 1;
-    public float distance = 3.5f;
-    public float totaltime = 1.5f;
-    public int softness = 60;
+    public float maxyscale;
+    public float minyscale;
+    public float speed;
+    public float totaltime;
     public GameObject SkillBox;
+    GameObject SBox;
 
-    private void Update()
+    public void SkillStart(int direction)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            StartCoroutine(SkillStart());
-        }
-    }
-
-    public IEnumerator SkillStart()
-    {
-        float th = Time.time;
-        GameObject SBox = Instantiate(SkillBox, this.transform.position, new Quaternion(0, 0, 0, 0));
-        for (int cur = 0; cur < softness; cur++)
-        {
-            SBox.transform.localScale = new Vector3( 0.5f, minyscale + (maxyscale - minyscale) * cur / softness, 1);
-            SBox.transform.position = new Vector3(SBox.transform.position.x + distance / softness, SBox.transform.position.y, SBox.transform.position.z);
-            yield return new WaitForSeconds(totaltime / softness);
-        }
-        Debug.Log(Time.time - th);
-        Destroy(SBox);
+        SBox = Instantiate(SkillBox, this.transform.position, new Quaternion(0, 0, 0, 0));
+        SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * direction, 0);
+        SBox.GetComponent<SkillEnd>().minyscale = minyscale;
+        SBox.GetComponent<SkillEnd>().maxyscale = maxyscale;
+        SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
+        SBox.GetComponent<SkillEnd>().IsSwordWave = true;
     }
 }
