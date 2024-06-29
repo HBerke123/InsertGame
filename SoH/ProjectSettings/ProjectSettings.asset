@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: SoH
-  defaultCursor: {fileID: 2800000, guid: 620b7244f63598445a1fcf862db5e5eb, type: 3}
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 4, y: 4}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1

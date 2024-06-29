@@ -2730,7 +2730,7 @@ GameObject:
   - component: {fileID: 129589768}
   - component: {fileID: 129589769}
   - component: {fileID: 129589770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Jumpbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4695,7 +4695,7 @@ GameObject:
   - component: {fileID: 261916936}
   - component: {fileID: 261916937}
   - component: {fileID: 261916938}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DebugWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5608,7 +5608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 312356472}
   - component: {fileID: 312356473}
-  m_Layer: 10
+  m_Layer: 3
   m_Name: Cooldown Bar Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9432,7 +9432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 596587056}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CdBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15325,7 +15325,7 @@ GameObject:
   - component: {fileID: 980212561}
   - component: {fileID: 980212562}
   - component: {fileID: 980212563}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -15550,7 +15550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130aaace3d422aa4ebb49af3110d7aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemEquipped: Unarmed
+  itemEquipped: Sword
 --- !u!114 &980212560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16000,7 +16000,8 @@ GameObject:
   - component: {fileID: 1013556177}
   - component: {fileID: 1013556176}
   - component: {fileID: 1013556178}
-  m_Layer: 0
+  - component: {fileID: 1013556179}
+  m_Layer: 3
   m_Name: AttackHitBox
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -16130,6 +16131,29 @@ MonoBehaviour:
   totaltime: 1
   btime: 0.25
   rtime: 0.5
+--- !u!114 &1013556179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013556170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da10e2970b281d439cb6d8a9bd1bec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bomb: {fileID: 7227559544692314864, guid: d8ca3647b67654a41a047bed88e632bd, type: 3}
+  SoundWave: {fileID: 5255486180055062, guid: 43ab01a15bcf76f45b4b219f701669ca, type: 3}
+  ttime: 1.5
+  reloadtime: 2.5
+  ceregaintime: 10
+  bombforce: 15
+  cooldown: 0.3
+  minsize: 1
+  maxsize: 3.125
+  twtime: 0.125
+  cecost: 60
 --- !u!4 &1020916748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 441357531901635475, guid: 9e5f77498d935b14a8d68c5f00802f13, type: 3}
@@ -72494,7 +72518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1399225950}
   - component: {fileID: 1399225951}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85917,7 +85941,7 @@ GameObject:
   - component: {fileID: 2045875441}
   - component: {fileID: 2045875443}
   - component: {fileID: 2045875442}
-  m_Layer: 10
+  m_Layer: 3
   m_Name: Cooldown Bar Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}

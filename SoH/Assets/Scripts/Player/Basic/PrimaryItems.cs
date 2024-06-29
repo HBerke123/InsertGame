@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PrimaryItems : MonoBehaviour
 {
-    public string itemEquipped = "Unarmed";
+    public string itemEquipped = "Sword";
 
     void Update()
     {
