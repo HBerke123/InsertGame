@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GunShot : MonoBehaviour
 {
+    public GameObject[] PreBombs;
     public GameObject Bomb;
     public GameObject SoundWave;
     public float ttime;
     public float reloadtime;
     public float ceregaintime;
-    public float bombforce;
+    public float minbombforce;
+    public float maxbombforce;
     public float cooldown;
     public float minsize;
     public float maxsize;
@@ -18,6 +20,7 @@ public class GunShot : MonoBehaviour
     int ammo = 3;
     bool reloading = false;
     float th = 0;
+    float hth = 0;
 
     void Update()
     {
@@ -25,26 +28,38 @@ public class GunShot : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && (ammo > 0) && (Time.time - th > cooldown))
             {
-                SendBomb();
+                hth = Time.time;
+            }
+            else if (Input.GetMouseButtonDown(1) && (ammo == 3) && (Time.time - th > cooldown))
+            {
+                hth = Time.time;
+            }
+
+            if (Input.GetMouseButtonUp(0) && (ammo > 0) && (Time.time - th > cooldown))
+            {
+                SendBomb(1);
                 th = Time.time;
             }
-            else if (Input.GetMouseButtonDown(0) && (ammo == 0))
+            else if (Input.GetMouseButtonUp(1) && (ammo == 3) && (Time.time - th > cooldown))
             {
-                StartCoroutine(Reload());
+                for (int i = 0; i < 3; i++) SendBomb(i);
+                th = Time.time;
             }
         }
     }
 
-    void SendBomb()
+    void SendBomb(int direction)
     {
         GameObject SBox = Instantiate(Bomb, this.transform.position, new Quaternion(0, 0, 0, 0));
-        SBox.GetComponent<Rigidbody2D>().AddForce(Vector2.right * bombforce, ForceMode2D.Impulse);
+        if (this.GetComponentInParent<SpriteRenderer>().flipX) SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(-maxbombforce, -5 + 5 * direction), ForceMode2D.Impulse);
+        else SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(maxbombforce, -5 + 5 * direction), ForceMode2D.Impulse);
         SBox.GetComponent<BombExplode>().TotalTime = ttime;
         SBox.GetComponent<BombExplode>().minsize = minsize;
         SBox.GetComponent<BombExplode>().maxsize = maxsize;
         SBox.GetComponent<BombExplode>().ttime = twtime;
         SBox.GetComponent<BombExplode>().SoundWave = SoundWave;
         ammo--;
+        if (ammo == 0) StartCoroutine(Reload());
     }
 
     IEnumerator Reload()
