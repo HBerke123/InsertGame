@@ -7,6 +7,7 @@ public class GunShot : MonoBehaviour
     public GameObject[] PreBombs;
     public GameObject Bomb;
     public GameObject SoundWave;
+    public float htime;
     public float ttime;
     public float reloadtime;
     public float ceregaintime;
@@ -22,7 +23,7 @@ public class GunShot : MonoBehaviour
     float th = 0;
     float hth = 0;
 
-    void Update()
+    void FixedUpdate()
     {
         if ((this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun") && !reloading)
         {
@@ -35,24 +36,41 @@ public class GunShot : MonoBehaviour
                 hth = Time.time;
             }
 
-            if (Input.GetMouseButtonUp(0) && (ammo > 0) && (Time.time - th > cooldown))
+            if (((Input.GetMouseButtonUp(0)) || (Time.time - hth > htime)) && (hth != 0) && (ammo > 0) && (Time.time - th > cooldown))
             {
-                SendBomb(1);
+                if (Time.time - hth > htime)
+                {
+                    SendBomb(1, 1);
+                }
+                else
+                {
+                    SendBomb(1, (Time.time - hth) / htime);
+                }
                 th = Time.time;
+                hth = 0;
             }
-            else if (Input.GetMouseButtonUp(1) && (ammo == 3) && (Time.time - th > cooldown))
+            else if (((Input.GetMouseButtonUp(1)) || (Time.time - hth > htime)) && (hth != 0) && (ammo == 3) && (Time.time - th > cooldown))
             {
-                for (int i = 0; i < 3; i++) SendBomb(i);
+                if (Time.time - hth > htime)
+                {
+                    for (int i = 0; i < 3; i++) SendBomb(i, 1);
+                }
+                else
+                {
+                    for (int i = 0; i < 3; i++) SendBomb(i, (Time.time - hth) / htime);
+                }
+                
                 th = Time.time;
+                hth = 0;
             }
         }
     }
 
-    void SendBomb(int direction)
+    void SendBomb(int direction, float bombforce)
     {
         GameObject SBox = Instantiate(Bomb, this.transform.position, new Quaternion(0, 0, 0, 0));
-        if (this.GetComponentInParent<SpriteRenderer>().flipX) SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(-maxbombforce, -5 + 5 * direction), ForceMode2D.Impulse);
-        else SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(maxbombforce, -5 + 5 * direction), ForceMode2D.Impulse);
+        if (this.GetComponentInParent<SpriteRenderer>().flipX) SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(-bombforce, -5 + 5 * direction), ForceMode2D.Impulse);
+        else SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(minbombforce + bombforce * (maxbombforce - minbombforce), -5 + 5 * direction), ForceMode2D.Impulse);
         SBox.GetComponent<BombExplode>().TotalTime = ttime;
         SBox.GetComponent<BombExplode>().minsize = minsize;
         SBox.GetComponent<BombExplode>().maxsize = maxsize;
