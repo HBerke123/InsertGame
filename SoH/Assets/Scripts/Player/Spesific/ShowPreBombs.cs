@@ -11,7 +11,7 @@ public class ShowPreBombs : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            this.GetComponent<PreBombGroup>().PreBombs[i].transform.localPosition = new Vector3(GroupBombGroups[0].transform.position.x + , , 0);
+            this.GetComponent<PreBombGroup>().PreBombs[i].transform.localPosition = new Vector3(GroupBombGroups[0].transform.position.x + 0, 0, 0);
         }
         
     }
