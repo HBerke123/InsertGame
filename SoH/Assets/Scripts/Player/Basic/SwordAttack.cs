@@ -16,7 +16,7 @@ public class SwordAttack : MonoBehaviour
     private void Update()
     {
         if (attackable && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword")) { 
-            if (((Time.time - th >= skillholdtime) || Input.GetMouseButtonUp(1)) && (th > 0))
+            if (((Time.time - th >= skillholdtime) || (Input.GetMouseButtonUp(1) || Input.GetKeyDown(KeyCode.Joystick1Button10))) && (th > 0))
             {
                 if (Time.time - th < skillholdtime)
                 {
@@ -51,7 +51,7 @@ public class SwordAttack : MonoBehaviour
                     StartCoroutine(Cooldown());
                 }
             }
-            else if (Input.GetMouseButtonDown(0) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword")) {
+            else if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Joystick1Button11)) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword")) {
                 attackable = false;
                 attacknum = 0;
                 this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1);
@@ -66,7 +66,7 @@ public class SwordAttack : MonoBehaviour
                 StartCoroutine(Attackend());
                 StartCoroutine(Cooldown());
             }
-            else if (Input.GetMouseButtonDown(1) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword"))
+            else if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Joystick1Button10)) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword"))
             {
                 th = Time.time;
             }

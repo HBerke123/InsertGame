@@ -17,13 +17,13 @@ public class Jump : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && GetComponentInChildren<GroundDetection>().detected)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button14)) && GetComponentInChildren<GroundDetection>().detected)
         {
             stime = Time.time;
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
         }
 
-        if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime)) 
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button14)) && (Time.time - stime < jumptime)) 
         {
             if (rb.velocity.y > maxspeed)
             {

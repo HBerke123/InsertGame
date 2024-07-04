@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         pspeed = Input.GetAxisRaw("Horizontal") * speed;
+
         if ((pspeed != 0) && (pspeed != lspeed) && movable)
         {
             if (lspeed == 0) aspeed = rb.velocity.x;

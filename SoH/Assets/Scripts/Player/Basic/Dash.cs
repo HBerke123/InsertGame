@@ -18,7 +18,7 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-        if (dashable && Input.GetKeyDown(KeyCode.LeftControl))
+        if (dashable && (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton15)))
         {
             this.GetComponent<CEDrainage>().LoseCE(cecost);
             dashable = false;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunShot : MonoBehaviour
 {
-    public GameObject[] PreBombs;
+    public GameObject PreBombShower;
     public GameObject Bomb;
     public GameObject SoundWave;
     public float htime;
@@ -19,6 +19,7 @@ public class GunShot : MonoBehaviour
     public float twtime;
     public int cecost;
     int ammo = 3;
+    bool triattack = false;
     bool reloading = false;
     float th = 0;
     float hth = 0;
@@ -27,17 +28,22 @@ public class GunShot : MonoBehaviour
     {
         if ((this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun") && !reloading)
         {
-            if (Input.GetMouseButtonDown(0) && (ammo > 0) && (Time.time - th > cooldown))
+            if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton10)) && (ammo > 0) && (Time.time - th > cooldown))
             {
+                triattack = false;
                 hth = Time.time;
+                PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
             }
-            else if (Input.GetMouseButtonDown(1) && (ammo == 3) && (Time.time - th > cooldown))
+            else if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Joystick1Button11)) && (ammo == 3) && (Time.time - th > cooldown))
             {
+                triattack = true;
                 hth = Time.time;
+                PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
             }
 
-            if (((Input.GetMouseButtonUp(0)) || (Time.time - hth > htime)) && (hth != 0) && (ammo > 0) && (Time.time - th > cooldown))
+            if (((Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.JoystickButton10)) || (Time.time - hth > htime)) && (hth != 0) && (ammo > 0) && (Time.time - th > cooldown) && !triattack)
             {
+                PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
                 if (Time.time - hth > htime)
                 {
                     SendBomb(1, 1);
@@ -49,8 +55,9 @@ public class GunShot : MonoBehaviour
                 th = Time.time;
                 hth = 0;
             }
-            else if (((Input.GetMouseButtonUp(1)) || (Time.time - hth > htime)) && (hth != 0) && (ammo == 3) && (Time.time - th > cooldown))
+            else if (((Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.Joystick1Button11)) || (Time.time - hth > htime)) && (hth != 0) && (ammo == 3) && (Time.time - th > cooldown) && triattack)
             {
+                PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
                 if (Time.time - hth > htime)
                 {
                     for (int i = 0; i < 3; i++) SendBomb(i, 1);
@@ -69,7 +76,7 @@ public class GunShot : MonoBehaviour
     void SendBomb(int direction, float bombforce)
     {
         GameObject SBox = Instantiate(Bomb, this.transform.position, new Quaternion(0, 0, 0, 0));
-        if (this.GetComponentInParent<SpriteRenderer>().flipX) SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(-bombforce, -5 + 5 * direction), ForceMode2D.Impulse);
+        if (this.GetComponentInParent<SpriteRenderer>().flipX) SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(-minbombforce + -bombforce * (maxbombforce - minbombforce), -5 + 5 * direction), ForceMode2D.Impulse);
         else SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(minbombforce + bombforce * (maxbombforce - minbombforce), -5 + 5 * direction), ForceMode2D.Impulse);
         SBox.GetComponent<BombExplode>().TotalTime = ttime;
         SBox.GetComponent<BombExplode>().minsize = minsize;
