@@ -16,21 +16,29 @@ public class ScreamUse : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        float cursorx = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - this.GetComponentInParent<Transform>().position.x;
+        float cursory = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - this.GetComponentInParent<Transform>().position.y;
+        if (Mathf.Abs(cursorx) >= Mathf.Abs(cursory))
         {
-            direction = 0;
+            if (Mathf.Abs(cursorx) / cursorx == 1)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = 3;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else
         {
-            direction = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            direction = 2;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            direction = 3;
+            if (Mathf.Abs(cursory) / cursory == 1)
+            {
+                direction = 0;
+            }
+            else
+            {
+                direction = 2;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -81,6 +89,10 @@ public class ScreamUse : MonoBehaviour
     public void SendWave(int direction)
     {
         GameObject SBox = Instantiate(ScreamWave, this.transform.position, new Quaternion(0, 0, 0, 0));
+        if ((direction == 0) || (direction == 2))
+        {
+            SBox.transform.localRotation = Quaternion.Euler(0, 0, 90);
+        }
 
         if (direction == 0)
         {
@@ -88,7 +100,7 @@ public class ScreamUse : MonoBehaviour
         }
         else if (direction == 1)
         {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
         }
         else if (direction == 2)
         {
@@ -96,7 +108,7 @@ public class ScreamUse : MonoBehaviour
         }
         else if (direction == 3)
         {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
         }
 
         SBox.GetComponent<SkillEnd>().TotalTime = totaltime;

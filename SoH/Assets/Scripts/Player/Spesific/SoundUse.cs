@@ -8,9 +8,35 @@ public class SoundUse : MonoBehaviour
     public float cooldown;
     float th;
     bool ready = true;
+    int direction;
 
     private void Update()
     {
+        float cursorx = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - this.GetComponentInParent<Transform>().position.x;
+        float cursory = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - this.GetComponentInParent<Transform>().position.y;
+        if (Mathf.Abs(cursorx) >= Mathf.Abs(cursory))
+        {
+            if (Mathf.Abs(cursorx) / cursorx == 1)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = 3;
+            }
+        }
+        else
+        {
+            if (Mathf.Abs(cursory) / cursory == 1)
+            {
+                direction = 0;
+            }
+            else
+            {
+                direction = 2;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready)
         {
             ready = false;
@@ -21,13 +47,11 @@ public class SoundUse : MonoBehaviour
         {
             if (Time.time - th < holdtime)
             {
-                if (this.GetComponentInParent<SpriteRenderer>().flipX) this.GetComponent<SoundInfluence>().SendWave(-1, false);
-                else this.GetComponent<SoundInfluence>().SendWave(1, false);
+                this.GetComponent<SoundInfluence>().SendWave(direction, false);
             }
             else
             {
-                if (this.GetComponentInParent<SpriteRenderer>().flipX) this.GetComponent<SoundInfluence>().SendWave(-1, true);
-                else this.GetComponent<SoundInfluence>().SendWave(1, true);
+                this.GetComponent<SoundInfluence>().SendWave(direction, true);
             }
             th = 0;
             StartCoroutine(Cooldown());
