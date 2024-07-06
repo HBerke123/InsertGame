@@ -28,20 +28,20 @@ public class GunShot : MonoBehaviour
     {
         if ((this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun") && !reloading)
         {
-            if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton10)) && (ammo > 0) && (Time.time - th > cooldown))
+            if (Input.GetMouseButtonDown(0) && (ammo > 0) && (Time.time - th > cooldown))
             {
                 triattack = false;
                 hth = Time.time;
                 PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
             }
-            else if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Joystick1Button11)) && (ammo == 3) && (Time.time - th > cooldown))
+            else if (Input.GetMouseButtonDown(1) && (ammo == 3) && (Time.time - th > cooldown))
             {
                 triattack = true;
                 hth = Time.time;
                 PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
             }
 
-            if (((Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.JoystickButton10)) || (Time.time - hth > htime)) && (hth != 0) && (ammo > 0) && (Time.time - th > cooldown) && !triattack)
+            if ((Input.GetMouseButtonUp(0) || (Time.time - hth > htime)) && (hth != 0) && (ammo > 0) && (Time.time - th > cooldown) && !triattack)
             {
                 PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
                 if (Time.time - hth > htime)
@@ -55,7 +55,7 @@ public class GunShot : MonoBehaviour
                 th = Time.time;
                 hth = 0;
             }
-            else if (((Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.Joystick1Button11)) || (Time.time - hth > htime)) && (hth != 0) && (ammo == 3) && (Time.time - th > cooldown) && triattack)
+            else if ((Input.GetMouseButtonUp(1) || (Time.time - hth > htime)) && (hth != 0) && (ammo == 3) && (Time.time - th > cooldown) && triattack)
             {
                 PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
                 if (Time.time - hth > htime)
