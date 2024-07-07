@@ -8,6 +8,7 @@ public class Dash : MonoBehaviour
     public float dashcooldown = 0.5f;
     public float dashtime = 0.1f;
     public bool dashable = true;
+    public bool stick = false;
     public int cecost = 50;
     Movement mv;
 
@@ -18,7 +19,7 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-        if (dashable && Input.GetKeyDown(KeyCode.LeftControl))
+        if (dashable && Input.GetKeyDown(KeyCode.LeftControl) && !stick)
         {
             this.GetComponent<CEDrainage>().LoseCE(cecost);
             dashable = false;

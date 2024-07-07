@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    public bool stick = false;
     public float jumpforce = 8;
     public float jumptime = 2;
     float maxspeed = 0;
@@ -17,13 +18,13 @@ public class Jump : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button14)) && GetComponentInChildren<GroundDetection>().detected)
+        if (Input.GetKeyDown(KeyCode.Space) && GetComponentInChildren<GroundDetection>().detected && !stick)
         {
             stime = Time.time;
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
         }
 
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button14)) && (Time.time - stime < jumptime)) 
+        if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime) && !stick) 
         {
             if (rb.velocity.y > maxspeed)
             {

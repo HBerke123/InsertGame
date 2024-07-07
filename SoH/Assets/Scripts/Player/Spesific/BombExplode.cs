@@ -22,7 +22,6 @@ public class BombExplode : MonoBehaviour
         if (Time.time - th > TotalTime)
         {
             Explode();
-            Destroy(this.gameObject);
         }
     }
 
@@ -33,5 +32,14 @@ public class BombExplode : MonoBehaviour
         SBox.GetComponent<BombSoundWave>().minsize = minsize;
         SBox.GetComponent<BombSoundWave>().maxsize = maxsize;
         SBox.GetComponent<ForceEnemies>().forcePower = forcePower;
+        Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Explode();
+        }
     }
 }

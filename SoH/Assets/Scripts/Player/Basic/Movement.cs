@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     Rigidbody2D rb;
     public BoxCollider2D Attackhbox;
+    public bool stick;
     public float speed = 5;
     public float sspeed = 5;
     public float dspeed;
@@ -21,28 +22,35 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        pspeed = Input.GetAxisRaw("Horizontal") * speed;
+        if (movable)
+        {
+            pspeed = Input.GetAxisRaw("Horizontal") * speed;
+        }
 
-        if ((pspeed != 0) && (pspeed != lspeed) && movable)
+        if ((pspeed != 0) && (pspeed != lspeed) && movable && !stick)
         {
             if (lspeed == 0) aspeed = rb.velocity.x;
             else aspeed = rb.velocity.x - lspeed;
             
             rb.velocity = new Vector2(aspeed + pspeed, rb.velocity.y);
         }
-        else if (movable)
+        else if (movable && !stick)
         {
             aspeed = rb.velocity.x - pspeed;
             if (aspeed != 0) aspeed -= aspeed * (sspeed / 10);
 
             rb.velocity = new Vector2(aspeed + pspeed, rb.velocity.y);
         }
-        else
+        else if (!stick)
         {
             aspeed = rb.velocity.x - pspeed;
             if (aspeed != 0) aspeed -= aspeed * (sspeed / 10);
 
             rb.velocity = new Vector2(aspeed + dspeed, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
         }
 
         if ((pspeed != 0) && !Attackhbox.enabled) this.GetComponent<SpriteRenderer>().flipX = pspeed / Mathf.Abs(pspeed) != 1;
