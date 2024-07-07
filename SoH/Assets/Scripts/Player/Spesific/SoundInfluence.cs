@@ -53,7 +53,7 @@ public class SoundInfluence : MonoBehaviour
                 SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
             }
             SBox.GetComponent<ForceEnemies>().direction = direction;
-            SBox.GetComponent<ForceEnemies>().forcePower = smallForcePower;
+            SBox.GetComponent<ForceEnemies>().forcePower = bigForcePower;
         }
         else
         {
@@ -80,7 +80,7 @@ public class SoundInfluence : MonoBehaviour
                 SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
             }
             SBox.GetComponent<ForceEnemies>().direction = direction;
-            SBox.GetComponent<ForceEnemies>().forcePower = bigForcePower;
+            SBox.GetComponent<ForceEnemies>().forcePower = smallForcePower;
         }
     }
 }

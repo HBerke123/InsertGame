@@ -108,7 +108,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.18871483, g: 0.23088522, b: 0.2924528, a: 1}
   m_FlipX: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   forcePower: 0
-  destroyonTouch: 0
+  destroyOnTouch: 0
   arrow: {fileID: 5116454901297399352}
 --- !u!70 &6111964928612362611
 CapsuleCollider2D:

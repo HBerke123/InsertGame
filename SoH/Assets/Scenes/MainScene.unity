@@ -563,6 +563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FallingSpike (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3745587553135004826, guid: 425e090fbd7376d43a1ca0ae8304c6ce, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5509647891519595976, guid: 425e090fbd7376d43a1ca0ae8304c6ce, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -16978,7 +16982,7 @@ MonoBehaviour:
   totaltime: 1
   btime: 0.25
   rtime: 0.5
-  forcePower: 0
+  forcePower: 1
 --- !u!114 &1013556179
 MonoBehaviour:
   m_ObjectHideFlags: 0
