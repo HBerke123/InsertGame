@@ -38,15 +38,24 @@ public class FlyableEnemy : MonoBehaviour
             if (distancey < rangey * 3 / 4)
             {
                 this.GetComponent<Rigidbody2D>().gravityScale = 0;
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, flyspeed);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnEnemy>().Force.x, flyspeed + this.GetComponent<ForcesOnEnemy>().Force.y);
             }
             else if (distancey < rangey)
             {
                 this.GetComponent<Rigidbody2D>().gravityScale = 0;
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnEnemy>().Force.x, this.GetComponent<ForcesOnEnemy>().Force.y);
             }
             else
             {
+                if (this.GetComponent<ForcesOnEnemy>().Force.y != 0)
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnEnemy>().Force.x, this.GetComponent<ForcesOnEnemy>().Force.y);
+                }
+                else
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnEnemy>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
+                }
+                
                 this.GetComponent<Rigidbody2D>().gravityScale = 1;
             }
 
@@ -69,12 +78,12 @@ public class FlyableEnemy : MonoBehaviour
 
         if (arrow.transform.rotation.eulerAngles.y == 270)
         {
-            SThorn.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos((arrow.transform.rotation.eulerAngles.x + 180) * Mathf.Deg2Rad) * thornSpeed, Mathf.Sin((arrow.transform.rotation.eulerAngles.x + 180) * Mathf.Deg2Rad) * thornSpeed);
+            SThorn.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Cos(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed, -Mathf.Sin(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed);
             SThorn.transform.rotation = Quaternion.Euler(0, 0, arrow.transform.rotation.eulerAngles.x + 90);
         }
         else
         {
-            SThorn.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos((arrow.transform.rotation.eulerAngles.x) * Mathf.Deg2Rad) * thornSpeed, Mathf.Sin((arrow.transform.rotation.eulerAngles.x + 180) * Mathf.Deg2Rad) * thornSpeed);
+            SThorn.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed, -Mathf.Sin(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed);
             SThorn.transform.rotation = Quaternion.Euler(0, 0, -arrow.transform.rotation.eulerAngles.x - 90);
         }
         SThorn.GetComponent<SkillEnd>().TotalTime = thornTime;

@@ -9,6 +9,7 @@ public class ScreamUse : MonoBehaviour
     public float totaltime;
     public float btime;
     public float rtime;
+    public float forcePower;
     float th = 0;
     float rth = 0;
     int ammo = 3;
@@ -112,5 +113,7 @@ public class ScreamUse : MonoBehaviour
         }
 
         SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
+        SBox.GetComponent<ForceEnemies>().direction = direction;
+        SBox.GetComponent<ForceEnemies>().forcePower = forcePower;
     }
 }

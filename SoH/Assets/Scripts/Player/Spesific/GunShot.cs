@@ -7,6 +7,7 @@ public class GunShot : MonoBehaviour
     public GameObject PreBombShower;
     public GameObject Bomb;
     public GameObject SoundWave;
+    public float forcePower;
     public float htime;
     public float ttime;
     public float reloadtime;
@@ -83,6 +84,7 @@ public class GunShot : MonoBehaviour
         SBox.GetComponent<BombExplode>().maxsize = maxsize;
         SBox.GetComponent<BombExplode>().ttime = twtime;
         SBox.GetComponent<BombExplode>().SoundWave = SoundWave;
+        SBox.GetComponent<BombExplode>().forcePower = forcePower;
         ammo--;
         if (ammo == 0) StartCoroutine(Reload());
     }

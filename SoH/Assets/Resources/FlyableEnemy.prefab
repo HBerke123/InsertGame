@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4193538533157646799}
   - component: {fileID: 4193538533157646796}
   - component: {fileID: 4193538533157646798}
+  - component: {fileID: 5661750935591535087}
   m_Layer: 10
   m_Name: FlyableEnemy
   m_TagString: Enemy
@@ -155,6 +156,20 @@ MonoBehaviour:
   rangey: 6
   cooldown: 2
   thornSpeed: 9
+--- !u!114 &5661750935591535087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193538533157646795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ec41d06541a3d49b32c1c183f462d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Force: {x: 0, y: 0}
+  resistance: 0.05
 --- !u!1 &4193538533455114954
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BombExplode : MonoBehaviour
 {
+    public float forcePower;
     public float TotalTime;
     public float minsize;
     public float maxsize;
@@ -31,5 +32,6 @@ public class BombExplode : MonoBehaviour
         SBox.GetComponent<SkillEnd>().TotalTime = ttime;
         SBox.GetComponent<BombSoundWave>().minsize = minsize;
         SBox.GetComponent<BombSoundWave>().maxsize = maxsize;
+        SBox.GetComponent<ForceEnemies>().forcePower = forcePower;
     }
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SoundInfluence : MonoBehaviour
 {
-
+    public float smallForcePower;
+    public float bigForcePower;
     public float totaltime;
     public float speed;
     public GameObject BigWave;
@@ -51,6 +52,8 @@ public class SoundInfluence : MonoBehaviour
             {
                 SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
             }
+            SBox.GetComponent<ForceEnemies>().direction = direction;
+            SBox.GetComponent<ForceEnemies>().forcePower = smallForcePower;
         }
         else
         {
@@ -76,7 +79,8 @@ public class SoundInfluence : MonoBehaviour
             {
                 SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
             }
+            SBox.GetComponent<ForceEnemies>().direction = direction;
+            SBox.GetComponent<ForceEnemies>().forcePower = bigForcePower;
         }
-        
     }
 }

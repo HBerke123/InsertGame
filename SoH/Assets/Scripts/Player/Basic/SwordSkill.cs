@@ -8,6 +8,7 @@ public class SwordSkill : MonoBehaviour
     public float minyscale;
     public float speed;
     public float totaltime;
+    public float forcePower;
     public GameObject SkillBox;
     GameObject SBox;
 
@@ -18,5 +19,16 @@ public class SwordSkill : MonoBehaviour
         SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
         SBox.GetComponent<SwordWave>().minyscale = minyscale;
         SBox.GetComponent<SwordWave>().maxyscale = maxyscale;
+
+        if (direction == -1)
+        {
+            SBox.GetComponent<ForceEnemies>().direction = 3;
+        }
+        else
+        {
+            SBox.GetComponent<ForceEnemies>().direction = 1;
+        }
+        
+        SBox.GetComponent<ForceEnemies>().forcePower = forcePower;
     }
 }
