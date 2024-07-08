@@ -6,6 +6,7 @@ public class LightEnemy : MonoBehaviour
 {
     GameObject player;
     public GameObject lightWave;
+    public float lightDamage;
     public float waveTime;
     public float waveSpeed;
     public float speed;
@@ -75,12 +76,14 @@ public class LightEnemy : MonoBehaviour
             GameObject SBox = Instantiate(lightWave, transform.position, new Quaternion(0, 0, 0, 0));
             SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-waveSpeed, 0);
             SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
+            SBox.GetComponent<DamagePlayer>().damageAmount = lightDamage;
         }
         else
         {
             GameObject SBox = Instantiate(lightWave, transform.position, new Quaternion(0, 0, 0, 0));
             SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(waveSpeed, 0);
             SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
+            SBox.GetComponent<DamagePlayer>().damageAmount = lightDamage;
         }
     }
 }

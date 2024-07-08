@@ -7,6 +7,7 @@ public class FlyingEnemy : MonoBehaviour
     GameObject player;
     public GameObject arrow;
     public GameObject Thorn;
+    public float thornDamage;
     public float thornTime;
     public float flyspeed;
     public float rangex;
@@ -87,5 +88,6 @@ public class FlyingEnemy : MonoBehaviour
             SThorn.transform.rotation = Quaternion.Euler(0, 0, -arrow.transform.rotation.eulerAngles.x - 90);
         }
         SThorn.GetComponent<SkillEnd>().TotalTime = thornTime;
+        SThorn.GetComponent<DamagePlayer>().damageAmount = thornDamage;
     }
 }

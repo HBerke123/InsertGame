@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49b85ff3b0333246a1be013d4d77782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LightWave: {fileID: 7330534001378653452, guid: 7027e418f64aca941a4a3fe303c904a3, type: 3}
+  lightWave: {fileID: 7330534001378653452, guid: 7027e418f64aca941a4a3fe303c904a3, type: 3}
+  lightDamage: 0
   waveTime: 3
   waveSpeed: 5
   speed: 7

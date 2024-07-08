@@ -7,6 +7,8 @@ public class SoundEnemy : MonoBehaviour
     GameObject player;
     public GameObject soundWave;
     public GameObject screamWave;
+    public float soundDamage;
+    public float screamDamage;
     public float waveSpeed;
     public float waveTime;
     public float screamSpeed;
@@ -95,12 +97,14 @@ public class SoundEnemy : MonoBehaviour
             GameObject SBox = Instantiate(soundWave, transform.position, new Quaternion(0, 0, 0, 0));
             SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-waveSpeed, 0);
             SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
+            SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
         }
         else
         {
             GameObject SBox = Instantiate(soundWave, transform.position, new Quaternion(0, 0, 0, 0));
             SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(waveSpeed, 0);
             SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
+            SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
         }
     }
 
@@ -111,12 +115,14 @@ public class SoundEnemy : MonoBehaviour
             GameObject SBox = Instantiate(screamWave, transform.position, new Quaternion(0, 0, 0, 0));
             SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-screamSpeed, 0);
             SBox.GetComponent<SkillEnd>().TotalTime = screamTime;
+            SBox.GetComponent<DamagePlayer>().damageAmount = screamDamage;
         }
         else
         {
             GameObject SBox = Instantiate(screamWave, transform.position, new Quaternion(0, 0, 0, 0));
             SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(screamSpeed, 0);
             SBox.GetComponent<SkillEnd>().TotalTime = screamTime;
+            SBox.GetComponent<DamagePlayer>().damageAmount = screamDamage;
         }
     }
 }

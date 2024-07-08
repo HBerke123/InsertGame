@@ -149,7 +149,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangex: 6
   speed: 2
-  attackrange: 0.5
+  attackDamage: 0
+  attackRange: 0.25
+  attackFrequency: 0
+  attackSpeedUpRate: 0
 --- !u!114 &1111135534365861718
 MonoBehaviour:
   m_ObjectHideFlags: 0

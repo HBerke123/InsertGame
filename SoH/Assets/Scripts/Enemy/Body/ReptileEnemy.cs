@@ -6,8 +6,12 @@ public class ReptileEnemy : MonoBehaviour
 {
     public float rangex;
     public float speed;
-    public float attackrange;
+    public float attackDamage;
+    public float attackRange;
+    public float attackFrequency;
+    public float attackSpeedUpRate;
     GameObject player;
+    float th;
 
     private void Start()
     {
@@ -20,7 +24,7 @@ public class ReptileEnemy : MonoBehaviour
 
         if (Mathf.Abs(distancex) < rangex)
         {
-            if (Mathf.Abs(distancex) < attackrange)
+            if (Mathf.Abs(distancex) < attackRange)
             {
                 player.GetComponent<Movement>().stick = true;
                 player.GetComponent<Jump>().stick = true;
