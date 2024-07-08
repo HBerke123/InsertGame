@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightWave: {fileID: 7330534001378653452, guid: 7027e418f64aca941a4a3fe303c904a3, type: 3}
-  lightDamage: 0
+  lightDamage: 2
   waveTime: 3
   waveSpeed: 5
   speed: 7

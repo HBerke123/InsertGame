@@ -23,7 +23,7 @@ public class FlyingEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > cooldown))
+        if ((th != 0) && (Time.time - th > cooldown) && (this.GetComponent<ForcesOnEnemy>().Force == Vector2.zero))
         {
             th = 0;
             ThrowThorn();

@@ -19,6 +19,7 @@ public class ScreamUse : MonoBehaviour
     {
         float cursorx = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - this.GetComponentInParent<Transform>().position.x;
         float cursory = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - this.GetComponentInParent<Transform>().position.y;
+
         if (Mathf.Abs(cursorx) >= Mathf.Abs(cursory))
         {
             if (Mathf.Abs(cursorx) / cursorx == 1)
@@ -44,19 +45,16 @@ public class ScreamUse : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            this.GetComponentInParent<Movement>().enabled = false;
             th = Time.time;
             rth = 0;
         }
         else if (Input.GetKeyUp(KeyCode.E))
         {
-            this.GetComponentInParent<Movement>().enabled = true;
             th = 0;
         }
 
         if (Input.GetKey(KeyCode.E))
         {
-            this.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(this.GetComponentInParent<Rigidbody2D>().velocity.x - this.GetComponentInParent<Rigidbody2D>().velocity.x * (this.GetComponentInParent<Movement>().sspeed / 10), this.GetComponentInParent<Rigidbody2D>().velocity.y);
             if ((ammo > 0) && (Time.time - th > btime) && (th > 0))
             {
                 SendWave(direction);

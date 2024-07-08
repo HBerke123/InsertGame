@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 198872143608061265}
   - component: {fileID: -6157129463040996117}
   - component: {fileID: 7106651897497294375}
+  - component: {fileID: 3049907620491333404}
   m_Layer: 0
   m_Name: EnemyScream
   m_TagString: Untagged
@@ -134,3 +135,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 0
+--- !u!70 &3049907620491333404
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207596519929190640}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1.9999999}
+  m_Direction: 0

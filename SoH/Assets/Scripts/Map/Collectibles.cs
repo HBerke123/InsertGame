@@ -30,8 +30,8 @@ public class Collectibles : MonoBehaviour
         }
         Mathf.Round(hpdrain.health);
         UpdateHealthBar(hpdrain.health / hpdrain.maxHealth);
-
     }
+
     public void RegainSTE(float regained)
     {
         ceDrainage.ce += regained;
@@ -42,11 +42,13 @@ public class Collectibles : MonoBehaviour
         Mathf.Round(ceDrainage.ce);
         ceDrainage.UpdateCEBar();
     }
+
     public void UpdateHealthBar(float newHealth)
     {
-        HealthDrainage.slider.value = newHealth;
-        HealthDrainage.hpDisplayText.text = hpdrain.health.ToString() + "/" + Mathf.Round(hpdrain.maxHealth).ToString();
+        hpdrain.slider.value = newHealth;
+        hpdrain.hpDisplayText.text = hpdrain.health.ToString() + "/" + Mathf.Round(hpdrain.maxHealth).ToString();
     }
+
     void OnTriggerEnter2D(Collider2D target)
     {
         if (target.gameObject.CompareTag("HP Orb"))

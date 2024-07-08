@@ -11,11 +11,29 @@ public class ReptileEnemy : MonoBehaviour
     public float attackFrequency;
     public float attackSpeedUpRate;
     GameObject player;
+    float maxAttackFrequency;
     float th;
+    float sth;
 
     private void Start()
     {
+        maxAttackFrequency = attackFrequency;
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void FixedUpdate()
+    {
+        if ((th != 0) && (Time.time - th > attackFrequency) && (attackRange > Mathf.Abs(this.transform.position.x - player.transform.position.x)))
+        {
+            player.GetComponent<HealthDrainage>().TakeDamage(attackDamage);
+            th = Time.time;
+        }
+
+        if ((sth != 0) && (Time.time - sth > maxAttackFrequency) && (attackRange > Mathf.Abs(this.transform.position.x - player.transform.position.x)))
+        {
+            attackFrequency -= attackSpeedUpRate;
+            sth = Time.time;
+        }
     }
 
     private void Update()
@@ -30,6 +48,11 @@ public class ReptileEnemy : MonoBehaviour
                 player.GetComponent<Jump>().stick = true;
                 this.GetComponent<ForcesOnEnemy>().resistance = 1;
                 speed = 0;
+                if (th == 0)
+                {
+                    sth = Time.time;
+                    th = Time.time - attackFrequency;
+                }
             }
 
             if (this.GetComponent<ForcesOnEnemy>().Force.y != 0)

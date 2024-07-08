@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 4193538533455114954}
   Thorn: {fileID: 5406501876786226586, guid: 6a62a693dfdc33040b09abf3d48735eb, type: 3}
+  thornDamage: 5
   thornTime: 4
   flyspeed: 4
   rangex: 10

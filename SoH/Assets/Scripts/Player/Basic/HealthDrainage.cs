@@ -6,72 +6,37 @@ using TMPro;
 
 public class HealthDrainage : MonoBehaviour
 {
-    public float health = 0, maxHealth = 100;
-    public GameObject healthBar;
-    public GameObject healthDisplay;
-    public static TextMeshProUGUI hpDisplayText;
-    public Image healthBarImage;
-    public static Slider slider;
-    public Collider2D playerCollider;
-    public Collider2D enemyCollider;
-    public bool hurt;
-    public float cooldown;
-    public float cooldownHolder;
+    public TextMeshProUGUI hpDisplayText;
+    public Slider slider;
+    public float health = 0;
+    public float maxHealth = 100;
 
     public void Start()
     {
-        healthBar = GameObject.Find("HP Bar");
-        healthDisplay = GameObject.Find("HP Display");
         health = 50;
-        slider = healthBar.GetComponent<Slider>();
-        playerCollider = this.GetComponent<Collider2D>();
-        hpDisplayText = healthDisplay.GetComponent<TextMeshProUGUI>();
         UpdateHealthBar(health / maxHealth);
-        hpDisplayText.text = health + "/" + maxHealth;
-
     }
+
+    void Update()
+    {
+        if (health <= 0)
+        {
+            health = maxHealth;
+            this.transform.position = new Vector3(0f, 2f, 0f);
+            UpdateHealthBar(health / maxHealth);
+        }
+    }
+
     public void TakeDamage(float dmg)
     {
         health -= dmg;
         Mathf.Round(health);
         UpdateHealthBar(health / maxHealth);
-        cooldownHolder = Time.time;
-
     }
-    void Update()
-    {
-        if (hurt)
-        {
-            cooldown = Time.time;
-            if (cooldown - cooldownHolder >= 2)
-            {
-                TakeDamage(5.0f);
-            }
-            if (health <= 0)
-            {
-                health = maxHealth;
-                this.transform.position = new Vector3(0f, 0f, 0f);
-                UpdateHealthBar(health / maxHealth);
-            }
-        }
 
-
-    }
     public void UpdateHealthBar(float newHealth)
     {
         slider.value = newHealth;
         hpDisplayText.text = health + "/" + Mathf.Round(maxHealth);
-    }
-
-    void OnCollisionEnter2D(Collision2D target)
-    {
-        if (target.gameObject.CompareTag("Enemy"))
-        {
-            hurt = true;
-        }
-        else
-        {
-            hurt = false;
-        }
     }
 }

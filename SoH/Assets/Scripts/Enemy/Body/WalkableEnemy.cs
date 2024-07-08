@@ -8,7 +8,7 @@ public class WalkableEnemy : MonoBehaviour
     public float speed;
     public float rangex;
     public float attackDamage;
-    public float attackrange;
+    public float attackRange;
     public float attackFrequency;
     float th;
     
@@ -19,9 +19,10 @@ public class WalkableEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > attackFrequency))
+        if ((th != 0) && (Time.time - th > attackFrequency) && (attackRange > Mathf.Abs(this.transform.position.x - player.transform.position.x)))
         {
             player.GetComponent<HealthDrainage>().TakeDamage(attackDamage);
+            th = Time.time;
         }
     }
 
@@ -29,7 +30,7 @@ public class WalkableEnemy : MonoBehaviour
     {
         float distancex = this.transform.position.x - player.transform.position.x;
 
-        if ((Mathf.Abs(distancex) < rangex) && (attackrange * 3 / 4 < Mathf.Abs(distancex)))
+        if ((Mathf.Abs(distancex) < rangex) && (attackRange * 3 / 4 < Mathf.Abs(distancex)))
         {
             if (this.GetComponent<ForcesOnEnemy>().Force.y != 0)
             {
@@ -51,7 +52,7 @@ public class WalkableEnemy : MonoBehaviour
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnEnemy>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
             }
 
-            if (attackrange * 3 / 4 < Mathf.Abs(distancex))
+            if ((attackRange > Mathf.Abs(distancex)) && (th == 0))
             {
                 th = Time.time - attackFrequency;
             }
