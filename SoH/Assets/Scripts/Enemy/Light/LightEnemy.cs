@@ -5,7 +5,7 @@ using UnityEngine;
 public class LightEnemy : MonoBehaviour
 {
     GameObject player;
-    public GameObject LightWave;
+    public GameObject lightWave;
     public float waveTime;
     public float waveSpeed;
     public float speed;
@@ -72,13 +72,13 @@ public class LightEnemy : MonoBehaviour
     {
         if (this.transform.position.x >= player.transform.position.x)
         {
-            GameObject SBox = Instantiate(LightWave, transform.position, new Quaternion(0, 0, 0, 0));
+            GameObject SBox = Instantiate(lightWave, transform.position, new Quaternion(0, 0, 0, 0));
             SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-waveSpeed, 0);
             SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
         }
         else
         {
-            GameObject SBox = Instantiate(LightWave, transform.position, new Quaternion(0, 0, 0, 0));
+            GameObject SBox = Instantiate(lightWave, transform.position, new Quaternion(0, 0, 0, 0));
             SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(waveSpeed, 0);
             SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
         }

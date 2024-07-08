@@ -23,7 +23,7 @@ public class Dash : MonoBehaviour
         {
             this.GetComponent<CEDrainage>().LoseCE(cecost);
             dashable = false;
-            mv.movable = false;
+            mv.dashing = true;
             if (this.GetComponent<SpriteRenderer>().flipX) mv.dspeed = -dashspeed;
             else mv.dspeed = dashspeed;
             StartCoroutine(Dashend());
@@ -35,7 +35,7 @@ public class Dash : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(dashtime);
         mv.dspeed = 0;
-        mv.movable = true;
+        mv.dashing = false;
     }
 
     IEnumerator Cooldown()
