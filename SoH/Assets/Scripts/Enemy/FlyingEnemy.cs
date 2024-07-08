@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyableEnemy : MonoBehaviour
+public class FlyingEnemy : MonoBehaviour
 {
     GameObject player;
     public GameObject arrow;

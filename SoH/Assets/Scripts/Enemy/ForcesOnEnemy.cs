@@ -9,6 +9,11 @@ public class ForcesOnEnemy : MonoBehaviour
 
     private void Update()
     {
+        if ((Force.x > 0) || (Force.y > 0))
+        {
+            Debug.Log(Force);
+        }
+
         if (Force.x > 0.1)
         {
             Force.x -= resistance * Force.x;
