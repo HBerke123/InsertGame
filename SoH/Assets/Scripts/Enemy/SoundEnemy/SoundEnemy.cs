@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class SoundEnemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    GameObject player;
+    public GameObject soundWave;
+    public float waveSpeed;
+    public float waveTime;
+    public float speed;
+    public float moveRangex;
+    public float rangex;
+    public float shootFrequency;
+    float th;
+
+    private void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        if ((th != 0) && (Time.time - th > shootFrequency) && (this.GetComponent<ForcesOnEnemy>().Force.x == 0))
+        {
+            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < rangex)
+            {
+            }
+            th = 0;
+        }
     }
 }
