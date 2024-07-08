@@ -23,7 +23,7 @@ public class LightEnemy : MonoBehaviour
     {
         if ((Time.time - th > shootFrequency) && (th != 0) && (this.GetComponent<ForcesOnEnemy>().Force.x == 0))
         {
-            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < rangex)
+            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex)
             {
                 Shoot();
             }
