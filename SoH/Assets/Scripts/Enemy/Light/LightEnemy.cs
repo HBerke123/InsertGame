@@ -21,7 +21,7 @@ public class LightEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((Time.time - th > shootFrequency) && (th != 0))
+        if ((Time.time - th > shootFrequency) && (th != 0) && (this.GetComponent<ForcesOnEnemy>().Force.x == 0))
         {
             if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < rangex)
             {
@@ -35,7 +35,7 @@ public class LightEnemy : MonoBehaviour
     {
         float distancex = this.transform.position.x - player.transform.position.x;
         
-        if ((Mathf.Abs(distancex) < moveRangex) && (Mathf.Abs(distancex) > rangex * 3 / 4))
+        if ((Mathf.Abs(distancex) < moveRangex) && (Mathf.Abs(distancex) > rangex * 3 / 4) && (this.GetComponent<ForcesOnEnemy>().Force.x == 0))
         {
             th = 0;
             if (this.GetComponent<ForcesOnEnemy>().Force.y != 0)
