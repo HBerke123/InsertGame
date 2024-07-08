@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   badSmoke: {fileID: 622329057077348610, guid: 414e330cd0e1aa0499f11ffbb98b921c, type: 3}
+  effectDuration: 3
   range: 2
   cooldown: 8
   duration: 1

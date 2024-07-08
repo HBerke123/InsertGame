@@ -23,7 +23,7 @@ public class FlyingEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > cooldown) && (this.GetComponent<ForcesOnEnemy>().Force == Vector2.zero))
+        if ((th != 0) && (Time.time - th > cooldown) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             th = 0;
             ThrowThorn();
@@ -39,22 +39,22 @@ public class FlyingEnemy : MonoBehaviour
             if (distancey < rangey * 3 / 4)
             {
                 this.GetComponent<Rigidbody2D>().gravityScale = 0;
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnEnemy>().Force.x, flyspeed + this.GetComponent<ForcesOnEnemy>().Force.y);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, flyspeed + this.GetComponent<ForcesOnObject>().Force.y);
             }
             else if (distancey < rangey)
             {
                 this.GetComponent<Rigidbody2D>().gravityScale = 0;
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnEnemy>().Force.x, this.GetComponent<ForcesOnEnemy>().Force.y);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);
             }
             else
             {
-                if (this.GetComponent<ForcesOnEnemy>().Force.y != 0)
+                if (this.GetComponent<ForcesOnObject>().Force.y != 0)
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnEnemy>().Force.x, this.GetComponent<ForcesOnEnemy>().Force.y);
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);
                 }
                 else
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnEnemy>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
                 }
                 
                 this.GetComponent<Rigidbody2D>().gravityScale = 1;

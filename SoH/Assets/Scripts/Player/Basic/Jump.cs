@@ -18,7 +18,7 @@ public class Jump : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && GetComponentInChildren<GroundDetection>().detected && !stick)
+        if (Input.GetKeyDown(KeyCode.Space) && GetComponentInChildren<GroundDetection>().detected && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             stime = Time.time;
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);

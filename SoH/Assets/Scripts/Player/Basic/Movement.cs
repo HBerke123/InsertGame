@@ -20,17 +20,21 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        if (!dashing && !stick)
+        if (!dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             rb.velocity = new Vector2(pspeed = Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
         }
-        else if (!stick)
+        else if (!stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             rb.velocity = new Vector2(dspeed, rb.velocity.y);
         }
+        else if (!stick)
+        {
+            rb.velocity = this.GetComponent<ForcesOnObject>().Force;
+        }
         else
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.velocity = new Vector2(0, 0);
         }
         
         if ((pspeed != 0) && !Attackhbox.enabled) this.GetComponent<SpriteRenderer>().flipX = pspeed / Mathf.Abs(pspeed) != 1;

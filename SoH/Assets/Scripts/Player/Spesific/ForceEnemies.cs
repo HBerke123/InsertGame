@@ -13,19 +13,19 @@ public class ForceEnemies : MonoBehaviour
     {
         if (direction == 0)
         {
-            enemy.GetComponent<ForcesOnEnemy>().Force = new Vector2(0, forcePower);
+            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(0, forcePower);
         }
         else if (direction == 1)
         {
-            enemy.GetComponent<ForcesOnEnemy>().Force = new Vector2(forcePower, 0);
+            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(forcePower, 0);
         }
         else if (direction == 2)
         {
-            enemy.GetComponent<ForcesOnEnemy>().Force = new Vector2(0, -forcePower);
+            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(0, -forcePower);
         }
         else if (direction == 3)
         {
-            enemy.GetComponent<ForcesOnEnemy>().Force = new Vector2(-forcePower, 0);
+            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(-forcePower, 0);
         }
         else
         {
@@ -34,22 +34,22 @@ public class ForceEnemies : MonoBehaviour
             {
                 if (arrow.transform.localRotation.eulerAngles.x > 180)
                 {
-                    enemy.GetComponent<ForcesOnEnemy>().Force = new Vector2(Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
+                    enemy.GetComponent<ForcesOnObject>().Force = new Vector2(Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
                 }
                 else
                 {
-                    enemy.GetComponent<ForcesOnEnemy>().Force = new Vector2(Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, -Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
+                    enemy.GetComponent<ForcesOnObject>().Force = new Vector2(Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, -Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
                 }
             }
             else
             {
                 if (arrow.transform.localRotation.eulerAngles.x > 180)
                 {
-                    enemy.GetComponent<ForcesOnEnemy>().Force = new Vector2(-Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
+                    enemy.GetComponent<ForcesOnObject>().Force = new Vector2(-Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
                 }
                 else
                 {
-                    enemy.GetComponent<ForcesOnEnemy>().Force = new Vector2(-Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, -Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
+                    enemy.GetComponent<ForcesOnObject>().Force = new Vector2(-Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, -Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
                 }
             }
         }
@@ -62,6 +62,22 @@ public class ForceEnemies : MonoBehaviour
             Force(collision.gameObject);
             if (destroyOnTouch)
             {
+                Destroy(this.gameObject);
+            }
+        }
+        else if (collision.CompareTag("EnemySound"))
+        {
+            if (this.CompareTag("Sound"))
+            {
+                Destroy(collision.gameObject);
+                Destroy(this.gameObject);
+            }
+        }
+        else if (collision.CompareTag("EnemyScream"))
+        {
+            if (this.CompareTag("Scream"))
+            {
+                Destroy(collision.gameObject);
                 Destroy(this.gameObject);
             }
         }

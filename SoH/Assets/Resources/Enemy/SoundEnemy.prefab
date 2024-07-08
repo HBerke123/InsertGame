@@ -102,6 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundWave: {fileID: 8983698874597435969, guid: 844421b539537c64ca2dfd650634be59, type: 3}
   screamWave: {fileID: 207596519929190640, guid: 0b08b5b7cd5204f4da70d28a3d24cdf9, type: 3}
+  soundForcePower: 8
+  screamForcePower: 4
   soundDamage: 4
   screamDamage: 8
   waveSpeed: 6

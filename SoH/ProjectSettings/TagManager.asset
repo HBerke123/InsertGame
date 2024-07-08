@@ -12,6 +12,10 @@ TagManager:
   - HP Orb
   - STE Tube
   - Weapon
+  - Sound
+  - Scream
+  - EnemySound
+  - EnemyScream
   layers:
   - Default
   - TransparentFX

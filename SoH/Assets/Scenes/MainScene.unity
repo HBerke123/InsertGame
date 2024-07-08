@@ -3038,6 +3038,8 @@ GameObject:
   - component: {fileID: 980212561}
   - component: {fileID: 980212562}
   - component: {fileID: 980212563}
+  - component: {fileID: 980212564}
+  - component: {fileID: 980212565}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -3312,6 +3314,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CEproduceCd: 2
   CEproduceVa: 1
+--- !u!114 &980212564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980212537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ec41d06541a3d49b32c1c183f462d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Force: {x: 0, y: 0}
+  resistance: 0.2
+--- !u!114 &980212565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980212537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565473515e22e2441b34cdd59dff0e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goodEffectTime: 0
+  badEffectTime: 0
+  damageFrequency: 0.2
+  damageAmount: 1
+  healFrequency: 0.2
+  healAmount: 1
+  gainCeFrequency: 0.2
+  gainCeAmount: 1
 --- !u!1 &1013556170
 GameObject:
   m_ObjectHideFlags: 0
@@ -5549,7 +5585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7886631451454035148, guid: 66f00b561637cf945a81a007c00c01f9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66f00b561637cf945a81a007c00c01f9, type: 3}
@@ -5566,7 +5602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 218535336868151540, guid: 252c77fec2da843418c3b0dfd0496266, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 218535336868151550, guid: 252c77fec2da843418c3b0dfd0496266, type: 3}
       propertyPath: m_RootOrder

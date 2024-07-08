@@ -46,7 +46,7 @@ public class ReptileEnemy : MonoBehaviour
             {
                 player.GetComponent<Movement>().stick = true;
                 player.GetComponent<Jump>().stick = true;
-                this.GetComponent<ForcesOnEnemy>().resistance = 1;
+                this.GetComponent<ForcesOnObject>().resistance = 1;
                 speed = 0;
                 if (th == 0)
                 {
@@ -55,9 +55,9 @@ public class ReptileEnemy : MonoBehaviour
                 }
             }
 
-            if (this.GetComponent<ForcesOnEnemy>().Force.y != 0)
+            if (this.GetComponent<ForcesOnObject>().Force.y != 0)
             {
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * -distancex / Mathf.Abs(distancex), this.GetComponent<ForcesOnEnemy>().Force.y);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * -distancex / Mathf.Abs(distancex), this.GetComponent<ForcesOnObject>().Force.y);
             }
             else
             {

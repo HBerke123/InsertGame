@@ -27,9 +27,16 @@ public class HealthDrainage : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float amount)
     {
-        health -= dmg;
+        health -= amount;
+        Mathf.Round(health);
+        UpdateHealthBar(health / maxHealth);
+    }
+
+    public void Heal(float amount)
+    {
+        health += amount;
         Mathf.Round(health);
         UpdateHealthBar(health / maxHealth);
     }

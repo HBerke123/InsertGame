@@ -19,7 +19,7 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-        if (dashable && Input.GetKeyDown(KeyCode.LeftControl) && !stick)
+        if (dashable && Input.GetKeyDown(KeyCode.LeftControl) && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             this.GetComponent<CEDrainage>().LoseCE(cecost);
             dashable = false;

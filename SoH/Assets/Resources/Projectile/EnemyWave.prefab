@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 3487902662931035497}
   - component: {fileID: 7296370090339393768}
   - component: {fileID: -4167315619389878595}
+  - component: {fileID: 8828724616263379166}
   m_Layer: 0
   m_Name: EnemyWave
-  m_TagString: Untagged
+  m_TagString: EnemySound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,3 +162,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8828724616263379166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983698874597435969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb866bd8edd9e524598a09d9b918ae30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceAmount: 0
+  direction: 0

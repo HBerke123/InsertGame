@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BadSmellingFlower : MonoBehaviour
+public class GoodSmellingFlower : MonoBehaviour
 {
     GameObject player;
-    public GameObject badSmoke;
+    public GameObject goodSmoke;
+    public float effectDuration;
     public float range;
     public float cooldown;
     public float duration;
@@ -37,7 +38,8 @@ public class BadSmellingFlower : MonoBehaviour
 
     void Smell()
     {
-        GameObject SBox = Instantiate(badSmoke, this.transform.position, new Quaternion(0, 0, 0, 0));
+        GameObject SBox = Instantiate(goodSmoke, this.transform.position, new Quaternion(0, 0, 0, 0));
+        SBox.GetComponent<GoodEffectToObjects>().duration = effectDuration;
         SBox.GetComponent<SkillEnd>().TotalTime = duration;
     }
 }

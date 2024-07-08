@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8390147544986694689}
   - component: {fileID: 8390147544986694690}
   - component: {fileID: 8390147544986694691}
-  - component: {fileID: 8390147544986694692}
   - component: {fileID: 8390147544986694693}
   - component: {fileID: 8390147544986694694}
+  - component: {fileID: 8390147544986694692}
   m_Layer: 10
   m_Name: GoodSmellingFlower
   m_TagString: Enemy
@@ -109,20 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8390147544986694692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8390147544986694695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01ec41d06541a3d49b32c1c183f462d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Force: {x: 0, y: 0}
-  resistance: 1
 --- !u!61 &8390147544986694693
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -162,6 +148,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goodSmoke: {fileID: 4212465154495586251, guid: 67fa083b53c751e45adf99f824c588d9, type: 3}
+  effectDuration: 3
   range: 2
   cooldown: 8
   duration: 1
+--- !u!114 &8390147544986694692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390147544986694695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ec41d06541a3d49b32c1c183f462d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Force: {x: 0, y: 0}
+  resistance: 1
