@@ -43,11 +43,12 @@ public class ReptileEnemy : MonoBehaviour
         if (Mathf.Abs(distancex) < rangex)
         {
             if (Mathf.Abs(distancex) < attackRange)
-            {
-                player.GetComponent<Movement>().stick = true;
-                player.GetComponent<Jump>().stick = true;
-                this.GetComponent<ForcesOnObject>().resistance = 1;
-                speed = 0;
+            { 
+                 player.GetComponent<Movement>().stick = true;
+                 player.GetComponent<Jump>().stick = true;
+                 this.GetComponent<ForcesOnObject>().resistance = 1;
+                 speed = 0;
+                
                 if (th == 0)
                 {
                     sth = Time.time;

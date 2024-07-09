@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   maxHealth: 50
+  enemyNum: 5
 --- !u!114 &-5943120778948378677
 MonoBehaviour:
   m_ObjectHideFlags: 0

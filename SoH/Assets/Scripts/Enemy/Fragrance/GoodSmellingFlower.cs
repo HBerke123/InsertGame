@@ -36,7 +36,7 @@ public class GoodSmellingFlower : MonoBehaviour
         }
     }
 
-    void Smell()
+    public void Smell()
     {
         GameObject SBox = Instantiate(goodSmoke, this.transform.position, new Quaternion(0, 0, 0, 0));
         SBox.GetComponent<GoodEffectToObjects>().duration = effectDuration;

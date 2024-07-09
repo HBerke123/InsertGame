@@ -36,7 +36,7 @@ public class BadSmellingFlower : MonoBehaviour
         }
     }
 
-    void Smell()
+    public void Smell()
     {
         GameObject SBox = Instantiate(badSmoke, this.transform.position, new Quaternion(0, 0, 0, 0));
         SBox.GetComponent<BadEffectToObjects>().duration = effectDuration;

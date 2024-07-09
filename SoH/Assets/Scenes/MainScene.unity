@@ -1353,7 +1353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616272, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616286, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: m_RootOrder
@@ -4920,7 +4920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111135534365861725, guid: f8ffa63664daf12419b085ddb424aeee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8ffa63664daf12419b085ddb424aeee, type: 3}
@@ -5595,7 +5595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7886631451454035148, guid: 66f00b561637cf945a81a007c00c01f9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66f00b561637cf945a81a007c00c01f9, type: 3}
@@ -5612,7 +5612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 218535336868151540, guid: 252c77fec2da843418c3b0dfd0496266, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 218535336868151550, guid: 252c77fec2da843418c3b0dfd0496266, type: 3}
       propertyPath: m_RootOrder
@@ -27336,6 +27336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FallingSpike
       objectReference: {fileID: 0}
+    - target: {fileID: 258530095219378322, guid: 425e090fbd7376d43a1ca0ae8304c6ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5509647891519595976, guid: 425e090fbd7376d43a1ca0ae8304c6ce, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -27676,6 +27680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 6018938767850395494, guid: f69db3d9998a3e1428f2edd191119d80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f69db3d9998a3e1428f2edd191119d80, type: 3}
 --- !u!1001 &2125873283
@@ -27691,7 +27699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6786363493814917257, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6786363493814917263, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
       propertyPath: m_RootOrder
