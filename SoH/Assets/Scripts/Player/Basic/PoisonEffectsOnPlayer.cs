@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PoisonEffectsOnPlayer : MonoBehaviour
 {
+    public float damageMultiplier;
     public float goodEffectTime;
     public float badEffectTime;
     public float damageFrequency;
@@ -51,6 +52,11 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
 
         if ((gth != 0) && (Time.time - gth > goodEffectTime) && (goodEffectTime > 0))
         {
+            this.GetComponentInChildren<SwordAttack>().quickAttackDamage /= damageMultiplier;
+            this.GetComponentInChildren<SwordAttack>().heavyAttackDamage /= damageMultiplier;
+            this.GetComponentInChildren<SwordSkill>().damage /= damageMultiplier;
+            this.GetComponentInChildren<ScreamUse>().damage /= damageMultiplier;
+            this.GetComponentInChildren<GunShot>().damage /= damageMultiplier;
             gth = 0;
             goodEffectTime = 0;
         }
@@ -67,6 +73,11 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
 
         if ((gth == 0) && (goodEffectTime > 0))
         {
+            this.GetComponentInChildren<SwordAttack>().quickAttackDamage *= damageMultiplier;
+            this.GetComponentInChildren<SwordAttack>().heavyAttackDamage *= damageMultiplier;
+            this.GetComponentInChildren<SwordSkill>().damage *= damageMultiplier;
+            this.GetComponentInChildren<ScreamUse>().damage *= damageMultiplier;
+            this.GetComponentInChildren<GunShot>().damage *= damageMultiplier;
             gth = Time.time;
         }
 
