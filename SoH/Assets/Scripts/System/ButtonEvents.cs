@@ -4,40 +4,36 @@ using UnityEngine;
 
 public class ButtonEvents : MonoBehaviour
 {
-    public SceneManagment SceneM;
-    public SaveManagment SaveM;
-    public GameObject Saves;
-    public GameObject Menu;
+    public SceneManagment sceneM;
+    public GameObject saves;
+    public GameObject menu;
 
     public void ResumeGame()
     {
-        SceneM.curscenenum = 0;
-        SceneM.LoadScene();
+        sceneM.curscenenum = 0;
+        sceneM.LoadScene();
     }
 
     public void NewGame()
     {
-        Menu.SetActive(false);
-        Saves.SetActive(true);
+        menu.SetActive(false);
+        saves.SetActive(true);
     }
 
     public void ExitGame() => Application.Quit();
 
     public void Savef1()
     {
-        SaveM.Fsave(1);
         ResumeGame();
     }
 
     public void Savef2()
     {
-        SaveM.Fsave(2);
         ResumeGame();
     }
 
     public void Savef3()
     {
-        SaveM.Fsave(3);
         ResumeGame();
     }
 }
