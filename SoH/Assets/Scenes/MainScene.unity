@@ -3340,6 +3340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565473515e22e2441b34cdd59dff0e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1.5
   goodEffectTime: 0
   badEffectTime: 0
   damageFrequency: 0.2
@@ -3761,7 +3762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8390147544986694689, guid: 2baa459334fe39344a4a8c7856b482b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.574387
+      value: -17.76
       objectReference: {fileID: 0}
     - target: {fileID: 8390147544986694689, guid: 2baa459334fe39344a4a8c7856b482b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3805,7 +3806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8390147544986694695, guid: 2baa459334fe39344a4a8c7856b482b9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2baa459334fe39344a4a8c7856b482b9, type: 3}

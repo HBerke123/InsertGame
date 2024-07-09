@@ -30,20 +30,20 @@ public class HealthDrainage : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        Mathf.Round(health);
+        health = Mathf.Round(health);
         UpdateHealthBar(health / maxHealth);
     }
 
     public void Heal(float amount)
     {
         health += amount;
-        Mathf.Round(health);
+        health = Mathf.Round(health);
         UpdateHealthBar(health / maxHealth);
     }
 
     public void UpdateHealthBar(float newHealth)
     {
         slider.value = newHealth;
-        hpDisplayText.text = health + "/" + Mathf.Round(maxHealth);
+        hpDisplayText.text = health + "/" + maxHealth;
     }
 }

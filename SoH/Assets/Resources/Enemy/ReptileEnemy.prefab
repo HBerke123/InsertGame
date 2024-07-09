@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1111135534365861719}
   - component: {fileID: 1111135534365861718}
   - component: {fileID: -7347963251536358679}
+  - component: {fileID: -6012460088011088314}
   m_Layer: 10
   m_Name: ReptileEnemy
   m_TagString: Enemy
@@ -182,3 +183,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
+--- !u!114 &-6012460088011088314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111135534365861725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd1441eb60dfc94ba850f16c1208214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyNum: 1
+  damageMultiplier: 1.5
+  effectTime: 0
+  healFrequency: 0.3
+  healAmount: 1

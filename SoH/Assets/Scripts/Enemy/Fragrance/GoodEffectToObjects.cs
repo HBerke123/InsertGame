@@ -12,5 +12,9 @@ public class GoodEffectToObjects : MonoBehaviour
         {
             collision.GetComponent<PoisonEffectsOnPlayer>().goodEffectTime = duration;
         }
+        else if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<PoisonEffectsOnEnemy>().effectTime = duration;
+        }
     }
 }

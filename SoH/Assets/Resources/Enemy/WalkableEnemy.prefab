@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 218535336868151538}
   - component: {fileID: 218535336868151539}
   - component: {fileID: -6242971872669317520}
+  - component: {fileID: 5903596904285232754}
   m_Layer: 10
   m_Name: WalkableEnemy
   m_TagString: Enemy
@@ -181,3 +182,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 200
   maxHealth: 200
+--- !u!114 &5903596904285232754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218535336868151540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd1441eb60dfc94ba850f16c1208214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyNum: 2
+  damageMultiplier: 1.5
+  effectTime: 0
+  healFrequency: 0.3
+  healAmount: 1

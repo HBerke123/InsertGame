@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7135500643959616274}
   - component: {fileID: 7135500643959616273}
   - component: {fileID: -245876173423303314}
+  - component: {fileID: 8814438254819622103}
   m_Layer: 10
   m_Name: SoundEnemy
   m_TagString: Enemy
@@ -191,3 +192,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
+--- !u!114 &8814438254819622103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135500643959616272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd1441eb60dfc94ba850f16c1208214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyNum: 4
+  damageMultiplier: 1.5
+  effectTime: 0
+  healFrequency: 0.3
+  healAmount: 1
