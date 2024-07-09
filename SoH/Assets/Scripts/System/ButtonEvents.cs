@@ -1,17 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.IO;
 
 public class ButtonEvents : MonoBehaviour
 {
-    public SceneManagment sceneM;
     public GameObject saves;
     public GameObject menu;
+    public MenuOpener menuOpener;
+
+    public void Continue()
+    {
+        string path = Application.dataPath + "/Saves/GSave.txt";
+
+        if (File.ReadAllText(path).Split("\n")[0] == "Save1")
+        {
+            Savef1();
+        }
+        else if (File.ReadAllText(path).Split("\n")[0] == "Save2")
+        {
+            Savef2();
+        }
+        else if (File.ReadAllText(path).Split("\n")[0] == "Save3")
+        {
+            Savef3();
+        }
+    }
 
     public void ResumeGame()
     {
-        sceneM.curscenenum = 0;
-        sceneM.LoadScene();
+        menuOpener.Resume();
     }
 
     public void NewGame()
@@ -20,20 +39,37 @@ public class ButtonEvents : MonoBehaviour
         saves.SetActive(true);
     }
 
-    public void ExitGame() => Application.Quit();
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 
     public void Savef1()
     {
-        ResumeGame();
+        string path = Application.dataPath + "/Saves/GSave.txt";
+
+        File.WriteAllText(path, "Save1");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void Savef2()
     {
-        ResumeGame();
+        string path = Application.dataPath + "/Saves/GSave.txt";
+
+        File.WriteAllText(path, "Save2");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void Savef3()
     {
-        ResumeGame();
+        string path = Application.dataPath + "/Saves/GSave.txt";
+
+        File.WriteAllText(path, "Save3");
+        SceneManager.LoadScene("MainScene");
     }
 }

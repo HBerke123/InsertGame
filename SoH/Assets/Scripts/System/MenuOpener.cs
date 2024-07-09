@@ -5,25 +5,47 @@ using System.IO;
 
 public class MenuOpener : MonoBehaviour
 {
-    float timeHold;
-    public SceneManagment sm;
+    bool isMenuOpen;
+    List<GameObject> stopObjects = new List<GameObject>();
+    public GameObject menu;
 
     private void Start()
     {
-        timeHold = Time.time;
+        int i = 0;
+        foreach (StopInMenu stopMenu in FindObjectsOfType<StopInMenu>())
+        {
+            stopObjects.Add(stopMenu.gameObject);
+            i++;
+        }
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            string path = Application.dataPath + "/Saves/GSave.txt";
-            if (File.Exists(path))
+            if (isMenuOpen)
             {
-                File.WriteAllText(path, File.ReadAllText(path) + "\n" + timeHold.ToString());
+                Resume();
             }
-            sm.curscenenum = 1;
-            sm.LoadScene();
+            else
+            {
+                menu.SetActive(true);
+                isMenuOpen = true;
+                foreach (GameObject gObject in stopObjects)
+                {
+                    gObject.SetActive(false);
+                }
+            }
         }
+    }
+
+    public void Resume()
+    {
+        isMenuOpen = false;
+        foreach (GameObject gObject in stopObjects)
+        {
+            gObject.SetActive(true);
+        }
+        menu.SetActive(false);
     }
 }

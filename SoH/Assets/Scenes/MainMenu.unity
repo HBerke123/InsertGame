@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 43195706}
   - component: {fileID: 43195705}
   - component: {fileID: 43195704}
+  - component: {fileID: 43195707}
   m_Layer: 5
   m_Name: Save1
   m_TagString: Untagged
@@ -258,6 +259,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43195702}
   m_CullTransparentMesh: 1
+--- !u!114 &43195707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43195702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4909fd0267da08b45963188671404b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savenum: 1
+  text: {fileID: 1273142466}
 --- !u!1 &156961309
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,9 +282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 156961311}
-  - component: {fileID: 156961310}
   - component: {fileID: 156961312}
-  - component: {fileID: 156961313}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -277,20 +290,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &156961310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156961309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ddb8bd427ea6e64c899cc3bc7d93861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeHold: 0
-  curscenenum: 0
 --- !u!4 &156961311
 Transform:
   m_ObjectHideFlags: 0
@@ -318,22 +317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f58d0e242b3c914e9dce538364b5e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneM: {fileID: 156961310}
-  SaveM: {fileID: 156961313}
-  Saves: {fileID: 830215803}
-  Menu: {fileID: 779309008}
---- !u!114 &156961313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156961309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0541cbd6bd5d04db5b5c9c080fe4cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  saves: {fileID: 830215803}
+  menu: {fileID: 779309008}
+  menuOpener: {fileID: 0}
 --- !u!1 &208014117
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +467,7 @@ GameObject:
   - component: {fileID: 213106091}
   - component: {fileID: 213106090}
   m_Layer: 5
-  m_Name: Resume
+  m_Name: Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,7 +540,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 156961312}
         m_TargetAssemblyTypeName: ButtonEvents, Assembly-CSharp
-        m_MethodName: ResumeGame
+        m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -614,6 +600,7 @@ GameObject:
   - component: {fileID: 387447430}
   - component: {fileID: 387447429}
   - component: {fileID: 387447428}
+  - component: {fileID: 387447431}
   m_Layer: 5
   m_Name: Save2
   m_TagString: Untagged
@@ -737,6 +724,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387447426}
   m_CullTransparentMesh: 1
+--- !u!114 &387447431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387447426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4909fd0267da08b45963188671404b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savenum: 2
+  text: {fileID: 941431653}
 --- !u!1 &527211353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Save3
+  m_text: Save File 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1307,6 +1308,7 @@ GameObject:
   - component: {fileID: 887508850}
   - component: {fileID: 887508849}
   - component: {fileID: 887508848}
+  - component: {fileID: 887508851}
   m_Layer: 5
   m_Name: Save3
   m_TagString: Untagged
@@ -1430,6 +1432,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887508846}
   m_CullTransparentMesh: 1
+--- !u!114 &887508851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887508846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4909fd0267da08b45963188671404b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savenum: 3
+  text: {fileID: 1475656688}
 --- !u!1 &941431651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,7 +1457,6 @@ GameObject:
   - component: {fileID: 941431652}
   - component: {fileID: 941431654}
   - component: {fileID: 941431653}
-  - component: {fileID: 941431655}
   m_Layer: 5
   m_Name: Played
   m_TagString: Untagged
@@ -1566,19 +1581,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941431651}
   m_CullTransparentMesh: 1
---- !u!114 &941431655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 941431651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4909fd0267da08b45963188671404b93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  savenum: 2
 --- !u!1 &1147475690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,7 +1726,6 @@ GameObject:
   - component: {fileID: 1273142465}
   - component: {fileID: 1273142467}
   - component: {fileID: 1273142466}
-  - component: {fileID: 1273142468}
   m_Layer: 5
   m_Name: Played
   m_TagString: Untagged
@@ -1849,19 +1850,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273142464}
   m_CullTransparentMesh: 1
---- !u!114 &1273142468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273142464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4909fd0267da08b45963188671404b93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  savenum: 1
 --- !u!1 &1412494314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,7 +1929,6 @@ GameObject:
   - component: {fileID: 1475656687}
   - component: {fileID: 1475656689}
   - component: {fileID: 1475656688}
-  - component: {fileID: 1475656690}
   m_Layer: 5
   m_Name: Played
   m_TagString: Untagged
@@ -2066,19 +2053,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475656686}
   m_CullTransparentMesh: 1
---- !u!114 &1475656690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475656686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4909fd0267da08b45963188671404b93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  savenum: 3
 --- !u!1 &1563101673
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,7 +2065,7 @@ GameObject:
   - component: {fileID: 1563101676}
   - component: {fileID: 1563101675}
   m_Layer: 5
-  m_Name: Name
+  m_Name: GameName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2272,7 +2246,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Save1
+  m_text: Save File 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2509,7 +2483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Save2
+  m_text: Save File 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2644,7 +2618,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Resume
+  m_text: Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

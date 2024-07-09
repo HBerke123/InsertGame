@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6709718521263209276}
   - component: {fileID: 5031499781154607642}
   - component: {fileID: -224226707445612523}
+  - component: {fileID: 3040819904585738244}
   m_Layer: 0
   m_Name: ScreamWave
   m_TagString: Scream
@@ -169,3 +170,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnTouch: 0
   damageAmount: 0
+--- !u!114 &3040819904585738244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634480668040733774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddaee55af1932f4580c980f5a4239c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
