@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordSkill : MonoBehaviour
 {
+    public float damage;
     public float maxyscale;
     public float minyscale;
     public float speed;
@@ -19,6 +20,7 @@ public class SwordSkill : MonoBehaviour
         SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
         SBox.GetComponent<SwordWave>().minyscale = minyscale;
         SBox.GetComponent<SwordWave>().maxyscale = maxyscale;
+        SBox.GetComponent<DamageEnemies>().damageAmount = damage;
 
         if (direction == -1)
         {

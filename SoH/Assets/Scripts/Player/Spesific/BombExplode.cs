@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BombExplode : MonoBehaviour
 {
+    public float damageAmount;
     public float forcePower;
     public float TotalTime;
     public float minsize;
@@ -32,6 +33,7 @@ public class BombExplode : MonoBehaviour
         SBox.GetComponent<BombSoundWave>().minsize = minsize;
         SBox.GetComponent<BombSoundWave>().maxsize = maxsize;
         SBox.GetComponent<ForceEnemies>().forcePower = forcePower;
+        SBox.GetComponent<DamageEnemies>().damageAmount = damageAmount;
         Destroy(this.gameObject);
     }
 

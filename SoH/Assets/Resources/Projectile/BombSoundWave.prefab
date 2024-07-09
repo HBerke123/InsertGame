@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3716871707302494048}
   - component: {fileID: 8328246807837575348}
   - component: {fileID: 896046917192295331}
+  - component: {fileID: 8135077558402544833}
   m_Layer: 0
   m_Name: BombSoundWave
   m_TagString: Untagged
@@ -148,6 +149,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8135077558402544833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255486180055062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bcc90c7f583ac3459af5931eeb3c695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyOnTouch: 0
+  damageAmount: 0
 --- !u!1 &5975410196788591836
 GameObject:
   m_ObjectHideFlags: 0

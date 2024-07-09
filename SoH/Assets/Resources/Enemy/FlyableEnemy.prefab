@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4193538533157646796}
   - component: {fileID: 4193538533157646798}
   - component: {fileID: 5661750935591535087}
+  - component: {fileID: 7804630291259115893}
   m_Layer: 10
   m_Name: FlyableEnemy
   m_TagString: Enemy
@@ -171,6 +172,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Force: {x: 0, y: 0}
   resistance: 0.04
+--- !u!114 &7804630291259115893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193538533157646795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8defe8a1429ec41af9055484ca72af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  maxHealth: 20
 --- !u!1 &4193538533455114954
 GameObject:
   m_ObjectHideFlags: 0

@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 261916936}
   - component: {fileID: 261916937}
   - component: {fileID: 261916938}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: DebugWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3365,7 +3365,7 @@ GameObject:
   - component: {fileID: 1013556178}
   - component: {fileID: 1013556179}
   - component: {fileID: 1013556180}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: AttackHitBox
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -3426,11 +3426,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ad961ad60fec6448fab24c6680aef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackcooldown: 0.5
-  attacktime: 0.1
-  ceregaintime: 1
+  quickAttackDamage: 10
+  heavyAttackDamage: 20
+  quickAttackCooldown: 0.5
+  heavyAttackCooldown: 1
+  quickAttackTime: 0.1
+  heavyAttackTime: 0.3
+  ceRegainTime: 0.1
   skillholdtime: 0.5
-  cecost: 10
+  quickCeCost: 10
+  heavyCeCost: 20
+  skillCeCost: 40
 --- !u!114 &1013556175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3443,6 +3449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48530a41e2f4a4f4697f06ea33f68946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 35
   maxyscale: 6
   minyscale: 1
   speed: 12
@@ -3494,6 +3501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScreamWave: {fileID: 8634480668040733774, guid: 0d1a81df0a462fd488ddd9312742994c, type: 3}
+  damage: 5
   speed: 16
   totaltime: 1
   btime: 0.25
@@ -3514,6 +3522,7 @@ MonoBehaviour:
   PreBombShower: {fileID: 1802293395}
   Bomb: {fileID: 7227559544692314864, guid: d8ca3647b67654a41a047bed88e632bd, type: 3}
   SoundWave: {fileID: 5255486180055062, guid: 43ab01a15bcf76f45b4b219f701669ca, type: 3}
+  damage: 20
   forcePower: 5
   htime: 1
   ttime: 1.5
@@ -27045,7 +27054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4193538533157646795, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4193538533157646797, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
       propertyPath: m_RootOrder
@@ -27089,6 +27098,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4193538533157646797, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193538533157646798, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
+      propertyPath: flyspeed
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2490040798910040855}
   - component: {fileID: 3495909859935800856}
   - component: {fileID: 1980875249604747701}
+  - component: {fileID: -5607023259104950742}
   m_Layer: 0
   m_Name: SmallWave
   m_TagString: Sound
@@ -32,8 +33,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2455885549973127227}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   direction: 0
   forcePower: 0
   destroyOnTouch: 1
-  arrow: {fileID: 6287452463506922455}
+  arrow: {fileID: 0}
 --- !u!61 &1980875249604747701
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,34 +165,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &6287452463506922455
-GameObject:
+--- !u!114 &-5607023259104950742
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2455885549973127227}
-  m_Layer: 0
-  m_Name: Arrow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2455885549973127227
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6287452463506922455}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7731902054782572159}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1594184177369678583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bcc90c7f583ac3459af5931eeb3c695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyOnTouch: 1
+  damageAmount: 0

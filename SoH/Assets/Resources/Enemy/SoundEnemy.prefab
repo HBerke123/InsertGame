@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7135500643959616275}
   - component: {fileID: 7135500643959616274}
   - component: {fileID: 7135500643959616273}
+  - component: {fileID: -245876173423303314}
   m_Layer: 10
   m_Name: SoundEnemy
   m_TagString: Enemy
@@ -176,3 +177,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Force: {x: 0, y: 0}
   resistance: 0.2
+--- !u!114 &-245876173423303314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135500643959616272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8defe8a1429ec41af9055484ca72af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100

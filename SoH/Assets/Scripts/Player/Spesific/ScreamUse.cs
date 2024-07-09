@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScreamUse : MonoBehaviour
 {
     public GameObject ScreamWave;
+    public float damage;
     public float speed;
     public float totaltime;
     public float btime;
@@ -113,5 +114,6 @@ public class ScreamUse : MonoBehaviour
         SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
         SBox.GetComponent<ForceEnemies>().direction = direction;
         SBox.GetComponent<ForceEnemies>().forcePower = forcePower;
+        SBox.GetComponent<DamageEnemies>().damageAmount = damage;
     }
 }
