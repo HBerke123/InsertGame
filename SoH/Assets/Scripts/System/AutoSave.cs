@@ -23,7 +23,6 @@ public class AutoSave : MonoBehaviour
             {
                 SaveProgress();
                 th = Time.time;
-                Debug.Log("sa");
             }
         }
         else
@@ -36,6 +35,6 @@ public class AutoSave : MonoBehaviour
     {
         string path = Application.dataPath + "/Saves/";
 
-        File.WriteAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt", "false\nNull\n" + (float.Parse(File.ReadAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt").Split("\n")[2]) + Time.time - GameObject.FindGameObjectWithTag("Player").GetComponent<TimeHolder>().th).ToString());
+        File.WriteAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt", "false\nNull\n" + (float.Parse(File.ReadAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt").Split("\n")[2]) + Time.time - GameObject.FindGameObjectWithTag("Player").GetComponent<TimeHolder>().th).ToString() + "\n" + (float.Parse(File.ReadAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt").Split("\n")[2]) + Time.time - this.GetComponent<TimeHolder>().th).ToString() + "\n" + this.transform.position.x.ToString() + " " + this.transform.position.y.ToString() + " 0");
     }
 }

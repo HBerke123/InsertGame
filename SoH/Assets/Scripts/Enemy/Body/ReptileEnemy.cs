@@ -39,10 +39,11 @@ public class ReptileEnemy : MonoBehaviour
     private void Update()
     {
         float distancex = this.transform.position.x - player.transform.position.x;
+        float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(this.transform.position.y - player.transform.position.y, 2));
 
-        if (Mathf.Abs(distancex) < rangex)
+        if (distance < rangex)
         {
-            if (Mathf.Abs(distancex) < attackRange)
+            if (distance < attackRange)
             { 
                  player.GetComponent<Movement>().stick = true;
                  player.GetComponent<Jump>().stick = true;

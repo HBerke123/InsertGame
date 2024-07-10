@@ -6,7 +6,6 @@ using System.IO;
 public class Movement : MonoBehaviour
 {
     public ParticleSystem groundParticles;
-    public ParticleSystem lastParticles;
     public BoxCollider2D Attackhbox;
     public bool dashing;
     public bool stick;
@@ -33,18 +32,12 @@ public class Movement : MonoBehaviour
         }
 
         if ((Time.time - th >= particleFrequency) && (spawnParticles))
-        {
-            if (lastParticles != null)
-            {
-                Destroy(lastParticles.gameObject);
-            }
-            
+        {       
             ParticleSystem particles = Instantiate(groundParticles, this.transform.position - new Vector3(0, 1, 0), new Quaternion(0, 0, 0, 0));
             if (this.GetComponent<SpriteRenderer>().flipX)
             {
                 particles.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
-            lastParticles = particles;
             th = Time.time;
         }
     }
@@ -54,7 +47,7 @@ public class Movement : MonoBehaviour
         if (!dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
-            if (Input.GetAxisRaw("Horizontal") != 0)
+            if ((Input.GetAxisRaw("Horizontal") != 0) && (this.GetComponentInChildren<GroundDetection>().detected))
             {
                 spawnParticles = true;
             }
