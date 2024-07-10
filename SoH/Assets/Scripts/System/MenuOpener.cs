@@ -33,7 +33,10 @@ public class MenuOpener : MonoBehaviour
                 isMenuOpen = true;
                 foreach (GameObject gObject in stopObjects)
                 {
-                    gObject.SetActive(false);
+                    if (gObject != null)
+                    {
+                        gObject.SetActive(false);
+                    }
                 }
             }
         }
@@ -44,7 +47,10 @@ public class MenuOpener : MonoBehaviour
         isMenuOpen = false;
         foreach (GameObject gObject in stopObjects)
         {
-            gObject.SetActive(true);
+            if (gObject != null)
+            {
+                gObject.SetActive(true);
+            }
         }
         menu.SetActive(false);
     }
