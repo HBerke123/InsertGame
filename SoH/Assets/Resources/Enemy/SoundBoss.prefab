@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f798c916fb0144d9030bc2e3b94f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screamMaxScale: 36
   timeBetweenSkills: 2.5
   shakeTime: 1
   shakeFrquency: 0.1
@@ -230,10 +231,9 @@ MonoBehaviour:
   rushTime: 1.5
   soundSpeed: 6
   soundTime: 5
-  screamSpeed: 3
-  screamTime: 15
+  screamTime: 3
   soundWave: {fileID: 5605468270659284273, guid: be3bf2b0785fae14784c133900ad185b, type: 3}
-  screamWave: {fileID: 7420167421035478620, guid: 65425ee4c8a470b4e85bf7346633179a, type: 3}
+  screamWave: {fileID: 7865267448388750547, guid: 65425ee4c8a470b4e85bf7346633179a, type: 3}
 --- !u!114 &2410109213677025132
 MonoBehaviour:
   m_ObjectHideFlags: 0

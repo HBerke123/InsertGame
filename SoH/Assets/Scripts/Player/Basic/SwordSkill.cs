@@ -18,8 +18,9 @@ public class SwordSkill : MonoBehaviour
         SBox = Instantiate(SkillBox, this.transform.position, new Quaternion(0, 0, 0, 0));
         SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * direction, 0);
         SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
-        SBox.GetComponent<GrowingWave>().minyscale = minyscale;
-        SBox.GetComponent<GrowingWave>().maxyscale = maxyscale;
+        SBox.GetComponent<GrowingProjectile>().TotalTime = totaltime;
+        SBox.GetComponent<GrowingProjectile>().minyscale = minyscale;
+        SBox.GetComponent<GrowingProjectile>().maxyscale = maxyscale;
         SBox.GetComponent<DamageEnemies>().damageAmount = damage;
 
         if (direction == -1)

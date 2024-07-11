@@ -3584,7 +3584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980212537}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -113.7, y: 1.56, z: 0}
+  m_LocalPosition: {x: 0, y: -28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -91299,11 +91299,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6018938767850395483, guid: f69db3d9998a3e1428f2edd191119d80, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1
+      value: 12.6
       objectReference: {fileID: 0}
     - target: {fileID: 6018938767850395483, guid: f69db3d9998a3e1428f2edd191119d80, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.1
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 6018938767850395483, guid: f69db3d9998a3e1428f2edd191119d80, type: 3}
       propertyPath: m_LocalPosition.z
@@ -91523,6 +91523,10 @@ PrefabInstance:
     - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: screamMaxY
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
