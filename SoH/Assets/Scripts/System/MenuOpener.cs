@@ -6,18 +6,8 @@ using System.IO;
 public class MenuOpener : MonoBehaviour
 {
     bool isMenuOpen;
-    List<GameObject> stopObjects = new List<GameObject>();
     public GameObject menu;
-
-    private void Start()
-    {
-        int i = 0;
-        foreach (StopInMenu stopMenu in FindObjectsOfType<StopInMenu>())
-        {
-            stopObjects.Add(stopMenu.gameObject);
-            i++;
-        }
-    }
+    public TimeControlStop timeControlStop;
 
     private void Update()
     {
@@ -26,32 +16,21 @@ public class MenuOpener : MonoBehaviour
             if (isMenuOpen)
             {
                 Resume();
+                
             }
             else
             {
+                timeControlStop.StartSlowMotion();
                 menu.SetActive(true);
                 isMenuOpen = true;
-                foreach (GameObject gObject in stopObjects)
-                {
-                    if (gObject != null)
-                    {
-                        gObject.SetActive(false);
-                    }
-                }
             }
         }
     }
 
     public void Resume()
     {
+        timeControlStop.StopSlowMotion();
         isMenuOpen = false;
-        foreach (GameObject gObject in stopObjects)
-        {
-            if (gObject != null)
-            {
-                gObject.SetActive(true);
-            }
-        }
         menu.SetActive(false);
     }
 }

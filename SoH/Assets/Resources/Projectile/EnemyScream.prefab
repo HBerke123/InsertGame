@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7106651897497294375}
   - component: {fileID: 3049907620491333404}
   - component: {fileID: 7285703265912608266}
-  - component: {fileID: -8985143351987100029}
   m_Layer: 0
   m_Name: EnemyScream
   m_TagString: EnemyScream
@@ -167,15 +166,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceAmount: 0
   direction: 0
---- !u!114 &-8985143351987100029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207596519929190640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddaee55af1932f4580c980f5a4239c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

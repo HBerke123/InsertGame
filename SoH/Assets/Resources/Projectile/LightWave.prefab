@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: -6318563049605815831}
   - component: {fileID: -8059878856620133967}
   - component: {fileID: 5851194753288318681}
-  - component: {fileID: -7472689240521803470}
   m_Layer: 0
   m_Name: LightWave
   m_TagString: Untagged
@@ -162,15 +161,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-7472689240521803470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7330534001378653452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddaee55af1932f4580c980f5a4239c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

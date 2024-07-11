@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3495909859935800856}
   - component: {fileID: 1980875249604747701}
   - component: {fileID: -5607023259104950742}
-  - component: {fileID: 181306078672877248}
   m_Layer: 0
   m_Name: SmallWave
   m_TagString: Sound
@@ -180,15 +179,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnTouch: 1
   damageAmount: 0
---- !u!114 &181306078672877248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594184177369678583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddaee55af1932f4580c980f5a4239c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
