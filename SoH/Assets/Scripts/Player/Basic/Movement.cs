@@ -10,7 +10,6 @@ public class Movement : MonoBehaviour
     public bool dashing;
     public bool stick;
     public float speed = 5;
-    public float sspeed = 5;
     public float dspeed;
     public float particleFrequency;
     Rigidbody2D rb;

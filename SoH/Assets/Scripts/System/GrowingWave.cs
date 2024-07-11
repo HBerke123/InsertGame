@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordWave : MonoBehaviour
+public class GrowingWave : MonoBehaviour
 {
     public float maxyscale;
     public float minyscale;
+    public bool yScale;
+    float xSize;
     float th;
 
     private void Start()
     {
+        xSize = this.transform.localScale.x;
         th = Time.time;
     }
 
     void Update()
     {
-        this.transform.localScale = new Vector3(0.5f, minyscale + maxyscale * (Time.time - th), 1);
+        this.transform.localScale = new Vector3(xSize, minyscale + maxyscale * (Time.time - th), 1);
     }
 }

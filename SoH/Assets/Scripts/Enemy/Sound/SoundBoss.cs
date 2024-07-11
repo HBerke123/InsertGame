@@ -30,6 +30,7 @@ public class SoundBoss : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        Scream();
         SetDirection();
         lastDirection = direction;
     }
@@ -64,7 +65,7 @@ public class SoundBoss : MonoBehaviour
             cdth = Time.time;
         }
 
-        if ((cdth != 0) && (Time.time - cdth > timeBetweenSkills) && (this.GetComponent<Rigidbody2D>().velocity.x < 0.1f) && (this.GetComponent<Rigidbody2D>().velocity.y < 0.1f) && (ssth == 0) && (rth == 0) && (!readyToShake))
+        if (false && (cdth != 0) && (Time.time - cdth > timeBetweenSkills) && (this.GetComponent<Rigidbody2D>().velocity.x < 0.1f) && (this.GetComponent<Rigidbody2D>().velocity.y < 0.1f) && (ssth == 0) && (rth == 0) && (!readyToShake))
         {
             cdth = 0;
             if (direction == lastDirection)
@@ -178,6 +179,8 @@ public class SoundBoss : MonoBehaviour
             }
 
             SBox.GetComponent<SkillEnd>().TotalTime = screamTime;
+            SBox.GetComponent<GrowingWave>().minyscale = 0;
+            SBox.GetComponent<GrowingWave>().maxyscale = 0;
         }
 
         SetDirection();
