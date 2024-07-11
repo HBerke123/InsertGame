@@ -8,10 +8,14 @@ TagManager:
   - Changeable
   - SprintParticle
   - Orbitable
-  - player
   - Enemy
   - HP Orb
   - STE Tube
+  - Weapon
+  - Sound
+  - Scream
+  - EnemySound
+  - EnemyScream
   layers:
   - Default
   - TransparentFX
@@ -25,8 +29,8 @@ TagManager:
   - Orbitables
   - Enemy
   - Ground
-  - 
-  - 
+  - Bomb
+  - Haoma
   - 
   - 
   - 
