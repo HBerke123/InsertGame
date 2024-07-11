@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7420167421035478618}
   - component: {fileID: 7420167421035478621}
   - component: {fileID: 1767608180899064115}
+  - component: {fileID: 2600526962488204214}
   m_Layer: 0
   m_Name: BossScream
   m_TagString: Untagged
@@ -137,3 +138,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalTime: 0
+--- !u!114 &2600526962488204214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7420167421035478620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3eb1cee5c128147b5727d1373f7d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxyscale: 0
+  minyscale: 0
+  yScale: 0

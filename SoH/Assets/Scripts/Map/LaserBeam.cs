@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserBeam : MonoBehaviour
+public class LaserBeam : LaserTrigger
 {
     BoxCollider2D laserCollider;
     SpriteRenderer laserImage;
@@ -12,7 +12,6 @@ public class LaserBeam : MonoBehaviour
     public HealthDrainage hpdrain;
     public float cooldownHolder = 0.0f;
     private GameObject player;
-
     void Start()
     {
         laserCollider = GetComponent<BoxCollider2D>();
@@ -29,7 +28,7 @@ public class LaserBeam : MonoBehaviour
         {
             laserCollider.enabled = false;
             laserImage.enabled = false;
-            StartCoroutine(StartLaser());
+            StartLaser();
         }
         else if(isLaserOn == true)
         {
@@ -37,12 +36,17 @@ public class LaserBeam : MonoBehaviour
             laserImage.enabled = true;
         }    
     }
-    IEnumerator StartLaser()
+    private void StartLaser()
     {
-        yield return new WaitForSeconds(timetoStart);
-        isLaserOn = true;
-        yield return new WaitForSeconds(laserTime);
-        isLaserOn = false;
+        if (isLaserTrigered)
+        {
+            isLaserOn = true;
+        }
+        else
+        {
+            isLaserOn = false;
+        }
+
     }
     public void OnTriggerEnter2D(Collider2D collider)
     {
