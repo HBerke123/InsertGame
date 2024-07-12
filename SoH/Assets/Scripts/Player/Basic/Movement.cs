@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     public float dspeed;
     public float particleFrequency;
     Rigidbody2D rb;
-    bool spawnParticles;
+    public bool spawnParticles;
     float th;
 
     private void Start()
@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
 
         if ((Time.time - th >= particleFrequency) && (spawnParticles))
         {       
-            ParticleSystem particles = Instantiate(groundParticles, this.transform.position - new Vector3(0, 1, 0), new Quaternion(0, 0, 0, 0));
+            ParticleSystem particles = Instantiate(groundParticles, this.transform.position, new Quaternion(0, 0, 0, 0));
             if (this.GetComponent<SpriteRenderer>().flipX)
             {
                 particles.gameObject.transform.localScale = new Vector3(-1, 1, 1);
@@ -46,27 +46,43 @@ public class Movement : MonoBehaviour
         if (!dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
-            if ((Input.GetAxisRaw("Horizontal") != 0) && (this.GetComponentInChildren<GroundDetection>().detected))
+
+            if (Input.GetAxisRaw("Horizontal") == 0)
             {
-                spawnParticles = true;
+                this.GetComponent<Animator>().SetBool("Moving", false);
+                spawnParticles = false;
             }
             else
             {
-                spawnParticles = false;
+                if (this.GetComponentInChildren<GroundDetection>().detected)
+                {
+                    this.GetComponent<Animator>().SetBool("Moving", true);
+                    spawnParticles = true;
+                }
+                else
+                {
+                    this.GetComponent<Animator>().SetBool("Moving", false);
+                    spawnParticles = false;
+                }
             }
+
+            
         }
         else if (!stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
+            this.GetComponent<Animator>().SetBool("Moving", false);
             rb.velocity = new Vector2(dspeed, rb.velocity.y);
             spawnParticles = false;
         }
         else if (!stick)
         {
+            this.GetComponent<Animator>().SetBool("Moving", false);
             rb.velocity = this.GetComponent<ForcesOnObject>().Force;
             spawnParticles = false;
         }
         else
         {
+            this.GetComponent<Animator>().SetBool("Moving", false);
             rb.velocity = new Vector2(0, 0);
             spawnParticles = false;
         }
