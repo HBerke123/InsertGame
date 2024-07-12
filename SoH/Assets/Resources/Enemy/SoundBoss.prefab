@@ -226,7 +226,7 @@ MonoBehaviour:
   leftPoint: 10
   screamMaxScale: 36
   shakeTime: 1
-  shakeFrquency: 0.2
+  shakeFrquency: 0.1
   shakeForce: 10
   jumpForce: 8
   rushSpeed: 12

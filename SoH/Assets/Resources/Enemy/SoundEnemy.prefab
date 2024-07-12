@@ -103,20 +103,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundWave: {fileID: 8983698874597435969, guid: 844421b539537c64ca2dfd650634be59, type: 3}
-  screamWave: {fileID: 207596519929190640, guid: 0b08b5b7cd5204f4da70d28a3d24cdf9, type: 3}
+  screamWave: {fileID: 5083156048499161189, guid: 9c776926708d7394e87b182483a28a7c, type: 3}
   soundForcePower: 8
-  screamForcePower: 4
   soundDamage: 4
-  screamDamage: 8
   waveSpeed: 6
   waveTime: 4
-  screamSpeed: 9
-  screamTime: 4
   speed: 3
   moveRangex: 12
   rangex: 15
   shootFrequency: 2
   screamFrequency: 4.5
+  screamDamage: 8
 --- !u!61 &7135500643959616275
 BoxCollider2D:
   m_ObjectHideFlags: 0

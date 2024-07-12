@@ -217,7 +217,7 @@ public class SoundBoss : MonoBehaviour
     {
         float randomPos;
 
-        if (Random.Range(0, 2) == 1)
+        if (Random.Range(0, 2) == 0)
         {
             randomPos = Random.Range(shakeForce * 1 / 5, shakeForce * 4 / 5);
         }
@@ -228,7 +228,7 @@ public class SoundBoss : MonoBehaviour
         
         if (lastRandom != 0)
         {
-            Camera.main.GetComponent<Rigidbody2D>().velocity = new Vector2(lastRandom, shakeForce - lastRandom) * -2;
+            Camera.main.GetComponent<Rigidbody2D>().velocity = new Vector2(lastRandom, -lastRandom / Mathf.Abs(lastRandom) * (shakeForce - Mathf.Abs(lastRandom))) * -2;
             lastRandom = 0;
         }
         else

@@ -5,13 +5,17 @@ using UnityEngine;
 public class DamagePlayer : MonoBehaviour
 {
     public float damageAmount;
+    public bool damageOnTouch;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<HealthDrainage>().TakeDamage(damageAmount);
-            Destroy(this.gameObject);
+            if (damageOnTouch)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

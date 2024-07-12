@@ -3719,6 +3719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundParticles: {fileID: 8453812108222428347, guid: 1c19c7f3a0465674db189cc5b9c46bbd, type: 3}
   Attackhbox: {fileID: 1013556173}
+  screaming: 0
   dashing: 0
   stick: 0
   speed: 8
@@ -3737,6 +3738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8873073227a913a42ab23a58ea93a83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screaming: 0
   stick: 0
   jumpforce: 360
   jumptime: 0.2
@@ -3757,6 +3759,7 @@ MonoBehaviour:
   dashtime: 0.025
   dashable: 1
   stick: 0
+  screaming: 0
   cecost: 50
 --- !u!114 &980212563
 MonoBehaviour:
@@ -4019,13 +4022,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5a2b41b1d1f4645b0c1dc9d0f0e825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScreamWave: {fileID: 8634480668040733774, guid: 0d1a81df0a462fd488ddd9312742994c, type: 3}
+  ScreamWave: {fileID: 2701501512958198272, guid: e779351f01348104e81f9ca381fd9913, type: 3}
   damage: 5
-  speed: 16
-  totaltime: 1
-  btime: 0.25
-  rtime: 0.5
-  forcePower: 1
+  cooldown: 3
 --- !u!114 &1013556179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91491,64 +91490,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a561246546ee7bc43990fb8620231799, type: 3}
---- !u!1001 &2410109212796137553
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2410109213677025127, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_Name
-      value: SoundBoss
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_RootOrder
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -28
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
-      propertyPath: shakeForce
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public bool stick = false;
+    public bool screaming;
+    public bool stick;
     public float jumpforce = 8;
     public float jumptime = 2;
     float maxspeed = 0;
@@ -24,7 +25,7 @@ public class Jump : MonoBehaviour
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
         }
 
-        if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime) && !stick) 
+        if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime) && !stick && !screaming) 
         {
             if (rb.velocity.y > maxspeed)
             {
