@@ -235,6 +235,7 @@ MonoBehaviour:
   soundTime: 5
   screamTime: 3
   maxMove: 5
+  rushBox: {fileID: 6613589284281779054, guid: 8781210c0f37cb345a4f9007cb338524, type: 3}
   soundWave: {fileID: 5605468270659284273, guid: be3bf2b0785fae14784c133900ad185b, type: 3}
   screamWave: {fileID: 7865267448388750547, guid: 65425ee4c8a470b4e85bf7346633179a, type: 3}
 --- !u!114 &2410109213677025132

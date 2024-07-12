@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScreamUse : MonoBehaviour
 {
     public GameObject ScreamWave;
+    public float soundTime;
     public float damage;
     public float cooldown;
     GameObject screamHit;
@@ -23,6 +24,7 @@ public class ScreamUse : MonoBehaviour
 
         if (screamHit != null)
         {
+            this.GetComponentInParent<MakeSound>().AddTime(soundTime);
             this.GetComponentInParent<Movement>().screaming = true;
         }
         else

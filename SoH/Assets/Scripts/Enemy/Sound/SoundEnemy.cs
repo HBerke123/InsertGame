@@ -30,7 +30,7 @@ public class SoundEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((sth == 0) && (th != 0) && (Time.time - th > shootFrequency) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
+        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (sth == 0) && (th != 0) && (Time.time - th > shootFrequency) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
         {
             if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex)
             {
@@ -39,7 +39,7 @@ public class SoundEnemy : MonoBehaviour
             th = 0;
         }
 
-        if ((sth != 0) && (Time.time - sth > screamFrequency) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
+        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (sth != 0) && (Time.time - sth > screamFrequency) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
         {
             if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex)
             {
@@ -61,13 +61,13 @@ public class SoundEnemy : MonoBehaviour
         {
             speed = baseSpeed;
 
-            if (sth == 0)
+            if ((sth == 0) && (Mathf.Abs(distancex) < rangex) && (player.GetComponent<MakeSound>().totalSoundTime > 0))
             {
                 sth = Time.time;
             }
         }
 
-        if ((Mathf.Abs(distancex) < moveRangex) && (Mathf.Abs(distancex) > rangex * 3 / 4) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
+        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (Mathf.Abs(distancex) < moveRangex) && (Mathf.Abs(distancex) > rangex * 3 / 4) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
         {
             th = 0;
             if (this.GetComponent<ForcesOnObject>().Force.y != 0)
@@ -91,7 +91,7 @@ public class SoundEnemy : MonoBehaviour
             }
         }
 
-        if (Mathf.Abs(distancex) < rangex)
+        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (Mathf.Abs(distancex) < rangex))
         {
             if (th == 0)
             {

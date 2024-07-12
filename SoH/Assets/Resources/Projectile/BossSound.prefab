@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5712173570123434300}
   - component: {fileID: 2819201062280559324}
   - component: {fileID: 664678177430523317}
+  - component: {fileID: 3056839448786732464}
+  - component: {fileID: -5934696286933705538}
   m_Layer: 0
   m_Name: BossSound
   m_TagString: Untagged
@@ -147,3 +149,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalTime: 0
+--- !u!114 &3056839448786732464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5605468270659284273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 10
+  destroyOnTouch: 0
+--- !u!114 &-5934696286933705538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5605468270659284273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb866bd8edd9e524598a09d9b918ae30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceAmount: 3
+  direction: 0

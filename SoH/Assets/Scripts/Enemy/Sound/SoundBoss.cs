@@ -18,10 +18,13 @@ public class SoundBoss : MonoBehaviour
     public float soundTime;
     public float screamTime;
     public int maxMove;
+    public GameObject rushBox;
     public GameObject soundWave;
     public GameObject screamWave;
     GameObject player;
+    GameObject rushHit;
     bool readyToShake;
+    bool onSecondPhase;
     int lastDirection;
     int direction;
     int moveCounter;
@@ -89,6 +92,7 @@ public class SoundBoss : MonoBehaviour
         if ((rrth != 0) && (Time.time - rrth >= rushTime))
         {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, this.GetComponent<Rigidbody2D>().velocity.y);
+            Destroy(rushHit);
             rrth = 0;
             SetDirection();
         }
@@ -102,29 +106,36 @@ public class SoundBoss : MonoBehaviour
     {
         if (moveCounter == maxMove)
         {
-            if (lastDirection == direction)
+            if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth / 2) && (!onSecondPhase))
             {
-                if (Random.Range(0, 2) == 0)
-                {
-                    SendWaves();
-                }
-                else
-                {
-                    Rush();
-                }
+                SecondPhase();
             }
             else
             {
-                if (Random.Range(0, 2) == 0)
+                if (lastDirection == direction)
                 {
-                    Scream();
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        SendWaves();
+                    }
+                    else
+                    {
+                        Rush();
+                    }
                 }
                 else
                 {
-                    Jump();
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        Scream();
+                    }
+                    else
+                    {
+                        Jump();
+                    }
                 }
             }
-
+            
             moveCounter = 0;
         }
 
@@ -167,6 +178,7 @@ public class SoundBoss : MonoBehaviour
             SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-soundSpeed, 0);
         }
 
+        SBox.GetComponent<ForcePlayer>().direction = direction;
         SetDirection();
     }
 
@@ -199,6 +211,9 @@ public class SoundBoss : MonoBehaviour
 
     void Rush()
     {
+        GameObject Sbox = Instantiate(rushBox, this.transform);
+        rushHit = Sbox;
+        Sbox.transform.localPosition = Vector3.down * 0.25f;
         rth = Time.time;
     }
 
@@ -236,5 +251,14 @@ public class SoundBoss : MonoBehaviour
             lastRandom = randomPos;
             Camera.main.GetComponent<Rigidbody2D>().velocity = new Vector2(randomPos, -randomPos / Mathf.Abs(randomPos) * (shakeForce - Mathf.Abs(randomPos)));
         }
+    }
+
+    void SecondPhase()
+    {
+        onSecondPhase = true;
+        shakeForce *= 1.5f;
+        rushSpeed *= 1.5f;
+        soundSpeed *= 1.5f;
+        Scream();
     }
 }

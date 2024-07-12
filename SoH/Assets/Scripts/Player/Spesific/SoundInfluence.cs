@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundInfluence : MonoBehaviour
 {
+    public float soundTime;
     public float smallForcePower;
     public float bigForcePower;
     public float totaltime;
@@ -27,6 +28,7 @@ public class SoundInfluence : MonoBehaviour
 
     public void SendWave(int direction, bool isforce)
     {
+        this.GetComponentInParent<MakeSound>().AddTime(soundTime);
         th = Time.time;
         if (isforce)
         {

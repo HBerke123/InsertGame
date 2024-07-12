@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
+    public float soundTime;
     public float quickAttackDamage;
     public float heavyAttackDamage;
     public float quickAttackCooldown;
@@ -26,6 +27,7 @@ public class SwordAttack : MonoBehaviour
             {
                 if (Time.time - th < skillholdtime)
                 {
+                    this.GetComponentInParent<MakeSound>().AddTime(soundTime);
                     th = 0;
                     attackable = false;
                     attacknum = 1;
@@ -43,6 +45,7 @@ public class SwordAttack : MonoBehaviour
                 }
                 else
                 {
+                    this.GetComponentInParent<MakeSound>().AddTime(soundTime);
                     th = 0;
                     attackable = false;
                     attacknum = 1;
@@ -58,6 +61,8 @@ public class SwordAttack : MonoBehaviour
                 }
             }
             else if (Input.GetMouseButtonDown(0) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword")) {
+                this.GetComponentInParent<MakeSound>().AddTime(soundTime);
+
                 attackable = false;
                 attacknum = 0;
                 this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1);

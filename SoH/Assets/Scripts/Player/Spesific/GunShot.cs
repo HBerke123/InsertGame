@@ -7,6 +7,7 @@ public class GunShot : MonoBehaviour
     public GameObject PreBombShower;
     public GameObject Bomb;
     public GameObject SoundWave;
+    public float soundTime;
     public float damage;
     public float forcePower;
     public float htime;
@@ -45,6 +46,7 @@ public class GunShot : MonoBehaviour
 
             if ((Input.GetMouseButtonUp(0) || (Time.time - hth > htime)) && (hth != 0) && (ammo > 0) && (Time.time - th > cooldown) && !triattack)
             {
+                this.GetComponentInParent<MakeSound>().AddTime(soundTime);
                 PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
                 if (Time.time - hth > htime)
                 {
@@ -59,6 +61,7 @@ public class GunShot : MonoBehaviour
             }
             else if ((Input.GetMouseButtonUp(1) || (Time.time - hth > htime)) && (hth != 0) && (ammo == 3) && (Time.time - th > cooldown) && triattack)
             {
+                this.GetComponentInParent<MakeSound>().AddTime(soundTime);
                 PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
                 if (Time.time - hth > htime)
                 {

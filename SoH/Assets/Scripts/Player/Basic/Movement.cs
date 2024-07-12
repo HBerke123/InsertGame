@@ -10,15 +10,18 @@ public class Movement : MonoBehaviour
     public bool screaming;
     public bool dashing;
     public bool stick;
-    public float speed = 5;
+    public float soundTime;
+    public float speed;
     public float dspeed;
     public float particleFrequency;
     Rigidbody2D rb;
     public bool spawnParticles;
+    float baseSpeed;
     float th;
 
     private void Start()
     {
+        baseSpeed = speed;
         rb = this.GetComponent<Rigidbody2D>();
         string path = Application.dataPath + "/Saves/";
         this.transform.position = new Vector3(float.Parse(File.ReadAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt").Split("\n")[3].Split(" ")[0]), float.Parse(File.ReadAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt").Split("\n")[3].Split(" ")[1]), 0);
@@ -43,6 +46,7 @@ public class Movement : MonoBehaviour
     }
 
     private void Update()
+
     {
         if (!screaming && !dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
@@ -59,6 +63,11 @@ public class Movement : MonoBehaviour
                 {
                     this.GetComponent<Animator>().SetBool("Moving", true);
                     spawnParticles = true;
+
+                    if (speed == baseSpeed)
+                    {
+                        this.GetComponent<MakeSound>().AddTime(soundTime);
+                    }
                 }
                 else
                 {
@@ -66,8 +75,6 @@ public class Movement : MonoBehaviour
                     spawnParticles = false;
                 }
             }
-
-            
         }
         else if (!screaming && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
@@ -87,7 +94,10 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             spawnParticles = false;
         }
-        
-        if ((Input.GetAxisRaw("Horizontal") != 0) && !Attackhbox.enabled) this.GetComponent<SpriteRenderer>().flipX = Input.GetAxisRaw("Horizontal") != 1;
+
+        if ((Input.GetAxisRaw("Horizontal") != 0) && !Attackhbox.enabled)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = Input.GetAxisRaw("Horizontal") != 1;
+        }
     }
 }

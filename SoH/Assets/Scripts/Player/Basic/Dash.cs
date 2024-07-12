@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
+    public float soundTime;
     public float dashspeed = 8;
     public float dashcooldown = 0.5f;
     public float dashtime = 0.1f;
@@ -22,6 +23,7 @@ public class Dash : MonoBehaviour
     {
         if (dashable && Input.GetKeyDown(KeyCode.LeftControl) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
+            this.GetComponent<MakeSound>().totalSoundTime = Mathf.Max(soundTime, this.GetComponent<MakeSound>().totalSoundTime);
             this.GetComponent<CEDrainage>().LoseCE(cecost);
             dashable = false;
             mv.dashing = true;

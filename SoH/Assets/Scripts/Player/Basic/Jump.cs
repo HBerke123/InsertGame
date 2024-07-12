@@ -6,6 +6,7 @@ public class Jump : MonoBehaviour
 {
     public bool screaming;
     public bool stick;
+    public float soundTime;
     public float jumpforce = 8;
     public float jumptime = 2;
     float maxspeed = 0;
@@ -21,6 +22,7 @@ public class Jump : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && GetComponentInChildren<GroundDetection>().detected && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
+            this.GetComponent<MakeSound>().AddTime(soundTime);
             stime = Time.time;
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
         }

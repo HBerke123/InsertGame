@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2403404035725150928}
   - component: {fileID: 8059449261690333070}
   - component: {fileID: 7863527681325170301}
+  - component: {fileID: -2251055414384947753}
+  - component: {fileID: 1083937267750939353}
   m_Layer: 0
   m_Name: BossScream
   m_TagString: Untagged
@@ -118,3 +120,33 @@ MonoBehaviour:
   minxscale: 0
   xScale: 1
   yScale: 1
+--- !u!114 &-2251055414384947753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865267448388750547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 15
+  destroyOnTouch: 0
+--- !u!58 &1083937267750939353
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865267448388750547}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
