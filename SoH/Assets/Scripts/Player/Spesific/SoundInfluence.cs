@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundInfluence : MonoBehaviour
 {
+    public TimeControlSlow timeSlower;
     public float soundTime;
     public float smallForcePower;
     public float bigForcePower;
@@ -30,13 +31,16 @@ public class SoundInfluence : MonoBehaviour
     {
         this.GetComponentInParent<MakeSound>().AddTime(soundTime);
         th = Time.time;
+
         if (isforce)
         {
             SBox = Instantiate(BigWave, this.transform.position, new Quaternion(0, 0, 0, 0));
+
             if ((direction == 0) || (direction == 2))
             {
                 SBox.transform.localRotation = Quaternion.Euler(0, 0, 90);
             }
+
             SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
             if (direction == 0)
             {

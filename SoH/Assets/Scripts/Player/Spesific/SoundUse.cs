@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SoundUse : MonoBehaviour
 {
+    public TimeControlSlow timeSlower;
+    public GameObject arrow;
     public float holdtime;
     public float cooldown;
     float th;
@@ -12,39 +14,42 @@ public class SoundUse : MonoBehaviour
 
     private void Update()
     {
-        float cursorx = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - this.GetComponentInParent<Transform>().position.x;
-        float cursory = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - this.GetComponentInParent<Transform>().position.y;
-        if (Mathf.Abs(cursorx) >= Mathf.Abs(cursory))
+        if (Input.GetAxisRaw("Horizontal") == 1)
         {
-            if (Mathf.Abs(cursorx) / cursorx == 1)
-            {
-                direction = 1;
-            }
-            else
-            {
-                direction = 3;
-            }
+            arrow.transform.localPosition = Vector3.right * 1.725f;
+            direction = 1;
         }
-        else
+        else if (Input.GetAxisRaw("Horizontal") == -1)
         {
-            if (Mathf.Abs(cursory) / cursory == 1)
-            {
-                direction = 0;
-            }
-            else
-            {
-                direction = 2;
-            }
+            arrow.transform.localPosition = Vector3.left * 1.725f;
+            direction = 3;
+        }
+        else if (Input.GetAxisRaw("Vertical") == 1)
+        {
+            arrow.transform.localPosition = Vector3.up * 3.9f;
+            direction = 0;
+        }
+        else if (Input.GetAxisRaw("Vertical") == -1)
+        {
+            arrow.transform.localPosition = Vector3.down * 1;
+            direction = 2;
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready)
         {
+            arrow.SetActive(false);
+            timeSlower.StartSlowMotion();
+            this.GetComponentInParent<Movement>().aiming = true;
             ready = false;
             th = Time.time;
         }
 
         if ((Input.GetKeyUp(KeyCode.Q) || (Time.time - th >= holdtime)) && (th > 0))
         {
+            this.GetComponentInParent<Movement>().aiming = false;
+            timeSlower.StopSlowMotion();
+            arrow.SetActive(true);
+
             if (Time.time - th < holdtime)
             {
                 this.GetComponent<SoundInfluence>().SendWave(direction, false);
@@ -53,6 +58,7 @@ public class SoundUse : MonoBehaviour
             {
                 this.GetComponent<SoundInfluence>().SendWave(direction, true);
             }
+            
             th = 0;
             StartCoroutine(Cooldown());
         }
