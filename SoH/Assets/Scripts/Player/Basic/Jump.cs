@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    public MenuOpener menuOpener;
     public bool screaming;
     public bool stick;
     public float soundTime;
@@ -20,23 +21,28 @@ public class Jump : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && GetComponentInChildren<GroundDetection>().detected && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
+        if (!menuOpener.isMenuOpen)
         {
-            this.GetComponent<MakeSound>().AddTime(soundTime);
-            stime = Time.time;
-            rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+            if (Input.GetKeyDown(KeyCode.Space) && this.GetComponentInChildren<GroundDetection>().detected && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponentInChildren<Crouching>().isCrouching)
+            {
+                this.GetComponent<MakeSound>().AddTime(soundTime);
+                stime = Time.time;
+                rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+            }
+
+            if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime) && !stick && !screaming) 
+            {
+                if (rb.velocity.y > maxspeed)
+                {
+                    maxspeed = rb.velocity.y;
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, maxspeed * jumptime - (Time.time - stime ));
+                }
+            }
         }
 
-        if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime) && !stick && !screaming) 
-        {
-            if (rb.velocity.y > maxspeed)
-            {
-                maxspeed = rb.velocity.y;
-            }
-            else
-            {
-                rb.velocity = new Vector2(rb.velocity.x, maxspeed * jumptime - (Time.time - stime ));
-            }
-        }
+ 
     }
 }

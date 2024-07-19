@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cd6cfa051ea8641abb46016c01e7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaName: Area1
+  areaName: Null
   holdTime: 1
 --- !u!1 &1860302439790362083
 GameObject:
@@ -180,7 +180,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1860302439790362081
 BoxCollider2D:
   m_ObjectHideFlags: 0

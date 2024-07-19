@@ -6,6 +6,7 @@ using TMPro;
 
 public class HealthDrainage : MonoBehaviour
 {
+    public TestingTeleportation testingTeleportation;
     public TextMeshProUGUI hpDisplayText;
     public Slider slider;
     public float health = 0;
@@ -21,8 +22,12 @@ public class HealthDrainage : MonoBehaviour
     {
         if (health <= 0)
         {
+            foreach (GameObject gameObject in testingTeleportation.enemies)
+            {
+                gameObject.SetActive(false);
+            }
             health = maxHealth;
-            this.transform.position = new Vector3(0f, 2f, 0f);
+            this.transform.position = Vector3.zero;
             UpdateHealthBar(health / maxHealth);
         }
     }

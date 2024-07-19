@@ -5,7 +5,7 @@ using System.IO;
 
 public class MenuOpener : MonoBehaviour
 {
-    bool isMenuOpen;
+    public bool isMenuOpen;
     public GameObject menu;
     public TimeControlStop timeControlStop;
 

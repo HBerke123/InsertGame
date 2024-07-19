@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
+    public MenuOpener menuOpener;
     public float soundTime;
     public float quickAttackDamage;
     public float heavyAttackDamage;
@@ -22,64 +23,69 @@ public class SwordAttack : MonoBehaviour
 
     private void Update()
     {
-        if (attackable && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword")) { 
-            if (((Time.time - th >= skillholdtime) || (Input.GetMouseButtonUp(1))) && (th > 0))
+        if (!menuOpener.isMenuOpen)
+        {
+            if (attackable && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword"))
             {
-                if (Time.time - th < skillholdtime)
+                if (((Time.time - th >= skillholdtime) || (Input.GetMouseButtonUp(1))) && (th > 0))
+                {
+                    if (Time.time - th < skillholdtime)
+                    {
+                        this.GetComponentInParent<MakeSound>().AddTime(soundTime);
+                        th = 0;
+                        attackable = false;
+                        attacknum = 1;
+                        this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 0.75f);
+
+                        if (this.GetComponentInParent<SpriteRenderer>().flipX) this.transform.localScale = new Vector3(-1, 1, 1);
+                        else this.transform.localScale = new Vector3(1, 1, 1);
+
+                        this.GetComponentInParent<CEDrainage>().LoseCE(heavyCeCost);
+                        this.GetComponent<BoxCollider2D>().enabled = true;
+
+                        StartCoroutine(RegainCE(heavyCeCost));
+                        StartCoroutine(Attackend());
+                        StartCoroutine(Cooldown());
+                    }
+                    else
+                    {
+                        this.GetComponentInParent<MakeSound>().AddTime(soundTime);
+                        th = 0;
+                        attackable = false;
+                        attacknum = 1;
+
+                        if (this.GetComponentInParent<SpriteRenderer>().flipX) this.GetComponent<SwordSkill>().SkillStart(-1);
+                        else this.GetComponent<SwordSkill>().SkillStart(1);
+
+                        this.GetComponentInParent<CEDrainage>().LoseCE(skillCeCost);
+
+                        StartCoroutine(RegainCE(skillCeCost));
+                        StartCoroutine(Attackend());
+                        StartCoroutine(Cooldown());
+                    }
+                }
+                else if (Input.GetMouseButtonDown(0) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword"))
                 {
                     this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-                    th = 0;
+
                     attackable = false;
-                    attacknum = 1;
-                    this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 0.75f);
-                        
+                    attacknum = 0;
+                    this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1);
+
                     if (this.GetComponentInParent<SpriteRenderer>().flipX) this.transform.localScale = new Vector3(-1, 1, 1);
                     else this.transform.localScale = new Vector3(1, 1, 1);
 
-                    this.GetComponentInParent<CEDrainage>().LoseCE(heavyCeCost);
+                    this.GetComponentInParent<CEDrainage>().LoseCE(quickCeCost);
                     this.GetComponent<BoxCollider2D>().enabled = true;
 
-                    StartCoroutine(RegainCE(heavyCeCost));
+                    StartCoroutine(RegainCE(quickCeCost));
                     StartCoroutine(Attackend());
                     StartCoroutine(Cooldown());
                 }
-                else
+                else if (Input.GetMouseButtonDown(1) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword"))
                 {
-                    this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-                    th = 0;
-                    attackable = false;
-                    attacknum = 1;
-
-                    if (this.GetComponentInParent<SpriteRenderer>().flipX) this.GetComponent<SwordSkill>().SkillStart(-1);
-                    else this.GetComponent<SwordSkill>().SkillStart(1);
-
-                    this.GetComponentInParent<CEDrainage>().LoseCE(skillCeCost);
-
-                    StartCoroutine(RegainCE(skillCeCost));
-                    StartCoroutine(Attackend());
-                    StartCoroutine(Cooldown());
+                    th = Time.time;
                 }
-            }
-            else if (Input.GetMouseButtonDown(0) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword")) {
-                this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-
-                attackable = false;
-                attacknum = 0;
-                this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1);
-
-                if (this.GetComponentInParent<SpriteRenderer>().flipX) this.transform.localScale = new Vector3(-1, 1, 1);
-                else this.transform.localScale = new Vector3(1, 1, 1);
-
-                this.GetComponentInParent<CEDrainage>().LoseCE(quickCeCost);
-                this.GetComponent<BoxCollider2D>().enabled = true;
-            
-                StartCoroutine(RegainCE(quickCeCost));
-                StartCoroutine(Attackend());
-                StartCoroutine(Cooldown());
-            }
-            else if (Input.GetMouseButtonDown(1) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword"))
-            {
-                th = Time.time;
             }
         }
     }
