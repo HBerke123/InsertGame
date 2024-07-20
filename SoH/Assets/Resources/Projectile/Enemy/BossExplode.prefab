@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3eb1cee5c128147b5727d1373f7d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalTime: 1.5
+  TotalTime: 0.75
   maxyscale: 18
   minyscale: 3
   maxxscale: 18
@@ -134,4 +134,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b2b4abb9b00e44abfe46e9361a146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalTime: 1.5
+  TotalTime: 0.75

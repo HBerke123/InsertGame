@@ -4,29 +4,38 @@ using UnityEngine;
 
 public class FinalBoss : MonoBehaviour
 {
+    public GameObject smoke;
+    public GameObject bossSpear;
     public GameObject lightWave;
     public GameObject lightBox;
     public GameObject explodeHit;
-    public float lightFrequency;
+    public float lightTime;
+    public float smokeSpeed;
+    public float spearTime;
+    public float dashSpeed;
+    public float dashTime;
     public float lightAmount;
     public float moveFrequency;
+    public float maxRightPoint;
+    public float maxLeftPoint;
     public float rightPoint;
     public float leftPoint;
     public float lightWaveSpeed;
-    public float lightSpeed;
     public float bottom;
     public float flySpeed;
     public float flyTime;
     public int maxMove;
     GameObject player;
-    float sth;
     float lth;
+    float dth;
+    float sth;
     float mth;
-    bool isSecondPhase;
+    bool onSecondPhase;
+    bool onThirdPhase;
+    bool onAttack;
     int lastDirection;
     int direction;
     int moveCounter;
-    int lightCounter;
 
     private void Start()
     {
@@ -37,25 +46,53 @@ public class FinalBoss : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((mth != 0) && (Time.time - mth > moveFrequency) && (lth == 0) && (sth == 0) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && (this.GetComponent<GroundDetection>().detected))
+        if ((mth != 0) && (Time.time - mth > moveFrequency) && (sth == 0) && (!onAttack) && (dth == 0) && (lth == 0) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && (this.GetComponentInChildren<GroundDetection>().detected))
         {
-            if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth * 65 / 100) && !isSecondPhase)
+            if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth * 25 / 100) && !onThirdPhase)
+            {
+                onAttack = true;
+                onThirdPhase = true;
+            }
+            else if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth * 65 / 100) && !onSecondPhase)
             {
                 SecondPhase();
-                isSecondPhase = true;
+                onSecondPhase = true;
             }
             else
             {
                 if (moveCounter >= maxMove)
                 {
-                    if (Random.Range(0, 2) == 0)
+                    if (onSecondPhase)
                     {
-                        SendWave();
+                        if (Random.Range(0, 4) == 0)
+                        {
+                            SendWave();
+                        }
+                        else if (Random.Range(0, 3) == 0)
+                        {
+                            Dash();
+                        }
+                        else if (Random.Range(0, 2) == 0)
+                        {
+                            Smell();
+                        }
+                        else
+                        {
+                            lth = Time.time;
+                        }
                     }
                     else
                     {
-                        lth = Time.time;
+                        if (Random.Range(0, 2) == 0)
+                        {
+                            SendWave();
+                        } 
+                        else
+                        {
+                            lth = Time.time;
+                        }
                     }
+                    
                     moveCounter = 0;
                 }
                 else
@@ -68,18 +105,11 @@ public class FinalBoss : MonoBehaviour
         {
             mth = Time.time;
         }
-        else if ((lth != 0) && (Time.time - lth > lightFrequency))
+        else if (lth != 0)
         {
-            if (lightAmount > lightCounter)
+            if (Time.time - lth > lightTime)
             {
                 SendLight();
-            }
-            else
-            {
-                lightCounter = 0;
-                lth = 0;
-                mth = 0;
-                SetDirection();
             }
         }
         else if (sth != 0)
@@ -100,6 +130,20 @@ public class FinalBoss : MonoBehaviour
                 {
                     this.GetComponent<Rigidbody2D>().velocity = Vector2.up * flySpeed;
                 }
+            }
+        }
+        else if (dth != 0)
+        {
+            if (Time.time - dth > dashTime + spearTime)
+            {
+                bossSpear.SetActive(false);
+                dth = 0;
+                mth = 0;
+            }
+            else if (Time.time - dth > dashTime)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                Spear();
             }
         }
     }
@@ -156,14 +200,12 @@ public class FinalBoss : MonoBehaviour
 
     void SendLight()
     {
-        lightCounter++;
-        lth = Time.time;
         this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
-            GameObject SBox = Instantiate(lightBox, new Vector3(this.transform.position.x, bottom + lightBox.transform.localScale.y / 2, 0), Quaternion.identity);
-            SBox.GetComponent<Rigidbody2D>().velocity = (-1 + i * 2) * lightSpeed * Vector2.right;
+            Instantiate(lightBox, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), bottom + lightWave.transform.localScale.y / 2, 0), Quaternion.identity);
         }
+        lth = 0;
     }
 
     void SecondPhase()
@@ -175,5 +217,27 @@ public class FinalBoss : MonoBehaviour
     void Explode()
     {
         Instantiate(explodeHit, this.transform.position, Quaternion.identity);
+    }
+
+    void Dash()
+    {
+        SetDirection();
+        dth = Time.time;
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.right * dashSpeed * direction;
+    }
+
+    void Spear()
+    {
+        bossSpear.SetActive(true);
+        bossSpear.transform.localScale = new Vector3(bossSpear.transform.localScale.x * direction, bossSpear.transform.localScale.y, bossSpear.transform.localScale.z);
+    }
+
+    void Smell()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject SBox = Instantiate(smoke, this.transform.position + Vector3.up * this.transform.localScale.y / 2, Quaternion.identity);
+            SBox.GetComponent<Rigidbody2D>().velocity = (-1 + i * 2) * Vector2.right * smokeSpeed;
+        }
     }
 }
