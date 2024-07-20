@@ -14,10 +14,14 @@ public class FinalBoss : MonoBehaviour
     public float lightWaveSpeed;
     public float lightSpeed;
     public float bottom;
+    public float flySpeed;
+    public float flyTime;
     public int maxMove;
     GameObject player;
+    float sth;
     float lth;
     float mth;
+    bool isSecondPhase;
     int lastDirection;
     int direction;
     int moveCounter;
@@ -32,26 +36,34 @@ public class FinalBoss : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((mth != 0) && (Time.time - mth > moveFrequency) && (lth == 0))
+        if ((mth != 0) && (Time.time - mth > moveFrequency) && (lth == 0) && (sth == 0) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
-            if (moveCounter >= maxMove)
+            if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth * 65 / 100) && !isSecondPhase)
             {
-                if (direction == lastDirection)
-                {
-                    if (Random.Range(0, 2) == 0)
-                    {
-                        SendWave();
-                    }
-                    else
-                    {
-                        lth = Time.time;
-                    }
-                }
-                moveCounter = 0;
+                SecondPhase();
+                isSecondPhase = true;
             }
             else
             {
-                Move();
+                if (moveCounter >= maxMove)
+                {
+                    if (direction == lastDirection)
+                    {
+                        if (Random.Range(0, 2) == 0)
+                        {
+                            SendWave();
+                        }
+                        else
+                        {
+                            lth = Time.time;
+                        }
+                    }
+                    moveCounter = 0;
+                }
+                else
+                {
+                    Move();
+                }
             }
         }
         else if (mth == 0)
@@ -70,6 +82,14 @@ public class FinalBoss : MonoBehaviour
                 lth = 0;
                 mth = 0;
                 SetDirection();
+            }
+        }
+        else if (sth != 0)
+        {
+            if (Time.time - sth > flyTime)
+            {
+                sth = 0;
+                mth = 0;
             }
         }
     }
@@ -120,5 +140,11 @@ public class FinalBoss : MonoBehaviour
             GameObject SBox = Instantiate(lightBox, new Vector3(this.transform.position.x, bottom + lightBox.transform.localScale.y / 2, 0), Quaternion.identity);
             SBox.GetComponent<Rigidbody2D>().velocity = (-1 + i * 2) * lightSpeed * Vector2.right;
         }
+    }
+
+    void SecondPhase()
+    {
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.up * flySpeed;
+        sth = Time.time;
     }
 }
