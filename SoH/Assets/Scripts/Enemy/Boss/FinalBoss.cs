@@ -6,6 +6,7 @@ public class FinalBoss : MonoBehaviour
 {
     public GameObject lightWave;
     public GameObject lightBox;
+    public GameObject explodeHit;
     public float lightFrequency;
     public float lightAmount;
     public float moveFrequency;
@@ -36,7 +37,7 @@ public class FinalBoss : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((mth != 0) && (Time.time - mth > moveFrequency) && (lth == 0) && (sth == 0) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
+        if ((mth != 0) && (Time.time - mth > moveFrequency) && (lth == 0) && (sth == 0) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && (this.GetComponent<GroundDetection>().detected))
         {
             if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth * 65 / 100) && !isSecondPhase)
             {
@@ -47,16 +48,13 @@ public class FinalBoss : MonoBehaviour
             {
                 if (moveCounter >= maxMove)
                 {
-                    if (direction == lastDirection)
+                    if (Random.Range(0, 2) == 0)
                     {
-                        if (Random.Range(0, 2) == 0)
-                        {
-                            SendWave();
-                        }
-                        else
-                        {
-                            lth = Time.time;
-                        }
+                        SendWave();
+                    }
+                    else
+                    {
+                        lth = Time.time;
                     }
                     moveCounter = 0;
                 }
@@ -88,8 +86,20 @@ public class FinalBoss : MonoBehaviour
         {
             if (Time.time - sth > flyTime)
             {
+                Explode();
                 sth = 0;
                 mth = 0;
+            }
+            else
+            {
+                if (this.transform.position.y > bottom + 5)
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                }
+                else
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = Vector2.up * flySpeed;
+                }
             }
         }
     }
@@ -98,13 +108,27 @@ public class FinalBoss : MonoBehaviour
     {
         mth = 0;
         moveCounter++;
-        if (Random.Range(0, 2) == 0)
+        if (lastDirection == direction)
         {
-            this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - leftPoint);
+            if (Random.Range(0, 2) == 0)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - leftPoint);
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - rightPoint);
+            }
         }
         else
         {
-            this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - rightPoint);
+            if (this.transform.position.x > player.transform.position.x)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - rightPoint);
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - leftPoint);
+            }
         }
     }
 
@@ -123,11 +147,11 @@ public class FinalBoss : MonoBehaviour
 
     void SendWave()
     {
+        SetDirection();
         mth = 0;
         this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GameObject SBox = Instantiate(lightWave, new Vector3(this.transform.position.x, 1.5f + bottom + lightWave.transform.localScale.y / 2, 0), Quaternion.identity);
         SBox.GetComponent<Rigidbody2D>().velocity = direction * lightWaveSpeed * Vector2.right;
-        SetDirection();
     }
 
     void SendLight()
@@ -146,5 +170,10 @@ public class FinalBoss : MonoBehaviour
     {
         this.GetComponent<Rigidbody2D>().velocity = Vector2.up * flySpeed;
         sth = Time.time;
+    }
+
+    void Explode()
+    {
+        Instantiate(explodeHit, this.transform.position, Quaternion.identity);
     }
 }
