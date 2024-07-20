@@ -3934,17 +3934,18 @@ MonoBehaviour:
   lightWave: {fileID: 7511000119780834397, guid: de641f9700f15114b9286cc8c891265c, type: 3}
   lightBox: {fileID: 3165769293217424216, guid: 273b132d57b434c428c5e97400c15f11, type: 3}
   explodeHit: {fileID: 2274879916379610859, guid: eb16325441f472742ab94fefe52b7f81, type: 3}
+  lightTime: 1
   smokeSpeed: 5
   spearTime: 1
   dashSpeed: 15
   dashTime: 0.75
-  lightFrequency: 0.3125
   lightAmount: 3
   moveFrequency: 0.4
+  maxRightPoint: 16
+  maxLeftPoint: -25
   rightPoint: 3
   leftPoint: -12
   lightWaveSpeed: 15
-  lightSpeed: 16
   bottom: -137
   flySpeed: 7.5
   flyTime: 3
