@@ -15,7 +15,6 @@ public class SoundBoss : MonoBehaviour
     public float rushSpeed;
     public float rushTime;
     public float soundSpeed;
-    public float soundTime;
     public float screamTime;
     public int maxMove;
     public GameObject rushBox;
@@ -167,17 +166,7 @@ public class SoundBoss : MonoBehaviour
     void SendWaves()
     {
         GameObject SBox = Instantiate(soundWave, this.transform.position, Quaternion.identity);
-        SBox.GetComponent<SkillEnd>().TotalTime = soundTime;
-        
-        if (direction == 1)
-        {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(soundSpeed, 0);
-        }
-        else
-        {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-soundSpeed, 0);
-        }
-
+        SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * soundSpeed, 0);
         SBox.GetComponent<ForcePlayer>().direction = direction;
         SetDirection();
     }
@@ -186,13 +175,7 @@ public class SoundBoss : MonoBehaviour
     {
         scth = Time.time;
         ssth = Time.time;
-        GameObject SBox = Instantiate(screamWave, this.transform.position, Quaternion.identity);
-        SBox.GetComponent<SkillEnd>().TotalTime = screamTime;
-        SBox.GetComponent<GrowingProjectile>().TotalTime = screamTime;
-        SBox.GetComponent<GrowingProjectile>().minyscale = 0;
-        SBox.GetComponent<GrowingProjectile>().maxyscale = screamMaxScale;
-        SBox.GetComponent<GrowingProjectile>().minxscale = 0;
-        SBox.GetComponent<GrowingProjectile>().maxxscale = screamMaxScale;
+        Instantiate(screamWave, this.transform.position, Quaternion.identity);
         SetDirection();
     }
 

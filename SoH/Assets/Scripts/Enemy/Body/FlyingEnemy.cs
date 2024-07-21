@@ -8,7 +8,6 @@ public class FlyingEnemy : MonoBehaviour
     public GameObject arrow;
     public GameObject Thorn;
     public float thornDamage;
-    public float thornTime;
     public float flyspeed;
     public float rangex;
     public float rangey;
@@ -87,7 +86,6 @@ public class FlyingEnemy : MonoBehaviour
             SThorn.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed, -Mathf.Sin(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed);
             SThorn.transform.rotation = Quaternion.Euler(0, 0, -arrow.transform.rotation.eulerAngles.x - 90);
         }
-        SThorn.GetComponent<SkillEnd>().TotalTime = thornTime;
         SThorn.GetComponent<DamagePlayer>().damageAmount = thornDamage;
     }
 }

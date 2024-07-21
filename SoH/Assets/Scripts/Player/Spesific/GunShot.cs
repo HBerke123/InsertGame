@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunShot : MonoBehaviour
 {
+    public List<GameObject> lastBombs = new List<GameObject>();
     public GameObject PreBombShower;
     public GameObject Bomb;
     public GameObject SoundWave;
@@ -22,58 +23,83 @@ public class GunShot : MonoBehaviour
     public float twtime;
     public int cecost;
     int ammo = 3;
-    bool triattack = false;
-    bool reloading = false;
+    bool explosed;
+    bool triattack;
+    bool reloading;
     float th = 0;
     float hth = 0;
 
     void FixedUpdate()
     {
         if ((this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun") && !reloading)
-        {
-            if (Input.GetMouseButtonDown(0) && (ammo > 0) && (Time.time - th > cooldown))
+        {  
+            if (lastBombs.Count == 0)
             {
-                triattack = false;
-                hth = Time.time;
-                PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
-            }
-            else if (Input.GetMouseButtonDown(1) && (ammo == 3) && (Time.time - th > cooldown))
-            {
-                triattack = true;
-                hth = Time.time;
-                PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
-            }
+                foreach (GameObject gameObject in lastBombs)
+                {
+                    if (gameObject == null)
+                    {
+                        lastBombs.Remove(gameObject);
+                    }
+                }
 
-            if ((Input.GetMouseButtonUp(0) || (Time.time - hth > htime)) && (hth != 0) && (ammo > 0) && (Time.time - th > cooldown) && !triattack)
-            {
-                this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-                PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
-                if (Time.time - hth > htime)
+                if (Input.GetMouseButtonDown(0) && (ammo > 0) && (Time.time - th > cooldown))
                 {
-                    SendBomb(1, 1);
+                    triattack = false;
+                    hth = Time.time;
+                    PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
                 }
-                else
+                else if (Input.GetMouseButtonDown(1) && (ammo == 3) && (Time.time - th > cooldown))
                 {
-                    SendBomb(1, (Time.time - hth) / htime);
+                    triattack = true;
+                    hth = Time.time;
+                    PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
                 }
-                th = Time.time;
-                hth = 0;
             }
-            else if ((Input.GetMouseButtonUp(1) || (Time.time - hth > htime)) && (hth != 0) && (ammo == 3) && (Time.time - th > cooldown) && triattack)
+            else
             {
-                this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-                PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
-                if (Time.time - hth > htime)
+                explosed = true;
+                foreach (GameObject gameObject in lastBombs)
                 {
-                    for (int i = 0; i < 3; i++) SendBomb(i, 1);
+                    gameObject.GetComponent<BombExplode>().Explode();
                 }
-                else
+            }
+            
+            if (!explosed)
+            {
+                if ((Input.GetMouseButtonUp(0) || (Time.time - hth > htime)) && (hth != 0) && (ammo > 0) && (Time.time - th > cooldown) && !triattack)
                 {
-                    for (int i = 0; i < 3; i++) SendBomb(i, (Time.time - hth) / htime);
+                    this.GetComponentInParent<MakeSound>().AddTime(soundTime);
+                    PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
+                    if (Time.time - hth > htime)
+                    {
+                        SendBomb(1, 1);
+                    }
+                    else
+                    {
+                        SendBomb(1, (Time.time - hth) / htime);
+                    }
+                    th = Time.time;
+                    hth = 0;
                 }
-                
-                th = Time.time;
-                hth = 0;
+                else if ((Input.GetMouseButtonUp(1) || (Time.time - hth > htime)) && (hth != 0) && (ammo == 3) && (Time.time - th > cooldown) && triattack)
+                {
+                    this.GetComponentInParent<MakeSound>().AddTime(soundTime);
+                    PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
+
+                    if (Time.time - hth > htime)
+                    {
+                        for (int i = 0; i < 3; i++) SendBomb(i, 1);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 3; i++) SendBomb(i, (Time.time - hth) / htime);
+                    }
+
+                    th = Time.time;
+                    hth = 0;
+                }
+                explosed = false;
             }
         }
     }
@@ -81,8 +107,17 @@ public class GunShot : MonoBehaviour
     void SendBomb(int direction, float bombforce)
     {
         GameObject SBox = Instantiate(Bomb, this.transform.position, new Quaternion(0, 0, 0, 0));
-        if (this.GetComponentInParent<SpriteRenderer>().flipX) SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(-minbombforce + -bombforce * (maxbombforce - minbombforce), -5 + 5 * direction), ForceMode2D.Impulse);
-        else SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(minbombforce + bombforce * (maxbombforce - minbombforce), -5 + 5 * direction), ForceMode2D.Impulse);
+        lastBombs.Add(SBox);
+
+        if (this.GetComponentInParent<SpriteRenderer>().flipX)
+        {
+            SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(-minbombforce + -bombforce * (maxbombforce - minbombforce), -5 + 5 * direction), ForceMode2D.Impulse);
+        }
+        else 
+        { 
+            SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(minbombforce + bombforce * (maxbombforce - minbombforce), -5 + 5 * direction), ForceMode2D.Impulse);
+        }
+
         SBox.GetComponent<BombExplode>().TotalTime = ttime;
         SBox.GetComponent<BombExplode>().minsize = minsize;
         SBox.GetComponent<BombExplode>().maxsize = maxsize;
@@ -91,7 +126,11 @@ public class GunShot : MonoBehaviour
         SBox.GetComponent<BombExplode>().forcePower = forcePower;
         SBox.GetComponent<BombExplode>().damageAmount = damage;
         ammo--;
-        if (ammo == 0) StartCoroutine(Reload());
+
+        if (ammo == 0) 
+        {
+            StartCoroutine(Reload());
+        };
     }
 
     IEnumerator Reload()

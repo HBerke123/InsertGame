@@ -7,7 +7,6 @@ public class LightEnemy : MonoBehaviour
     GameObject player;
     public GameObject lightWave;
     public float lightDamage;
-    public float waveTime;
     public float waveSpeed;
     public float speed;
     public float moveRangex;
@@ -71,19 +70,8 @@ public class LightEnemy : MonoBehaviour
 
     void Shoot()
     {
-        if (this.transform.position.x >= player.transform.position.x)
-        {
-            GameObject SBox = Instantiate(lightWave, transform.position, new Quaternion(0, 0, 0, 0));
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-waveSpeed, 0);
-            SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
-            SBox.GetComponent<DamagePlayer>().damageAmount = lightDamage;
-        }
-        else
-        {
-            GameObject SBox = Instantiate(lightWave, transform.position, new Quaternion(0, 0, 0, 0));
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(waveSpeed, 0);
-            SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
-            SBox.GetComponent<DamagePlayer>().damageAmount = lightDamage;
-        }
+        GameObject SBox = Instantiate(lightWave, transform.position, new Quaternion(0, 0, 0, 0));
+        SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x) * waveSpeed, 0);
+        SBox.GetComponent<DamagePlayer>().damageAmount = lightDamage;
     }
 }

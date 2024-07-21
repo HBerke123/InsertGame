@@ -6,10 +6,8 @@ public class BadSmellingFlower : MonoBehaviour
 {
     GameObject player;
     public GameObject badSmoke;
-    public float effectDuration;
     public float range;
     public float cooldown;
-    public float duration;
     float distance;
     float th;
 
@@ -38,8 +36,6 @@ public class BadSmellingFlower : MonoBehaviour
 
     public void Smell()
     {
-        GameObject SBox = Instantiate(badSmoke, this.transform.position, new Quaternion(0, 0, 0, 0));
-        SBox.GetComponent<BadEffectToObjects>().duration = effectDuration;
-        SBox.GetComponent<SkillEnd>().TotalTime = duration;
+        Instantiate(badSmoke, this.transform.position, new Quaternion(0, 0, 0, 0));
     }
 }

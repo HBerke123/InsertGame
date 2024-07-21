@@ -9,6 +9,7 @@ public class FinalBoss : MonoBehaviour
     public GameObject lightWave;
     public GameObject lightBox;
     public GameObject explodeHit;
+    public float attackFrequency;
     public float lightTime;
     public float smokeSpeed;
     public float spearTime;
@@ -22,17 +23,23 @@ public class FinalBoss : MonoBehaviour
     public float leftPoint;
     public float lightWaveSpeed;
     public float bottom;
+    public float flyAmount;
     public float flySpeed;
     public float flyTime;
     public int maxMove;
+    public int attackAmount;
     GameObject player;
+    float ath;
     float lth;
     float dth;
     float sth;
     float mth;
+    bool attackRising;
     bool onSecondPhase;
     bool onThirdPhase;
     bool onAttack;
+    int attackCounter;
+    int attackDirection;
     int lastDirection;
     int direction;
     int moveCounter;
@@ -44,6 +51,18 @@ public class FinalBoss : MonoBehaviour
         lastDirection = direction;
     }
 
+    private void Update()
+    {
+        if ( Input.GetKeyDown(KeyCode.K))
+        {
+            this.GetComponent<HealthDrainageOnEnemy>().health = 200;
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            this.GetComponent<HealthDrainageOnEnemy>().health = 100;
+        }
+    }
+
     private void FixedUpdate()
     {
         if ((mth != 0) && (Time.time - mth > moveFrequency) && (sth == 0) && (!onAttack) && (dth == 0) && (lth == 0) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && (this.GetComponentInChildren<GroundDetection>().detected))
@@ -51,7 +70,6 @@ public class FinalBoss : MonoBehaviour
             if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth * 25 / 100) && !onThirdPhase)
             {
                 onAttack = true;
-                onThirdPhase = true;
             }
             else if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth * 65 / 100) && !onSecondPhase)
             {
@@ -101,6 +119,53 @@ public class FinalBoss : MonoBehaviour
                 }
             }
         }
+        else if (onAttack)
+        {
+            if (this.transform.position.y > bottom + flyAmount)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                if (ath == 0)
+                {
+                    ath = Time.time;
+                }
+                else if (Time.time - ath > attackFrequency)
+                {
+                    Attack(attackDirection);
+
+                    if (attackDirection == 0)
+                    {
+                        attackRising = true;
+                    }
+                    else if (attackDirection == 3)
+                    {
+                        attackRising = false;
+                    }
+
+                    if (attackRising)
+                    {
+                        attackDirection++;
+                    }
+                    else
+                    {
+                        attackDirection--;
+                    }
+
+                    if (attackCounter + 1 < attackAmount)
+                    {
+                        attackCounter++;
+                    }
+                    else
+                    {
+                        onAttack = false;
+                        onThirdPhase = true;
+                    }
+                }
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.up * flySpeed;
+            }
+        }
         else if (mth == 0)
         {
             mth = Time.time;
@@ -122,7 +187,7 @@ public class FinalBoss : MonoBehaviour
             }
             else
             {
-                if (this.transform.position.y > bottom + 5)
+                if (this.transform.position.y > bottom + flyAmount)
                 {
                     this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 }
@@ -238,6 +303,17 @@ public class FinalBoss : MonoBehaviour
         {
             GameObject SBox = Instantiate(smoke, this.transform.position + Vector3.up * this.transform.localScale.y / 2, Quaternion.identity);
             SBox.GetComponent<Rigidbody2D>().velocity = (-1 + i * 2) * Vector2.right * smokeSpeed;
+        }
+    }
+
+    void Attack(int direction)
+    {
+        ath = 0;
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject SBox = Instantiate(lightWave, this.transform.position, Quaternion.identity);
+            SBox.transform.localRotation = Quaternion.Euler(0, 0, (i * 360) + (30 * direction) * (-1 + i * 2));
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2((1 - i * 2) * Mathf.Cos(30 * direction * (-1 + i * 2) * Mathf.Deg2Rad) * lightWaveSpeed, (1 - i * 2) * Mathf.Sin(30 * direction * (-1 + i * 2) * Mathf.Deg2Rad) * lightWaveSpeed);
         }
     }
 }

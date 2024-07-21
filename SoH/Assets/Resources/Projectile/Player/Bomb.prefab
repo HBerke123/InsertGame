@@ -143,7 +143,7 @@ MonoBehaviour:
   minsize: 0
   maxsize: 0
   ttime: 0
-  SoundWave: {fileID: 0}
+  SoundWave: {fileID: 5255486180055062, guid: 43ab01a15bcf76f45b4b219f701669ca, type: 3}
 --- !u!58 &7109079906332889114
 CircleCollider2D:
   m_ObjectHideFlags: 0

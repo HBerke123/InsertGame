@@ -5,13 +5,11 @@ using UnityEngine;
 public class SoundEnemy : MonoBehaviour
 {
     GameObject player;
-    GameObject screamHit;
+    readonly GameObject screamHit;
     public GameObject soundWave;
     public GameObject screamWave;
-    public float soundForcePower;
     public float soundDamage;
     public float waveSpeed;
-    public float waveTime;
     public float speed;
     public float moveRangex;
     public float rangex;
@@ -102,24 +100,10 @@ public class SoundEnemy : MonoBehaviour
 
     void Shoot()
     {
-        if (this.transform.position.x >= player.transform.position.x)
-        {
-            GameObject SBox = Instantiate(soundWave, transform.position, new Quaternion(0, 0, 0, 0));
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-waveSpeed, 0);
-            SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
-            SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
-            SBox.GetComponent<ForcePlayer>().forceAmount = soundForcePower;
-            SBox.GetComponent<ForcePlayer>().direction = -1;
-        }
-        else
-        {
-            GameObject SBox = Instantiate(soundWave, transform.position, new Quaternion(0, 0, 0, 0));
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(waveSpeed, 0);
-            SBox.GetComponent<SkillEnd>().TotalTime = waveTime;
-            SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
-            SBox.GetComponent<ForcePlayer>().forceAmount = soundForcePower;
-            SBox.GetComponent<ForcePlayer>().direction = 1;
-        }
+        GameObject SBox = Instantiate(soundWave, transform.position, new Quaternion(0, 0, 0, 0));
+        SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x) * waveSpeed, 0);
+        SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
+        SBox.GetComponent<ForcePlayer>().direction = (int) (-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x));
     }
 
     void Scream()
