@@ -4218,11 +4218,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da10e2970b281d439cb6d8a9bd1bec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastBombs: []
   PreBombShower: {fileID: 1802293395}
   Bomb: {fileID: 7227559544692314864, guid: d8ca3647b67654a41a047bed88e632bd, type: 3}
   SoundWave: {fileID: 5255486180055062, guid: 43ab01a15bcf76f45b4b219f701669ca, type: 3}
   soundTime: 1.5
-  damage: 20
+  damage: 10
   forcePower: 5
   htime: 1
   ttime: 1.5

@@ -11,10 +11,12 @@ public class BombExplode : MonoBehaviour
     public float maxsize;
     public float ttime;
     public GameObject SoundWave;
+    GameObject player;
     float th;
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         th = Time.time;
     }
 
@@ -28,6 +30,7 @@ public class BombExplode : MonoBehaviour
 
     public void Explode()
     {
+        player.GetComponentInChildren<GunShot>().lastBombs.Remove(this.gameObject);
         GameObject SBox = Instantiate(SoundWave, this.transform.position, new Quaternion(0, 0, 0, 0));
         SBox.GetComponent<SkillEnd>().TotalTime = ttime;
         SBox.GetComponent<BombSoundWave>().minsize = minsize;

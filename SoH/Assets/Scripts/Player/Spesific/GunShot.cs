@@ -31,37 +31,33 @@ public class GunShot : MonoBehaviour
 
     void FixedUpdate()
     {
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun"))
+        {
+            explosed = true;
+
+            for (int i = 0; i < lastBombs.Count; i++)
+            {
+                lastBombs[i].GetComponent<BombExplode>().Explode();
+            }
+        }
+
         if ((this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun") && !reloading)
         {  
             if (lastBombs.Count == 0)
             {
-                foreach (GameObject gameObject in lastBombs)
-                {
-                    if (gameObject == null)
-                    {
-                        lastBombs.Remove(gameObject);
-                    }
-                }
-
                 if (Input.GetMouseButtonDown(0) && (ammo > 0) && (Time.time - th > cooldown))
                 {
+                    explosed = false;
                     triattack = false;
                     hth = Time.time;
                     PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
                 }
                 else if (Input.GetMouseButtonDown(1) && (ammo == 3) && (Time.time - th > cooldown))
                 {
+                    explosed = false;
                     triattack = true;
                     hth = Time.time;
                     PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
-                }
-            }
-            else
-            {
-                explosed = true;
-                foreach (GameObject gameObject in lastBombs)
-                {
-                    gameObject.GetComponent<BombExplode>().Explode();
                 }
             }
             
@@ -99,7 +95,6 @@ public class GunShot : MonoBehaviour
                     th = Time.time;
                     hth = 0;
                 }
-                explosed = false;
             }
         }
     }
