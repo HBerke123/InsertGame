@@ -59,7 +59,7 @@ public class LaserBeam : LaserTrigger
                     hpdrain.health = hpdrain.maxHealth;
                     collider.gameObject.transform.position = new Vector3(0f, 0f, 0f);
                     hpdrain.health = hpdrain.maxHealth;
-                    hpdrain.UpdateHealthBar(hpdrain.health / hpdrain.maxHealth);
+                    hpdrain.UpdateHealthBar();
                     cooldownHolder = Time.time;
                 }
             }

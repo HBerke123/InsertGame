@@ -29,7 +29,7 @@ public class Collectibles : MonoBehaviour
             hpdrain.health = hpdrain.maxHealth;
         }
         Mathf.Round(hpdrain.health);
-        UpdateHealthBar(hpdrain.health / hpdrain.maxHealth);
+        hpdrain.UpdateHealthBar();
     }
 
     public void RegainSTE(float regained)
@@ -41,11 +41,6 @@ public class Collectibles : MonoBehaviour
         }
         Mathf.Round(cEDrainage.cE);
         cEDrainage.UpdateCEBar();
-    }
-
-    public void UpdateHealthBar(float newHealth)
-    {
-        hpdrain.slider.value = newHealth;
     }
 
     void OnTriggerEnter2D(Collider2D target)

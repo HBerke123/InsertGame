@@ -6,20 +6,28 @@ public class Bar : MonoBehaviour
 {
     public float maxValue;
     public float curValue;
-    private float percentage;
-    public float length = 2.4f;
+    float startX;
+    float maxX;
+
+    private void Start()
+    {
+        startX = this.transform.localPosition.x;
+        maxX = this.GetComponent<SpriteRenderer>().size.x;
+    }
 
     private void Update()
     {
-        if (curValue <= 0) {
+        float percentage = curValue / maxValue;
+        if (percentage < 0)
+        {
             percentage = 0;
         }
-        else
+        else if (percentage > 1)
         {
-            percentage = curValue / maxValue;
+            percentage = 1;
         }
 
-        this.transform.localScale = new Vector3( length * percentage, this.transform.localScale.y, 0);
-        this.transform.localPosition = new Vector3( (1 - percentage) * -length/2 , this.transform.localPosition.y, 0);
+        this.GetComponent<SpriteRenderer>().size = new Vector2(maxX * percentage, this.GetComponent<SpriteRenderer>().size.y);
+        this.transform.localPosition = new Vector3((startX - (1 - percentage) * this.transform.localScale.x * maxX) / 2, this.transform.localPosition.y, 0);
     }
 }

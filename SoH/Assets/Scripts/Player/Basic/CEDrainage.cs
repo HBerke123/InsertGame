@@ -6,8 +6,8 @@ using TMPro;
 
 public class CEDrainage : MonoBehaviour
 {
-    public float cE, maxCE = 1000;
-    public GameObject ceBar;
+    public float cE, maxCE;
+    public Bar cEBar;
 
     public void Start()
     {
@@ -40,6 +40,7 @@ public class CEDrainage : MonoBehaviour
     
     public void UpdateCEBar()
     {
-        ceBar.GetComponent<Slider>().value = cE / maxCE;
+        cEBar.maxValue = maxCE;
+        cEBar.curValue = cE;
     }
 }

@@ -12,7 +12,8 @@ public class BossHPBar : MonoBehaviour
         if (Boss != null)
         {
             this.GetComponent<RectTransform>().localScale = Vector3.one;
-            this.GetComponent<Slider>().value = Boss.GetComponent<HealthDrainageOnEnemy>().health  / Boss.GetComponent<HealthDrainageOnEnemy>().maxHealth;
+            this.GetComponentInChildren<Bar>().maxValue = Boss.GetComponent<HealthDrainageOnEnemy>().maxHealth;
+            this.GetComponentInChildren<Bar>().curValue = Boss.GetComponent<HealthDrainageOnEnemy>().health;
         }
         else
         {

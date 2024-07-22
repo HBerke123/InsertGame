@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class HealthDrainage : MonoBehaviour
 {
     public TestingTeleportation testingTeleportation;
-    public Slider slider;
-    public float health = 0;
-    public float maxHealth = 100;
+    public Bar healthBar;
+    public float health;
+    public float maxHealth;
 
     public void Start()
     {
-        health = 50;
-        UpdateHealthBar(health / maxHealth);
+        UpdateHealthBar();
     }
 
     void Update()
@@ -29,7 +28,7 @@ public class HealthDrainage : MonoBehaviour
             this.GetComponent<Movement>().stick = false;
             this.GetComponent<Jump>().stick = false;
             this.transform.position = Vector3.zero;
-            UpdateHealthBar(health / maxHealth);
+            UpdateHealthBar();
         }
     }
 
@@ -37,18 +36,19 @@ public class HealthDrainage : MonoBehaviour
     {
         health -= amount;
         health = Mathf.Round(health);
-        UpdateHealthBar(health / maxHealth);
+        UpdateHealthBar();
     }
 
     public void Heal(float amount)
     {
         health += amount;
         health = Mathf.Round(health);
-        UpdateHealthBar(health / maxHealth);
+        UpdateHealthBar();
     }
 
-    public void UpdateHealthBar(float newHealth)
+    public void UpdateHealthBar()
     {
-        slider.value = newHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.curValue = health;
     }
 }
