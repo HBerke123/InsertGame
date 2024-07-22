@@ -57,9 +57,9 @@ public class ReptileEnemy : MonoBehaviour
                 }
             }
 
-            if (this.GetComponent<ForcesOnObject>().Force.y != 0)
+            if (this.GetComponent<ForcesOnObject>().Force != Vector2.zero)
             {
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * -distancex / Mathf.Abs(distancex), this.GetComponent<ForcesOnObject>().Force.y);
+                this.GetComponent<Rigidbody2D>().velocity = this.GetComponent<ForcesOnObject>().Force;
             }
             else
             {

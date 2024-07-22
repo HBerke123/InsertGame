@@ -152,7 +152,7 @@ MonoBehaviour:
   rangex: 6
   speed: 2
   attackDamage: 1
-  attackRange: 0.25
+  attackRange: 0.75
   attackFrequency: 2
   attackSpeedUpRate: 0.1
 --- !u!114 &1111135534365861718
@@ -184,6 +184,9 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   enemyNum: 1
+  isBoss: 0
+  slider: {fileID: 0}
+  hPBar: {fileID: 0}
 --- !u!114 &-6012460088011088314
 MonoBehaviour:
   m_ObjectHideFlags: 0

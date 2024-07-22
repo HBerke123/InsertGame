@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class HealthDrainage : MonoBehaviour
 {
     public TestingTeleportation testingTeleportation;
-    public TextMeshProUGUI hpDisplayText;
     public Slider slider;
     public float health = 0;
     public float maxHealth = 100;
@@ -26,7 +24,10 @@ public class HealthDrainage : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
+
             health = maxHealth;
+            this.GetComponent<Movement>().stick = false;
+            this.GetComponent<Jump>().stick = false;
             this.transform.position = Vector3.zero;
             UpdateHealthBar(health / maxHealth);
         }
@@ -49,6 +50,5 @@ public class HealthDrainage : MonoBehaviour
     public void UpdateHealthBar(float newHealth)
     {
         slider.value = newHealth;
-        hpDisplayText.text = health + "/" + maxHealth;
     }
 }

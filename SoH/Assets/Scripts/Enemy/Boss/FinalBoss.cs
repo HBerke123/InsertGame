@@ -51,18 +51,6 @@ public class FinalBoss : MonoBehaviour
         lastDirection = direction;
     }
 
-    private void Update()
-    {
-        if ( Input.GetKeyDown(KeyCode.K))
-        {
-            this.GetComponent<HealthDrainageOnEnemy>().health = 200;
-        }
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
-            this.GetComponent<HealthDrainageOnEnemy>().health = 100;
-        }
-    }
-
     private void FixedUpdate()
     {
         if ((mth != 0) && (Time.time - mth > moveFrequency) && (sth == 0) && (!onAttack) && (dth == 0) && (lth == 0) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && (this.GetComponentInChildren<GroundDetection>().detected))

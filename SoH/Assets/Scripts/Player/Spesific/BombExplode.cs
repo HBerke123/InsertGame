@@ -12,6 +12,7 @@ public class BombExplode : MonoBehaviour
     public float ttime;
     public GameObject SoundWave;
     GameObject player;
+    bool explosed;
     float th;
 
     private void Start()
@@ -30,14 +31,18 @@ public class BombExplode : MonoBehaviour
 
     public void Explode()
     {
-        player.GetComponentInChildren<GunShot>().lastBombs.Remove(this.gameObject);
-        GameObject SBox = Instantiate(SoundWave, this.transform.position, new Quaternion(0, 0, 0, 0));
-        SBox.GetComponent<SkillEnd>().TotalTime = ttime;
-        SBox.GetComponent<BombSoundWave>().minsize = minsize;
-        SBox.GetComponent<BombSoundWave>().maxsize = maxsize;
-        SBox.GetComponent<ForceEnemies>().forcePower = forcePower;
-        SBox.GetComponent<DamageEnemies>().damageAmount = damageAmount;
-        Destroy(this.gameObject);
+        if (explosed)
+        {
+            explosed = true;
+            player.GetComponentInChildren<GunShot>().lastBombs.Remove(this.gameObject);
+            GameObject SBox = Instantiate(SoundWave, this.transform.position, new Quaternion(0, 0, 0, 0));
+            SBox.GetComponent<SkillEnd>().TotalTime = ttime;
+            SBox.GetComponent<BombSoundWave>().minsize = minsize;
+            SBox.GetComponent<BombSoundWave>().maxsize = maxsize;
+            SBox.GetComponent<ForceEnemies>().forcePower = forcePower;
+            SBox.GetComponent<DamageEnemies>().damageAmount = damageAmount;
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

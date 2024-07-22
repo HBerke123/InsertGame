@@ -189,6 +189,7 @@ MonoBehaviour:
   health: 500
   maxHealth: 500
   enemyNum: 9
+  isBoss: 1
 --- !u!114 &1395232599140071509
 MonoBehaviour:
   m_ObjectHideFlags: 0

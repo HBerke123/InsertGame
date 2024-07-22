@@ -6,42 +6,40 @@ using TMPro;
 
 public class CEDrainage : MonoBehaviour
 {
-    public float ce, maxCE = 1000;
+    public float cE, maxCE = 1000;
     public GameObject ceBar;
-    public GameObject ceDisplay;
 
     public void Start()
     {
-        ce = 500;
+        cE = 500;
         UpdateCEBar();
     }
 
     public void LoseCE(float dmg)
     {
-        ce -= dmg;
-        Mathf.Round(ce);
+        cE -= dmg;
+        Mathf.Round(cE);
         UpdateCEBar();
     }
 
     public void GainCE(float dmg)
     {
-        ce += dmg;
-        Mathf.Round(ce);
+        cE += dmg;
+        Mathf.Round(cE);
         UpdateCEBar();
     }
 
     void Update()
     {
-        if (ce <= 0)
+        if ((cE <= 0) || (cE >= maxCE))
         {
-            ce = maxCE;
-            this.transform.position = new Vector3(0f, 0f, 0f);
+            cE = maxCE / 2;
+            this.transform.position = new Vector3(0, 0, 0);
         }
     }
     
     public void UpdateCEBar()
     {
-        ceBar.GetComponent<Slider>().value = ce / maxCE;
-        ceDisplay.GetComponent<TextMeshProUGUI>().text = ce + " / " + Mathf.Round(maxCE);
+        ceBar.GetComponent<Slider>().value = cE / maxCE;
     }
 }

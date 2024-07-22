@@ -7,6 +7,22 @@ public class HealthDrainageOnEnemy : MonoBehaviour
     public float health;
     public float maxHealth;
     public int enemyNum;
+    public bool isBoss;
+    BossHPBar bossHpBar;
+
+
+    private void Start()
+    {
+        bossHpBar = GameObject.FindGameObjectWithTag("BossHPBar").GetComponent<BossHPBar>();     
+    }
+
+    private void Update()
+    {
+        if (isBoss)
+        {
+            bossHpBar.Boss = this.gameObject;
+        }
+    }
 
     public void LoseHealth(float amount)
     {

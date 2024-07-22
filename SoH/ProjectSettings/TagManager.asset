@@ -16,6 +16,7 @@ TagManager:
   - Scream
   - EnemySound
   - EnemyScream
+  - BossHPBar
   layers:
   - Default
   - TransparentFX
