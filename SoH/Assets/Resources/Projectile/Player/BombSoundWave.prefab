@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b2b4abb9b00e44abfe46e9361a146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalTime: 0
+  TotalTime: 0.125
 --- !u!114 &3716871707302494048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,8 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35fd8126eae4314e8a90031457110eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minsize: 0
-  maxsize: 0
+  minsize: 1
+  maxsize: 3.125
 --- !u!114 &8328246807837575348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 5
-  forcePower: 0
+  forcePower: 5
   destroyOnTouch: 0
   arrow: {fileID: 5975410196788591836}
 --- !u!58 &896046917192295331

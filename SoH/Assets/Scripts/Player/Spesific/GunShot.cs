@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class GunShot : MonoBehaviour
 {
-    public List<GameObject> lastBombs = new List<GameObject>();
+    public List<GameObject> lastBombs = new();
+    public GameObject arrow;
     public GameObject PreBombShower;
     public GameObject Bomb;
-    public GameObject SoundWave;
     public float soundTime;
     public float damage;
-    public float forcePower;
     public float htime;
-    public float ttime;
     public float reloadtime;
     public float ceregaintime;
     public float minbombforce;
@@ -20,18 +18,31 @@ public class GunShot : MonoBehaviour
     public float cooldown;
     public float minsize;
     public float maxsize;
-    public float twtime;
+    public float bombForceY;
     public int cecost;
     int ammo = 3;
     bool explosed;
-    bool triattack;
+    bool started;
     bool reloading;
     float th = 0;
     float hth = 0;
 
     void FixedUpdate()
     {
-        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun"))
+        if ((th != 0) && (Time.time - th > cooldown))
+        {
+            th = 0;
+        }
+        
+        if ((hth != 0) && (Time.time - hth > htime))
+        {
+            hth = 0;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun"))
         {
             explosed = true;
 
@@ -45,51 +56,32 @@ public class GunShot : MonoBehaviour
         {  
             if (lastBombs.Count == 0)
             {
-                if (Input.GetMouseButtonDown(0) && (ammo > 0) && (Time.time - th > cooldown))
+                if (Input.GetMouseButtonDown(0) && (ammo > 0) && (th == 0))
                 {
+                    started = true;
                     explosed = false;
-                    triattack = false;
                     hth = Time.time;
-                    PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
-                }
-                else if (Input.GetMouseButtonDown(1) && (ammo == 3) && (Time.time - th > cooldown))
-                {
-                    explosed = false;
-                    triattack = true;
-                    hth = Time.time;
-                    PreBombShower.GetComponent<ShowPreBombs>().ShowBombs(triattack);
+                    PreBombShower.GetComponent<PreBombGroup>().showing = true;
+                    PreBombShower.GetComponent<ShowPreBombs>().ShowBombs();
                 }
             }
-            
+
             if (!explosed)
             {
-                if ((Input.GetMouseButtonUp(0) || (Time.time - hth > htime)) && (hth != 0) && (ammo > 0) && (Time.time - th > cooldown) && !triattack)
+                if ((Input.GetMouseButtonUp(0) || (hth == 0)) && (ammo > 0) && (th == 0) && started)
                 {
+                    started = false;
                     this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-                    PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
-                    if (Time.time - hth > htime)
-                    {
-                        SendBomb(1, 1);
-                    }
-                    else
-                    {
-                        SendBomb(1, (Time.time - hth) / htime);
-                    }
-                    th = Time.time;
-                    hth = 0;
-                }
-                else if ((Input.GetMouseButtonUp(1) || (Time.time - hth > htime)) && (hth != 0) && (ammo == 3) && (Time.time - th > cooldown) && triattack)
-                {
-                    this.GetComponentInParent<MakeSound>().AddTime(soundTime);
+                    PreBombShower.GetComponent<PreBombGroup>().showing = false;
                     PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
 
-                    if (Time.time - hth > htime)
+                    if (hth == 0)
                     {
-                        for (int i = 0; i < 3; i++) SendBomb(i, 1);
+                        SendBomb(1);
                     }
                     else
                     {
-                        for (int i = 0; i < 3; i++) SendBomb(i, (Time.time - hth) / htime);
+                        SendBomb((Time.time - hth) / htime);
                     }
 
                     th = Time.time;
@@ -99,33 +91,32 @@ public class GunShot : MonoBehaviour
         }
     }
 
-    void SendBomb(int direction, float bombforce)
+    void SendBomb(float bombforce)
     {
-        GameObject SBox = Instantiate(Bomb, this.transform.position, new Quaternion(0, 0, 0, 0));
+        arrow.transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        GameObject SBox = Instantiate(Bomb, this.transform.position, Quaternion.identity);
         lastBombs.Add(SBox);
 
-        if (this.GetComponentInParent<SpriteRenderer>().flipX)
+        if (arrow.transform.localRotation.eulerAngles.y < 180)
         {
-            SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(-minbombforce + -bombforce * (maxbombforce - minbombforce), -5 + 5 * direction), ForceMode2D.Impulse);
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(-arrow.transform.localRotation.eulerAngles.x), Mathf.Sin(-arrow.transform.localRotation.eulerAngles.x)) * maxbombforce;
+            this.transform.localScale = Vector3.one;
+            this.transform.localRotation = Quaternion.Euler(0, 0, -arrow.transform.localRotation.eulerAngles.x);
         }
-        else 
-        { 
-            SBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(minbombforce + bombforce * (maxbombforce - minbombforce), -5 + 5 * direction), ForceMode2D.Impulse);
+        else
+        {
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(-arrow.transform.localRotation.eulerAngles.x), Mathf.Sin(-arrow.transform.localRotation.eulerAngles.x)) * maxbombforce;
+            this.transform.localScale = Vector3.one - Vector3.right * 2;
+            this.transform.localRotation = Quaternion.Euler(0, 0, arrow.transform.localRotation.eulerAngles.x);
         }
 
-        SBox.GetComponent<BombExplode>().TotalTime = ttime;
-        SBox.GetComponent<BombExplode>().minsize = minsize;
-        SBox.GetComponent<BombExplode>().maxsize = maxsize;
-        SBox.GetComponent<BombExplode>().ttime = twtime;
-        SBox.GetComponent<BombExplode>().SoundWave = SoundWave;
-        SBox.GetComponent<BombExplode>().forcePower = forcePower;
         SBox.GetComponent<BombExplode>().damageAmount = damage;
         ammo--;
 
         if (ammo == 0) 
         {
             StartCoroutine(Reload());
-        };
+        }
     }
 
     IEnumerator Reload()
@@ -135,7 +126,6 @@ public class GunShot : MonoBehaviour
         StartCoroutine(RegainCE());
         yield return new WaitForSecondsRealtime(reloadtime);
         reloading = false;
-        th = 0;
         ammo = 3;
     }
 

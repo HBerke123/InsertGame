@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 0
   forcePower: 0
-  TotalTime: 0
+  TotalTime: 1.5
   minsize: 0
   maxsize: 0
   ttime: 0

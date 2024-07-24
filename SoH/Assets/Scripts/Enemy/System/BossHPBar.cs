@@ -9,7 +9,7 @@ public class BossHPBar : MonoBehaviour
 
     private void Update()
     {
-        if (Boss != null)
+        if ((Boss != null) && (Boss.activeSelf == true))
         {
             this.GetComponent<RectTransform>().localScale = Vector3.one;
             this.GetComponentInChildren<Bar>().maxValue = Boss.GetComponent<HealthDrainageOnEnemy>().maxHealth;

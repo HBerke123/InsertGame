@@ -9,6 +9,7 @@ public class ButtonEvents : MonoBehaviour
     public GameObject saves;
     public GameObject menu;
     public MenuOpener menuOpener;
+    public TimeControlStop timeControlStop;
 
     public void Continue()
     {
@@ -41,6 +42,8 @@ public class ButtonEvents : MonoBehaviour
 
     public void MainMenu()
     {
+        Debug.Log(timeControlStop);
+        timeControlStop.StopSlowMotion();
         SceneManager.LoadScene("MainMenu");
     }
 
