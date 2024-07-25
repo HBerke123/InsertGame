@@ -19,16 +19,7 @@ public class HealthDrainage : MonoBehaviour
     {
         if (health <= 0)
         {
-            foreach (GameObject gameObject in testingTeleportation.enemies)
-            {
-                gameObject.SetActive(false);
-            }
-
-            health = maxHealth;
-            this.GetComponent<Movement>().stick = false;
-            this.GetComponent<Jump>().stick = false;
-            this.transform.position = Vector3.zero;
-            UpdateHealthBar();
+            Death();
         }
     }
 
@@ -50,5 +41,20 @@ public class HealthDrainage : MonoBehaviour
     {
         healthBar.maxValue = maxHealth;
         healthBar.curValue = health;
+    }
+
+    public void Death()
+    {
+        foreach (GameObject gameObject in testingTeleportation.enemies)
+        {
+            gameObject.SetActive(false);
+        }
+
+        this.GetComponent<CEDrainage>().cE = this.GetComponent<CEDrainage>().maxCE / 2;
+        health = maxHealth;
+        this.GetComponent<Movement>().stick = false;
+        this.GetComponent<Jump>().stick = false;
+        this.transform.position = Vector3.zero;
+        UpdateHealthBar();
     }
 }

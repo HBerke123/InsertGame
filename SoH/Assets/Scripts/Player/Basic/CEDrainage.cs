@@ -33,8 +33,7 @@ public class CEDrainage : MonoBehaviour
     {
         if ((cE <= 0) || (cE >= maxCE))
         {
-            cE = maxCE / 2;
-            this.transform.position = new Vector3(0, 0, 0);
+            this.GetComponent<HealthDrainage>().Death();
         }
     }
     

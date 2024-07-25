@@ -11,8 +11,8 @@ public class ShowPreBombs : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            this.GetComponent<PreBombGroup>().PreBombs[i].SetActive(true);
-            this.GetComponent<PreBombGroup>().PreBombs[i].GetComponent<ShowPreBomb>().StartShow();
+            this.GetComponent<PreBombGroup>().preBombs[i].SetActive(true);
+            this.GetComponent<PreBombGroup>().preBombs[i].GetComponent<ShowPreBomb>().StartShow();
         }
     }
 
@@ -20,7 +20,7 @@ public class ShowPreBombs : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            this.GetComponent<PreBombGroup>().PreBombs[i].SetActive(false);
+            this.GetComponent<PreBombGroup>().preBombs[i].SetActive(false);
         }
     }
 }

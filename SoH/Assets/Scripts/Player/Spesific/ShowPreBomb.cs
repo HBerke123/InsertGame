@@ -11,7 +11,7 @@ public class ShowPreBomb : MonoBehaviour
 
     public void StartShow()
     {
-        this.transform.localPosition = new Vector3(this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().PreBombs[bombnum].transform.localPosition.x, this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().PreBombs[bombnum].transform.localPosition.y, 0);
+        this.transform.localPosition = new Vector3(this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.x, this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.y, 0);
         this.GetComponent<SpriteRenderer>().enabled = true;
         th = Time.time;
     }
@@ -24,6 +24,6 @@ public class ShowPreBomb : MonoBehaviour
             this.gameObject.SetActive(false); 
         }
 
-        this.transform.localPosition = new Vector3(this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().PreBombs[bombnum].transform.localPosition.x + (Time.time - th) / ttime * (this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[1].GetComponent<PreBombGroup>().PreBombs[bombnum].transform.localPosition.x - this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().PreBombs[bombnum].transform.localPosition.x), this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().PreBombs[bombnum].transform.localPosition.y, 0);
+        this.transform.localPosition = new Vector3(this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.x + (Time.time - th) / ttime * (this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[1].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.x - this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.x), this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.y, 0);
     }
 }

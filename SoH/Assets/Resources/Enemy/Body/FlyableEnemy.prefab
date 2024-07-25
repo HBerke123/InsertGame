@@ -153,8 +153,10 @@ MonoBehaviour:
   arrow: {fileID: 4193538533455114954}
   Thorn: {fileID: 5406501876786226586, guid: 6a62a693dfdc33040b09abf3d48735eb, type: 3}
   thornDamage: 5
-  thornTime: 4
-  flyspeed: 4
+  flySpeed: 4
+  followRange: 12
+  stopRange: 8
+  followSpeed: 6
   rangex: 10
   rangey: 6
   cooldown: 2
@@ -188,6 +190,7 @@ MonoBehaviour:
   health: 20
   maxHealth: 20
   enemyNum: 0
+  isBoss: 0
 --- !u!114 &5609134518529886738
 MonoBehaviour:
   m_ObjectHideFlags: 0

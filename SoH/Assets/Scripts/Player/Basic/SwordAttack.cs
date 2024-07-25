@@ -18,32 +18,48 @@ public class SwordAttack : MonoBehaviour
     public int heavyCeCost;
     public int skillCeCost;
     float th = 0;
+    bool ready;
     bool attackable = true;
     int attacknum;
+
+    private void FixedUpdate()
+    {
+        if (Time.time - th > skillholdtime)
+        {
+            th = 0;
+        }
+    }
 
     private void Update()
     {
         if (!menuOpener.isMenuOpen)
         {
-            if (attackable && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword"))
+            if (attackable)
             {
-                if (((Time.time - th >= skillholdtime) || (Input.GetMouseButtonUp(1))) && (th > 0))
+                if (Input.GetMouseButtonDown(0) && attackable)
                 {
-                    if (Time.time - th < skillholdtime)
+                    ready = true;
+                    th = Time.time;
+                }
+                else if (((th == 0) || (Input.GetMouseButtonUp(0))) & ready)
+                {
+                    ready = false;
+
+                    if (th != 0)
                     {
                         this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-                        th = 0;
+
                         attackable = false;
-                        attacknum = 1;
-                        this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 0.75f);
+                        attacknum = 0;
+                        this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1);
 
                         if (this.GetComponentInParent<SpriteRenderer>().flipX) this.transform.localScale = new Vector3(-1, 1, 1);
                         else this.transform.localScale = new Vector3(1, 1, 1);
 
-                        this.GetComponentInParent<CEDrainage>().LoseCE(heavyCeCost);
+                        this.GetComponentInParent<CEDrainage>().LoseCE(quickCeCost);
                         this.GetComponent<BoxCollider2D>().enabled = true;
 
-                        StartCoroutine(RegainCE(heavyCeCost));
+                        StartCoroutine(RegainCE(quickCeCost));
                         StartCoroutine(Attackend());
                         StartCoroutine(Cooldown());
                     }
@@ -63,28 +79,6 @@ public class SwordAttack : MonoBehaviour
                         StartCoroutine(Attackend());
                         StartCoroutine(Cooldown());
                     }
-                }
-                else if (Input.GetMouseButtonDown(0) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword"))
-                {
-                    this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-
-                    attackable = false;
-                    attacknum = 0;
-                    this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1);
-
-                    if (this.GetComponentInParent<SpriteRenderer>().flipX) this.transform.localScale = new Vector3(-1, 1, 1);
-                    else this.transform.localScale = new Vector3(1, 1, 1);
-
-                    this.GetComponentInParent<CEDrainage>().LoseCE(quickCeCost);
-                    this.GetComponent<BoxCollider2D>().enabled = true;
-
-                    StartCoroutine(RegainCE(quickCeCost));
-                    StartCoroutine(Attackend());
-                    StartCoroutine(Cooldown());
-                }
-                else if (Input.GetMouseButtonDown(1) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Sword"))
-                {
-                    th = Time.time;
                 }
             }
         }

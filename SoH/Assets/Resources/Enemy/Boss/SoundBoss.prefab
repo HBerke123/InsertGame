@@ -306,7 +306,6 @@ MonoBehaviour:
   rushSpeed: 12
   rushTime: 1.2
   soundSpeed: 6
-  soundTime: 5
   screamTime: 3
   maxMove: 5
   rushBox: {fileID: 6613589284281779054, guid: 8781210c0f37cb345a4f9007cb338524, type: 3}
@@ -327,6 +326,7 @@ MonoBehaviour:
   health: 500
   maxHealth: 500
   enemyNum: 9
+  isBoss: 1
 --- !u!114 &2410109213677025135
 MonoBehaviour:
   m_ObjectHideFlags: 0

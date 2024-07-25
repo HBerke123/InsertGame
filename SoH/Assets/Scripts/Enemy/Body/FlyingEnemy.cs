@@ -8,7 +8,10 @@ public class FlyingEnemy : MonoBehaviour
     public GameObject arrow;
     public GameObject Thorn;
     public float thornDamage;
-    public float flyspeed;
+    public float flySpeed;
+    public float followRange;
+    public float stopRange;
+    public float followSpeed;
     public float rangex;
     public float rangey;
     public float cooldown;
@@ -33,34 +36,51 @@ public class FlyingEnemy : MonoBehaviour
     {
         float distancex = this.transform.position.x - player.transform.position.x;
         float distancey = this.transform.position.y - player.transform.position.y;
-        if (Mathf.Abs(distancex) < rangex)
+        if (Mathf.Abs(distancex) < followRange)
         {
+            if (this.GetComponent<ForcesOnObject>().Force.x == 0)
+            {
+                if ((Mathf.Abs(distancex) < followRange) && (stopRange < Mathf.Abs(distancex)))
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-distancex / Mathf.Abs(distancex), this.GetComponent<Rigidbody2D>().velocity.y);
+                }
+                else
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, this.GetComponent<Rigidbody2D>().velocity.y);
+                }
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
+            }
+
             if (distancey < rangey * 3 / 4)
             {
                 this.GetComponent<Rigidbody2D>().gravityScale = 0;
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, flyspeed + this.GetComponent<ForcesOnObject>().Force.y);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, flySpeed + this.GetComponent<ForcesOnObject>().Force.y);
             }
             else if (distancey < rangey)
             {
                 this.GetComponent<Rigidbody2D>().gravityScale = 0;
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, this.GetComponent<ForcesOnObject>().Force.y);
             }
             else
             {
                 if (this.GetComponent<ForcesOnObject>().Force.y != 0)
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, this.GetComponent<ForcesOnObject>().Force.y);
                 }
                 else
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, this.GetComponent<Rigidbody2D>().velocity.y);
                 }
                 
                 this.GetComponent<Rigidbody2D>().gravityScale = 1;
             }
 
-            if (th == 0)
-            {
+
+            if ((Mathf.Abs(distancex) < rangex) && (th == 0))
+            { 
                 th = Time.time;
             }
         }

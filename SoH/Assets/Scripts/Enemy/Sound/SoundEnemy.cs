@@ -28,15 +28,6 @@ public class SoundEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (sth == 0) && (th != 0) && (Time.time - th > shootFrequency) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
-        {
-            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex)
-            {
-                Shoot();
-            }
-            th = 0;
-        }
-
         if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (sth != 0) && (Time.time - sth > screamFrequency) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
         {
             if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex)
@@ -44,6 +35,15 @@ public class SoundEnemy : MonoBehaviour
                 Scream();
             }
             sth = 0;
+        }
+
+        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (sth == 0) && (th != 0) && (Time.time - th > shootFrequency) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
+        {
+            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex)
+            {
+                Shoot();
+            }
+            th = 0;
         }
     }
 

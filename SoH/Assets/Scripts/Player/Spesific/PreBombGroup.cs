@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PreBombGroup : MonoBehaviour
 {
-    public GameObject[] PreBombs;
+    public List<GameObject> preBombs = new List<GameObject>();
     public GameObject arrow;
     public bool showing;
 
@@ -22,6 +22,11 @@ public class PreBombGroup : MonoBehaviour
             this.transform.localScale = Vector3.one - Vector3.right * 2;
             this.transform.localRotation = Quaternion.Euler(0, 0, arrow.transform.localRotation.eulerAngles.x);
         }
+    }
+
+    public void SetBomb(GameObject bomb)
+    {
+        preBombs.Add(bomb);
     }
 
     private void Update()

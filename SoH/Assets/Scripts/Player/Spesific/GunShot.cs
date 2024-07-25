@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunShot : MonoBehaviour
 {
     public List<GameObject> lastBombs = new();
+    public GameObject[] preBombGroups;
     public GameObject preBombShower;
     public GameObject preBomb;
     public GameObject bomb;
@@ -52,21 +53,22 @@ public class GunShot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && (this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun"))
+        if (Input.GetMouseButtonDown(1))
         {
-            explosed = true;
+            explosed = false;
 
             for (int i = 0; i < lastBombs.Count; i++)
             {
                 lastBombs[i].GetComponent<BombExplode>().Explode();
+                explosed = true;
             }
         }
 
-        if ((this.GetComponentInParent<PrimaryItems>().itemEquipped == "Gun") && !reloading)
+        if (!reloading)
         {  
             if (lastBombs.Count == 0)
             {
-                if (Input.GetMouseButtonDown(0) && (ammo > 0) && (th == 0))
+                if (Input.GetMouseButtonDown(1) && (ammo > 0) && (th == 0) && (!explosed))
                 {
                     started = true;
                     explosed = false;
@@ -77,27 +79,24 @@ public class GunShot : MonoBehaviour
                 }
             }
 
-            if (!explosed)
+             if ((Input.GetMouseButtonUp(1) || (hth == 0)) && (ammo > 0) && (th == 0) && started)
             {
-                if ((Input.GetMouseButtonUp(0) || (hth == 0)) && (ammo > 0) && (th == 0) && started)
+                started = false;
+                this.GetComponentInParent<MakeSound>().AddTime(soundTime);
+                preBombShower.GetComponent<PreBombGroup>().showing = false;
+                preBombShower.GetComponent<ShowPreBombs>().StopShowing();
+
+                if (hth == 0)
                 {
-                    started = false;
-                    this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-                    preBombShower.GetComponent<PreBombGroup>().showing = false;
-                    preBombShower.GetComponent<ShowPreBombs>().StopShowing();
-
-                    if (hth == 0)
-                    {
-                        SendBomb(1);
-                    }
-                    else
-                    {
-                        SendBomb((Time.time - hth) / htime);
-                    }
-
-                    th = Time.time;
-                    hth = 0;
+                    SendBomb(1);
                 }
+                else
+                {
+                    SendBomb((Time.time - hth) / htime);
+                }
+
+                th = Time.time;
+                hth = 0;
             }
         }
     }
@@ -122,9 +121,9 @@ public class GunShot : MonoBehaviour
     void SendPreBomb(int bombForce, int time)
     {
         GameObject SBox = Instantiate(preBomb, Vector3.zero, Quaternion.identity);
+        SBox.GetComponent<PreBombStop>().owningGroup = preBombGroups[bombForce];
         SBox.GetComponent<Rigidbody2D>().velocity = Vector2.right * (minbombforce + (maxbombforce - minbombforce) * bombForce);
-        SBox.GetComponent<PreBombStop>().totalTime = time / 10;
-        Debug.Log(SBox.GetComponent<Rigidbody2D>().velocity.ToString() + " " + SBox.GetComponent<PreBombStop>().totalTime.ToString());
+        SBox.GetComponent<PreBombStop>().totalTime = time * 0.1f;
         Destroy(SBox.GetComponent<ShowPreBomb>());
     }
 
