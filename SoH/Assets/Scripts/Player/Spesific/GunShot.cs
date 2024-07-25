@@ -5,9 +5,9 @@ using UnityEngine;
 public class GunShot : MonoBehaviour
 {
     public List<GameObject> lastBombs = new();
-    public GameObject arrow;
-    public GameObject PreBombShower;
-    public GameObject Bomb;
+    public GameObject preBombShower;
+    public GameObject preBomb;
+    public GameObject bomb;
     public float soundTime;
     public float damage;
     public float htime;
@@ -18,7 +18,6 @@ public class GunShot : MonoBehaviour
     public float cooldown;
     public float minsize;
     public float maxsize;
-    public float bombForceY;
     public int cecost;
     int ammo = 3;
     bool explosed;
@@ -26,6 +25,17 @@ public class GunShot : MonoBehaviour
     bool reloading;
     float th = 0;
     float hth = 0;
+
+    private void Start()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 1; j < 6; j++)
+            {
+                SendPreBomb(i, j);
+            }
+        }
+    }
 
     void FixedUpdate()
     {
@@ -61,8 +71,9 @@ public class GunShot : MonoBehaviour
                     started = true;
                     explosed = false;
                     hth = Time.time;
-                    PreBombShower.GetComponent<PreBombGroup>().showing = true;
-                    PreBombShower.GetComponent<ShowPreBombs>().ShowBombs();
+                    preBombShower.GetComponent<PreBombGroup>().showing = true;
+                    preBombShower.GetComponent<PreBombGroup>().ShowGroup();
+                    preBombShower.GetComponent<ShowPreBombs>().ShowBombs();
                 }
             }
 
@@ -72,8 +83,8 @@ public class GunShot : MonoBehaviour
                 {
                     started = false;
                     this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-                    PreBombShower.GetComponent<PreBombGroup>().showing = false;
-                    PreBombShower.GetComponent<ShowPreBombs>().StopShowing();
+                    preBombShower.GetComponent<PreBombGroup>().showing = false;
+                    preBombShower.GetComponent<ShowPreBombs>().StopShowing();
 
                     if (hth == 0)
                     {
@@ -91,25 +102,14 @@ public class GunShot : MonoBehaviour
         }
     }
 
-    void SendBomb(float bombforce)
+    void SendBomb(float bombForce)
     {
-        arrow.transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        GameObject SBox = Instantiate(Bomb, this.transform.position, Quaternion.identity);
+        float distanceX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - this.transform.position.x;
+        float distanceY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - this.transform.position.y;
+        float distance = Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceY, 2));
+        GameObject SBox = Instantiate(bomb, this.transform.position, Quaternion.identity);
         lastBombs.Add(SBox);
-
-        if (arrow.transform.localRotation.eulerAngles.y < 180)
-        {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(-arrow.transform.localRotation.eulerAngles.x), Mathf.Sin(-arrow.transform.localRotation.eulerAngles.x)) * maxbombforce;
-            this.transform.localScale = Vector3.one;
-            this.transform.localRotation = Quaternion.Euler(0, 0, -arrow.transform.localRotation.eulerAngles.x);
-        }
-        else
-        {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(-arrow.transform.localRotation.eulerAngles.x), Mathf.Sin(-arrow.transform.localRotation.eulerAngles.x)) * maxbombforce;
-            this.transform.localScale = Vector3.one - Vector3.right * 2;
-            this.transform.localRotation = Quaternion.Euler(0, 0, arrow.transform.localRotation.eulerAngles.x);
-        }
-
+        SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
         SBox.GetComponent<BombExplode>().damageAmount = damage;
         ammo--;
 
@@ -117,6 +117,15 @@ public class GunShot : MonoBehaviour
         {
             StartCoroutine(Reload());
         }
+    }
+
+    void SendPreBomb(int bombForce, int time)
+    {
+        GameObject SBox = Instantiate(preBomb, Vector3.zero, Quaternion.identity);
+        SBox.GetComponent<Rigidbody2D>().velocity = Vector2.right * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+        SBox.GetComponent<PreBombStop>().totalTime = time / 10;
+        Debug.Log(SBox.GetComponent<Rigidbody2D>().velocity.ToString() + " " + SBox.GetComponent<PreBombStop>().totalTime.ToString());
+        Destroy(SBox.GetComponent<ShowPreBomb>());
     }
 
     IEnumerator Reload()

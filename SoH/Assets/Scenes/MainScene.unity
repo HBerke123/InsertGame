@@ -878,7 +878,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 980212541}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352324950 stripped
 GameObject:
@@ -1571,6 +1571,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &748819005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1389891590717150443, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+  m_PrefabInstance: {fileID: 1389891591163036792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &754381078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,6 +1801,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898030151}
   m_CullTransparentMesh: 1
+--- !u!1 &918000187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1389891590461313219, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+  m_PrefabInstance: {fileID: 1389891591163036792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &944625373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,6 +2134,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1161735676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1389891590101356886, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+  m_PrefabInstance: {fileID: 1389891591163036792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1201055314
 GameObject:
   m_ObjectHideFlags: 0
@@ -47282,6 +47297,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1389891590461313219, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891590717150445, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: arrow
       value: 
@@ -47326,6 +47345,30 @@ PrefabInstance:
       propertyPath: PreBombs.Array.data[8]
       value: 
       objectReference: {fileID: 269959517}
+    - target: {fileID: 1389891590717150446, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: GroupBombGroups.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891590717150446, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: GroupBombGroups.Array.data[0]
+      value: 
+      objectReference: {fileID: 1161735676}
+    - target: {fileID: 1389891590717150446, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: GroupBombGroups.Array.data[1]
+      value: 
+      objectReference: {fileID: 918000187}
+    - target: {fileID: 1389891590717150446, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: GroupBombGroups.Array.data[2]
+      value: 
+      objectReference: {fileID: 918000187}
+    - target: {fileID: 1389891590717150446, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: GroupBombGroups.Array.data[3]
+      value: 
+      objectReference: {fileID: 918000187}
+    - target: {fileID: 1389891590717150446, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: GroupBombGroups.Array.data[4]
+      value: 
+      objectReference: {fileID: 918000187}
     - target: {fileID: 1389891590988397771, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -47339,13 +47382,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 763045558}
     - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: bomb
+      value: 
+      objectReference: {fileID: 7227559544692314864, guid: d8ca3647b67654a41a047bed88e632bd, type: 3}
+    - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: arrow
       value: 
       objectReference: {fileID: 350074447}
     - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: preBomb
+      value: 
+      objectReference: {fileID: 3566748559433347259, guid: 4807fda492157794bbfc62cfd8e08816, type: 3}
+    - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: bombForceY
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: preBombShower
+      value: 
+      objectReference: {fileID: 748819005}
     - target: {fileID: 1389891592042244012, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: skillObject
       value: 
