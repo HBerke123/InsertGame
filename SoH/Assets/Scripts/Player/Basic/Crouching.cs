@@ -20,19 +20,22 @@ public class Crouching : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            isCrouching = true;
-            this.GetComponent<Movement>().speed = crouchingSpeed;
-            this.GetComponent<BoxCollider2D>().size = new Vector2(this.GetComponent<BoxCollider2D>().size.x, colliderSizeY - crouchingAmount);
-            this.GetComponent<BoxCollider2D>().offset = new Vector2(this.GetComponent<BoxCollider2D>().offset.x, colliderPositionY - crouchingAmount / 2);
-        }
-        else if (this.GetComponentInChildren<CrouchingDetection>().isSafe)
-        {
-            isCrouching = false;
-            this.GetComponent<Movement>().speed = speed;
-            this.GetComponent<BoxCollider2D>().size = new Vector2(this.GetComponent<BoxCollider2D>().size.x, colliderSizeY);
-            this.GetComponent<BoxCollider2D>().offset = new Vector2(this.GetComponent<BoxCollider2D>().offset.x, colliderPositionY);
+            if (isCrouching && this.GetComponentInChildren<CrouchingDetection>().isSafe)
+            {
+                isCrouching = false;
+                this.GetComponent<Movement>().speed = speed;
+                this.GetComponent<BoxCollider2D>().size = new Vector2(this.GetComponent<BoxCollider2D>().size.x, colliderSizeY);
+                this.GetComponent<BoxCollider2D>().offset = new Vector2(this.GetComponent<BoxCollider2D>().offset.x, colliderPositionY);
+            }
+            else
+            {
+                isCrouching = true;
+                this.GetComponent<Movement>().speed = crouchingSpeed;
+                this.GetComponent<BoxCollider2D>().size = new Vector2(this.GetComponent<BoxCollider2D>().size.x, colliderSizeY - crouchingAmount);
+                this.GetComponent<BoxCollider2D>().offset = new Vector2(this.GetComponent<BoxCollider2D>().offset.x, colliderPositionY - crouchingAmount / 2);
+            }
         }
     }
 }

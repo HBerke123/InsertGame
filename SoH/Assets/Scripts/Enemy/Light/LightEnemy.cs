@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class LightEnemy : MonoBehaviour
 {
-    GameObject player;
     public GameObject lightWave;
+    public float lightUp;
     public float lightDamage;
-    public float waveSpeed;
     public float speed;
-    public float moveRangex;
-    public float rangex;
+    public float runRange;
+    public float moveRangeX;
+    public float rangeX;
     public float shootFrequency;
+    GameObject player;
+    GameObject beam;
+    bool running;
     float th;
 
     private void Start()
@@ -23,9 +26,9 @@ public class LightEnemy : MonoBehaviour
     {
         if ((Time.time - th > shootFrequency) && (th != 0) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
         {
-            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex)
+            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangeX)
             {
-                Shoot();
+                Shoot((int) -((this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x)));
             }
             th = 0;
         }
@@ -35,19 +38,35 @@ public class LightEnemy : MonoBehaviour
     {
         float distancex = this.transform.position.x - player.transform.position.x;
         
-        if ((Mathf.Abs(distancex) < moveRangex) && (Mathf.Abs(distancex) > rangex * 3 / 4) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
+        if ((Mathf.Abs(distancex) < moveRangeX) && (Mathf.Abs(distancex) > rangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && beam == null && (!running))
         {
             th = 0;
             if (this.GetComponent<ForcesOnObject>().Force.y != 0)
             {
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Abs(distancex) / distancex * -speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Abs(distancex) / distancex * speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);
             }
             else
             {
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Abs(distancex) / distancex * -speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Abs(distancex) / distancex * speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
             }
         }
-        else
+        else if (beam == null && running)
+        {
+            if (this.GetComponent<ForcesOnObject>().Force.y != 0)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Abs(distancex) / distancex * speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Abs(distancex) / distancex * speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
+            }
+
+            if (Mathf.Abs(distancex) > rangeX - runRange)
+            {
+                running = false;
+            }
+        }
+        else if (beam == null)
         {
             if (this.GetComponent<ForcesOnObject>().Force.y != 0)
             {
@@ -59,19 +78,24 @@ public class LightEnemy : MonoBehaviour
             }
         }
 
-        if (Mathf.Abs(distancex) < rangex) 
+        if (Mathf.Abs(distancex) < rangeX) 
         {
             if (th == 0)
             {
                 th = Time.time;
             }
         }
+
+        if ((Mathf.Abs(distancex) < runRange) && beam == null)
+        {
+            running = true;
+        }
     }
 
-    void Shoot()
+    void Shoot(int direction)
     {
-        GameObject SBox = Instantiate(lightWave, transform.position, new Quaternion(0, 0, 0, 0));
-        SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x) * waveSpeed, 0);
+        GameObject SBox = Instantiate(lightWave, transform.position + Vector3.right * direction * (lightWave.transform.localScale.x / 2 + this.transform.localScale.x / 2) + Vector3.up * lightUp, Quaternion.identity);
         SBox.GetComponent<DamagePlayer>().damageAmount = lightDamage;
+        beam = SBox;
     }
 }

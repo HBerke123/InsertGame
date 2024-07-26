@@ -8,8 +8,8 @@ public class HealthDrainageOnEnemy : MonoBehaviour
     public float maxHealth;
     public int enemyNum;
     public bool isBoss;
+    public string bossName;
     BossHPBar bossHpBar;
-
 
     private void Start()
     {

@@ -108,7 +108,30 @@ public class GunShot : MonoBehaviour
         float distance = Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceY, 2));
         GameObject SBox = Instantiate(bomb, this.transform.position, Quaternion.identity);
         lastBombs.Add(SBox);
-        SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+
+        if (!this.GetComponentInParent<SpriteRenderer>().flipX)
+        {
+            if ((distanceX / Mathf.Abs(distanceX)) == 1)
+            {
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+            }
+            else
+            {
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+            }
+        }
+        else if (this.GetComponentInParent<SpriteRenderer>().flipX)
+        {
+            if ((distanceX / Mathf.Abs(distanceX)) == 1)
+            {
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+            }
+            else
+            {
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+            }
+        }
+
         SBox.GetComponent<BombExplode>().damageAmount = damage;
         ammo--;
 

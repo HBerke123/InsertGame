@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BossHPBar : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class BossHPBar : MonoBehaviour
             this.GetComponent<RectTransform>().localScale = Vector3.one;
             this.GetComponentInChildren<Bar>().maxValue = Boss.GetComponent<HealthDrainageOnEnemy>().maxHealth;
             this.GetComponentInChildren<Bar>().curValue = Boss.GetComponent<HealthDrainageOnEnemy>().health;
+            this.GetComponentInChildren<TextMeshProUGUI>().text = Boss.GetComponent<HealthDrainageOnEnemy>().bossName;
         }
         else
         {
