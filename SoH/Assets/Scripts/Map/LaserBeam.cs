@@ -1,68 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserBeam : LaserTrigger
+public class LaserBeam : MonoBehaviour
 {
-    BoxCollider2D laserCollider;
-    SpriteRenderer laserImage;
-    public bool isLaserOn;
-    public float timetoStart;
-    public float laserTime;
-    public HealthDrainage hpdrain;
-    public float cooldownHolder = 0.0f;
-    private GameObject player;
+    GameObject player;
+    HealthDrainage hpdrain;
+
     void Start()
     {
-        laserCollider = GetComponent<BoxCollider2D>();
-        laserImage = GetComponent<SpriteRenderer>();
-        isLaserOn = false;
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         hpdrain = player.GetComponent<HealthDrainage>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (isLaserOn == false)
+        if (collider.CompareTag("Player"))
         {
-            
-            
-            StartLaser();
-        }
-        else if (isLaserOn == true)
-        {
-            laserCollider.enabled = true;
-            laserImage.enabled = true;
+            hpdrain.TakeDamage(15);
         }
     }
-    private void StartLaser()
-    {
-        if (isLaserTrigered)
-        {
-            isLaserOn = true;
-        }
-        else
-        {
-            isLaserOn = false;
-        }
-
-    }
-    public void OnTriggerEnter2D(Collider2D collider)
-    {
-        {
-            if (collider.tag == "Player" && Time.time - cooldownHolder >= 0.5f)
-            {
-                hpdrain.TakeDamage(15.0f);
-                if (hpdrain.health <= 0)
-                {
-                    hpdrain.health = hpdrain.maxHealth;
-                    collider.gameObject.transform.position = new Vector3(0f, 0f, 0f);
-                    hpdrain.health = hpdrain.maxHealth;
-                    hpdrain.UpdateHealthBar();
-                    cooldownHolder = Time.time;
-                }
-            }
-        }
-    }
-
-
 }
