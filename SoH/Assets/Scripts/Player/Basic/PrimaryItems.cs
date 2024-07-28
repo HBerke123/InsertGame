@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PrimaryItems : MonoBehaviour
@@ -10,7 +8,7 @@ public class PrimaryItems : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if(itemEquipped == "Sword")
+            if (itemEquipped == "Sword")
             {
                 itemEquipped = "Unarmed";
             }

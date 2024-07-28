@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BombSoundWave : MonoBehaviour
@@ -15,6 +13,6 @@ public class BombSoundWave : MonoBehaviour
 
     private void Update()
     {
-        this.transform.localScale = Vector3.one * (minsize +  (Time.time - th) / this.GetComponent<SkillEnd>().TotalTime * (maxsize - minsize));
+        this.transform.localScale = Vector3.one * (minsize + (Time.time - th) / this.GetComponent<SkillEnd>().TotalTime * (maxsize - minsize));
     }
 }

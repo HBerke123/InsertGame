@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 public class MenuOpener : MonoBehaviour
 {
@@ -16,7 +13,7 @@ public class MenuOpener : MonoBehaviour
             if (isMenuOpen)
             {
                 Resume();
-                
+
             }
             else
             {

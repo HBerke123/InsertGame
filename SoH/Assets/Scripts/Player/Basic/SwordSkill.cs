@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordSkill : MonoBehaviour
@@ -31,7 +29,7 @@ public class SwordSkill : MonoBehaviour
         {
             SBox.GetComponent<ForceEnemies>().direction = 1;
         }
-        
+
         SBox.GetComponent<ForceEnemies>().forcePower = forcePower;
     }
 }

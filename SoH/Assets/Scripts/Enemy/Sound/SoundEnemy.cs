@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundEnemy : MonoBehaviour
 {
-    GameObject player;
-    readonly GameObject screamHit;
     public GameObject soundWave;
     public GameObject screamWave;
     public float soundDamage;
@@ -16,6 +12,8 @@ public class SoundEnemy : MonoBehaviour
     public float shootFrequency;
     public float screamFrequency;
     public float screamDamage;
+    GameObject player;
+    GameObject screamHit;
     float baseSpeed;
     float th;
     float sth;
@@ -103,13 +101,14 @@ public class SoundEnemy : MonoBehaviour
         GameObject SBox = Instantiate(soundWave, transform.position, new Quaternion(0, 0, 0, 0));
         SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x) * waveSpeed, 0);
         SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
-        SBox.GetComponent<ForcePlayer>().direction = (int) (-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x));
+        SBox.GetComponent<ForcePlayer>().direction = (int)(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x));
     }
 
     void Scream()
     {
         GameObject SBox = Instantiate(screamWave, this.transform.position, Quaternion.identity);
         SBox.GetComponent<DamagePlayer>().damageAmount = screamDamage;
+        screamHit = SBox;
         sth = 0;
     }
 }

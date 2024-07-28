@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShowPreBomb : MonoBehaviour
@@ -18,10 +16,10 @@ public class ShowPreBomb : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Time.time - th > ttime) 
+        if (Time.time - th > ttime)
         {
             this.GetComponent<SpriteRenderer>().enabled = false;
-            this.gameObject.SetActive(false); 
+            this.gameObject.SetActive(false);
         }
 
         this.transform.localPosition = new Vector3(this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.x + (Time.time - th) / ttime * (this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[1].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.x - this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.x), this.GetComponentInParent<ShowPreBombs>().GroupBombGroups[0].GetComponent<PreBombGroup>().preBombs[bombnum].transform.localPosition.y, 0);

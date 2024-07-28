@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TestingTeleportation : MonoBehaviour
@@ -73,7 +71,7 @@ public class TestingTeleportation : MonoBehaviour
                     if (gameObject != null)
                     {
                         gameObject.SetActive(false);
-                    }  
+                    }
                 }
 
                 this.transform.position = locations[3];

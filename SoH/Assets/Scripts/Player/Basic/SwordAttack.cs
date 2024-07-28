@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
@@ -18,7 +17,7 @@ public class SwordAttack : MonoBehaviour
     public int heavyCeCost;
     public int skillCeCost;
     float th = 0;
-    bool ready;
+    public bool ready;
     bool attackable = true;
     int attacknum;
 
@@ -34,7 +33,7 @@ public class SwordAttack : MonoBehaviour
     {
         if (!menuOpener.isMenuOpen)
         {
-            if (attackable)
+            if (attackable && !this.GetComponent<GunShot>().started)
             {
                 if (Input.GetMouseButtonDown(0) && attackable)
                 {

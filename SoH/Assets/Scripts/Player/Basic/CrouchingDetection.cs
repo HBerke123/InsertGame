@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CrouchingDetection : MonoBehaviour
@@ -8,7 +6,7 @@ public class CrouchingDetection : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player"))
+        if (!collision.CompareTag("Player") && !collision.CompareTag("EnemyWeapon") && !collision.CompareTag("EnemyScream") && !collision.CompareTag("EnemySound"))
         {
             isSafe = false;
         }

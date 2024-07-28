@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthDrainageOnEnemy : MonoBehaviour
@@ -13,7 +11,7 @@ public class HealthDrainageOnEnemy : MonoBehaviour
 
     private void Start()
     {
-        bossHpBar = GameObject.FindGameObjectWithTag("BossHPBar").GetComponent<BossHPBar>();     
+        bossHpBar = GameObject.FindGameObjectWithTag("BossHPBar").GetComponent<BossHPBar>();
     }
 
     private void Update()

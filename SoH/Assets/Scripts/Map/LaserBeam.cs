@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserBeam : LaserTrigger
@@ -24,17 +22,17 @@ public class LaserBeam : LaserTrigger
     // Update is called once per frame
     void Update()
     {
-        if(isLaserOn == false)
+        if (isLaserOn == false)
         {
             
             
             StartLaser();
         }
-        else if(isLaserOn == true)
+        else if (isLaserOn == true)
         {
             laserCollider.enabled = true;
             laserImage.enabled = true;
-        }    
+        }
     }
     private void StartLaser()
     {

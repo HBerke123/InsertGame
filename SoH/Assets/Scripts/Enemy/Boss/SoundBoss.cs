@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundBoss : MonoBehaviour
@@ -9,7 +7,7 @@ public class SoundBoss : MonoBehaviour
     public float leftPoint;
     public float screamMaxScale;
     public float shakeTime;
-    public float shakeFrquency;
+    public float shakeFrequency;
     public float shakeForce;
     public float jumpForce;
     public float rushSpeed;
@@ -27,12 +25,9 @@ public class SoundBoss : MonoBehaviour
     int lastDirection;
     int direction;
     int moveCounter;
-    float lastRandom;
     float mth;
     float rth;
     float rrth;
-    float sth;
-    float ssth;
     float scth;
 
     private void Start()
@@ -44,23 +39,6 @@ public class SoundBoss : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((ssth != 0) && (Time.time - ssth < shakeTime))
-        {
-            if (sth == 0)
-            {
-                sth = Time.time - shakeFrquency;
-            }
-            else if ((sth != 0) && (Time.time - sth > shakeFrquency))
-            {
-                Shake();
-                sth = Time.time;
-            }
-        }
-        else
-        {
-            Camera.main.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        }
-
         if ((rth == 0) && (rrth == 0) && (mth != 0) && (Time.time - mth > moveFrequency) && (scth == 0))
         {
             Move();
@@ -134,14 +112,14 @@ public class SoundBoss : MonoBehaviour
                     }
                 }
             }
-            
+
             moveCounter = 0;
         }
 
         if (this.GetComponentInChildren<GroundDetection>().detected && readyToShake)
         {
             readyToShake = false;
-            ssth = Time.time;
+            Camera.main.GetComponent<CameraShake>().StartShake(shakeFrequency, shakeTime, shakeForce);
         }
 
         if ((this.GetComponent<Rigidbody2D>().velocity.y > 0.1) && !this.GetComponentInChildren<GroundDetection>().detected)
@@ -174,7 +152,7 @@ public class SoundBoss : MonoBehaviour
     void Scream()
     {
         scth = Time.time;
-        ssth = Time.time;
+        Camera.main.GetComponent<CameraShake>().StartShake(shakeFrequency, shakeTime, shakeForce);
         Instantiate(screamWave, this.transform.position, Quaternion.identity);
         SetDirection();
     }
@@ -185,7 +163,7 @@ public class SoundBoss : MonoBehaviour
         if (this.transform.position.x > player.transform.position.x)
         {
             direction = -1;
-        } 
+        }
         else
         {
             direction = 1;
@@ -211,30 +189,7 @@ public class SoundBoss : MonoBehaviour
         SetDirection();
     }
 
-    void Shake()
-    {
-        float randomPos;
 
-        if (Random.Range(0, 2) == 0)
-        {
-            randomPos = Random.Range(shakeForce * 1 / 5, shakeForce * 4 / 5);
-        }
-        else
-        {
-            randomPos = Random.Range(-shakeForce * 4 / 5, -shakeForce * 1 / 5);
-        }
-        
-        if (lastRandom != 0)
-        {
-            Camera.main.GetComponent<Rigidbody2D>().velocity = new Vector2(lastRandom, -lastRandom / Mathf.Abs(lastRandom) * (shakeForce - Mathf.Abs(lastRandom))) * -2;
-            lastRandom = 0;
-        }
-        else
-        {
-            lastRandom = randomPos;
-            Camera.main.GetComponent<Rigidbody2D>().velocity = new Vector2(randomPos, -randomPos / Mathf.Abs(randomPos) * (shakeForce - Mathf.Abs(randomPos)));
-        }
-    }
 
     void SecondPhase()
     {
