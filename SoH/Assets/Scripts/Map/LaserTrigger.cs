@@ -3,15 +3,25 @@ using UnityEngine;
 public class LaserTrigger : MonoBehaviour
 {
     public bool isLaserTrigered = false;
-    private void OnTriggerEnter(Collider other)
+    public SpriteRenderer sr;
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             isLaserTrigered = true;
+            sr.enabled = true;
+        
         }
-        else
+        
+}
+private void OnTriggerExit2D(Collider2D other)
+{
+     if (other.gameObject.CompareTag("Player"))
         {
-            isLaserTrigered = false;
+           isLaserTrigered = false;
+           sr.enabled = false;
+        
         }
-    }
+        
+}
 }

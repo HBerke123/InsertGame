@@ -24,8 +24,8 @@ public class LaserBeam : LaserTrigger
     {
         if (isLaserOn == false)
         {
-            laserCollider.enabled = false;
-            laserImage.enabled = false;
+            
+            
             StartLaser();
         }
         else if (isLaserOn == true)
