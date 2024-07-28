@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
@@ -11,7 +10,7 @@ public class FallingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(Fall());
         }
@@ -27,7 +26,7 @@ public class FallingPlatform : MonoBehaviour
         yield return new WaitForSeconds(fallDelay);
         rb.bodyType = RigidbodyType2D.Dynamic;
         timeHolder = Time.time;
-        
+
 
     }
     public void Update()
@@ -36,7 +35,7 @@ public class FallingPlatform : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             rb.bodyType = RigidbodyType2D.Kinematic;
-            
+
             transform.position = new Vector3(94.9f, -1.1f, 0f);
         }
     }

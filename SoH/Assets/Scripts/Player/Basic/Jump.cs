@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Jump : MonoBehaviour
@@ -30,7 +28,7 @@ public class Jump : MonoBehaviour
                 rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
             }
 
-            if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime) && !stick && !screaming) 
+            if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime) && !stick && !screaming)
             {
                 if (rb.velocity.y > maxspeed)
                 {
@@ -38,11 +36,11 @@ public class Jump : MonoBehaviour
                 }
                 else
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, maxspeed * jumptime - (Time.time - stime ));
+                    rb.velocity = new Vector2(rb.velocity.x, maxspeed * jumptime - (Time.time - stime));
                 }
             }
         }
 
- 
+
     }
 }

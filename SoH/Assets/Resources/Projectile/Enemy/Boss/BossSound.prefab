@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -5934696286933705538}
   m_Layer: 0
   m_Name: BossSound
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,8 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadTime: 0
   damageAmount: 10
   destroyOnTouch: 0
+  isReloadable: 0
 --- !u!114 &-5934696286933705538
 MonoBehaviour:
   m_ObjectHideFlags: 0

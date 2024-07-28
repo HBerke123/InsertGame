@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4822518798929949693}
   m_Layer: 0
   m_Name: BossLight
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

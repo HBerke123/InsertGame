@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6786363493814917261, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
       propertyPath: shootFrequency
-      value: 4.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6786363493814917263, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
       propertyPath: m_RootOrder
@@ -1154,6 +1154,14 @@ PrefabInstance:
     - target: {fileID: 2410109213677025129, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: shakeForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: shakeFrequency
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: bossName
@@ -46779,6 +46787,7 @@ GameObject:
   - component: {fileID: 1784547536}
   - component: {fileID: 1784547539}
   - component: {fileID: 1784547540}
+  - component: {fileID: 1784547541}
   m_Layer: 14
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -46888,6 +46897,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1784547541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784547535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29810e2236c77c84fbeaad64c715a86b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxFrequency: 0
+  maxTime: 0
+  maxShakeForce: 0
 --- !u!1 &1796801644
 GameObject:
   m_ObjectHideFlags: 0
@@ -47574,9 +47598,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 763045558}
     - target: {fileID: 1389891592042244009, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: maxCost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244009, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: minCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244009, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: timeSlower
       value: 
       objectReference: {fileID: 763045558}
+    - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: loseAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: loseFrequency
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: bomb
       value: 
@@ -47793,6 +47833,10 @@ PrefabInstance:
     - target: {fileID: 1395232599140071515, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: m_Name
       value: FinalBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395232599140071515, guid: f2f280678068785428c1307e174b1418, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2f280678068785428c1307e174b1418, type: 3}

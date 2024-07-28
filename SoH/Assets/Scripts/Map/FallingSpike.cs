@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingSpike : MonoBehaviour
@@ -22,15 +20,15 @@ public class FallingSpike : MonoBehaviour
     void Update()
     {
         Physics2D.queriesStartInColliders = false;
-        if(isFalling == false)
+        if (isFalling == false)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position,Vector2.down,distance);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, distance);
 
-            Debug.DrawRay(transform.position,Vector2.down * distance, Color.red);
+            Debug.DrawRay(transform.position, Vector2.down * distance, Color.red);
 
-            if(hit.transform != null)
+            if (hit.transform != null)
             {
-                if(hit.transform.tag == "Player")
+                if (hit.transform.tag == "Player")
                 {
                     rb.gravityScale = 5;
                     isFalling = true;
@@ -41,7 +39,7 @@ public class FallingSpike : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.collider.tag == "Player")
+        if (other.collider.tag == "Player")
         {
             Destroy(gameObject);
             hpCode.TakeDamage(10.0f);

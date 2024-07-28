@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class CEDrainage : MonoBehaviour
 {
@@ -36,7 +32,7 @@ public class CEDrainage : MonoBehaviour
             this.GetComponent<HealthDrainage>().Death();
         }
     }
-    
+
     public void UpdateCEBar()
     {
         cEBar.maxValue = maxCE;

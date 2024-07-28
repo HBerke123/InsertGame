@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5851194753288318681}
   m_Layer: 0
   m_Name: LightBeam
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,8 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadTime: 0.5
   damageAmount: 0
   destroyOnTouch: 0
+  isReloadable: 1
 --- !u!61 &5851194753288318681
 BoxCollider2D:
   m_ObjectHideFlags: 0

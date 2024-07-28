@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
 using TMPro;
+using UnityEngine;
 
 public class PrintingInfos : MonoBehaviour
 {
     public int savenum;
     public TextMeshProUGUI text;
-    
+
     void Start()
     {
         string path = Application.dataPath + "/Saves/Save";

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FinalBoss : MonoBehaviour
@@ -92,13 +90,13 @@ public class FinalBoss : MonoBehaviour
                         if (Random.Range(0, 2) == 0)
                         {
                             SendWave();
-                        } 
+                        }
                         else
                         {
                             lth = Time.time;
                         }
                     }
-                    
+
                     moveCounter = 0;
                 }
                 else

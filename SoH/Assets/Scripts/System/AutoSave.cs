@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 public class AutoSave : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class AutoSave : MonoBehaviour
     private void FixedUpdate()
     {
         string path = Application.dataPath + "/Saves/";
-        
+
         if (File.ReadAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt").Split("\n")[0] == "false")
         {
             if (th == 0)

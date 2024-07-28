@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HealthDrainage : MonoBehaviour
 {
@@ -15,23 +12,25 @@ public class HealthDrainage : MonoBehaviour
         UpdateHealthBar();
     }
 
-    void Update()
+    public void TakeDamage(float amount)
     {
+        health -= amount;
         if (health <= 0)
         {
             Death();
         }
-    }
-
-    public void TakeDamage(float amount)
-    {
-        health -= amount;
         UpdateHealthBar();
     }
 
     public void Heal(float amount)
     {
         health += amount;
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
         UpdateHealthBar();
     }
 
@@ -51,6 +50,8 @@ public class HealthDrainage : MonoBehaviour
             }
         }
 
+        this.GetComponent<PoisonEffectsOnPlayer>().goodEffectTime = 0;
+        this.GetComponent<PoisonEffectsOnPlayer>().badEffectTime = 0;
         this.GetComponent<CEDrainage>().cE = this.GetComponent<CEDrainage>().maxCE / 2;
         health = maxHealth;
         this.GetComponent<Movement>().stick = false;

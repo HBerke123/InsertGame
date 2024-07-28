@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScreamUse : MonoBehaviour
@@ -8,8 +6,11 @@ public class ScreamUse : MonoBehaviour
     public float soundTime;
     public float damage;
     public float cooldown;
+    public float loseFrequency;
+    public float loseAmount;
     GameObject screamHit;
     float th;
+    float lth;
 
     private void Update()
     {
@@ -38,6 +39,12 @@ public class ScreamUse : MonoBehaviour
         if ((th != 0) && (Time.time - th > cooldown))
         {
             th = 0;
+        }
+
+        if ((screamHit != null) && (Time.time - lth > loseFrequency))
+        {
+            this.GetComponentInParent<CEDrainage>().LoseCE(loseAmount);
+            lth = Time.time;
         }
     }
 

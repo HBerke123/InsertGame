@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WalkableEnemy : MonoBehaviour
@@ -11,7 +9,7 @@ public class WalkableEnemy : MonoBehaviour
     public float attackRange;
     public float attackFrequency;
     float th;
-    
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

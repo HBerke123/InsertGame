@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FlyingEnemy : MonoBehaviour
@@ -21,7 +19,7 @@ public class FlyingEnemy : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");    
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void FixedUpdate()
@@ -36,7 +34,6 @@ public class FlyingEnemy : MonoBehaviour
     private void Update()
     {
         float distancex = this.transform.position.x - player.transform.position.x;
-        float distancey = this.transform.position.y - player.transform.position.y;
 
         if (this.transform.position.y < yPos)
         {
@@ -89,7 +86,7 @@ public class FlyingEnemy : MonoBehaviour
             }
 
             if ((Mathf.Abs(distancex) < rangex) && (th == 0))
-            { 
+            {
                 th = Time.time;
             }
         }

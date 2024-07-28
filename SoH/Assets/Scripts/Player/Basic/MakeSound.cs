@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MakeSound : MonoBehaviour
@@ -9,7 +7,7 @@ public class MakeSound : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time -  th > totalSoundTime))
+        if ((th != 0) && (Time.time - th > totalSoundTime))
         {
             th = 0;
             totalSoundTime = 0;

@@ -1,11 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundUse : MonoBehaviour
 {
     public TimeControlSlow timeSlower;
     public GameObject arrow;
+    public float maxCost;
+    public float minCost;
     public float holdtime;
     public float cooldown;
     float th;
@@ -50,15 +51,17 @@ public class SoundUse : MonoBehaviour
             timeSlower.StopSlowMotion();
             arrow.SetActive(true);
 
-            if (Time.time - th < holdtime)
+            if (Time.time - th > holdtime)
             {
-                this.GetComponent<SoundInfluence>().SendWave(direction, false);
+                this.GetComponent<SoundInfluence>().SendWave(direction, true);
+                this.GetComponentInParent<CEDrainage>().LoseCE(maxCost);
             }
             else
             {
-                this.GetComponent<SoundInfluence>().SendWave(direction, true);
+                this.GetComponent<SoundInfluence>().SendWave(direction, false);
+                this.GetComponentInParent<CEDrainage>().LoseCE(minCost);
             }
-            
+
             th = 0;
             StartCoroutine(Cooldown());
         }

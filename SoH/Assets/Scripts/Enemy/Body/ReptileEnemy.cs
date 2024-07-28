@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ReptileEnemy : MonoBehaviour
@@ -51,12 +49,12 @@ public class ReptileEnemy : MonoBehaviour
         if (distance < rangex)
         {
             if (distance < attackRange)
-            { 
-                 player.GetComponent<Movement>().stick = true;
-                 player.GetComponent<Jump>().stick = true;
-                 this.GetComponent<ForcesOnObject>().resistance = 1;
-                 speed = 0;
-                
+            {
+                player.GetComponent<Movement>().stick = true;
+                player.GetComponent<Jump>().stick = true;
+                this.GetComponent<ForcesOnObject>().resistance = 1;
+                speed = 0;
+
                 if (th == 0)
                 {
                     sth = Time.time;

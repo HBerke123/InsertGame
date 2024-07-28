@@ -44,7 +44,7 @@ public class GunShot : MonoBehaviour
         {
             th = 0;
         }
-        
+
         if ((hth != 0) && (Time.time - hth > htime))
         {
             hth = 0;
@@ -53,7 +53,7 @@ public class GunShot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !this.GetComponent<SwordAttack>().ready)
         {
             explosed = false;
 
@@ -64,8 +64,8 @@ public class GunShot : MonoBehaviour
             }
         }
 
-        if (!reloading)
-        {  
+        if (!reloading && !this.GetComponent<SwordAttack>().ready)
+        {
             if (lastBombs.Count == 0)
             {
                 if (Input.GetMouseButtonDown(1) && (ammo > 0) && (th == 0) && (!explosed))
@@ -79,7 +79,7 @@ public class GunShot : MonoBehaviour
                 }
             }
 
-             if ((Input.GetMouseButtonUp(1) || (hth == 0)) && (ammo > 0) && (th == 0) && started)
+            if ((Input.GetMouseButtonUp(1) || (hth == 0)) && (ammo > 0) && (th == 0) && started)
             {
                 started = false;
                 this.GetComponentInParent<MakeSound>().AddTime(soundTime);
@@ -135,7 +135,7 @@ public class GunShot : MonoBehaviour
         SBox.GetComponent<BombExplode>().damageAmount = damage;
         ammo--;
 
-        if (ammo == 0) 
+        if (ammo == 0)
         {
             StartCoroutine(Reload());
         }

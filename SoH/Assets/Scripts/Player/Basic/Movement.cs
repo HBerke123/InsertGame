@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
@@ -36,7 +34,7 @@ public class Movement : MonoBehaviour
         }
 
         if ((Time.time - th >= particleFrequency) && (spawnParticles))
-        {       
+        {
             ParticleSystem particles = Instantiate(groundParticles, this.transform.position, new Quaternion(0, 0, 0, 0));
             if (this.GetComponent<SpriteRenderer>().flipX)
             {

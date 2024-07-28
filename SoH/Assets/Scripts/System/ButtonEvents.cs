@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;
 
 public class ButtonEvents : MonoBehaviour
 {
