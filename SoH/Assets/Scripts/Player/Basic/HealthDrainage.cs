@@ -26,14 +26,12 @@ public class HealthDrainage : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        health = Mathf.Round(health);
         UpdateHealthBar();
     }
 
     public void Heal(float amount)
     {
         health += amount;
-        health = Mathf.Round(health);
         UpdateHealthBar();
     }
 
@@ -47,7 +45,10 @@ public class HealthDrainage : MonoBehaviour
     {
         foreach (GameObject gameObject in testingTeleportation.enemies)
         {
-            gameObject.SetActive(false);
+            if (gameObject != null)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         this.GetComponent<CEDrainage>().cE = this.GetComponent<CEDrainage>().maxCE / 2;

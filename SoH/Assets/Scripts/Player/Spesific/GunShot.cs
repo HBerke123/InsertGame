@@ -20,9 +20,9 @@ public class GunShot : MonoBehaviour
     public float minsize;
     public float maxsize;
     public int cecost;
+    public bool started;
     int ammo = 3;
     bool explosed;
-    bool started;
     bool reloading;
     float th = 0;
     float hth = 0;

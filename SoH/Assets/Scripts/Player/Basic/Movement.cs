@@ -15,8 +15,8 @@ public class Movement : MonoBehaviour
     public float speed;
     public float dspeed;
     public float particleFrequency;
-    Rigidbody2D rb;
     public bool spawnParticles;
+    Rigidbody2D rb;
     float baseSpeed;
     float th;
 
@@ -96,7 +96,7 @@ public class Movement : MonoBehaviour
             spawnParticles = false;
         }
 
-        if ((Input.GetAxisRaw("Horizontal") != 0) && !Attackhbox.enabled)
+        if ((Input.GetAxisRaw("Horizontal") != 0) && !Attackhbox.enabled && !this.GetComponentInChildren<GunShot>().started)
         {
             this.GetComponent<SpriteRenderer>().flipX = Input.GetAxisRaw("Horizontal") != 1;
         }

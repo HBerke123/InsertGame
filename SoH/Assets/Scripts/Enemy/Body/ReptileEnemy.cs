@@ -11,6 +11,8 @@ public class ReptileEnemy : MonoBehaviour
     public float attackFrequency;
     public float attackSpeedUpRate;
     GameObject player;
+    float defaultResistance;
+    float defaultSpeed;
     float maxAttackFrequency;
     float th;
     float sth;
@@ -19,17 +21,22 @@ public class ReptileEnemy : MonoBehaviour
     {
         maxAttackFrequency = attackFrequency;
         player = GameObject.FindGameObjectWithTag("Player");
+        defaultResistance = this.GetComponent<ForcesOnObject>().resistance;
+        defaultSpeed = speed;
     }
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > attackFrequency) && (attackRange > Mathf.Abs(this.transform.position.x - player.transform.position.x)))
+        float distancex = this.transform.position.x - player.transform.position.x;
+        float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(this.transform.position.y - player.transform.position.y, 2));
+
+        if ((th != 0) && (Time.time - th > attackFrequency) && (attackRange > Mathf.Abs(distance)))
         {
             player.GetComponent<HealthDrainage>().TakeDamage(attackDamage);
             th = Time.time;
         }
 
-        if ((sth != 0) && (Time.time - sth > maxAttackFrequency) && (attackRange > Mathf.Abs(this.transform.position.x - player.transform.position.x)))
+        if ((sth != 0) && (Time.time - sth > maxAttackFrequency) && (attackRange > Mathf.Abs(distance)))
         {
             attackFrequency -= attackSpeedUpRate;
             sth = Time.time;
@@ -55,6 +62,16 @@ public class ReptileEnemy : MonoBehaviour
                     sth = Time.time;
                     th = Time.time - attackFrequency;
                 }
+            }
+            else
+            {
+                player.GetComponent<Movement>().stick = false;
+                player.GetComponent<Jump>().stick = false;
+                this.GetComponent<ForcesOnObject>().resistance = defaultResistance;
+                speed = defaultSpeed;
+                attackFrequency = maxAttackFrequency;
+                sth = 0;
+                th = 0;
             }
 
             if (this.GetComponent<ForcesOnObject>().Force != Vector2.zero)
