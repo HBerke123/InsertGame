@@ -10,6 +10,11 @@ public class SoundBeam : MonoBehaviour
     GameObject player;
     public GameObject soundWave;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     private void FixedUpdate()
     {
         if ((th != 0) && (Time.time - th > 3))
