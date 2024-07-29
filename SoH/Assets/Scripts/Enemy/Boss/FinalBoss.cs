@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class FinalBoss : MonoBehaviour
 {
+    public GameObject bossPhaseLight;
     public GameObject smoke;
     public GameObject bossSpear;
     public GameObject lightWave;
     public GameObject lightBox;
     public GameObject explodeHit;
-    public float attackFrequency;
+    public float attackTime;
     public float lightTime;
     public float smokeSpeed;
     public float spearTime;
@@ -25,19 +26,16 @@ public class FinalBoss : MonoBehaviour
     public float flySpeed;
     public float flyTime;
     public int maxMove;
-    public int attackAmount;
     GameObject player;
     float ath;
     float lth;
     float dth;
     float sth;
     float mth;
-    bool attackRising;
     bool onSecondPhase;
     bool onThirdPhase;
     bool onAttack;
-    int attackCounter;
-    int attackDirection;
+    bool lighted;
     int lastDirection;
     int direction;
     int moveCounter;
@@ -110,41 +108,15 @@ public class FinalBoss : MonoBehaviour
             if (this.transform.position.y > bottom + flyAmount)
             {
                 this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
                 if (ath == 0)
                 {
-                    ath = Time.time;
+                    Attack();
                 }
-                else if (Time.time - ath > attackFrequency)
+                else if (Time.time - ath > attackTime)
                 {
-                    Attack(attackDirection);
-
-                    if (attackDirection == 0)
-                    {
-                        attackRising = true;
-                    }
-                    else if (attackDirection == 3)
-                    {
-                        attackRising = false;
-                    }
-
-                    if (attackRising)
-                    {
-                        attackDirection++;
-                    }
-                    else
-                    {
-                        attackDirection--;
-                    }
-
-                    if (attackCounter + 1 < attackAmount)
-                    {
-                        attackCounter++;
-                    }
-                    else
-                    {
-                        onAttack = false;
-                        onThirdPhase = true;
-                    }
+                    onAttack = false;
+                    onThirdPhase = true;
                 }
             }
             else
@@ -160,7 +132,7 @@ public class FinalBoss : MonoBehaviour
         {
             if (Time.time - lth > lightTime)
             {
-                SendLight();
+                SendLight(maxLeftPoint, maxRightPoint);
             }
         }
         else if (sth != 0)
@@ -190,10 +162,26 @@ public class FinalBoss : MonoBehaviour
                 bossSpear.SetActive(false);
                 dth = 0;
                 mth = 0;
+                lighted = false;
             }
             else if (Time.time - dth > dashTime)
             {
                 this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+                if (!lighted)
+                {
+                    if (direction == 1)
+                    {
+                        SendLight(maxLeftPoint, maxRightPoint - this.transform.localScale.x / 2);
+                    }
+                    else
+                    {
+                        SendLight(maxLeftPoint + this.transform.localScale.x / 2, maxRightPoint);
+                    }
+
+                    lighted = true;
+                }
+
                 Spear();
             }
         }
@@ -249,12 +237,12 @@ public class FinalBoss : MonoBehaviour
         SBox.GetComponent<Rigidbody2D>().velocity = direction * lightWaveSpeed * Vector2.right;
     }
 
-    void SendLight()
+    void SendLight(float maxLeft, float maxRight)
     {
         this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         for (int i = 0; i < 3; i++)
         {
-            Instantiate(lightBox, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), bottom + lightWave.transform.localScale.y / 2, 0), Quaternion.identity);
+            Instantiate(lightBox, new Vector3(Random.Range(maxLeft, maxRight), bottom + lightWave.transform.localScale.y / 2, 0), Quaternion.identity);
         }
         lth = 0;
     }
@@ -292,14 +280,12 @@ public class FinalBoss : MonoBehaviour
         }
     }
 
-    void Attack(int direction)
+    void Attack()
     {
-        ath = 0;
+        ath = Time.time;
         for (int i = 0; i < 2; i++)
         {
-            GameObject SBox = Instantiate(lightWave, this.transform.position, Quaternion.identity);
-            SBox.transform.localRotation = Quaternion.Euler(0, 0, (i * 360) + (30 * direction) * (-1 + i * 2));
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2((1 - i * 2) * Mathf.Cos(30 * direction * (-1 + i * 2) * Mathf.Deg2Rad) * lightWaveSpeed, (1 - i * 2) * Mathf.Sin(30 * direction * (-1 + i * 2) * Mathf.Deg2Rad) * lightWaveSpeed);
+            Instantiate(bossPhaseLight, this.transform.position, Quaternion.identity);
         }
     }
 }

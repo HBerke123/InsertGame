@@ -139,6 +139,7 @@ MonoBehaviour:
   damageAmount: 0
   destroyOnTouch: 0
   isReloadable: 0
+  weakToDash: 1
 --- !u!61 &-4167315619389878595
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,3 +180,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceAmount: 20
   direction: 0
+  weakToDash: 1

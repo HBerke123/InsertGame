@@ -4,9 +4,9 @@ using UnityEngine;
 public class Dash : MonoBehaviour
 {
     public float soundTime;
-    public float dashspeed = 8;
-    public float dashcooldown = 0.5f;
-    public float dashtime = 0.1f;
+    public float dashspeed;
+    public float dashcooldown ;
+    public float dashtime;
     public bool dashable = true;
     public bool stick;
     public bool screaming;

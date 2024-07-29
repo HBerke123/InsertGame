@@ -164,3 +164,4 @@ MonoBehaviour:
   damageAmount: 20
   destroyOnTouch: 0
   isReloadable: 0
+  weakToDash: 1

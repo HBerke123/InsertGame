@@ -1197,6 +1197,18 @@ PrefabInstance:
       propertyPath: bossName
       value: Ariesa, the first daeva
       objectReference: {fileID: 0}
+    - target: {fileID: 2922984181746881590, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2922984181746881590, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: weakToDash
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2922984181746881590, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: isReloadable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
 --- !u!1 &447303786 stripped
@@ -1204,6 +1216,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2410109213677025127, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
   m_PrefabInstance: {fileID: 447303785}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &447303794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447303786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0374305f0e89e2d4ba68fa56dd2ccdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTime: 0
+  isBlocked: 0
 --- !u!1 &467888540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,6 +2123,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1395232599140071515, guid: f2f280678068785428c1307e174b1418, type: 3}
   m_PrefabInstance: {fileID: 1395232599280269615}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &971817340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971817332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0374305f0e89e2d4ba68fa56dd2ccdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTime: 0
+  isBlocked: 0
 --- !u!4 &980212541 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1389891592076107589, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
@@ -48036,8 +48076,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 381171094}
     - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: dashtime
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: dashspeed
-      value: 54
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107570, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: health
