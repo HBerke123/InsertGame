@@ -9,13 +9,15 @@ public class SoundBeam : MonoBehaviour
     public float waveSpeed;
     GameObject player;
     public GameObject soundWave;
+
     private void FixedUpdate()
     {
         if ((th != 0) && (Time.time - th > 3))
         {
-            Shoot();
             th = 0;
+            Shoot();
         }
+
         if((th == 0) && this.GetComponentInChildren<SoundTrigger>().isSoundTrigered)
         {
             th = Time.time;

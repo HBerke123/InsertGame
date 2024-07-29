@@ -6,7 +6,6 @@ public class Movement : MonoBehaviour
     public ParticleSystem groundParticles;
     public BoxCollider2D Attackhbox;
     public bool aiming;
-    public bool screaming;
     public bool dashing;
     public bool stick;
     public float soundTime;
@@ -47,7 +46,7 @@ public class Movement : MonoBehaviour
     private void Update()
 
     {
-        if (!aiming && !screaming && !dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
+        if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
 
@@ -75,13 +74,13 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        else if (!aiming && !screaming && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
+        else if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             this.GetComponent<Animator>().SetBool("Moving", false);
             rb.velocity = new Vector2(dspeed, rb.velocity.y);
             spawnParticles = false;
         }
-        else if (!aiming && !screaming && !stick)
+        else if (!stick)
         {
             this.GetComponent<Animator>().SetBool("Moving", false);
             rb.velocity = this.GetComponent<ForcesOnObject>().Force;

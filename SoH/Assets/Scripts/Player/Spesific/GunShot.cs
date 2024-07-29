@@ -113,22 +113,22 @@ public class GunShot : MonoBehaviour
         {
             if ((distanceX / Mathf.Abs(distanceX)) == 1)
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Pow(distanceX / distance, 2), Mathf.Pow(distanceY / distance, 2)) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
             }
             else
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
             }
         }
         else if (this.GetComponentInParent<SpriteRenderer>().flipX)
         {
             if ((distanceX / Mathf.Abs(distanceX)) == 1)
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
             }
             else
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Pow(distanceX / distance, 2), Mathf.Pow(distanceY / distance, 2)) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
             }
         }
 

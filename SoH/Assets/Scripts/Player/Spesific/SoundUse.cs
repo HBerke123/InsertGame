@@ -9,6 +9,7 @@ public class SoundUse : MonoBehaviour
     public float minCost;
     public float holdtime;
     public float cooldown;
+    public bool started;
     float th;
     bool ready = true;
     int direction;
@@ -36,11 +37,12 @@ public class SoundUse : MonoBehaviour
             direction = 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready)
+        if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming)
         {
             arrow.SetActive(false);
             timeSlower.StartSlowMotion();
             this.GetComponentInParent<Movement>().aiming = true;
+            started = true;
             ready = false;
             th = Time.time;
         }
@@ -50,6 +52,7 @@ public class SoundUse : MonoBehaviour
             this.GetComponentInParent<Movement>().aiming = false;
             timeSlower.StopSlowMotion();
             arrow.SetActive(true);
+            started = false;
 
             if (Time.time - th > holdtime)
             {

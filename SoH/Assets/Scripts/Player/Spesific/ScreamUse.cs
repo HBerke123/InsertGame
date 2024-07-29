@@ -8,13 +8,14 @@ public class ScreamUse : MonoBehaviour
     public float cooldown;
     public float loseFrequency;
     public float loseAmount;
+    public bool screaming;
     GameObject screamHit;
     float th;
     float lth;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && (th == 0))
+        if (Input.GetKeyDown(KeyCode.E) && (th == 0) && !this.GetComponent<SoundUse>().started && !this.GetComponent<SwordAttack>().ready && !this.GetComponent<GunShot>().started && this.transform.parent.GetComponentInChildren<GroundDetection>().detected)
         {
             Scream();
         }
@@ -26,11 +27,11 @@ public class ScreamUse : MonoBehaviour
         if (screamHit != null)
         {
             this.GetComponentInParent<MakeSound>().AddTime(soundTime);
-            this.GetComponentInParent<Movement>().screaming = true;
+            screaming = true;
         }
         else
         {
-            this.GetComponentInParent<Movement>().screaming = false;
+            screaming = false;
         }
     }
 
