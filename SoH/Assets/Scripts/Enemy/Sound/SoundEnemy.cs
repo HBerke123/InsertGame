@@ -28,7 +28,7 @@ public class SoundEnemy : MonoBehaviour
     {
         if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (sth != 0) && (Time.time - sth > screamFrequency) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
         {
-            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex)
+            if ((Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex) && !this.GetComponent<BlocksOnObject>().isBlocked)
             {
                 Scream();
             }
@@ -37,7 +37,7 @@ public class SoundEnemy : MonoBehaviour
 
         if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (sth == 0) && (th != 0) && (Time.time - th > shootFrequency) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
         {
-            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex)
+            if ((Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangex) && !this.GetComponent<BlocksOnObject>().isBlocked)
             {
                 Shoot();
             }

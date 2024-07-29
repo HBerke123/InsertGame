@@ -134,26 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 6786363493814917261, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
-      propertyPath: rangeX
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6786363493814917261, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
-      propertyPath: lightUp
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6786363493814917261, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
-      propertyPath: runRange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6786363493814917261, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
-      propertyPath: moveRangeX
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6786363493814917261, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
-      propertyPath: shootFrequency
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6786363493814917263, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -549,18 +529,6 @@ PrefabInstance:
     - target: {fileID: 4193538533157646797, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193538533157646798, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
-      propertyPath: yPos
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193538533157646798, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
-      propertyPath: rangeY
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193538533157646798, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
-      propertyPath: followSpeed
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
@@ -47845,6 +47813,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 763045558}
     - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: loseAmount
       value: 2
       objectReference: {fileID: 0}
@@ -47936,6 +47908,10 @@ PrefabInstance:
       propertyPath: menuOpener
       value: 
       objectReference: {fileID: 381171094}
+    - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: dashspeed
+      value: 54
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107570, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: health
       value: 50

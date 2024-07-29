@@ -28,7 +28,7 @@ public class ReptileEnemy : MonoBehaviour
         float distancex = this.transform.position.x - player.transform.position.x;
         float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(this.transform.position.y - player.transform.position.y, 2));
 
-        if ((th != 0) && (Time.time - th > attackFrequency) && (attackRange > Mathf.Abs(distance)))
+        if ((th != 0) && (Time.time - th > attackFrequency) && (attackRange > Mathf.Abs(distance)) && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             player.GetComponent<HealthDrainage>().TakeDamage(attackDamage);
             th = Time.time;

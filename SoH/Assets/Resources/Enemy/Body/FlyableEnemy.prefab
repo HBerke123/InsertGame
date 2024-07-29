@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5661750935591535087}
   - component: {fileID: 7804630291259115893}
   - component: {fileID: 5609134518529886738}
+  - component: {fileID: 179263056}
   m_Layer: 10
   m_Name: FlyableEnemy
   m_TagString: Enemy
@@ -156,11 +157,12 @@ MonoBehaviour:
   flySpeed: 4
   followRange: 12
   stopRange: 8
-  followSpeed: 6
+  followSpeed: 4
   rangex: 10
-  rangey: 6
+  rangeY: 2
   cooldown: 2
   thornSpeed: 9
+  yPos: -10
 --- !u!114 &5661750935591535087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +193,7 @@ MonoBehaviour:
   maxHealth: 20
   enemyNum: 0
   isBoss: 0
+  bossName: 
 --- !u!114 &5609134518529886738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +211,20 @@ MonoBehaviour:
   effectTime: 0
   healFrequency: 0.3
   healAmount: 1
+--- !u!114 &179263056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193538533157646795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0374305f0e89e2d4ba68fa56dd2ccdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTime: 0
+  isBlocked: 0
 --- !u!1 &4193538533455114954
 GameObject:
   m_ObjectHideFlags: 0

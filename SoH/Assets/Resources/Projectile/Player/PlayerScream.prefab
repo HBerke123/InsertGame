@@ -134,7 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnTouch: 0
-  damageAmount: 10
+  damageAmount: 0
+  blockTime: 5
 --- !u!58 &5688283110725844612
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class WalkableEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > attackFrequency) && (attackRange > Mathf.Abs(this.transform.position.x - player.transform.position.x)))
+        if ((th != 0) && (Time.time - th > attackFrequency) && (attackRange > Mathf.Abs(this.transform.position.x - player.transform.position.x)) && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             player.GetComponent<HealthDrainage>().TakeDamage(attackDamage);
             th = Time.time;

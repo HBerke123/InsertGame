@@ -128,7 +128,7 @@ public class GunShot : MonoBehaviour
             }
             else
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Pow(distanceX / distance, 2), Mathf.Pow(distanceY / distance, 2)) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Pow(distanceX / distance, 2), Mathf.Pow(distanceY / distance, 2)) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
             }
         }
 

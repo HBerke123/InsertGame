@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6786363493814917262}
   - component: {fileID: -3453385124682695363}
   - component: {fileID: 4400512398577947402}
+  - component: {fileID: 79850356}
   m_Layer: 10
   m_Name: LightEnemy
   m_TagString: Enemy
@@ -150,13 +151,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightWave: {fileID: 7330534001378653452, guid: 7027e418f64aca941a4a3fe303c904a3, type: 3}
+  lightUp: 1.4
   lightDamage: 2
-  waveTime: 3
-  waveSpeed: 5
   speed: 7
-  moveRangex: 12
-  rangex: 10
-  shootFrequency: 1.1
+  runRange: 2
+  moveRangeX: 16
+  rangeX: 12
+  shootFrequency: 5
 --- !u!114 &6786363493814917262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +187,8 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   enemyNum: 0
+  isBoss: 0
+  bossName: 
 --- !u!114 &4400512398577947402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +206,17 @@ MonoBehaviour:
   effectTime: 0
   healFrequency: 0.3
   healAmount: 1
+--- !u!114 &79850356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6786363493814917257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0374305f0e89e2d4ba68fa56dd2ccdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTime: 0
+  isBlocked: 0

@@ -6,7 +6,6 @@ public class Movement : MonoBehaviour
     public ParticleSystem groundParticles;
     public BoxCollider2D Attackhbox;
     public bool aiming;
-    public bool dashing;
     public bool stick;
     public float soundTime;
     public float speed;
@@ -46,7 +45,7 @@ public class Movement : MonoBehaviour
     private void Update()
 
     {
-        if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
+        if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !this.GetComponent<Dash>().dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
 

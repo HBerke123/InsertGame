@@ -24,7 +24,7 @@ public class FlyingEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > cooldown) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
+        if ((th != 0) && (Time.time - th > cooldown) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             th = 0;
             ThrowThorn();
@@ -107,19 +107,22 @@ public class FlyingEnemy : MonoBehaviour
 
     void ThrowThorn()
     {
-        arrow.transform.LookAt(player.transform);
-        GameObject SThorn = Instantiate(Thorn, this.transform.position, new Quaternion(0, 0, 0, 0));
+        GameObject SThorn = Instantiate(Thorn, this.transform.position, Quaternion.identity);
+        float distancex = player.transform.position.x - this.transform.position.x;
+        float distancey = player.transform.position.y - this.transform.position.y;
+        float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
+        SThorn.GetComponent<Rigidbody2D>().velocity = new Vector2(distancex / distance * thornSpeed, distancey / distance * thornSpeed);
+        SThorn.transform.LookAt(player.transform);
 
-        if (arrow.transform.rotation.eulerAngles.y == 270)
+        if (SThorn.transform.localRotation.eulerAngles.y < 180)
         {
-            SThorn.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Cos(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed, -Mathf.Sin(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed);
-            SThorn.transform.rotation = Quaternion.Euler(0, 0, arrow.transform.rotation.eulerAngles.x + 90);
+            SThorn.transform.rotation = Quaternion.Euler(0, 0, -SThorn.transform.localRotation.eulerAngles.x - 90);
         }
         else
         {
-            SThorn.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed, -Mathf.Sin(arrow.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * thornSpeed);
-            SThorn.transform.rotation = Quaternion.Euler(0, 0, -arrow.transform.rotation.eulerAngles.x - 90);
+            SThorn.transform.rotation = Quaternion.Euler(0, 0, SThorn.transform.localRotation.eulerAngles.x + 90);
         }
+        
         SThorn.GetComponent<DamagePlayer>().damageAmount = thornDamage;
     }
 }

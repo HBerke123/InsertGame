@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7886631451454035138}
   - component: {fileID: 5531114163583235568}
   - component: {fileID: -3606892598591350895}
+  - component: {fileID: 1072323279}
   m_Layer: 10
   m_Name: BadSmellingFlower
   m_TagString: Enemy
@@ -150,10 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   badSmoke: {fileID: 622329057077348610, guid: 414e330cd0e1aa0499f11ffbb98b921c, type: 3}
-  effectDuration: 3
   range: 2
   cooldown: 8
-  duration: 1
 --- !u!114 &7886631451454035138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +182,8 @@ MonoBehaviour:
   health: 50
   maxHealth: 50
   enemyNum: 6
+  isBoss: 0
+  bossName: 
 --- !u!114 &-3606892598591350895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +201,17 @@ MonoBehaviour:
   effectTime: 0
   healFrequency: 0.3
   healAmount: 1
+--- !u!114 &1072323279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7886631451454035148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0374305f0e89e2d4ba68fa56dd2ccdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTime: 0
+  isBlocked: 0

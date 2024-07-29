@@ -10,7 +10,8 @@ public class Dash : MonoBehaviour
     public bool dashable = true;
     public bool stick;
     public bool screaming;
-    public int cecost = 50;
+    public bool dashing;
+    public int cecost;
     Movement mv;
 
     private void Start()
@@ -25,7 +26,7 @@ public class Dash : MonoBehaviour
             this.GetComponent<MakeSound>().totalSoundTime = Mathf.Max(soundTime, this.GetComponent<MakeSound>().totalSoundTime);
             this.GetComponent<CEDrainage>().LoseCE(cecost);
             dashable = false;
-            mv.dashing = true;
+            dashing = true;
             if (this.GetComponent<SpriteRenderer>().flipX) mv.dspeed = -dashspeed;
             else mv.dspeed = dashspeed;
             StartCoroutine(Dashend());
@@ -37,7 +38,7 @@ public class Dash : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(dashtime);
         mv.dspeed = 0;
-        mv.dashing = false;
+        dashing = false;
     }
 
     IEnumerator Cooldown()

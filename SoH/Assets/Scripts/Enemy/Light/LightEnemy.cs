@@ -24,7 +24,7 @@ public class LightEnemy : MonoBehaviour
     {
         if ((Time.time - th > shootFrequency) && (th != 0) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
         {
-            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangeX)
+            if ((Mathf.Abs(this.transform.position.x - player.transform.position.x) <= rangeX) && !this.GetComponent<BlocksOnObject>().isBlocked)
             {
                 Shoot((int)-((this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x)));
             }

@@ -165,6 +165,7 @@ MonoBehaviour:
   damageAmount: 10
   destroyOnTouch: 0
   isReloadable: 0
+  weakToDash: 0
 --- !u!114 &-5934696286933705538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +180,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceAmount: 3
   direction: 0
+  weakToDash: 1
