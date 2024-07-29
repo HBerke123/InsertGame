@@ -135,8 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadTime: 0
   damageAmount: 0
   destroyOnTouch: 0
+  isReloadable: 0
 --- !u!61 &-4167315619389878595
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,5 +177,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb866bd8edd9e524598a09d9b918ae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceAmount: 8
+  forceAmount: 20
   direction: 0

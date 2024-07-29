@@ -47647,7 +47647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDamage: 0
-  waveSpeed: 1
+  waveSpeed: 5
   soundWave: {fileID: 8983698874597435969, guid: 844421b539537c64ca2dfd650634be59, type: 3}
 --- !u!212 &2109863182
 SpriteRenderer:
