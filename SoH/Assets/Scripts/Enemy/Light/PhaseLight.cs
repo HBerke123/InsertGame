@@ -5,14 +5,12 @@ using UnityEngine;
 public class PhaseLight : MonoBehaviour
 {
     public int num;
-    public float distance;
-    public float totalTime;
-    float startPos;
+    public float turnTime;
     float th;
+    bool turned;
 
     private void Start()
     {
-        startPos = this.transform.localPosition.x;
         th = Time.time;
     }
 
@@ -20,11 +18,33 @@ public class PhaseLight : MonoBehaviour
     {
         if (num == 0)
         {
-            this.transform.localRotation = Quaternion.Euler(0, 0, -90 + (totalTime - th) * 90);
+            this.transform.localRotation = Quaternion.Euler(0, 0, -90 + (Time.time - th) / turnTime * 90);
+
+            if ((this.transform.localRotation.eulerAngles.z < 269) && !turned)
+            {
+                turned = true;
+            }
+            else if ((this.transform.localRotation.eulerAngles.z > 91) && turned)
+            {
+                num = 1;
+                th = Time.time;
+                turned = false;
+            }
         }
         else
         {
-            this.transform.localRotation = Quaternion.Euler(0, 0, 90 + (totalTime - th) * -90);
-        }
+            this.transform.localRotation = Quaternion.Euler(0, 0, 90 + (Time.time - th) / turnTime * -90);
+
+            if ((this.transform.localRotation.eulerAngles.z > 91) && !turned)
+            {
+                turned = true;
+            }
+            else if ((this.transform.localRotation.eulerAngles.z < 269) && turned)
+            {
+                num = 0;
+                th = Time.time;
+                turned = false;
+            }
+        }  
     }
 }

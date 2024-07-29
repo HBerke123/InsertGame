@@ -48165,9 +48165,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1395232599140071508, guid: f2f280678068785428c1307e174b1418, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395232599140071508, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: bossName
       value: HBD, husein berque dehnis
       objectReference: {fileID: 0}
+    - target: {fileID: 1395232599140071510, guid: f2f280678068785428c1307e174b1418, type: 3}
+      propertyPath: attackTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395232599140071510, guid: f2f280678068785428c1307e174b1418, type: 3}
+      propertyPath: bossPhaseLight
+      value: 
+      objectReference: {fileID: 5833610636844750890, guid: 03c9ad89c0e774e47b2e3ca10b8c0823, type: 3}
     - target: {fileID: 1395232599140071511, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -48211,6 +48223,10 @@ PrefabInstance:
     - target: {fileID: 1395232599140071511, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395232599140071512, guid: f2f280678068785428c1307e174b1418, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1395232599140071515, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: m_Name

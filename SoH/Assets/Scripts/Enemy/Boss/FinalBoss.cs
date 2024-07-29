@@ -285,7 +285,8 @@ public class FinalBoss : MonoBehaviour
         ath = Time.time;
         for (int i = 0; i < 2; i++)
         {
-            Instantiate(bossPhaseLight, this.transform.position, Quaternion.identity);
+            GameObject SBox = Instantiate(bossPhaseLight, this.transform.position, Quaternion.identity);
+            SBox.GetComponent<PhaseLight>().num = i;
         }
     }
 }
