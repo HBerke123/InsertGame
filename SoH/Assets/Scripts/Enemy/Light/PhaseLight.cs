@@ -6,6 +6,7 @@ public class PhaseLight : MonoBehaviour
 {
     public int num;
     public float turnTime;
+    public GameObject boss;
     float th;
     bool turned;
 
@@ -16,6 +17,11 @@ public class PhaseLight : MonoBehaviour
 
     private void Update()
     {
+        if (boss == null)
+        {
+            Destroy(this.gameObject);
+        }
+
         if (num == 0)
         {
             this.transform.localRotation = Quaternion.Euler(0, 0, -90 + (Time.time - th) / turnTime * 90);

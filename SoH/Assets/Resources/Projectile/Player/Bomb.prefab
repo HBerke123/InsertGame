@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7227559544692314871}
   - component: {fileID: 7227559544692314870}
   - component: {fileID: -1751250682276189110}
-  - component: {fileID: 1977041349662576166}
-  - component: {fileID: 7109079906332889114}
+  - component: {fileID: 5265993950601345285}
+  - component: {fileID: 8925040115405962642}
   m_Layer: 12
   m_Name: Bomb
   m_TagString: Untagged
@@ -125,7 +125,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1977041349662576166
+--- !u!114 &5265993950601345285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,13 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 0
-  forcePower: 0
   TotalTime: 1.5
-  minsize: 0
-  maxsize: 0
-  ttime: 0
   SoundWave: {fileID: 5255486180055062, guid: 43ab01a15bcf76f45b4b219f701669ca, type: 3}
---- !u!58 &7109079906332889114
+--- !u!58 &8925040115405962642
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,4 +155,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 1

@@ -190,8 +190,6 @@ public class SoundBoss : MonoBehaviour
         SetDirection();
     }
 
-
-
     void SecondPhase()
     {
         onSecondPhase = true;

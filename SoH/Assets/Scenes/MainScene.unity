@@ -48431,6 +48431,10 @@ PrefabInstance:
       value: HBD, husein berque dehnis
       objectReference: {fileID: 0}
     - target: {fileID: 1395232599140071510, guid: f2f280678068785428c1307e174b1418, type: 3}
+      propertyPath: top
+      value: -127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395232599140071510, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: attackTime
       value: 20
       objectReference: {fileID: 0}
@@ -48493,6 +48497,14 @@ PrefabInstance:
     - target: {fileID: 1395232599140071515, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395232599418165923, guid: f2f280678068785428c1307e174b1418, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395232599418165923, guid: f2f280678068785428c1307e174b1418, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2f280678068785428c1307e174b1418, type: 3}

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7511000119780834403}
   - component: {fileID: 7511000119780834402}
   - component: {fileID: 6051276010361904991}
+  - component: {fileID: -9171352716367856097}
   m_Layer: 0
   m_Name: BossLightWave
   m_TagString: EnemyWeapon
@@ -29,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7511000119780834397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 0.75, y: 2.5, z: 1}
+  m_LocalPosition: {x: 0.0552, y: 5, z: 0}
+  m_LocalScale: {x: 36, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b2b4abb9b00e44abfe46e9361a146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalTime: 12
+  TotalTime: 1.5
 --- !u!114 &6051276010361904991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +166,18 @@ MonoBehaviour:
   destroyOnTouch: 0
   isReloadable: 0
   weakToDash: 1
+--- !u!114 &-9171352716367856097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511000119780834397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 241d497c1cc52684ba7673fad324d329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bigScale: 2.5
+  appearTime: 0.3
+  num: 2

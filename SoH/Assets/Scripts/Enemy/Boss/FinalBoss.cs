@@ -12,9 +12,8 @@ public class FinalBoss : MonoBehaviour
     public float lightTime;
     public float smokeSpeed;
     public float spearTime;
-    public float dashSpeed;
-    public float dashTime;
     public float lightAmount;
+    public float dashSpeed;
     public float moveFrequency;
     public float maxRightPoint;
     public float maxLeftPoint;
@@ -22,20 +21,23 @@ public class FinalBoss : MonoBehaviour
     public float leftPoint;
     public float lightWaveSpeed;
     public float bottom;
+    public float top;
     public float flyAmount;
     public float flySpeed;
     public float flyTime;
     public int maxMove;
     GameObject player;
+    GameObject Light;
     float ath;
     float lth;
-    float dth;
     float sth;
     float mth;
+    float ssth;
     bool onSecondPhase;
     bool onThirdPhase;
     bool onAttack;
     bool lighted;
+    bool dashing;
     int lastDirection;
     int direction;
     int moveCounter;
@@ -49,16 +51,18 @@ public class FinalBoss : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((mth != 0) && (Time.time - mth > moveFrequency) && (sth == 0) && (!onAttack) && (dth == 0) && (lth == 0) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && (this.GetComponentInChildren<GroundDetection>().detected))
+        if ((mth != 0) && (Time.time - mth > moveFrequency) && (sth == 0) && (!onAttack) && !dashing && (lth == 0) && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && this.GetComponentInChildren<GroundDetection>().detected && (Light == null))
         {
             if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth * 25 / 100) && !onThirdPhase)
             {
                 onAttack = true;
+                this.GetComponent<Rigidbody2D>().gravityScale = 0;
             }
             else if ((this.GetComponent<HealthDrainageOnEnemy>().health <= this.GetComponent<HealthDrainageOnEnemy>().maxHealth * 65 / 100) && !onSecondPhase)
             {
                 SecondPhase();
                 onSecondPhase = true;
+                this.GetComponent<Rigidbody2D>().gravityScale = 0;
             }
             else
             {
@@ -115,6 +119,7 @@ public class FinalBoss : MonoBehaviour
                 }
                 else if (Time.time - ath > attackTime)
                 {
+                    this.GetComponent<Rigidbody2D>().gravityScale = 1;
                     onAttack = false;
                     onThirdPhase = true;
                 }
@@ -142,6 +147,7 @@ public class FinalBoss : MonoBehaviour
                 Explode();
                 sth = 0;
                 mth = 0;
+                this.GetComponent<Rigidbody2D>().gravityScale = 1;
             }
             else
             {
@@ -155,34 +161,38 @@ public class FinalBoss : MonoBehaviour
                 }
             }
         }
-        else if (dth != 0)
+        else if (dashing)
         {
-            if (Time.time - dth > dashTime + spearTime)
-            {
-                bossSpear.SetActive(false);
-                dth = 0;
-                mth = 0;
-                lighted = false;
-            }
-            else if (Time.time - dth > dashTime)
+            if ((this.transform.position.x >= maxRightPoint - this.transform.localScale.x / 2 - bossSpear.transform.lossyScale.x) || (this.transform.position.x <= maxLeftPoint + this.transform.localScale.x / 2 + bossSpear.transform.lossyScale.x))
             {
                 this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
                 if (!lighted)
                 {
+                    ssth = Time.time;
                     if (direction == 1)
                     {
-                        SendLight(maxLeftPoint, maxRightPoint - this.transform.localScale.x / 2);
+                        SendLight(maxLeftPoint, maxRightPoint - this.transform.localScale.x - bossSpear.transform.lossyScale.x);
                     }
                     else
                     {
-                        SendLight(maxLeftPoint + this.transform.localScale.x / 2, maxRightPoint);
+                        SendLight(maxLeftPoint + this.transform.localScale.x + bossSpear.transform.lossyScale.x, maxRightPoint);
                     }
 
                     lighted = true;
                 }
 
                 Spear();
+
+                if (Time.time - ssth > spearTime)
+                {
+                    dashing = false;
+                    bossSpear.SetActive(false);
+                }
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.right * dashSpeed * direction;
             }
         }
     }
@@ -230,20 +240,40 @@ public class FinalBoss : MonoBehaviour
 
     void SendWave()
     {
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         SetDirection();
         mth = 0;
         this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GameObject SBox = Instantiate(lightWave, new Vector3(this.transform.position.x, 1.5f + bottom + lightWave.transform.localScale.y / 2, 0), Quaternion.identity);
-        SBox.GetComponent<Rigidbody2D>().velocity = direction * lightWaveSpeed * Vector2.right;
+        GameObject SBox = Instantiate(lightWave, new Vector3(this.transform.position.x + lightWave.transform.localScale.x / 2, 1.5f + bottom + lightWave.GetComponent<BossLight>().bigScale / 2, 0), Quaternion.identity);
+        Light = SBox;
     }
 
     void SendLight(float maxLeft, float maxRight)
     {
         this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
         for (int i = 0; i < 3; i++)
         {
-            Instantiate(lightBox, new Vector3(Random.Range(maxLeft, maxRight), bottom + lightWave.transform.localScale.y / 2, 0), Quaternion.identity);
+            int num = 0;
+            GameObject Sbox;
+
+            if (onSecondPhase)
+            {
+                num = Random.Range(0, 2);
+            }
+
+            if (num == 0)
+            {
+                Sbox = Instantiate(lightBox, new Vector3(Random.Range(maxLeft + (Mathf.Abs(maxLeft) + Mathf.Abs(maxRight)) / 3 * i, maxLeft + (Mathf.Abs(maxLeft) + Mathf.Abs(maxRight)) / 3 * (i + 1)), bottom + lightBox.transform.localScale.y / 2, 0), Quaternion.identity);
+            }
+            else
+            {
+                Sbox = Instantiate(lightBox, new Vector3(Random.Range(maxLeft + (Mathf.Abs(maxLeft) + Mathf.Abs(maxRight)) / 3 * i, maxLeft + (Mathf.Abs(maxLeft) + Mathf.Abs(maxRight)) / 3 * (i + 1)), top - lightBox.transform.localScale.y / 2, 0), Quaternion.identity);
+            }
+
+            Sbox.GetComponent<BossLight>().num = num;
         }
+
         lth = 0;
     }
 
@@ -261,18 +291,21 @@ public class FinalBoss : MonoBehaviour
     void Dash()
     {
         SetDirection();
-        dth = Time.time;
+        dashing = true;
+        lighted = false;
         this.GetComponent<Rigidbody2D>().velocity = Vector2.right * dashSpeed * direction;
     }
 
     void Spear()
     {
         bossSpear.SetActive(true);
-        bossSpear.transform.localScale = new Vector3(bossSpear.transform.localScale.x * direction, bossSpear.transform.localScale.y, bossSpear.transform.localScale.z);
+        bossSpear.transform.localPosition = new Vector3(Mathf.Abs(bossSpear.transform.localPosition.x) * direction, bossSpear.transform.localPosition.y, bossSpear.transform.localPosition.z);
     }
 
     void Smell()
     {
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
         for (int i = 0; i < 2; i++)
         {
             GameObject SBox = Instantiate(smoke, this.transform.position + Vector3.up * this.transform.localScale.y / 2, Quaternion.identity);
@@ -287,6 +320,7 @@ public class FinalBoss : MonoBehaviour
         {
             GameObject SBox = Instantiate(bossPhaseLight, this.transform.position, Quaternion.identity);
             SBox.GetComponent<PhaseLight>().num = i;
+            SBox.GetComponent<PhaseLight>().boss = this.gameObject;
         }
     }
 }
