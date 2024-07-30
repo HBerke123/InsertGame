@@ -14,6 +14,7 @@ public class SoundBoss : MonoBehaviour
     public float rushTime;
     public float soundSpeed;
     public float screamTime;
+    public float multiplier;
     public int maxMove;
     public GameObject rushBox;
     public GameObject soundWave;
@@ -194,9 +195,10 @@ public class SoundBoss : MonoBehaviour
     void SecondPhase()
     {
         onSecondPhase = true;
-        shakeForce *= 1.5f;
-        rushSpeed *= 1.5f;
-        soundSpeed *= 1.5f;
+        shakeForce *= multiplier;
+        rushSpeed *= multiplier;
+        rushTime /= multiplier;
+        soundSpeed *= multiplier;
         Scream();
     }
 }
