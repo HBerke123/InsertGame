@@ -1199,7 +1199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2922984181746881590, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: reloadTime
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2922984181746881590, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: weakToDash
@@ -48083,6 +48083,14 @@ PrefabInstance:
       propertyPath: dashspeed
       value: 72
       objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: reloadTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: reloadCount
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107570, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: health
       value: 50
@@ -48166,7 +48174,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1395232599140071508, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: health
-      value: 1
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1395232599140071508, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: bossName
