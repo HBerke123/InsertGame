@@ -1244,7 +1244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: health
-      value: 300
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: bossName
@@ -1252,7 +1252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: maxHealth
-      value: 300
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 2922984181746881590, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: reloadTime
