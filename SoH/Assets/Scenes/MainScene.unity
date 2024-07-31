@@ -1224,7 +1224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: moveSpeed
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: rushSpeed
@@ -48439,11 +48439,11 @@ PrefabInstance:
       objectReference: {fileID: 381171094}
     - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: dashtime
-      value: 0.05
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: dashspeed
-      value: 72
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: reloadTime
