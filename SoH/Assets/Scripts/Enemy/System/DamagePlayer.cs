@@ -27,6 +27,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !damaged && (!weakToDash || !collision.GetComponent<Dash>().dashing))
         {
+            Debug.Log(name + " " + this.transform.localScale.y / 2);
             rth = Time.time;
             damaged = true;
             collision.GetComponent<HealthDrainage>().TakeDamage(damageAmount);

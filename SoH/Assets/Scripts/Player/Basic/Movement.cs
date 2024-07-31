@@ -45,9 +45,9 @@ public class Movement : MonoBehaviour
     private void Update()
 
     {
-        if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !this.GetComponent<Dash>().dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<BlocksOnObject>().isBlocked)
+        if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !this.GetComponent<Dash>().dashing && !stick && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed + this.GetComponent<ForcesOnObject>().Force.x, rb.velocity.y + this.GetComponent<ForcesOnObject>().Force.y);
 
             if (Input.GetAxisRaw("Horizontal") == 0)
             {
@@ -73,7 +73,7 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        else if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<BlocksOnObject>().isBlocked)
+        else if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !stick)
         {
             this.GetComponent<Animator>().SetBool("Moving", false);
             rb.velocity = new Vector2(dspeed, rb.velocity.y);

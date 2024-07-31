@@ -19,7 +19,6 @@ public class FinalBoss : MonoBehaviour
     public float maxLeftPoint;
     public float rightPoint;
     public float leftPoint;
-    public float lightWaveSpeed;
     public float bottom;
     public float top;
     public float flyAmount;

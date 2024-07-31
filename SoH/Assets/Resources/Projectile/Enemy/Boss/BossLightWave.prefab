@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b2b4abb9b00e44abfe46e9361a146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalTime: 1.5
+  TotalTime: 3
 --- !u!114 &6051276010361904991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,13 +156,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7511000119780834397}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockTime: 2
-  reloadTime: 0
+  blockTime: 0
+  reloadTime: 2
   damageAmount: 10
   destroyOnTouch: 0
   isReloadable: 1
@@ -180,5 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bigScale: 2.5
-  appearTime: 0.3
+  appearTime: 0.5
   num: 2

@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   turnTime: 5
+  boss: {fileID: 0}
 --- !u!114 &3847834737081243554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockTime: 0
   reloadTime: 1
   damageAmount: 10
   destroyOnTouch: 0

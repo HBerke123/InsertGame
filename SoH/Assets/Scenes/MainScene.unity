@@ -2291,6 +2291,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7135500643959616284, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
+      propertyPath: rangeX
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135500643959616284, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
+      propertyPath: moveRangeX
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135500643959616284, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
+      propertyPath: screamRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135500643959616284, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
+      propertyPath: attackFrequency
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616286, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2472,7 +2488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d885bd5c2d18fc845bdd3beb0543934b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drinkTime: 2
   healAmount: 50
   cEAmount: 250
   hasPotion: 1
@@ -48326,6 +48341,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244008, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: soundTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244008, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: timeSlower
       value: 
       objectReference: {fileID: 763045558}
@@ -48344,6 +48363,10 @@ PrefabInstance:
     - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: damage
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: soundTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: loseAmount
@@ -48365,6 +48388,10 @@ PrefabInstance:
       propertyPath: preBomb
       value: 
       objectReference: {fileID: 3566748559433347259, guid: 4807fda492157794bbfc62cfd8e08816, type: 3}
+    - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: soundTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: bombForceY
       value: 5
@@ -48389,6 +48416,10 @@ PrefabInstance:
       propertyPath: skillObject
       value: 
       objectReference: {fileID: 1796801644}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: soundTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: menuOpener
       value: 
@@ -48433,6 +48464,14 @@ PrefabInstance:
       propertyPath: enemies.Array.data[8]
       value: 
       objectReference: {fileID: 971817332}
+    - target: {fileID: 1389891592076107560, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: soundTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107561, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: soundTime
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107561, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: menuOpener
       value: 
@@ -48444,6 +48483,10 @@ PrefabInstance:
     - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: dashspeed
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: soundTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: reloadTime
