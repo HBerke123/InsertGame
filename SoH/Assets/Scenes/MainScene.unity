@@ -1244,7 +1244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: health
-      value: 300
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: bossName
@@ -1252,7 +1252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: maxHealth
-      value: 300
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 2922984181746881590, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: reloadTime
@@ -2472,7 +2472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d885bd5c2d18fc845bdd3beb0543934b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drinkTime: 2
   healAmount: 50
   cEAmount: 250
   hasPotion: 1
