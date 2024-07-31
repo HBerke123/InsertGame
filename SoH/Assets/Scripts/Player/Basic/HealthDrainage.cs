@@ -52,6 +52,7 @@ public class HealthDrainage : MonoBehaviour
             }
         }
 
+        this.GetComponent<BlocksOnObject>().blockTime = 0;
         this.GetComponent<PoisonEffectsOnPlayer>().goodEffectTime = 0;
         this.GetComponent<PoisonEffectsOnPlayer>().badEffectTime = 0;
         this.GetComponent<CEDrainage>().cE = this.GetComponent<CEDrainage>().maxCE / 2;

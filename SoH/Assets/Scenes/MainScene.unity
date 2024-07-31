@@ -1130,6 +1130,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434400427}
   m_CullTransparentMesh: 1
+--- !u!1 &446430919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 196244797387990923, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+  m_PrefabInstance: {fileID: 447303785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &447303785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1186,6 +1191,42 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: bottom
+      value: -122
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: bossHit
+      value: 
+      objectReference: {fileID: 446430919}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: maxLeft
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: maxRight
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: rushTime
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: blockTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: rushSpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: multiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025130, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: shakeForce
       value: 10
       objectReference: {fileID: 0}
@@ -1194,8 +1235,16 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: health
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: bossName
       value: Ariesa, the first daeva
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410109213677025132, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
+      propertyPath: maxHealth
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2922984181746881590, guid: 5125ea2a43e0d3440a21e884e0ad3dd4, type: 3}
       propertyPath: reloadTime
@@ -2147,7 +2196,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1389891592076107574, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
   m_PrefabInstance: {fileID: 1389891591163036792}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1146122180}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 130aaace3d422aa4ebb49af3110d7aaa, type: 3}
@@ -2376,6 +2425,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1146122180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1389891592076107585, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+  m_PrefabInstance: {fileID: 1389891591163036792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1146122181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146122180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0374305f0e89e2d4ba68fa56dd2ccdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTime: 0
+  isBlocked: 0
+--- !u!114 &1146122200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146122180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d885bd5c2d18fc845bdd3beb0543934b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkTime: 2
+  healAmount: 50
+  cEAmount: 250
+  hasPotion: 1
 --- !u!1 &1161735676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1389891590101356886, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}

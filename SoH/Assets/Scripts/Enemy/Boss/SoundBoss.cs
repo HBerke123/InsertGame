@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class SoundBoss : MonoBehaviour
 {
+    public float bottom;
+    public float moveSpeed;
+    public float blockTime;
     public float moveFrequency;
     public float rightPoint;
     public float leftPoint;
+    public float maxRight;
+    public float maxLeft;
     public float screamMaxScale;
     public float shakeTime;
     public float shakeFrequency;
@@ -19,16 +24,17 @@ public class SoundBoss : MonoBehaviour
     public GameObject rushBox;
     public GameObject soundWave;
     public GameObject screamWave;
+    public GameObject bossHit;
     GameObject player;
     GameObject rushHit;
     bool readyToShake;
     bool onSecondPhase;
+    bool rushing;
+    bool rushingBack;
     int lastDirection;
     int direction;
     int moveCounter;
     float mth;
-    float rth;
-    float rrth;
     float scth;
 
     private void Start()
@@ -40,10 +46,17 @@ public class SoundBoss : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((rth == 0) && (rrth == 0) && (mth != 0) && (Time.time - mth > moveFrequency) && (scth == 0))
+        if (!rushing && !rushingBack && (mth != 0) && (Time.time - mth > moveFrequency) && (scth == 0))
         {
             Move();
             mth = Time.time;
+        }
+        else if (!rushing && !rushingBack && (mth != 0) && (scth == 0))
+        {
+            if ((this.transform.position.x > rightPoint) || (this.transform.position.x < leftPoint))
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
         }
 
         if (mth == 0)
@@ -56,26 +69,28 @@ public class SoundBoss : MonoBehaviour
             scth = 0;
         }
 
-        if ((rth != 0) && (Time.time - rth >= rushTime))
+        if (rushing)
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, this.GetComponent<Rigidbody2D>().velocity.y);
-            rth = 0;
-            GoBack();
-        }
-        else if (rth != 0)
-        {
+            if ((this.transform.position.x < maxLeft + this.transform.localScale.x * 2) || (this.transform.position.x > maxRight - this.transform.localScale.x * 2))
+            {
+                rushing = false;
+                GoBack();
+            }
+
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(rushSpeed * direction, this.GetComponent<Rigidbody2D>().velocity.y);
         }
 
-        if ((rrth != 0) && (Time.time - rrth >= rushTime))
+        if (rushingBack)
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, this.GetComponent<Rigidbody2D>().velocity.y);
-            Destroy(rushHit);
-            rrth = 0;
-            SetDirection();
-        }
-        else if (rrth != 0)
-        {
+            if ((this.transform.position.x > (Mathf.Abs(maxLeft) + Mathf.Abs(maxRight)) / 2 + maxLeft - this.transform.localScale.x / 2) && (this.transform.position.x < (Mathf.Abs(maxLeft) + Mathf.Abs(maxRight)) / 2 + maxLeft + this.transform.localScale.x / 2))
+            {
+                bossHit.SetActive(true);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, this.GetComponent<Rigidbody2D>().velocity.y);
+                Destroy(rushHit);
+                rushingBack = false;
+                SetDirection();
+            }
+
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(-rushSpeed * direction, this.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
@@ -121,6 +136,11 @@ public class SoundBoss : MonoBehaviour
         {
             readyToShake = false;
             Camera.main.GetComponent<CameraShake>().StartShake(shakeFrequency, shakeTime, shakeForce);
+            
+            if (player.GetComponentInChildren<GroundDetection>().detected)
+            {
+                player.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(player.GetComponent<BlocksOnObject>().blockTime, blockTime);
+            }
         }
 
         if ((this.GetComponent<Rigidbody2D>().velocity.y > 0.1) && !this.GetComponentInChildren<GroundDetection>().detected)
@@ -132,19 +152,21 @@ public class SoundBoss : MonoBehaviour
     void Move()
     {
         moveCounter++;
+
         if (Random.Range(0, 2) == 0)
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(-(this.transform.position.x - leftPoint), this.GetComponent<Rigidbody2D>().velocity.y);
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, this.GetComponent<Rigidbody2D>().velocity.y);
         }
         else
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(-(this.transform.position.x - rightPoint), this.GetComponent<Rigidbody2D>().velocity.y);
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, this.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
 
     void SendWaves()
     {
-        GameObject SBox = Instantiate(soundWave, this.transform.position, Quaternion.identity);
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GameObject SBox = Instantiate(soundWave, new Vector3(this.transform.position.x + this.transform.localScale.x / 2 * direction, bottom + soundWave.transform.localScale.y / 2, 0), Quaternion.identity);
         SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * soundSpeed, 0);
         SBox.GetComponent<ForcePlayer>().direction = direction;
         SetDirection();
@@ -152,6 +174,7 @@ public class SoundBoss : MonoBehaviour
 
     void Scream()
     {
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         scth = Time.time;
         Camera.main.GetComponent<CameraShake>().StartShake(shakeFrequency, shakeTime, shakeForce);
         Instantiate(screamWave, this.transform.position, Quaternion.identity);
@@ -174,14 +197,15 @@ public class SoundBoss : MonoBehaviour
     void Rush()
     {
         GameObject Sbox = Instantiate(rushBox, this.transform);
+        bossHit.SetActive(false);
         rushHit = Sbox;
         Sbox.transform.localPosition = Vector3.down * 0.25f;
-        rth = Time.time;
+        rushing = true;
     }
 
     void GoBack()
     {
-        rrth = Time.time;
+        rushingBack = true;
     }
 
     void Jump()

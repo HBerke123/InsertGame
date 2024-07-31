@@ -33,7 +33,7 @@ public class SwordAttack : MonoBehaviour
     {
         if (!menuOpener.isMenuOpen)
         {
-            if (attackable && !this.GetComponent<GunShot>().started)
+            if (attackable && !this.GetComponent<GunShot>().started && !this.GetComponent<SoundUse>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponentInParent<BlocksOnObject>().isBlocked)
             {
                 if (Input.GetMouseButtonDown(0) && attackable)
                 {
@@ -62,7 +62,7 @@ public class SwordAttack : MonoBehaviour
                         StartCoroutine(Attackend());
                         StartCoroutine(Cooldown());
                     }
-                    else
+                    else if (!this.GetComponentInParent<Crouching>().isCrouching)
                     {
                         this.GetComponentInParent<MakeSound>().AddTime(soundTime);
                         th = 0;

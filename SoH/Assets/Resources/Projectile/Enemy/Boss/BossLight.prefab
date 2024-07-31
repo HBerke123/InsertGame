@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadTime: 1
+  blockTime: 0
+  reloadTime: 2
   damageAmount: 10
   destroyOnTouch: 0
   isReloadable: 1
@@ -158,3 +159,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bigScale: 10
   appearTime: 0.75
+  num: 0

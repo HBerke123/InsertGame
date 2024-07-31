@@ -37,7 +37,7 @@ public class SoundUse : MonoBehaviour
             direction = 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming)
+        if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<BlocksOnObject>().isBlocked)
         {
             arrow.SetActive(false);
             timeSlower.StartSlowMotion();

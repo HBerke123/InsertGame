@@ -26,6 +26,7 @@ public class HaomaPlant : MonoBehaviour
                 if ((th != 0) && (Time.time - th > holdTime))
                 {
                     th = 0;
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Potion>().hasPotion = true;
                     SaveProgress();
                 }
             }

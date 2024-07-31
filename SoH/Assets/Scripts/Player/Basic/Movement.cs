@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour
     private void Update()
 
     {
-        if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !this.GetComponent<Dash>().dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
+        if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !this.GetComponent<Dash>().dashing && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
 
@@ -73,7 +73,7 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        else if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
+        else if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             this.GetComponent<Animator>().SetBool("Moving", false);
             rb.velocity = new Vector2(dspeed, rb.velocity.y);
@@ -82,6 +82,23 @@ public class Movement : MonoBehaviour
         else if (!stick)
         {
             this.GetComponent<Animator>().SetBool("Moving", false);
+
+            if (this.GetComponent<ForcesOnObject>().Force.x != 0)
+            {
+                if (this.GetComponent<ForcesOnObject>().Force.y != 0)
+                {
+                    rb.velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, rb.velocity.y);
+                }
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, this.GetComponent<ForcesOnObject>().Force.y);
+            }
+
             rb.velocity = this.GetComponent<ForcesOnObject>().Force;
             spawnParticles = false;
         }

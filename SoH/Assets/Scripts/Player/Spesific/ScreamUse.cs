@@ -15,7 +15,7 @@ public class ScreamUse : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && (th == 0) && !this.GetComponent<SoundUse>().started && !this.GetComponent<SwordAttack>().ready && !this.GetComponent<GunShot>().started && this.transform.parent.GetComponentInChildren<GroundDetection>().detected)
+        if (Input.GetKeyDown(KeyCode.E) && (th == 0) && !this.GetComponent<SoundUse>().started && !this.GetComponent<SwordAttack>().ready && !this.GetComponent<GunShot>().started && this.transform.parent.GetComponentInChildren<GroundDetection>().detected && !this.GetComponentInParent<BlocksOnObject>().isBlocked)
         {
             Scream();
         }

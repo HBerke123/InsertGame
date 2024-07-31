@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DamagePlayer : MonoBehaviour
 {
+    public float blockTime;
     public float reloadTime;
     public float damageAmount;
     public bool destroyOnTouch;
@@ -29,6 +30,8 @@ public class DamagePlayer : MonoBehaviour
             rth = Time.time;
             damaged = true;
             collision.GetComponent<HealthDrainage>().TakeDamage(damageAmount);
+            collision.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(collision.GetComponent<BlocksOnObject>().blockTime, blockTime);
+
             if (destroyOnTouch)
             {
                 Destroy(this.gameObject);

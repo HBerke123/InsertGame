@@ -132,8 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadTime: 1
-  damageAmount: 20
+  blockTime: 1
+  reloadTime: 3
+  damageAmount: 10
   destroyOnTouch: 0
   isReloadable: 1
   weakToDash: 0

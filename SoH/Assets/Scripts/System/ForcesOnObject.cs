@@ -4,25 +4,35 @@ public class ForcesOnObject : MonoBehaviour
 {
     public Vector2 Force;
     public float resistance;
+    float th;
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if ((Force.x > 0.1) || ((Force.x < -0.1)))
+        if ((th != 0) && (Time.time - th > 0.1f))
         {
-            Force.x -= resistance * Force.x;
-        }
-        else if ((Force.x < 0.1) || (Force.x > -0.1))
-        {
-            Force.x = 0;
-        }
+            if ((Force.x > 0.1) || ((Force.x < -0.1)))
+            {
+                Force.x -= resistance * Force.x;
+            }
+            else if ((Force.x < 0.1) || (Force.x > -0.1))
+            {
+                Force.x = 0;
+            }
 
-        if ((Force.y > 0.1) || ((Force.y < -0.1)))
-        {
-            Force.y -= resistance * Force.y;
+            if ((Force.y > 0.1) || ((Force.y < -0.1)))
+            {
+                Force.y -= resistance * Force.y;
+            }
+            else if ((Force.y < 0.1) || (Force.y > -0.1))
+            {
+                Force.y = 0;
+            }
+
+            th = Time.time;
         }
-        else if ((Force.y < 0.1) || (Force.y > -0.1))
+        else if ((th == 0) && (Force != Vector2.zero))
         {
-            Force.y = 0;
+            th = Time.time;
         }
     }
 }
