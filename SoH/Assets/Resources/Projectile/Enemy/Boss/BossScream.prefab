@@ -114,9 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalTime: 3
-  maxyscale: 25
+  maxyscale: 30
   minyscale: 0
-  maxxscale: 25
+  maxxscale: 30
   minxscale: 0
   xScale: 1
   yScale: 1
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockTime: 1
-  reloadTime: 3
+  reloadTime: 2
   damageAmount: 10
   destroyOnTouch: 0
   isReloadable: 1

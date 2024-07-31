@@ -205,6 +205,11 @@ public class SoundBoss : MonoBehaviour
 
     void GoBack()
     {
+        Destroy(rushHit);
+        GameObject Sbox = Instantiate(rushBox, this.transform);
+        bossHit.SetActive(false);
+        rushHit = Sbox;
+        Sbox.transform.localPosition = Vector3.down * 0.25f;
         rushingBack = true;
     }
 

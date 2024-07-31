@@ -44,12 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545343bc1f61be24b941a66930923689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PreBombs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  preBombs: []
   arrow: {fileID: 0}
   showing: 0
 --- !u!1 &1389891590241529334
@@ -316,12 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545343bc1f61be24b941a66930923689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PreBombs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  preBombs: []
   arrow: {fileID: 0}
   showing: 0
 --- !u!1 &1389891590717150443
@@ -374,22 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545343bc1f61be24b941a66930923689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PreBombs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 1389891591354621827}
-  - {fileID: 1389891591515866880}
-  - {fileID: 1389891592009265444}
-  - {fileID: 1389891590241529334}
-  - {fileID: 1389891590817592570}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  preBombs: []
   arrow: {fileID: 0}
   showing: 0
 --- !u!114 &1389891590717150446
@@ -1072,6 +1047,7 @@ MonoBehaviour:
   quickCeCost: 10
   heavyCeCost: 20
   skillCeCost: 40
+  ready: 0
 --- !u!114 &1389891592042244023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,8 +1081,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSlower: {fileID: 0}
   arrow: {fileID: 1389891590313818661}
+  maxCost: 0
+  minCost: 0
   holdtime: 0.5
   cooldown: 1.5
+  started: 0
 --- !u!114 &1389891592042244008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,6 +1122,9 @@ MonoBehaviour:
   soundTime: 2
   damage: 5
   cooldown: 3
+  loseFrequency: 0
+  loseAmount: 0
+  screaming: 0
 --- !u!114 &1389891592042244011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1171,6 +1153,7 @@ MonoBehaviour:
   minsize: 1
   maxsize: 3.125
   cecost: 60
+  started: 0
 --- !u!114 &1389891592042244012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,13 +1435,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundTime: 1
-  dashspeed: 36
+  dashspeed: 63
   dashcooldown: 0.32
-  dashtime: 0.025
+  dashtime: 0.04375
+  reloadTime: 0
+  reloadCount: 0
   dashable: 1
   stick: 0
   screaming: 0
+  dashing: 0
   cecost: 50
+  reloadTimes: []
 --- !u!114 &1389891592076107574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,8 +1474,6 @@ MonoBehaviour:
   groundParticles: {fileID: 8453812108222428347, guid: 1c19c7f3a0465674db189cc5b9c46bbd, type: 3}
   Attackhbox: {fileID: 1389891592042244021}
   aiming: 0
-  screaming: 0
-  dashing: 0
   stick: 0
   soundTime: 0.5
   speed: 8
