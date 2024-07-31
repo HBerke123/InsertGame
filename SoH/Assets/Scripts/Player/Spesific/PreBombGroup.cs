@@ -11,15 +11,51 @@ public class PreBombGroup : MonoBehaviour
     {
         arrow.transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-        if ((arrow.transform.localRotation.eulerAngles.y < 180) && !this.GetComponentInParent<SpriteRenderer>().flipX)
+        if (arrow.transform.localRotation.eulerAngles.y < 180)
         {
-            this.transform.localScale = Vector3.one;
-            this.transform.localRotation = Quaternion.Euler(0, 0, -arrow.transform.localRotation.eulerAngles.x);
+            if (!this.GetComponentInParent<SpriteRenderer>().flipX)
+            {
+                this.transform.localScale = Vector3.one;
+                this.transform.localRotation = Quaternion.Euler(0, 0, -arrow.transform.localRotation.eulerAngles.x);
+            } 
+            else
+            {
+                this.transform.localScale = Vector3.one - Vector3.right * 2;
+
+                if (this.transform.position.y > Camera.main.ScreenToWorldPoint(Input.mousePosition).y)
+                {
+                    this.transform.localRotation = Quaternion.Euler(0, 0, 90);
+                }
+                else
+                {
+                    this.transform.localRotation = Quaternion.Euler(0, 0, 270);
+                }
+            }
+            
         }
-        else if ((arrow.transform.localRotation.eulerAngles.y > 180) && this.GetComponentInParent<SpriteRenderer>().flipX)
+        else
         {
             this.transform.localScale = Vector3.one - Vector3.right * 2;
             this.transform.localRotation = Quaternion.Euler(0, 0, arrow.transform.localRotation.eulerAngles.x);
+
+            if (this.GetComponentInParent<SpriteRenderer>().flipX)
+            {
+                this.transform.localScale = Vector3.one - Vector3.right * 2;
+                this.transform.localRotation = Quaternion.Euler(0, 0, arrow.transform.localRotation.eulerAngles.x);
+            }
+            else
+            {
+                this.transform.localScale = Vector3.one;
+
+                if (this.transform.position.y > Camera.main.ScreenToWorldPoint(Input.mousePosition).y)
+                {
+                    this.transform.localRotation = Quaternion.Euler(0, 0, 270);
+                }
+                else
+                {
+                    this.transform.localRotation = Quaternion.Euler(0, 0, 90);
+                }
+            }
         }
     }
 

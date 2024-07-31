@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class HealthDrainageOnEnemy : MonoBehaviour
 {
+    public float healPlayer;
     public float health;
     public float maxHealth;
     public int enemyNum;
@@ -41,6 +42,8 @@ public class HealthDrainageOnEnemy : MonoBehaviour
             {
                 this.GetComponent<BadSmellingFlower>().Smell();
             }
+
+            GameObject.FindGameObjectWithTag("Player").GetComponent<HealthDrainage>().Heal(healPlayer);
 
             Destroy(this.gameObject);
         }

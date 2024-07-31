@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3453385124682695363, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
+      propertyPath: healPlayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6786363493814917257, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
       propertyPath: m_Name
       value: LightEnemy
@@ -529,6 +533,10 @@ PrefabInstance:
     - target: {fileID: 4193538533157646797, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804630291259115893, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
+      propertyPath: healPlayer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcad102f2a184f046b64963ea7cf7e2d, type: 3}
@@ -2209,6 +2217,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5531114163583235568, guid: 66f00b561637cf945a81a007c00c01f9, type: 3}
+      propertyPath: healPlayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7886631451454035139, guid: 66f00b561637cf945a81a007c00c01f9, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2271,6 +2283,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -245876173423303314, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
+      propertyPath: healPlayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616272, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: m_Name
       value: SoundEnemy
@@ -2820,6 +2836,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6242971872669317520, guid: 252c77fec2da843418c3b0dfd0496266, type: 3}
+      propertyPath: healPlayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 218535336868151540, guid: 252c77fec2da843418c3b0dfd0496266, type: 3}
       propertyPath: m_Name
       value: WalkableEnemy
@@ -3068,6 +3088,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1923596191202767972, guid: 2baa459334fe39344a4a8c7856b482b9, type: 3}
+      propertyPath: healPlayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8390147544986694689, guid: 2baa459334fe39344a4a8c7856b482b9, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -3135,6 +3159,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7347963251536358679, guid: f8ffa63664daf12419b085ddb424aeee, type: 3}
+      propertyPath: healPlayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1111135534365861713, guid: f8ffa63664daf12419b085ddb424aeee, type: 3}
       propertyPath: m_RootOrder
       value: 7

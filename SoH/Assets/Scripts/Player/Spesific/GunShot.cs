@@ -68,7 +68,7 @@ public class GunShot : MonoBehaviour
         {
             if (lastBombs.Count == 0)
             {
-                if (Input.GetMouseButtonDown(1) && (ammo > 0) && (th == 0) && !explosed && !this.GetComponent<SoundUse>().started && !this.GetComponentInParent<BlocksOnObject>() && !this.GetComponent<SwordAttack>().ready && !this.GetComponent<Crouching>().isCrouching && !this.GetComponent<ScreamUse>().screaming)
+                if (Input.GetMouseButtonDown(1) && (ammo > 0) && (th == 0) && !explosed && !this.GetComponent<SoundUse>().started && !this.GetComponentInParent<BlocksOnObject>().isBlocked && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<Crouching>().isCrouching && !this.GetComponent<ScreamUse>().screaming)
                 {
                     started = true;
                     explosed = false;
