@@ -2391,11 +2391,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616284, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: rangeX
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616284, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: moveRangeX
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616284, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: noticeTime
@@ -2407,7 +2407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616284, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: attackFrequency
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616286, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: m_RootOrder

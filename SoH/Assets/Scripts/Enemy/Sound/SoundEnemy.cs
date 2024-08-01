@@ -26,7 +26,7 @@ public class SoundEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && (Time.time - th > attackFrequency))
+        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && (Time.time - th > attackFrequency) && (th != 0))
         {
             if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < screamRange) 
             {
@@ -52,7 +52,7 @@ public class SoundEnemy : MonoBehaviour
             speed = baseSpeed;
         }
 
-        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && ((Mathf.Abs(distanceX) < moveRangeX) || this.GetComponent<Notice>().isNoticed) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
+        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && ((Mathf.Abs(distanceX) < moveRangeX) || this.GetComponent<Notice>().isNoticed) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && (Mathf.Abs(distanceX) > rangeX))
         {
             this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
             if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (Mathf.Abs(distanceX) < rangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
