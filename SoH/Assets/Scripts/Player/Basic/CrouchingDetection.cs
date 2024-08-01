@@ -6,7 +6,7 @@ public class CrouchingDetection : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player") && !collision.CompareTag("EnemyWeapon") && !collision.CompareTag("EnemyScream") && !collision.CompareTag("EnemySound"))
+        if (!collision.CompareTag("Player") && !collision.CompareTag("EnemyWeapon") && !collision.CompareTag("EnemyScream") && !collision.CompareTag("EnemySound") && !collision.CompareTag("LaserTrigger"))
         {
             isSafe = false;
         }

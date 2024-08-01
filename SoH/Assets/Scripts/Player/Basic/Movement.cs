@@ -1,16 +1,21 @@
 using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Movement : MonoBehaviour
 {
+    readonly List<float> reloadTimes = new();
     public ParticleSystem groundParticles;
     public BoxCollider2D Attackhbox;
     public bool aiming;
     public bool stick;
+    public float reloadTime;
     public float soundTime;
     public float speed;
     public float dspeed;
-    public float particleFrequency;
+    public float stepFrequency;
+    public float cost;
+    public float cEDelay;
     public bool spawnParticles;
     Rigidbody2D rb;
     float baseSpeed;
@@ -28,17 +33,39 @@ public class Movement : MonoBehaviour
     {
         if (spawnParticles && (th == 0))
         {
-            th = Time.time - particleFrequency;
+            th = Time.time - stepFrequency;
         }
 
-        if ((Time.time - th >= particleFrequency) && (spawnParticles))
+        if ((Time.time - th >= stepFrequency) && (spawnParticles))
         {
-            ParticleSystem particles = Instantiate(groundParticles, this.transform.position, new Quaternion(0, 0, 0, 0));
+            this.GetComponent<CEDrainage>().LoseCE(cost);
+            this.GetComponent<CEProduce>().delayAmount = Mathf.Max(this.GetComponent<CEProduce>().delayAmount, cEDelay);
+            ParticleSystem particles = Instantiate(groundParticles, this.transform.position, Quaternion.identity);
+
+            for (int i = 1; i < cost + 1; i++)
+            {
+                reloadTimes.Add(Time.time + reloadTime / cost);
+            }
+
             if (this.GetComponent<SpriteRenderer>().flipX)
             {
                 particles.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
+            
             th = Time.time;
+        }
+
+        for (int i = 0; i < reloadTimes.Count; i++)
+        {
+            if (Time.time > reloadTimes[i])
+            {
+                reloadTimes.RemoveAt(i);
+
+                if (this.GetComponent<CEDrainage>().cE < this.GetComponent<CEDrainage>().maxCE / 2)
+                {
+                    this.GetComponent<CEDrainage>().GainCE(1);
+                }
+            }
         }
     }
 

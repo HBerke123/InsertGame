@@ -11,17 +11,15 @@ public class CEDrainage : MonoBehaviour
         UpdateCEBar();
     }
 
-    public void LoseCE(float dmg)
+    public void LoseCE(float amount)
     {
-        cE -= dmg;
-        Mathf.Round(cE);
+        cE -= amount;
         UpdateCEBar();
     }
 
-    public void GainCE(float dmg)
+    public void GainCE(float amount)
     {
-        cE += dmg;
-        Mathf.Round(cE);
+        cE += amount;
         UpdateCEBar();
     }
 

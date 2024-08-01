@@ -442,6 +442,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1462675699842972144, guid: f69db3d9998a3e1428f2edd191119d80, type: 3}
+      propertyPath: m_TagString
+      value: LaserTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 6018938766410629981, guid: f69db3d9998a3e1428f2edd191119d80, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -48522,9 +48526,29 @@ PrefabInstance:
       propertyPath: timeSlower
       value: 
       objectReference: {fileID: 763045558}
+    - target: {fileID: 1389891592042244009, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: maxDelayTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244009, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: minDelayTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244009, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: maxRegainTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244009, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: minRegainTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: damage
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: delayTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: soundTime
@@ -48532,6 +48556,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: loseAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cERegainTime
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244010, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
@@ -48547,9 +48575,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 350074447}
     - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cECost
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: preBomb
       value: 
       objectReference: {fileID: 3566748559433347259, guid: 4807fda492157794bbfc62cfd8e08816, type: 3}
+    - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: soundTime
       value: 3
@@ -48557,6 +48593,14 @@ PrefabInstance:
     - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: bombForceY
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: reloadTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cERegaintime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: preBombShower
@@ -48579,8 +48623,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1796801644}
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cECost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: delayTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: soundTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: attackTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: menuOpener
@@ -48589,6 +48645,42 @@ PrefabInstance:
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: noticeTime
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: skillCECost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: attackDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cERegainTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: attackCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: skillDelayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: skillAttackTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: skillAttackDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: skillCERegainTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: skillAttackCooldown
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107555, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: menuOpener
@@ -48631,8 +48723,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 971817332}
     - target: {fileID: 1389891592076107560, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107560, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cEDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107560, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: soundTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107560, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107560, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: stepFrequency
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107561, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107561, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cEDelay
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107561, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: soundTime
@@ -48642,6 +48758,18 @@ PrefabInstance:
       propertyPath: menuOpener
       value: 
       objectReference: {fileID: 381171094}
+    - target: {fileID: 1389891592076107561, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: reloadTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cEDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: dashtime
       value: 0.07
@@ -48661,6 +48789,14 @@ PrefabInstance:
     - target: {fileID: 1389891592076107562, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: reloadCount
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107563, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cEproduceCd
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107563, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: cEproduceVa
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107570, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: health

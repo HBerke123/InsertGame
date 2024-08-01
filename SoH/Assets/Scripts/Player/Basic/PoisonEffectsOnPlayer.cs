@@ -50,8 +50,8 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
 
         if ((gth != 0) && (Time.time - gth > goodEffectTime) && (goodEffectTime > 0))
         {
-            this.GetComponentInChildren<SwordAttack>().quickAttackDamage /= damageMultiplier;
-            this.GetComponentInChildren<SwordAttack>().heavyAttackDamage /= damageMultiplier;
+            this.GetComponentInChildren<SwordAttack>().attackDamage /= damageMultiplier;
+            this.GetComponentInChildren<SwordAttack>().skillAttackDamage /= damageMultiplier;
             this.GetComponentInChildren<SwordSkill>().damage /= damageMultiplier;
             this.GetComponentInChildren<ScreamUse>().damage /= damageMultiplier;
             this.GetComponentInChildren<GunShot>().damage /= damageMultiplier;
@@ -71,8 +71,8 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
 
         if ((gth == 0) && (goodEffectTime > 0))
         {
-            this.GetComponentInChildren<SwordAttack>().quickAttackDamage *= damageMultiplier;
-            this.GetComponentInChildren<SwordAttack>().heavyAttackDamage *= damageMultiplier;
+            this.GetComponentInChildren<SwordAttack>().attackDamage *= damageMultiplier;
+            this.GetComponentInChildren<SwordAttack>().skillAttackDamage *= damageMultiplier;
             this.GetComponentInChildren<SwordSkill>().damage *= damageMultiplier;
             this.GetComponentInChildren<ScreamUse>().damage *= damageMultiplier;
             this.GetComponentInChildren<GunShot>().damage *= damageMultiplier;

@@ -1,13 +1,17 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ScreamUse : MonoBehaviour
 {
+    readonly List<float> reloadTimes = new();
     public GameObject ScreamWave;
     public float soundTime;
     public float damage;
     public float cooldown;
     public float loseFrequency;
     public float loseAmount;
+    public float delayTime;
+    public float cERegainTime;
     public bool screaming;
     GameObject screamHit;
     float th;
@@ -47,6 +51,24 @@ public class ScreamUse : MonoBehaviour
         {
             this.GetComponentInParent<CEDrainage>().LoseCE(loseAmount);
             lth = Time.time;
+
+            for (int i = 1; i < loseAmount + 1; i++)
+            {
+                reloadTimes.Add(Time.time + cERegainTime / loseAmount * i);
+            }
+        }
+
+        for (int i = 0; i < reloadTimes.Count; i++)
+        {
+            if (Time.time > reloadTimes[i])
+            {
+                reloadTimes.RemoveAt(i);
+
+                if (this.GetComponentInParent<CEDrainage>().cE < this.GetComponentInParent<CEDrainage>().maxCE / 2)
+                {
+                    this.GetComponentInParent<CEDrainage>().GainCE(1);
+                }
+            }
         }
     }
 

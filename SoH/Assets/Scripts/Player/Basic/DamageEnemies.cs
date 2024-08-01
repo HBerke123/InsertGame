@@ -7,7 +7,7 @@ public class DamageEnemies : MonoBehaviour
     public float damageAmount;
     public float blockTime;
     public float noticeTime;
-    List<GameObject> damaged = new();
+    readonly List<GameObject> damaged = new();
 
     private void Update()
     {

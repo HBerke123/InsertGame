@@ -9,12 +9,12 @@ public class Dash : MonoBehaviour
     public float dashcooldown;
     public float dashtime;
     public float reloadTime;
-    public float reloadCount;
+    public float cEDelay;
     public bool dashable = true;
     public bool stick;
     public bool screaming;
     public bool dashing;
-    public int cecost;
+    public int cost;
     public List<float> reloadTimes = new List<float>();
     Movement mv;
 
@@ -29,10 +29,14 @@ public class Dash : MonoBehaviour
         {
             for (int i = 0; i < reloadTimes.Count; i++)
             {
-                if (Time.time - reloadTimes[i] > reloadTime / reloadCount)
+                if (Time.time > reloadTimes[i])
                 {
-                    this.GetComponent<CEDrainage>().GainCE(1);
-                    reloadTimes.Remove(reloadTimes[i]);
+                    reloadTimes.RemoveAt(i);
+                    
+                    if (this.GetComponent<CEDrainage>().cE < this.GetComponent<CEDrainage>().maxCE / 2)
+                    {
+                        this.GetComponent<CEDrainage>().GainCE(1);
+                    }
                 }
             }
         }
@@ -43,13 +47,14 @@ public class Dash : MonoBehaviour
         if (dashable && Input.GetKeyDown(KeyCode.LeftControl) && !stick && !screaming && !this.GetComponent<Crouching>().isCrouching && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
         {
             this.GetComponent<MakeSound>().totalSoundTime = Mathf.Max(soundTime, this.GetComponent<MakeSound>().totalSoundTime);
-            this.GetComponent<CEDrainage>().LoseCE(cecost);
+            this.GetComponent<CEDrainage>().LoseCE(cost);
+            this.GetComponent<CEProduce>().delayAmount = Mathf.Max(this.GetComponent<CEProduce>().delayAmount, cEDelay);
             dashable = false;
             dashing = true;
 
-            for (int i = 1; i < reloadCount + 1; i++)
+            for (int i = 1; i < cost + 1; i++)
             {
-                reloadTimes.Add(Time.time + reloadTime / reloadCount * i);
+                reloadTimes.Add(Time.time + reloadTime / cost * i);
             }
 
             reloadTimes.Add(Time.time);

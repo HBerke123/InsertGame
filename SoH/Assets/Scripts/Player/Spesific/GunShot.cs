@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunShot : MonoBehaviour
 {
+    readonly List<float> reloadTimes = new();
     public List<GameObject> lastBombs = new();
     public GameObject[] preBombGroups;
     public GameObject preBombShower;
@@ -12,20 +13,21 @@ public class GunShot : MonoBehaviour
     public float soundTime;
     public float damage;
     public float htime;
-    public float reloadtime;
-    public float ceregaintime;
+    public float reloadTime;
+    public float cERegaintime;
     public float minbombforce;
     public float maxbombforce;
     public float cooldown;
     public float minsize;
     public float maxsize;
-    public int cecost;
+    public float delayTime;
+    public int cECost;
     public bool started;
     int ammo = 3;
     bool explosed;
     bool reloading;
-    float th = 0;
-    float hth = 0;
+    float th;
+    float hth;
 
     private void Start()
     {
@@ -49,11 +51,24 @@ public class GunShot : MonoBehaviour
         {
             hth = 0;
         }
+
+        for (int i = 0; i < reloadTimes.Count; i++)
+        {
+            if (Time.time > reloadTimes[i])
+            {
+                reloadTimes.RemoveAt(i);
+
+                if (this.GetComponentInParent<CEDrainage>().cE < this.GetComponentInParent<CEDrainage>().maxCE / 2)
+                {
+                    this.GetComponentInParent<CEDrainage>().GainCE(1);
+                }
+            }
+        }
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && !this.GetComponent<SwordAttack>().ready)
+        if (Input.GetMouseButtonDown(1))
         {
             explosed = false;
 
@@ -108,6 +123,7 @@ public class GunShot : MonoBehaviour
         float distanceY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - this.transform.position.y;
         float distance = Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceY, 2));
         GameObject SBox = Instantiate(bomb, this.transform.position, Quaternion.identity);
+        this.GetComponentInParent<CEProduce>().delayAmount = Mathf.Max(this.GetComponentInParent<CEProduce>().delayAmount, delayTime);
         lastBombs.Add(SBox);
 
         if (!this.GetComponentInParent<SpriteRenderer>().flipX)
@@ -154,19 +170,16 @@ public class GunShot : MonoBehaviour
     IEnumerator Reload()
     {
         reloading = true;
-        this.GetComponentInParent<CEDrainage>().LoseCE(cecost);
-        StartCoroutine(RegainCE());
-        yield return new WaitForSecondsRealtime(reloadtime);
+        this.GetComponentInParent<CEDrainage>().LoseCE(cECost);
+        this.GetComponentInParent<CEProduce>().delayAmount = Mathf.Max(this.GetComponentInParent<CEProduce>().delayAmount, delayTime);
+
+        for (int i = 1; i < cECost + 1; i++)
+        {
+            reloadTimes.Add(Time.time + cERegaintime / cECost * i);
+        }
+
+        yield return new WaitForSecondsRealtime(reloadTime);
         reloading = false;
         ammo = 3;
-    }
-
-    IEnumerator RegainCE()
-    {
-        for (int i = 0; i < cecost; i++)
-        {
-            yield return new WaitForSecondsRealtime(ceregaintime / cecost);
-            this.GetComponentInParent<CEDrainage>().GainCE(1);
-        }
     }
 }

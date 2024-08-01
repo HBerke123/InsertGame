@@ -1,22 +1,26 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SwordAttack : MonoBehaviour
 {
+    readonly List<float> reloadTimes = new(); 
     public MenuOpener menuOpener;
     public float soundTime;
-    public float quickAttackDamage;
-    public float heavyAttackDamage;
-    public float quickAttackCooldown;
-    public float heavyAttackCooldown;
-    public float quickAttackTime;
-    public float heavyAttackTime;
-    public float ceRegainTime;
+    public float attackDamage;
+    public float skillAttackDamage;
+    public float attackCooldown;
+    public float skillAttackCooldown;
+    public float attackTime;
+    public float skillAttackTime;
+    public float cERegainTime;
+    public float skillCERegainTime;
     public float skillholdtime;
     public float noticeTime;
-    public int quickCeCost;
-    public int heavyCeCost;
-    public int skillCeCost;
+    public float delayTime;
+    public float skillDelayTime;
+    public int cECost;
+    public int skillCECost;
     float th = 0;
     public bool ready;
     bool attackable = true;
@@ -27,6 +31,19 @@ public class SwordAttack : MonoBehaviour
         if (Time.time - th > skillholdtime)
         {
             th = 0;
+        }
+
+        for (int i = 0; i < reloadTimes.Count; i++) 
+        {
+            if (Time.time > reloadTimes[i])
+            {
+                reloadTimes.RemoveAt(i);
+
+                if (this.GetComponentInParent<CEDrainage>().cE < this.GetComponentInParent<CEDrainage>().maxCE / 2)
+                {
+                    this.GetComponentInParent<CEDrainage>().GainCE(1);
+                }
+            }
         }
     }
 
@@ -57,10 +74,15 @@ public class SwordAttack : MonoBehaviour
                         if (this.GetComponentInParent<SpriteRenderer>().flipX) this.transform.localScale = new Vector3(-1, 1, 1);
                         else this.transform.localScale = new Vector3(1, 1, 1);
 
-                        this.GetComponentInParent<CEDrainage>().LoseCE(quickCeCost);
+                        this.GetComponentInParent<CEDrainage>().LoseCE(cECost);
+                        this.GetComponentInParent<CEProduce>().delayAmount = Mathf.Max(this.GetComponentInParent<CEProduce>().delayAmount, delayTime);
                         this.GetComponent<BoxCollider2D>().enabled = true;
 
-                        StartCoroutine(RegainCE(quickCeCost));
+                        for (int i = 1; i < cECost + 1; i++)
+                        {
+                            reloadTimes.Add(Time.time + cERegainTime / cECost * i);
+                        }
+
                         StartCoroutine(Attackend());
                         StartCoroutine(Cooldown());
                     }
@@ -74,9 +96,14 @@ public class SwordAttack : MonoBehaviour
                         if (this.GetComponentInParent<SpriteRenderer>().flipX) this.GetComponent<SwordSkill>().SkillStart(-1);
                         else this.GetComponent<SwordSkill>().SkillStart(1);
 
-                        this.GetComponentInParent<CEDrainage>().LoseCE(skillCeCost);
+                        this.GetComponentInParent<CEDrainage>().LoseCE(skillCECost);
+                        this.GetComponentInParent<CEProduce>().delayAmount = Mathf.Max(this.GetComponentInParent<CEProduce>().delayAmount, skillDelayTime);
 
-                        StartCoroutine(RegainCE(skillCeCost));
+                        for (int i = 1; i < skillCECost + 1; i++)
+                        {
+                            reloadTimes.Add(Time.time + skillCERegainTime / skillCECost * i);
+                        }
+
                         StartCoroutine(Attackend());
                         StartCoroutine(Cooldown());
                     }
@@ -89,11 +116,11 @@ public class SwordAttack : MonoBehaviour
     {
         if (attacknum == 0)
         {
-            yield return new WaitForSecondsRealtime(quickAttackTime);
+            yield return new WaitForSecondsRealtime(attackTime);
         }
         else
         {
-            yield return new WaitForSecondsRealtime(heavyAttackTime);
+            yield return new WaitForSecondsRealtime(skillAttackTime);
         }
         this.GetComponent<BoxCollider2D>().enabled = false;
     }
@@ -102,22 +129,13 @@ public class SwordAttack : MonoBehaviour
     {
         if (attacknum == 0)
         {
-            yield return new WaitForSecondsRealtime(quickAttackCooldown);
+            yield return new WaitForSecondsRealtime(attackCooldown);
         }
         else
         {
-            yield return new WaitForSecondsRealtime(heavyAttackCooldown);
+            yield return new WaitForSecondsRealtime(skillAttackCooldown);
         }
         attackable = true;
-    }
-
-    IEnumerator RegainCE(int gaincount)
-    {
-        for (int i = 0; i < gaincount; i++)
-        {
-            yield return new WaitForSecondsRealtime(ceRegainTime);
-            this.GetComponentInParent<CEDrainage>().GainCE(1);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -126,12 +144,12 @@ public class SwordAttack : MonoBehaviour
         {
             if (attacknum == 0)
             {
-                collision.GetComponent<HealthDrainageOnEnemy>().LoseHealth(quickAttackDamage);
+                collision.GetComponent<HealthDrainageOnEnemy>().LoseHealth(attackDamage);
                 collision.GetComponent<Notice>().noticeTime = Mathf.Max(collision.GetComponent<Notice>().noticeTime, noticeTime);
             }
             else
             {
-                collision.GetComponent<HealthDrainageOnEnemy>().LoseHealth(heavyAttackDamage);
+                collision.GetComponent<HealthDrainageOnEnemy>().LoseHealth(skillAttackDamage);
                 collision.GetComponent<Notice>().noticeTime = Mathf.Max(collision.GetComponent<Notice>().noticeTime, noticeTime);
             }
         }

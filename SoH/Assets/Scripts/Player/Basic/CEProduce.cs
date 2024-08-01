@@ -3,20 +3,28 @@ using UnityEngine;
 
 public class CEProduce : MonoBehaviour
 {
-    CEDrainage ced;
-    public float CEproduceCd = 2;
-    public int CEproduceVa = 1;
+    public float delayAmount;
+    public float cEproduceCd;
+    public int cEproduceVa;
+    float dth;
+    float th;
 
-    public void Start()
+    private void FixedUpdate()
     {
-        ced = this.GetComponent<CEDrainage>();
-        StartCoroutine(Pce());
-    }
+        if ((Time.time - th > cEproduceCd) && (delayAmount == 0))
+        {
+            this.GetComponent<CEDrainage>().GainCE(cEproduceVa);
+            th = Time.time;
+        }
 
-    IEnumerator Pce()
-    {
-        yield return new WaitForSecondsRealtime(CEproduceCd);
-        ced.GainCE(CEproduceVa);
-        StartCoroutine(Pce());
+        if ((dth == 0) && (delayAmount > 0))
+        {
+            dth = Time.time;
+        }
+        else if (Time.time - dth > delayAmount)
+        {
+            delayAmount = 0;
+            dth = 0;
+        }
     }
 }

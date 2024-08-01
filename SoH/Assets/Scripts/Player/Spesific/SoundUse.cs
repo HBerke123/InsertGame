@@ -1,18 +1,40 @@
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
 public class SoundUse : MonoBehaviour
 {
+    readonly List<float> reloadTimes = new();
     public TimeControlSlow timeSlower;
     public GameObject arrow;
     public float maxCost;
     public float minCost;
+    public float maxRegainTime;
+    public float minRegainTime;
     public float holdtime;
     public float cooldown;
+    public float maxDelayTime;
+    public float minDelayTime;
     public bool started;
     float th;
     bool ready = true;
     int direction;
+
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < reloadTimes.Count; i++)
+        {
+            if (Time.time > reloadTimes[i])
+            {
+                reloadTimes.RemoveAt(i);
+
+                if (this.GetComponentInParent<CEDrainage>().cE < this.GetComponentInParent<CEDrainage>().maxCE / 2)
+                {
+                    this.GetComponentInParent<CEDrainage>().GainCE(1);
+                }
+            }
+        }
+    }
 
     private void Update()
     {
@@ -59,11 +81,23 @@ public class SoundUse : MonoBehaviour
             {
                 this.GetComponent<SoundInfluence>().SendWave(direction, true);
                 this.GetComponentInParent<CEDrainage>().LoseCE(maxCost);
+                this.GetComponentInParent<CEProduce>().delayAmount = Mathf.Max(this.GetComponentInParent<CEProduce>().delayAmount, maxDelayTime);
+
+                for (int i = 1; i < maxCost + 1; i++)
+                {
+                    reloadTimes.Add(Time.time + maxRegainTime / maxCost * i);
+                }
             }
             else
             {
                 this.GetComponent<SoundInfluence>().SendWave(direction, false);
                 this.GetComponentInParent<CEDrainage>().LoseCE(minCost);
+                this.GetComponentInParent<CEProduce>().delayAmount = Mathf.Max(this.GetComponentInParent<CEProduce>().delayAmount, minDelayTime);
+
+                for (int i = 1; i < minCost + 1; i++)
+                {
+                    reloadTimes.Add(Time.time + minRegainTime / minCost * i);
+                }
             }
 
             th = 0;

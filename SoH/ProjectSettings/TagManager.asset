@@ -18,6 +18,7 @@ TagManager:
   - EnemyScream
   - BossHPBar
   - EnemyWeapon
+  - LaserTrigger
   layers:
   - Default
   - TransparentFX
