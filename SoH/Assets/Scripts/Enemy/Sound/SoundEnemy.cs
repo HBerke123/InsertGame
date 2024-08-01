@@ -12,6 +12,7 @@ public class SoundEnemy : MonoBehaviour
     public float screamRange;
     public float attackFrequency;
     public float screamDamage;
+    public float noticeTime;
     GameObject player;
     GameObject screamHit;
     float baseSpeed;
@@ -51,9 +52,10 @@ public class SoundEnemy : MonoBehaviour
             speed = baseSpeed;
         }
 
-        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (Mathf.Abs(distanceX) < rangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
+        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && ((Mathf.Abs(distanceX) < moveRangeX) || this.GetComponent<Notice>().isNoticed) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
         {
-            if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (Mathf.Abs(distanceX) < moveRangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
+            this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
+            if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (Mathf.Abs(distanceX) < rangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
             {
                 if (this.GetComponent<ForcesOnObject>().Force.y != 0)
                 {

@@ -134,7 +134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3165769293217424216}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
@@ -145,6 +145,7 @@ MonoBehaviour:
   destroyOnTouch: 0
   isReloadable: 1
   weakToDash: 1
+  canNotDamage: 1
 --- !u!114 &-6632895935923241948
 MonoBehaviour:
   m_ObjectHideFlags: 0

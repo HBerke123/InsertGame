@@ -21,8 +21,9 @@ public class Jump : MonoBehaviour
     {
         if (!menuOpener.isMenuOpen)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && this.GetComponentInChildren<GroundDetection>().detected && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponentInChildren<Crouching>().isCrouching)
+            if (Input.GetKeyDown(KeyCode.Space) && this.GetComponentInChildren<GroundDetection>().detected && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && this.GetComponentInChildren<CrouchingDetection>().isSafe)
             {
+                this.GetComponent<Crouching>().UnCrouch();
                 this.GetComponent<MakeSound>().AddTime(soundTime);
                 stime = Time.time;
                 rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);

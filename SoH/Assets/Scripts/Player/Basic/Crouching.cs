@@ -22,10 +22,7 @@ public class Crouching : MonoBehaviour
         {
             if (isCrouching && this.GetComponentInChildren<CrouchingDetection>().isSafe)
             {
-                isCrouching = false;
-                this.GetComponent<Movement>().speed = speed;
-                this.GetComponent<BoxCollider2D>().size = new Vector2(this.GetComponent<BoxCollider2D>().size.x, colliderSizeY);
-                this.GetComponent<BoxCollider2D>().offset = new Vector2(this.GetComponent<BoxCollider2D>().offset.x, colliderPositionY);
+                UnCrouch();
             }
             else
             {
@@ -35,5 +32,13 @@ public class Crouching : MonoBehaviour
                 this.GetComponent<BoxCollider2D>().offset = new Vector2(this.GetComponent<BoxCollider2D>().offset.x, colliderPositionY - crouchingAmount / 2);
             }
         }
+    }
+
+    public void UnCrouch()
+    {
+        isCrouching = false;
+        this.GetComponent<Movement>().speed = speed;
+        this.GetComponent<BoxCollider2D>().size = new Vector2(this.GetComponent<BoxCollider2D>().size.x, colliderSizeY);
+        this.GetComponent<BoxCollider2D>().offset = new Vector2(this.GetComponent<BoxCollider2D>().offset.x, colliderPositionY);
     }
 }

@@ -28,7 +28,7 @@ public class BossLight : MonoBehaviour
             }
 
             this.transform.localScale = new Vector3(this.transform.localScale.x, bigScale, 0);
-            this.GetComponent<DamagePlayer>().enabled = true;
+            this.GetComponent<DamagePlayer>().canNotDamage = false;
             Destroy(this);
         }
     }

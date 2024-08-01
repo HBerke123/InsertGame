@@ -68,8 +68,9 @@ public class GunShot : MonoBehaviour
         {
             if (lastBombs.Count == 0)
             {
-                if (Input.GetMouseButtonDown(1) && (ammo > 0) && (th == 0) && !explosed && !this.GetComponent<SoundUse>().started && !this.GetComponentInParent<BlocksOnObject>().isBlocked && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<Crouching>().isCrouching && !this.GetComponent<ScreamUse>().screaming)
+                if (Input.GetMouseButtonDown(1) && (ammo > 0) && (th == 0) && !explosed && !this.GetComponent<SoundUse>().started && !this.GetComponentInParent<BlocksOnObject>().isBlocked && !this.GetComponent<SwordAttack>().ready && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponent<ScreamUse>().screaming)
                 {
+                    this.GetComponentInParent<Crouching>().UnCrouch();
                     started = true;
                     explosed = false;
                     hth = Time.time;
@@ -113,7 +114,7 @@ public class GunShot : MonoBehaviour
         {
             if ((distanceX / Mathf.Abs(distanceX)) == 1)
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Pow(distanceX / distance, 2), Mathf.Pow(distanceY / distance, 2)) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
             }
             else
             {
@@ -128,7 +129,7 @@ public class GunShot : MonoBehaviour
             }
             else
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Pow(distanceX / distance, 2), Mathf.Pow(distanceY / distance, 2)) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
             }
         }
 

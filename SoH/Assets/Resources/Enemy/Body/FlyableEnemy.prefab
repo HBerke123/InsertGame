@@ -35,8 +35,7 @@ Transform:
   m_LocalPosition: {x: 4.5, y: 42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4193538533455114957}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -151,7 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f043fefcc64ff3041834417f637dccc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrow: {fileID: 4193538533455114954}
   Thorn: {fileID: 5406501876786226586, guid: 6a62a693dfdc33040b09abf3d48735eb, type: 3}
   thornDamage: 5
   flySpeed: 4
@@ -163,6 +161,7 @@ MonoBehaviour:
   cooldown: 2
   thornSpeed: 9
   yPos: -10
+  angleBetween: 0
 --- !u!114 &5661750935591535087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8defe8a1429ec41af9055484ca72af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healPlayer: 0
   health: 20
   maxHealth: 20
   enemyNum: 0
@@ -225,34 +225,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockTime: 0
   isBlocked: 0
---- !u!1 &4193538533455114954
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4193538533455114957}
-  m_Layer: 10
-  m_Name: Arrow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4193538533455114957
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4193538533455114954}
-  m_LocalRotation: {x: 0, y: 0, z: 0.92387956, w: 0.38268343}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4193538533157646797}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}

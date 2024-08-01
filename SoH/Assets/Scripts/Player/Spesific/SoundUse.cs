@@ -37,8 +37,9 @@ public class SoundUse : MonoBehaviour
             direction = 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<BlocksOnObject>().isBlocked)
+        if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe)
         {
+            this.GetComponentInParent<Crouching>().UnCrouch();
             arrow.SetActive(false);
             timeSlower.StartSlowMotion();
             this.GetComponentInParent<Movement>().aiming = true;

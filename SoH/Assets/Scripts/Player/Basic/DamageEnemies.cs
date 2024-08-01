@@ -6,6 +6,7 @@ public class DamageEnemies : MonoBehaviour
     public bool destroyOnTouch;
     public float damageAmount;
     public float blockTime;
+    public float noticeTime;
     List<GameObject> damaged = new();
 
     private void Update()
@@ -21,6 +22,7 @@ public class DamageEnemies : MonoBehaviour
         if (collision.CompareTag("Enemy") && !damaged.Contains(collision.gameObject))
         {
             damaged.Add(collision.gameObject);
+            collision.GetComponent<Notice>().noticeTime = Mathf.Max(collision.GetComponent<Notice>().noticeTime, noticeTime);
             collision.GetComponent<HealthDrainageOnEnemy>().LoseHealth(damageAmount);
             collision.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(collision.GetComponent<BlocksOnObject>().blockTime, blockTime);
             if (destroyOnTouch)

@@ -8,6 +8,7 @@ public class WalkableEnemy : MonoBehaviour
     public float attackDamage;
     public float attackRange;
     public float attackFrequency;
+    public float noticeTime;
     float th;
 
     private void Start()
@@ -28,8 +29,10 @@ public class WalkableEnemy : MonoBehaviour
     {
         float distancex = this.transform.position.x - player.transform.position.x;
 
-        if ((Mathf.Abs(distancex) < rangex) && (attackRange * 3 / 4 < Mathf.Abs(distancex)))
+        if (((Mathf.Abs(distancex) < rangex) || this.GetComponent<Notice>().isNoticed) && (attackRange < Mathf.Abs(distancex)))
         {
+            this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
+
             if (this.GetComponent<ForcesOnObject>().Force.y != 0)
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(-distancex / Mathf.Abs(distancex) * speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);

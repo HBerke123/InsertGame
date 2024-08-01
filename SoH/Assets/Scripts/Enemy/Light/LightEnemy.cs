@@ -10,6 +10,7 @@ public class LightEnemy : MonoBehaviour
     public float moveRangeX;
     public float rangeX;
     public float shootFrequency;
+    public float noticeTime;
     GameObject player;
     GameObject beam;
     bool running;
@@ -36,9 +37,11 @@ public class LightEnemy : MonoBehaviour
     {
         float distancex = this.transform.position.x - player.transform.position.x;
 
-        if ((Mathf.Abs(distancex) < moveRangeX) && (Mathf.Abs(distancex) > rangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && beam == null && (!running))
+        if (((Mathf.Abs(distancex) < moveRangeX) || this.GetComponent<Notice>().isNoticed) && (Mathf.Abs(distancex) > rangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && beam == null && (!running))
         {
+            this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
             th = 0;
+
             if (this.GetComponent<ForcesOnObject>().Force.y != 0)
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Abs(distancex) / distancex * speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);

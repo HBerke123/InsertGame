@@ -199,3 +199,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnTouch: 0
   damageAmount: 0
+  blockTime: 0
+  noticeTime: 10

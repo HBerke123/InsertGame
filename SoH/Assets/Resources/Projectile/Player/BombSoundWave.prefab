@@ -164,6 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnTouch: 0
   damageAmount: 0
+  blockTime: 0
+  noticeTime: 10
 --- !u!50 &-826906075601444156
 Rigidbody2D:
   serializedVersion: 4

@@ -8,6 +8,7 @@ public class ReptileEnemy : MonoBehaviour
     public float attackRange;
     public float attackFrequency;
     public float attackSpeedUpRate;
+    public float noticeTime;
     GameObject player;
     float defaultResistance;
     float defaultSpeed;
@@ -46,8 +47,10 @@ public class ReptileEnemy : MonoBehaviour
         float distancex = this.transform.position.x - player.transform.position.x;
         float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(this.transform.position.y - player.transform.position.y, 2));
 
-        if (distance < rangex)
+        if ((distance < rangex) || this.GetComponent<Notice>().isNoticed)
         {
+            this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
+
             if (distance < attackRange)
             {
                 player.GetComponent<Movement>().stick = true;

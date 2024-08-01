@@ -8,6 +8,7 @@ public class DamagePlayer : MonoBehaviour
     public bool destroyOnTouch;
     public bool isReloadable;
     public bool weakToDash;
+    public bool canNotDamage;
     bool damaged;
     float rth;
 
@@ -25,9 +26,8 @@ public class DamagePlayer : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !damaged && (!weakToDash || !collision.GetComponent<Dash>().dashing))
+        if (collision.CompareTag("Player") && !damaged && (!weakToDash || !collision.GetComponent<Dash>().dashing) && !canNotDamage)
         {
-            Debug.Log(name + " " + this.transform.localScale.y / 2);
             rth = Time.time;
             damaged = true;
             collision.GetComponent<HealthDrainage>().TakeDamage(damageAmount);

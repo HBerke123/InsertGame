@@ -191,7 +191,7 @@ public class FinalBoss : MonoBehaviour
             }
             else
             {
-                this.GetComponent<Rigidbody2D>().velocity = Vector2.right * dashSpeed * direction;
+                this.GetComponent<Rigidbody2D>().velocity = dashSpeed * direction * Vector2.right;
             }
         }
     }
@@ -292,7 +292,7 @@ public class FinalBoss : MonoBehaviour
         SetDirection();
         dashing = true;
         lighted = false;
-        this.GetComponent<Rigidbody2D>().velocity = Vector2.right * dashSpeed * direction;
+        this.GetComponent<Rigidbody2D>().velocity = dashSpeed * direction * Vector2.right;
     }
 
     void Spear()
@@ -308,7 +308,7 @@ public class FinalBoss : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             GameObject SBox = Instantiate(smoke, this.transform.position + Vector3.up * this.transform.localScale.y / 2, Quaternion.identity);
-            SBox.GetComponent<Rigidbody2D>().velocity = (-1 + i * 2) * Vector2.right * smokeSpeed;
+            SBox.GetComponent<Rigidbody2D>().velocity = (-1 + i * 2) * smokeSpeed * Vector2.right;
         }
     }
 

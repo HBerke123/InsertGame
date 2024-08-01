@@ -13,6 +13,7 @@ public class SwordAttack : MonoBehaviour
     public float heavyAttackTime;
     public float ceRegainTime;
     public float skillholdtime;
+    public float noticeTime;
     public int quickCeCost;
     public int heavyCeCost;
     public int skillCeCost;
@@ -33,10 +34,11 @@ public class SwordAttack : MonoBehaviour
     {
         if (!menuOpener.isMenuOpen)
         {
-            if (attackable && !this.GetComponent<GunShot>().started && !this.GetComponent<SoundUse>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponentInParent<BlocksOnObject>().isBlocked)
+            if (attackable && !this.GetComponent<GunShot>().started && !this.GetComponent<SoundUse>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe)
             {
                 if (Input.GetMouseButtonDown(0) && attackable)
                 {
+                    this.GetComponentInParent<Crouching>().UnCrouch();
                     ready = true;
                     th = Time.time;
                 }
@@ -62,7 +64,7 @@ public class SwordAttack : MonoBehaviour
                         StartCoroutine(Attackend());
                         StartCoroutine(Cooldown());
                     }
-                    else if (!this.GetComponentInParent<Crouching>().isCrouching)
+                    else
                     {
                         this.GetComponentInParent<MakeSound>().AddTime(soundTime);
                         th = 0;
@@ -125,10 +127,12 @@ public class SwordAttack : MonoBehaviour
             if (attacknum == 0)
             {
                 collision.GetComponent<HealthDrainageOnEnemy>().LoseHealth(quickAttackDamage);
+                collision.GetComponent<Notice>().noticeTime = Mathf.Max(collision.GetComponent<Notice>().noticeTime, noticeTime);
             }
             else
             {
                 collision.GetComponent<HealthDrainageOnEnemy>().LoseHealth(heavyAttackDamage);
+                collision.GetComponent<Notice>().noticeTime = Mathf.Max(collision.GetComponent<Notice>().noticeTime, noticeTime);
             }
         }
     }

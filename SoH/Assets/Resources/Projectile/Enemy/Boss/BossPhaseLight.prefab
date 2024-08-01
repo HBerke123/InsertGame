@@ -134,6 +134,7 @@ MonoBehaviour:
   destroyOnTouch: 0
   isReloadable: 1
   weakToDash: 1
+  canNotDamage: 1
 --- !u!61 &6196205070626132263
 BoxCollider2D:
   m_ObjectHideFlags: 0
