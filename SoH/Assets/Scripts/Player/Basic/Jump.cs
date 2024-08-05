@@ -13,13 +13,31 @@ public class Jump : MonoBehaviour
     public float cEDelay;
     public float cost;
     public float reloadTime;
+    bool jumping;
+    bool jumped;
     float maxspeed;
     float stime;
     Rigidbody2D rb;
+    CEDrainage ced;
+    GroundDetection gd;
+    ForcesOnObject foo;
+    CrouchingDetection cd;
+    CEProduce cep;
+    MakeSound mk;
+    Crouching c;
+    Animator a;
 
     private void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        ced = this.GetComponent<CEDrainage>();
+        gd = this.GetComponentInChildren<GroundDetection>();
+        foo = this.GetComponent<ForcesOnObject>();
+        cd = this.GetComponentInChildren<CrouchingDetection>();
+        cep = this.GetComponent<CEProduce>();
+        mk = this.GetComponent<MakeSound>();
+        c = this.GetComponent<Crouching>();
+        a = this.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -30,9 +48,9 @@ public class Jump : MonoBehaviour
             {
                 reloadTimes.RemoveAt(i);
 
-                if (this.GetComponent<CEDrainage>().cE < this.GetComponent<CEDrainage>().maxCE / 2)
+                if (ced.cE < ced.maxCE / 2)
                 {
-                    this.GetComponent<CEDrainage>().GainCE(1);
+                    ced.GainCE(1);
                 }
             }
         }
@@ -42,12 +60,16 @@ public class Jump : MonoBehaviour
     {
         if (!menuOpener.isMenuOpen)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && this.GetComponentInChildren<GroundDetection>().detected && !stick && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && this.GetComponentInChildren<CrouchingDetection>().isSafe)
+            a.SetBool("Grounded", gd.detected);
+
+            if (Input.GetKey(KeyCode.Space) && gd.detected && !stick && (foo.Force == Vector2.zero) && !c.isCrouching && !jumping && !jumped)
             {
-                this.GetComponent<CEDrainage>().LoseCE(cost);
-                this.GetComponent<Crouching>().UnCrouch();
-                this.GetComponent<MakeSound>().AddTime(soundTime);
-                this.GetComponent<CEProduce>().delayAmount = Mathf.Max(this.GetComponent<CEProduce>().delayAmount, cEDelay);
+                jumped = true;
+                jumping = true;
+                a.SetBool("Jumping", true);
+                ced.LoseCE(cost);
+                mk.AddTime(soundTime);
+                cep.delayAmount = Mathf.Max(cep.delayAmount, cEDelay);
                 stime = Time.time;
                 rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
 
@@ -56,8 +78,11 @@ public class Jump : MonoBehaviour
                     reloadTimes.Add(Time.time + reloadTime / cost * i);
                 }
             }
-
-            if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime) && !stick && !screaming)
+            else if (Input.GetKey(KeyCode.Space) && gd.detected && !stick && (foo.Force == Vector2.zero) && !jumping && !jumped)
+            {
+                c.Crouch();
+            }
+            else if (Input.GetKey(KeyCode.Space) && (Time.time - stime < jumptime) && !stick && !screaming)
             {
                 if (rb.velocity.y > maxspeed)
                 {
@@ -67,6 +92,16 @@ public class Jump : MonoBehaviour
                 {
                     rb.velocity = new Vector2(rb.velocity.x, maxspeed * jumptime - (Time.time - stime));
                 }
+            }
+            else if (Input.GetKeyUp(KeyCode.Space) || (Time.time - stime > jumptime))
+            {
+                a.SetBool("Jumping", false);
+                jumping = false;
+            }
+
+            if (!Input.GetKey(KeyCode.Space) && gd.detected)
+            {
+                jumped = false;
             }
         }
     }

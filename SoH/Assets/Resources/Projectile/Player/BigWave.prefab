@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  forcePower: 0
+  forcePower: 3
   destroyOnTouch: 0
   arrow: {fileID: 0}
 --- !u!61 &-7377516349920939879

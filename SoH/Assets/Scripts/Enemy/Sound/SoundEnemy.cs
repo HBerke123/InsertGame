@@ -55,7 +55,7 @@ public class SoundEnemy : MonoBehaviour
         if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && ((Mathf.Abs(distanceX) < moveRangeX) || this.GetComponent<Notice>().isNoticed) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && (Mathf.Abs(distanceX) > rangeX))
         {
             this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
-            if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (Mathf.Abs(distanceX) < rangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
+            if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
             {
                 if (this.GetComponent<ForcesOnObject>().Force.y != 0)
                 {
@@ -65,12 +65,12 @@ public class SoundEnemy : MonoBehaviour
                 {
                     this.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Abs(distanceX) / distanceX * -speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
                 }
-            }
+            } 
+        }
 
-            if ((th == 0) && (screamHit == null))
-            {
-                th = Time.time;
-            }
+        if ((th == 0) && (screamHit == null) && (player.GetComponent<MakeSound>().totalSoundTime > 0) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && ((Mathf.Abs(distanceX) > rangeX) || this.GetComponent<Notice>().isNoticed))
+        {
+            th = Time.time;
         }
     }
 

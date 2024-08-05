@@ -44,8 +44,13 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-        if (dashable && Input.GetKeyDown(KeyCode.LeftControl) && !stick && !screaming && !this.GetComponent<Crouching>().isCrouching && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero))
+        if (dashable && Input.GetKeyDown(KeyCode.LeftControl) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<Potion>().drinking)
         {
+            if (this.GetComponent<Crouching>().isCrouching)
+            {
+                this.GetComponent<Crouching>().Crouch();
+            }
+
             this.GetComponent<MakeSound>().totalSoundTime = Mathf.Max(soundTime, this.GetComponent<MakeSound>().totalSoundTime);
             this.GetComponent<CEDrainage>().LoseCE(cost);
             this.GetComponent<CEProduce>().delayAmount = Mathf.Max(this.GetComponent<CEProduce>().delayAmount, cEDelay);

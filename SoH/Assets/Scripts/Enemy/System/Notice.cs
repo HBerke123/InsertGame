@@ -10,7 +10,7 @@ public class Notice : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Time.time - th > noticeTime) 
+        if ((Time.time - th > noticeTime) && (noticeTime > 0)) 
         {
             noticeTime = 0;
             isNoticed = false;

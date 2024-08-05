@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  forcePower: 0
-  destroyOnTouch: 1
+  forcePower: 6
+  destroyOnTouch: 0
   arrow: {fileID: 0}
 --- !u!61 &1980875249604747701
 BoxCollider2D:

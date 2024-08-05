@@ -32,6 +32,7 @@ public class FinalBoss : MonoBehaviour
     float sth;
     float mth;
     float ssth;
+    bool goRight;
     bool onSecondPhase;
     bool onThirdPhase;
     bool onAttack;
@@ -104,6 +105,17 @@ public class FinalBoss : MonoBehaviour
                 {
                     Move();
                 }
+            }
+        }
+        else if ((mth != 0) && (Time.time - mth < moveFrequency) && (sth == 0) && (!onAttack) && !dashing && (lth == 0) && this.GetComponentInChildren<GroundDetection>().detected && (Light == null))
+        {
+            if (goRight)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - rightPoint) + this.GetComponent<ForcesOnObject>().Force;
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - leftPoint) + this.GetComponent<ForcesOnObject>().Force;
             }
         }
         else if (onAttack)
@@ -204,22 +216,22 @@ public class FinalBoss : MonoBehaviour
         {
             if (Random.Range(0, 2) == 0)
             {
-                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - leftPoint);
+                goRight = false;
             }
             else
             {
-                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - rightPoint);
+                goRight = true;
             }
         }
         else
         {
             if (this.transform.position.x > player.transform.position.x)
             {
-                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - rightPoint);
+                goRight = true;
             }
             else
             {
-                this.GetComponent<Rigidbody2D>().velocity = Vector2.left * (this.transform.position.x - leftPoint);
+                goRight = false;
             }
         }
     }

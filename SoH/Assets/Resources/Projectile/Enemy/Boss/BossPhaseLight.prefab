@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   num: 0
-  turnTime: 5
+  turnTime: 3.75
   boss: {fileID: 0}
 --- !u!114 &3847834737081243554
 MonoBehaviour:
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b2b4abb9b00e44abfe46e9361a146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalTime: 20
+  TotalTime: 15
 --- !u!114 &-6050019514694174342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   blockTime: 0
   reloadTime: 1
   damageAmount: 10
+  destroyOnDamage: 0
   destroyOnTouch: 0
   isReloadable: 1
   weakToDash: 1

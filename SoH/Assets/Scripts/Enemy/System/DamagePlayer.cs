@@ -5,6 +5,7 @@ public class DamagePlayer : MonoBehaviour
     public float blockTime;
     public float reloadTime;
     public float damageAmount;
+    public bool destroyOnDamage;
     public bool destroyOnTouch;
     public bool isReloadable;
     public bool weakToDash;
@@ -26,6 +27,11 @@ public class DamagePlayer : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.CompareTag("Ground") && destroyOnTouch)
+        {
+            Destroy(this.gameObject);
+        }
+         
         if (collision.CompareTag("Player") && !damaged && (!weakToDash || !collision.GetComponent<Dash>().dashing) && !canNotDamage)
         {
             rth = Time.time;
@@ -33,7 +39,7 @@ public class DamagePlayer : MonoBehaviour
             collision.GetComponent<HealthDrainage>().TakeDamage(damageAmount);
             collision.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(collision.GetComponent<BlocksOnObject>().blockTime, blockTime);
 
-            if (destroyOnTouch)
+            if (destroyOnDamage)
             {
                 Destroy(this.gameObject);
             }

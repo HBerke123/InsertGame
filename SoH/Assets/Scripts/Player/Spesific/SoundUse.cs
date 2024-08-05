@@ -59,9 +59,13 @@ public class SoundUse : MonoBehaviour
             direction = 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe)
+        if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponentInParent<Potion>().drinking)
         {
-            this.GetComponentInParent<Crouching>().UnCrouch();
+            if (this.GetComponentInParent<Crouching>().isCrouching)
+            {
+                this.GetComponentInParent<Crouching>().Crouch();
+            }
+
             arrow.SetActive(false);
             timeSlower.StartSlowMotion();
             this.GetComponentInParent<Movement>().aiming = true;

@@ -17,12 +17,42 @@ public class Movement : MonoBehaviour
     public float cost;
     public float cEDelay;
     public bool spawnParticles;
-    Rigidbody2D rb;
     float baseSpeed;
     float th;
+    Rigidbody2D rb;
+    CEDrainage ced;
+    CEProduce cep;
+    SpriteRenderer sr;
+    SoundUse su;
+    ScreamUse su2;
+    Dash d;
+    BlocksOnObject boo;
+    Crouching c;
+    SwordAttack sa;
+    Potion p;
+    ForcesOnObject foo;
+    Animator a;
+    GroundDetection gd;
+    MakeSound ms;
+    GunShot gs;
 
     private void Start()
     {
+        gs = this.GetComponentInChildren<GunShot>();
+        ms = this.GetComponent<MakeSound>();
+        gd = this.GetComponentInChildren<GroundDetection>();
+        a = this.GetComponent<Animator>();
+        foo = this.GetComponent<ForcesOnObject>();
+        p = this.GetComponent<Potion>();
+        sa = this.GetComponentInChildren<SwordAttack>();
+        boo = this.GetComponent<BlocksOnObject>();
+        d = this.GetComponent<Dash>();
+        su2 = this.GetComponentInChildren<ScreamUse>();
+        su = this.GetComponentInChildren<SoundUse>();
+        sr = this.GetComponent<SpriteRenderer>();
+        cep = this.GetComponent<CEProduce>();
+        ced = this.GetComponent<CEDrainage>();
+        c = this.GetComponent<Crouching>();
         baseSpeed = speed;
         rb = this.GetComponent<Rigidbody2D>();
         string path = Application.dataPath + "/Saves/";
@@ -38,8 +68,8 @@ public class Movement : MonoBehaviour
 
         if ((Time.time - th >= stepFrequency) && (spawnParticles))
         {
-            this.GetComponent<CEDrainage>().LoseCE(cost);
-            this.GetComponent<CEProduce>().delayAmount = Mathf.Max(this.GetComponent<CEProduce>().delayAmount, cEDelay);
+            ced.LoseCE(cost);
+            cep.delayAmount = Mathf.Max(cep.delayAmount, cEDelay);
             ParticleSystem particles = Instantiate(groundParticles, this.transform.position, Quaternion.identity);
 
             for (int i = 1; i < cost + 1; i++)
@@ -47,7 +77,7 @@ public class Movement : MonoBehaviour
                 reloadTimes.Add(Time.time + reloadTime / cost);
             }
 
-            if (this.GetComponent<SpriteRenderer>().flipX)
+            if (sr.flipX)
             {
                 particles.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
@@ -61,9 +91,9 @@ public class Movement : MonoBehaviour
             {
                 reloadTimes.RemoveAt(i);
 
-                if (this.GetComponent<CEDrainage>().cE < this.GetComponent<CEDrainage>().maxCE / 2)
+                if (ced.cE < ced.maxCE / 2)
                 {
-                    this.GetComponent<CEDrainage>().GainCE(1);
+                    ced.GainCE(1);
                 }
             }
         }
@@ -72,73 +102,73 @@ public class Movement : MonoBehaviour
     private void Update()
 
     {
-        if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !this.GetComponent<Dash>().dashing && !stick && !this.GetComponent<BlocksOnObject>().isBlocked)
+        if (!aiming && !su.started && !su2.screaming && !d.dashing && !stick && !boo.isBlocked && !c.changing && !sa.ready && !p.drinking)
         {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed + this.GetComponent<ForcesOnObject>().Force.x, rb.velocity.y + this.GetComponent<ForcesOnObject>().Force.y);
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed + foo.Force.x, rb.velocity.y + foo.Force.y);
 
             if (Input.GetAxisRaw("Horizontal") == 0)
             {
-                this.GetComponent<Animator>().SetBool("Moving", false);
+                a.SetBool("Moving", false);
                 spawnParticles = false;
             }
             else
             {
-                if (this.GetComponentInChildren<GroundDetection>().detected)
+                if (gd.detected)
                 {
-                    this.GetComponent<Animator>().SetBool("Moving", true);
+                    a.SetBool("Moving", true);
                     spawnParticles = true;
 
                     if (speed == baseSpeed)
                     {
-                        this.GetComponent<MakeSound>().AddTime(soundTime);
+                        ms.AddTime(soundTime);
                     }
                 }
                 else
                 {
-                    this.GetComponent<Animator>().SetBool("Moving", false);
+                    a.SetBool("Moving", false);
                     spawnParticles = false;
                 }
             }
         }
-        else if (!aiming && !this.GetComponentInChildren<ScreamUse>().screaming && !stick)
+        else if (!aiming && !su2.screaming && !stick && !c.changing && !sa.ready && !p.drinking)
         {
-            this.GetComponent<Animator>().SetBool("Moving", false);
+            a.SetBool("Moving", false);
             rb.velocity = new Vector2(dspeed, rb.velocity.y);
             spawnParticles = false;
         }
-        else if (!stick)
+        else if (!stick && !c.changing && !sa.ready && !p.drinking)
         {
-            this.GetComponent<Animator>().SetBool("Moving", false);
+            a.SetBool("Moving", false);
 
-            if (this.GetComponent<ForcesOnObject>().Force.x != 0)
+            if (foo.Force.x != 0)
             {
-                if (this.GetComponent<ForcesOnObject>().Force.y != 0)
+                if (foo.Force.y != 0)
                 {
-                    rb.velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<ForcesOnObject>().Force.y);
+                    rb.velocity = new Vector2(foo.Force.x, foo.Force.y);
                 }
                 else
                 {
-                    rb.velocity = new Vector2(this.GetComponent<ForcesOnObject>().Force.x, rb.velocity.y);
+                    rb.velocity = new Vector2(foo.Force.x, rb.velocity.y);
                 }
             }
             else
             {
-                rb.velocity = new Vector2(rb.velocity.x, this.GetComponent<ForcesOnObject>().Force.y);
+                rb.velocity = new Vector2(rb.velocity.x, foo.Force.y);
             }
 
-            rb.velocity = this.GetComponent<ForcesOnObject>().Force;
+            rb.velocity = foo.Force;
             spawnParticles = false;
         }
         else
         {
-            this.GetComponent<Animator>().SetBool("Moving", false);
+            a.SetBool("Moving", false);
             rb.velocity = new Vector2(0, 0);
             spawnParticles = false;
         }
 
-        if ((Input.GetAxisRaw("Horizontal") != 0) && !Attackhbox.enabled && !this.GetComponentInChildren<GunShot>().started)
+        if ((Input.GetAxisRaw("Horizontal") != 0) && !Attackhbox.enabled && !gs.started)
         {
-            this.GetComponent<SpriteRenderer>().flipX = Input.GetAxisRaw("Horizontal") != 1;
+            sr.flipX = Input.GetAxisRaw("Horizontal") != 1;
         }
     }
 }

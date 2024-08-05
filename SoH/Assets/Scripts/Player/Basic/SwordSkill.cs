@@ -13,7 +13,7 @@ public class SwordSkill : MonoBehaviour
 
     public void SkillStart(int direction)
     {
-        SBox = Instantiate(SkillBox, this.transform.position, new Quaternion(0, 0, 0, 0));
+        SBox = Instantiate(SkillBox, new Vector3(this.transform.position.x + direction * this.transform.parent.lossyScale.x / 2, this.transform.position.y, 0), Quaternion.identity);
         SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * direction, 0);
         SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
         SBox.GetComponent<GrowingProjectile>().TotalTime = totaltime;
