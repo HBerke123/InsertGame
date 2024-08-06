@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class HealthDrainageOnEnemy : MonoBehaviour
 {
+    public AudioClip bossFelled;
     public float healPlayer;
     public float health;
     public float maxHealth;
@@ -9,9 +10,11 @@ public class HealthDrainageOnEnemy : MonoBehaviour
     public bool isBoss;
     public string bossName;
     BossHPBar bossHpBar;
+    AudioSource as1;
 
     private void Start()
     {
+        as1 = this.GetComponent<AudioSource>();
         bossHpBar = GameObject.FindGameObjectWithTag("BossHPBar").GetComponent<BossHPBar>();
     }
 
@@ -41,6 +44,14 @@ public class HealthDrainageOnEnemy : MonoBehaviour
             else if (enemyNum == 6)
             {
                 this.GetComponent<BadSmellingFlower>().Smell();
+            }
+            else if (enemyNum == 7)
+            {
+                as1.PlayOneShot(bossFelled);
+            }
+            else if (enemyNum == 8)
+            {
+                as1.PlayOneShot(bossFelled);
             }
 
             GameObject.FindGameObjectWithTag("Player").GetComponent<HealthDrainage>().Heal(healPlayer);

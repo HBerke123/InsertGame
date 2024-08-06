@@ -10,6 +10,8 @@ public class Potion : MonoBehaviour
     public bool hasPotion;
     public bool drinking;
     float th;
+    public AudioClip drinkingSound;
+    AudioSource as1;
     GamepadControls gamepadControls;
     HealthDrainage hd;
     CEDrainage ced;
@@ -23,6 +25,7 @@ public class Potion : MonoBehaviour
 
     private void Start()
     {
+        as1 = this.GetComponent<AudioSource>();
         gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         c = this.GetComponent<Crouching>();
         a = this.GetComponent<Animator>();
@@ -48,6 +51,7 @@ public class Potion : MonoBehaviour
     {
         if (hasPotion && (Input.GetKey(KeyCode.F) || gamepadControls.potion) && !drinking && !sa.ready && !su.started && !su2.screaming && !gs.started && !boo.isBlocked && !c.isCrouching)
         {
+            as1.PlayOneShot(drinkingSound);
             a.SetBool("Drinking", true);
             drinking = true;
             ced.GainCE(cEAmount);

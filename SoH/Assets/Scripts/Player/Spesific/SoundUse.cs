@@ -82,7 +82,7 @@ public class SoundUse : MonoBehaviour
             th = Time.time;
         }
 
-        if ((Input.GetKeyUp(KeyCode.Q) || !gamepadControls.soundInfluence || (Time.time - th >= holdtime)) && (th > 0))
+        if (((!Input.GetKey(KeyCode.Q) && !gamepadControls.soundInfluence) || (Time.time - th >= holdtime)) && (th > 0))
         {
             this.GetComponentInParent<Movement>().aiming = false;
             timeSlower.StopSlowMotion();
@@ -116,7 +116,7 @@ public class SoundUse : MonoBehaviour
             StartCoroutine(Cooldown());
         }
 
-        if (Input.GetKeyUp(KeyCode.Q) || !gamepadControls.soundInfluence)
+        if (!Input.GetKey(KeyCode.Q) && !gamepadControls.soundInfluence)
         {
             sounded = false;
         }

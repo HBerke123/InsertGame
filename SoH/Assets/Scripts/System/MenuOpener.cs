@@ -31,7 +31,7 @@ public class MenuOpener : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Escape) || !gamepadControls.pause)
+        if (!Input.GetKey(KeyCode.Escape) && !gamepadControls.pause)
         {
             pressed = false;
         }

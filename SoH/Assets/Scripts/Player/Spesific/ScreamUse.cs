@@ -12,7 +12,6 @@ public class ScreamUse : MonoBehaviour
     public float loseAmount;
     public float delayTime;
     public float cERegainTime;
-    public float screamTime;
     public bool screaming;
     GamepadControls gamepadControls;
     GameObject screamHit;
@@ -27,16 +26,15 @@ public class ScreamUse : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetKey(KeyCode.E) || gamepadControls.screaming) && !screamed && (th == 0) && !this.GetComponent<SoundUse>().started && !this.GetComponent<SwordAttack>().ready && !this.GetComponent<GunShot>().started && this.transform.parent.GetComponentInChildren<GroundDetection>().detected && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponentInParent<Potion>().drinking)
+        if ((Input.GetKey(KeyCode.E) || gamepadControls.screaming) && !screamed && (th == 0) && !this.GetComponent<SoundUse>().started && !this.GetComponent<SwordAttack>().ready && !this.GetComponent<GunShot>().started && this.transform.parent.GetComponentInChildren<GroundDetection>().detected && !this.GetComponentInParent<BlocksOnObject>().isBlocked && !this.GetComponentInParent<Crouching>().isCrouching && !this.GetComponentInParent<Potion>().drinking)
         {
-            if (this.GetComponentInParent<Crouching>().isCrouching)
-            {
-                this.GetComponentInParent<Crouching>().Crouch();
-            }
-
             Scream();
         }
-        else if ((Input.GetKeyUp(KeyCode.E) || !gamepadControls.screaming))
+        else if ((Input.GetKey(KeyCode.E) || gamepadControls.screaming) && !screamed && (th == 0) && !this.GetComponent<SoundUse>().started && !this.GetComponent<SwordAttack>().ready && !this.GetComponent<GunShot>().started && this.transform.parent.GetComponentInChildren<GroundDetection>().detected && !this.GetComponentInParent<BlocksOnObject>().isBlocked && !this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>() && this.GetComponentInParent<Crouching>().isCrouching && !this.GetComponentInParent<Potion>().drinking)
+        {
+            this.GetComponentInParent<Crouching>().Crouch();
+        }
+        else if (!Input.GetKey(KeyCode.E) && !gamepadControls.screaming)
         {
             screamed = false;
 
@@ -59,16 +57,6 @@ public class ScreamUse : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > screamTime) && screaming)
-        {
-            screamed = false;
-
-            if (screamHit != null)
-            {
-                Destroy(screamHit);
-            }
-        }
-
         if ((th != 0) && (Time.time - th > cooldown))
         {
             th = 0;
