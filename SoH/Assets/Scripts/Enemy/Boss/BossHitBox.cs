@@ -14,7 +14,7 @@ public class BossHitBox : MonoBehaviour
 
     private void Update()
     {
-        if (player.GetComponent<Dash>().dashing && ((((player.transform.position.x - player.GetComponent<Dash>().dashspeed * player.GetComponent<Dash>().dashtime) < (this.transform.position.x - this.transform.lossyScale.x / 2)) && (this.transform.position.x < player.transform.position.x)) || (((player.transform.position.x + player.GetComponent<Dash>().dashspeed * player.GetComponent<Dash>().dashtime) > (this.transform.position.x + this.transform.lossyScale.x / 2)) && (player.transform.position.x < this.transform.position.x))))
+        if (((player.transform.position.y + player.transform.lossyScale.y / 2) < (this.transform.position.y - this.transform.parent.lossyScale.y / 2)) || player.GetComponent<Dash>().dashing && ((((player.transform.position.x - player.GetComponent<Dash>().dashspeed * player.GetComponent<Dash>().dashtime) < (this.transform.position.x - this.transform.lossyScale.x / 2)) && (this.transform.position.x < player.transform.position.x)) || (((player.transform.position.x + player.GetComponent<Dash>().dashspeed * player.GetComponent<Dash>().dashtime) > (this.transform.position.x + this.transform.lossyScale.x / 2)) && (player.transform.position.x < this.transform.position.x))))
         {
             this.GetComponent<BoxCollider2D>().isTrigger = true;
         }
