@@ -17,8 +17,15 @@ public class SoundUse : MonoBehaviour
     public float minDelayTime;
     public bool started;
     float th;
+    bool sounded;
     bool ready = true;
     int direction;
+    GamepadControls gamepadControls;
+
+    private void Start()
+    {
+        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
+    }
 
     private void FixedUpdate()
     {
@@ -59,13 +66,14 @@ public class SoundUse : MonoBehaviour
             direction = 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponentInParent<Potion>().drinking)
+        if ((Input.GetKey(KeyCode.Q) || gamepadControls.soundInfluence) && !sounded && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponentInParent<Potion>().drinking)
         {
             if (this.GetComponentInParent<Crouching>().isCrouching)
             {
                 this.GetComponentInParent<Crouching>().Crouch();
             }
 
+            sounded = true;
             arrow.SetActive(false);
             timeSlower.StartSlowMotion();
             this.GetComponentInParent<Movement>().aiming = true;
@@ -74,7 +82,7 @@ public class SoundUse : MonoBehaviour
             th = Time.time;
         }
 
-        if ((Input.GetKeyUp(KeyCode.Q) || (Time.time - th >= holdtime)) && (th > 0))
+        if ((Input.GetKeyUp(KeyCode.Q) || !gamepadControls.soundInfluence || (Time.time - th >= holdtime)) && (th > 0))
         {
             this.GetComponentInParent<Movement>().aiming = false;
             timeSlower.StopSlowMotion();
@@ -106,6 +114,11 @@ public class SoundUse : MonoBehaviour
 
             th = 0;
             StartCoroutine(Cooldown());
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q) || !gamepadControls.soundInfluence)
+        {
+            sounded = false;
         }
     }
 

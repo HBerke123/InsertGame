@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
+    public List<float> reloadTimes = new();
     public float soundTime;
     public float dashspeed;
     public float dashcooldown;
@@ -15,11 +16,13 @@ public class Dash : MonoBehaviour
     public bool screaming;
     public bool dashing;
     public int cost;
-    public List<float> reloadTimes = new List<float>();
+    bool dashed;
+    GamepadControls gamepadControls;
     Movement mv;
 
     private void Start()
     {
+        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         mv = this.GetComponent<Movement>();
     }
 
@@ -44,7 +47,7 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-        if (dashable && Input.GetKeyDown(KeyCode.LeftControl) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<Potion>().drinking)
+        if (dashable && (Input.GetKeyDown(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<Potion>().drinking && !dashed)
         {
             if (this.GetComponent<Crouching>().isCrouching)
             {
@@ -56,6 +59,7 @@ public class Dash : MonoBehaviour
             this.GetComponent<CEProduce>().delayAmount = Mathf.Max(this.GetComponent<CEProduce>().delayAmount, cEDelay);
             dashable = false;
             dashing = true;
+            dashed = true;
 
             for (int i = 1; i < cost + 1; i++)
             {
@@ -67,6 +71,10 @@ public class Dash : MonoBehaviour
             else mv.dspeed = dashspeed;
             StartCoroutine(Dashend());
             StartCoroutine(Cooldown());
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl) || !gamepadControls.dashing)
+        {
+            dashed = false;
         }
     }
 

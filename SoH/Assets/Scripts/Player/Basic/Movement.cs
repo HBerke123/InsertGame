@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
     public bool spawnParticles;
     float baseSpeed;
     float th;
+    int moveDirection;
+    GamepadControls gamepadControls;
     Rigidbody2D rb;
     CEDrainage ced;
     CEProduce cep;
@@ -38,6 +40,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         gs = this.GetComponentInChildren<GunShot>();
         ms = this.GetComponent<MakeSound>();
         gd = this.GetComponentInChildren<GroundDetection>();
@@ -102,11 +105,31 @@ public class Movement : MonoBehaviour
     private void Update()
 
     {
-        if (!aiming && !su.started && !su2.screaming && !d.dashing && !stick && !boo.isBlocked && !c.changing && !sa.ready && !p.drinking)
+        if (!aiming && !su.started && !su2.screaming && !d.dashing && !stick && !boo.isBlocked && !c.changing && !sa.attacking && !p.drinking && !gs.started)
         {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed + foo.Force.x, rb.velocity.y + foo.Force.y);
+            if (Input.GetKey(KeyCode.A))
+            {
+                moveDirection = -1;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                moveDirection = 1;
+            }
+            else
+            {
+                moveDirection = 0;
+            }
 
-            if (Input.GetAxisRaw("Horizontal") == 0)
+            if (gamepadControls.moveDirection == 0)
+            {
+                rb.velocity = rb.velocity = new Vector2(moveDirection * speed + foo.Force.x, rb.velocity.y + foo.Force.y);
+            }
+            else
+            {
+                rb.velocity = rb.velocity = new Vector2(gamepadControls.moveDirection * speed + foo.Force.x, rb.velocity.y + foo.Force.y);
+            }
+
+            if ((moveDirection == 0) && (gamepadControls.moveDirection == 0))
             {
                 a.SetBool("Moving", false);
                 spawnParticles = false;
@@ -130,13 +153,13 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        else if (!aiming && !su2.screaming && !stick && !c.changing && !sa.ready && !p.drinking)
+        else if (!aiming && !su2.screaming && !stick && !c.changing && !sa.attacking && !p.drinking && !gs.started)
         {
             a.SetBool("Moving", false);
             rb.velocity = new Vector2(dspeed, rb.velocity.y);
             spawnParticles = false;
         }
-        else if (!stick && !c.changing && !sa.ready && !p.drinking)
+        else if (!stick && !c.changing && !sa.attacking && !p.drinking)
         {
             a.SetBool("Moving", false);
 
@@ -166,9 +189,16 @@ public class Movement : MonoBehaviour
             spawnParticles = false;
         }
 
-        if ((Input.GetAxisRaw("Horizontal") != 0) && !Attackhbox.enabled && !gs.started)
+        if (!Attackhbox.enabled && !gs.started)
         {
-            sr.flipX = Input.GetAxisRaw("Horizontal") != 1;
+            if (Input.GetKey(KeyCode.A) || (gamepadControls.moveDirection == -1))
+            {
+                sr.flipX = true;
+            }
+            else if (Input.GetKey(KeyCode.D) || (gamepadControls.moveDirection == 1))
+            {
+                sr.flipX = false;
+            }
         }
     }
 }

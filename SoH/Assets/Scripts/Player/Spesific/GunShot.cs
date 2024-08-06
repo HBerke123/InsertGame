@@ -24,13 +24,39 @@ public class GunShot : MonoBehaviour
     public int cECost;
     public bool started;
     int ammo = 3;
+    bool shooted;
     bool explosed;
     bool reloading;
     float th;
     float hth;
+    CEDrainage ced;
+    SwordAttack sa;
+    SoundUse su;
+    BlocksOnObject boo;
+    Crouching c;
+    ScreamUse su2;
+    Potion p;
+    MakeSound ms;
+    CEProduce cep;
+    SpriteRenderer sr;
+    CrouchingDetection cd;
+    GamepadControls gamepadControls;
 
     private void Start()
     {
+        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
+        sr = this.GetComponentInParent<SpriteRenderer>();
+        cep = this.GetComponentInParent<CEProduce>();
+        ms = this.GetComponentInParent<MakeSound>();
+        p = this.GetComponentInParent<Potion>();
+        su2 = this.GetComponent<ScreamUse>();
+        c = this.GetComponentInParent<Crouching>();
+        boo = this.GetComponentInParent<BlocksOnObject>();
+        su = this.GetComponent<SoundUse>();
+        sa = this.GetComponent<SwordAttack>();
+        ced = this.GetComponentInParent<CEDrainage>();
+        cd = c.GetComponentInChildren<CrouchingDetection>();
+
         for (int i = 0; i < 2; i++)
         {
             for (int j = 1; j < 6; j++)
@@ -58,9 +84,9 @@ public class GunShot : MonoBehaviour
             {
                 reloadTimes.RemoveAt(i);
 
-                if (this.GetComponentInParent<CEDrainage>().cE < this.GetComponentInParent<CEDrainage>().maxCE / 2)
+                if (ced.cE < ced.maxCE / 2)
                 {
-                    this.GetComponentInParent<CEDrainage>().GainCE(1);
+                    ced.GainCE(1);
                 }
             }
         }
@@ -68,7 +94,7 @@ public class GunShot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if ((Input.GetMouseButton(1) || gamepadControls.gunShot) && !shooted)
         {
             explosed = false;
 
@@ -76,16 +102,17 @@ public class GunShot : MonoBehaviour
             {
                 lastBombs[i].GetComponent<BombExplode>().Explode();
                 explosed = true;
+                shooted = true;
             }
         }
 
-        if (!reloading && !this.GetComponent<SwordAttack>().ready)
+        if (!reloading)
         {
             if (lastBombs.Count == 0)
             {
-                if (Input.GetMouseButtonDown(1) && (ammo > 0) && (th == 0) && !explosed && !this.GetComponent<SoundUse>().started && !this.GetComponentInParent<BlocksOnObject>().isBlocked && !this.GetComponent<SwordAttack>().ready && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponent<ScreamUse>().screaming && !this.GetComponentInParent<Potion>().drinking)
+                if ((Input.GetMouseButton(1) || gamepadControls.gunShot) && !shooted && (ammo > 0) && (th == 0) && !explosed && !su.started && !boo.isBlocked && !sa.ready && !c.isCrouching && !su2.screaming && !p.drinking && !started)
                 {
-                    this.GetComponentInParent<Crouching>().Crouch();
+                    shooted = true;
                     started = true;
                     explosed = false;
                     hth = Time.time;
@@ -93,12 +120,16 @@ public class GunShot : MonoBehaviour
                     preBombShower.GetComponent<PreBombGroup>().ShowGroup();
                     preBombShower.GetComponent<ShowPreBombs>().ShowBombs();
                 }
+                else if ((Input.GetMouseButton(1) || gamepadControls.gunShot) && !shooted && (ammo > 0) && (th == 0) && !explosed && !su.started && !boo.isBlocked && !sa.ready && cd.isSafe && !su2.screaming && !p.drinking && !c.changing)
+                {
+                    c.Crouch();
+                }
             }
 
-            if ((Input.GetMouseButtonUp(1) || (hth == 0)) && (ammo > 0) && (th == 0) && started)
+            if ((Input.GetMouseButtonUp(1) || !gamepadControls.gunShot || (hth == 0)) && (ammo > 0) && (th == 0) && started)
             {
                 started = false;
-                this.GetComponentInParent<MakeSound>().AddTime(soundTime);
+                ms.AddTime(soundTime);
                 preBombShower.GetComponent<PreBombGroup>().showing = false;
                 preBombShower.GetComponent<ShowPreBombs>().StopShowing();
 
@@ -114,6 +145,11 @@ public class GunShot : MonoBehaviour
                 th = Time.time;
                 hth = 0;
             }
+
+            if ((Input.GetMouseButtonUp(1) || !gamepadControls.gunShot) && shooted)
+            {
+                shooted = false;
+            }
         }
     }
 
@@ -123,10 +159,10 @@ public class GunShot : MonoBehaviour
         float distanceY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - this.transform.position.y;
         float distance = Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceY, 2));
         GameObject SBox = Instantiate(bomb, this.transform.position, Quaternion.identity);
-        this.GetComponentInParent<CEProduce>().delayAmount = Mathf.Max(this.GetComponentInParent<CEProduce>().delayAmount, delayTime);
+        cep.delayAmount = Mathf.Max(cep.delayAmount, delayTime);
         lastBombs.Add(SBox);
 
-        if (!this.GetComponentInParent<SpriteRenderer>().flipX)
+        if (!sr.flipX)
         {
             if ((distanceX / Mathf.Abs(distanceX)) == 1)
             {
@@ -137,7 +173,7 @@ public class GunShot : MonoBehaviour
                 SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
             }
         }
-        else if (this.GetComponentInParent<SpriteRenderer>().flipX)
+        else
         {
             if ((distanceX / Mathf.Abs(distanceX)) == 1)
             {
@@ -170,8 +206,8 @@ public class GunShot : MonoBehaviour
     IEnumerator Reload()
     {
         reloading = true;
-        this.GetComponentInParent<CEDrainage>().LoseCE(cECost);
-        this.GetComponentInParent<CEProduce>().delayAmount = Mathf.Max(this.GetComponentInParent<CEProduce>().delayAmount, delayTime);
+        ced.LoseCE(cECost);
+        cep.delayAmount = Mathf.Max(cep.delayAmount, delayTime);
 
         for (int i = 1; i < cECost + 1; i++)
         {

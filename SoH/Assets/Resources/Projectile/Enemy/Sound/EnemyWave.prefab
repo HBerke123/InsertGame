@@ -136,11 +136,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockTime: 0
-  reloadTime: 0.5
+  reloadTime: 0
   damageAmount: 0
   destroyOnDamage: 0
   destroyOnTouch: 0
-  isReloadable: 1
+  isReloadable: 0
   weakToDash: 1
   canNotDamage: 0
 --- !u!61 &-4167315619389878595

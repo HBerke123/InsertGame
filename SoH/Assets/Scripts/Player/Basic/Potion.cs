@@ -10,6 +10,7 @@ public class Potion : MonoBehaviour
     public bool hasPotion;
     public bool drinking;
     float th;
+    GamepadControls gamepadControls;
     HealthDrainage hd;
     CEDrainage ced;
     SwordAttack sa;
@@ -22,6 +23,7 @@ public class Potion : MonoBehaviour
 
     private void Start()
     {
+        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         c = this.GetComponent<Crouching>();
         a = this.GetComponent<Animator>();
         boo = this.GetComponent<BlocksOnObject>();
@@ -44,7 +46,7 @@ public class Potion : MonoBehaviour
 
     private void Update()
     {
-        if (hasPotion && Input.GetKey(KeyCode.F) && !drinking && !sa.ready && !su.started && !su2.screaming && !gs.started && !boo.isBlocked && !c.isCrouching)
+        if (hasPotion && (Input.GetKey(KeyCode.F) || gamepadControls.potion) && !drinking && !sa.ready && !su.started && !su2.screaming && !gs.started && !boo.isBlocked && !c.isCrouching)
         {
             a.SetBool("Drinking", true);
             drinking = true;
@@ -53,7 +55,7 @@ public class Potion : MonoBehaviour
             hasPotion = false;
             th = Time.time;
         }
-        else if (hasPotion && Input.GetKey(KeyCode.F) && !drinking && !sa.ready && !su.started && !su2.screaming && !gs.started && !boo.isBlocked)
+        else if (hasPotion && (Input.GetKey(KeyCode.F) || gamepadControls.potion) && !drinking && !sa.ready && !su.started && !su2.screaming && !gs.started && !boo.isBlocked)
         {
             c.Crouch();
         }

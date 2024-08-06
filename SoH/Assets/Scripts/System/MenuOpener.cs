@@ -5,15 +5,18 @@ public class MenuOpener : MonoBehaviour
     public bool isMenuOpen;
     public GameObject menu;
     public TimeControlStop timeControlStop;
+    GamepadControls gamepadControls;
+    bool pressed;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if ((Input.GetKey(KeyCode.Escape) || gamepadControls.pause) && !pressed)
         {
+            pressed = true;
+
             if (isMenuOpen)
             {
                 Resume();
-
             }
             else
             {
@@ -21,6 +24,11 @@ public class MenuOpener : MonoBehaviour
                 menu.SetActive(true);
                 isMenuOpen = true;
             }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Escape) || !gamepadControls.pause)
+        {
+            pressed = false;
         }
     }
 

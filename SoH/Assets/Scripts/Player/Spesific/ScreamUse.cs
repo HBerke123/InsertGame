@@ -12,14 +12,22 @@ public class ScreamUse : MonoBehaviour
     public float loseAmount;
     public float delayTime;
     public float cERegainTime;
+    public float screamTime;
     public bool screaming;
+    GamepadControls gamepadControls;
     GameObject screamHit;
+    bool screamed;
     float th;
     float lth;
 
+    private void Start()
+    {
+        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && (th == 0) && !this.GetComponent<SoundUse>().started && !this.GetComponent<SwordAttack>().ready && !this.GetComponent<GunShot>().started && this.transform.parent.GetComponentInChildren<GroundDetection>().detected && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponentInParent<Potion>().drinking)
+        if ((Input.GetKey(KeyCode.E) || gamepadControls.screaming) && !screamed && (th == 0) && !this.GetComponent<SoundUse>().started && !this.GetComponent<SwordAttack>().ready && !this.GetComponent<GunShot>().started && this.transform.parent.GetComponentInChildren<GroundDetection>().detected && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponentInParent<Potion>().drinking)
         {
             if (this.GetComponentInParent<Crouching>().isCrouching)
             {
@@ -28,9 +36,14 @@ public class ScreamUse : MonoBehaviour
 
             Scream();
         }
-        else if (Input.GetKeyUp(KeyCode.E))
+        else if ((Input.GetKeyUp(KeyCode.E) || !gamepadControls.screaming))
         {
-            Destroy(screamHit);
+            screamed = false;
+
+            if (screamHit != null)
+            {
+                Destroy(screamHit);
+            }
         }
 
         if (screamHit != null)
@@ -46,6 +59,16 @@ public class ScreamUse : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if ((th != 0) && (Time.time - th > screamTime) && screaming)
+        {
+            screamed = false;
+
+            if (screamHit != null)
+            {
+                Destroy(screamHit);
+            }
+        }
+
         if ((th != 0) && (Time.time - th > cooldown))
         {
             th = 0;
@@ -81,6 +104,7 @@ public class ScreamUse : MonoBehaviour
         GameObject SBox = Instantiate(ScreamWave, this.transform.position, new Quaternion(0, 0, 0, 0));
         SBox.GetComponent<DamageEnemies>().damageAmount = damage;
         screamHit = SBox;
+        screamed = true;
         th = Time.time;
     }
 }

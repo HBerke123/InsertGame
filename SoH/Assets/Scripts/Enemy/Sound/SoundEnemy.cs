@@ -52,9 +52,10 @@ public class SoundEnemy : MonoBehaviour
             speed = baseSpeed;
         }
 
-        if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && ((Mathf.Abs(distanceX) < moveRangeX) || this.GetComponent<Notice>().isNoticed) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && (Mathf.Abs(distanceX) > rangeX))
+        if (((Mathf.Abs(distanceX) < moveRangeX) || this.GetComponent<Notice>().isNoticed || (player.GetComponent<MakeSound>().totalSoundTime > 0)) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && (Mathf.Abs(distanceX) > rangeX))
         {
             this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
+
             if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (this.GetComponent<ForcesOnObject>().Force.x == 0))
             {
                 if (this.GetComponent<ForcesOnObject>().Force.y != 0)
@@ -68,23 +69,26 @@ public class SoundEnemy : MonoBehaviour
             } 
         }
 
-        if ((th == 0) && (screamHit == null) && (player.GetComponent<MakeSound>().totalSoundTime > 0) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && ((Mathf.Abs(distanceX) > rangeX) || this.GetComponent<Notice>().isNoticed))
+        if ((th == 0) && (screamHit == null) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && ((Mathf.Abs(distanceX) < rangeX) || this.GetComponent<Notice>().isNoticed || (player.GetComponent<MakeSound>().totalSoundTime > 0)))
         {
+            this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
             th = Time.time;
         }
     }
 
     void Shoot()
     {
+        this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
         th = 0;
         GameObject SBox = Instantiate(soundWave, transform.position, new Quaternion(0, 0, 0, 0));
         SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x) * waveSpeed, 0);
         SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
-        SBox.GetComponent<ForcePlayer>().direction = (int)(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x));
+        SBox.GetComponent<ForcePlayer>().direction = Mathf.RoundToInt(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x));
     }
 
     void Scream()
     {
+        this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
         th = 0;
         GameObject SBox = Instantiate(screamWave, this.transform.position, Quaternion.identity);
         SBox.GetComponent<DamagePlayer>().damageAmount = screamDamage;

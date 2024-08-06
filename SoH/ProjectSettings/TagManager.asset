@@ -20,6 +20,7 @@ TagManager:
   - EnemyWeapon
   - LaserTrigger
   - Ground
+  - GamepadController
   layers:
   - Default
   - TransparentFX

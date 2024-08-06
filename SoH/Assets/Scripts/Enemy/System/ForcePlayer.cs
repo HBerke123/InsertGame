@@ -8,7 +8,7 @@ public class ForcePlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && (!weakToDash || !collision.GetComponent<Dash>().dashing))
+        if (collision.CompareTag("Player") && !(weakToDash && collision.GetComponent<Dash>().dashing))
         {
             collision.GetComponent<ForcesOnObject>().Force = new Vector2(forceAmount * direction, 0);
         }

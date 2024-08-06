@@ -24,6 +24,7 @@ public class SwordAttack : MonoBehaviour
     public int cECost;
     public int skillCECost;
     public bool ready;
+    public bool attacking;
     bool attackable = true;
     public float totalTime;
     float cth;
@@ -31,6 +32,7 @@ public class SwordAttack : MonoBehaviour
     public float th;
     int attackNum;
     int comboNum;
+    GamepadControls gamepadControls;
     AudioSource as1;
     CEDrainage ced;
     GunShot gs;
@@ -49,6 +51,7 @@ public class SwordAttack : MonoBehaviour
 
     private void Start()
     {
+        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         as1 = this.GetComponentInParent<AudioSource>();
         a = this.GetComponentInParent<Animator>();
         sp = this.GetComponentInParent<SpriteRenderer>();
@@ -77,6 +80,7 @@ public class SwordAttack : MonoBehaviour
         {
             a.SetBool("Attacking", false);
             bc.enabled = false;
+            attacking = false;
         }
 
         if (Time.time - th > skillholdtime)
@@ -102,20 +106,21 @@ public class SwordAttack : MonoBehaviour
     {
         if (!menuOpener.isMenuOpen)
         {
-            if (attackable && !gs.started && !su.started && !su2.screaming && !boo.isBlocked && !c.isCrouching && !p.drinking)
+            if (attackable && !gs.started && !su.started && !su2.screaming && !boo.isBlocked && !c.isCrouching && !p.drinking && !attacking)
             {
-                if (Input.GetMouseButtonDown(0) && (th == 0) && (totalTime == 0))
+                if ((Input.GetMouseButton(0) || gamepadControls.swordAttack) && (th == 0) && (totalTime == 0))
                 {
                     ready = true;
                     th = Time.time;
                 }
-                else if (((th == 0) || Input.GetMouseButtonUp(0)) & ready)
+                else if (((th == 0) || (Input.GetMouseButtonUp(0) || !gamepadControls.swordAttack)) & ready)
                 {
                     if (totalTime == 0)
                     {
                         totalTime = Time.time - th;
                     }
-                    
+
+                    attacking = true;
                     ready = false;
 
                     if (totalTime < skillholdtime)
@@ -178,15 +183,15 @@ public class SwordAttack : MonoBehaviour
                     }
                 }
             }
-            else if (attackable && !gs.started && !su.started && !su2.screaming && !boo.isBlocked && cd.isSafe && !p.drinking)
+            else if (attackable && !gs.started && !su.started && !su2.screaming && !boo.isBlocked && cd.isSafe && !p.drinking && !attacking)
             {
-                if (Input.GetMouseButtonDown(0) && (th == 0) && (totalTime == 0))
+                if ((Input.GetMouseButton(0) || gamepadControls.swordAttack) && (th == 0) && (totalTime == 0))
                 {
                     c.Crouch();
                     ready = true;
                     th = Time.time;
                 }
-                else if ((Input.GetMouseButtonUp(0)  || (th == 0)) && ready)
+                else if ((Input.GetMouseButton(0) || gamepadControls.swordAttack || (th == 0)) && ready)
                 {
                     totalTime = Time.time - th;
                 }
