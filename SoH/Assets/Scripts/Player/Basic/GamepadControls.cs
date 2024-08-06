@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class GamepadControls : MonoBehaviour
 {
     PlayerControls controls;
+    public Vector2 gunDirection;
     public int moveDirection;
     public bool jumping;
     public bool crouching;
@@ -38,6 +39,7 @@ public class GamepadControls : MonoBehaviour
         controls.Gameplay.Map.performed += ctx => map = true;
         controls.Gameplay.StopGame.performed += ctx => pause = true;
         controls.Gameplay.Save.performed += ctx => save = true;
+        controls.Gameplay.Save.performed += ctx => SetDirection(ctx.ReadValue<Vector2>());
         controls.Gameplay.MoveRight.canceled += ctx => ResetMovement(1);
         controls.Gameplay.MoveLeft.canceled += ctx => ResetMovement(-1);
         controls.Gameplay.Jump.canceled += ctx => jumping = false;
@@ -70,5 +72,11 @@ public class GamepadControls : MonoBehaviour
         {
             moveDirection = 0;
         }
+    }
+
+    private void SetDirection(Vector2 direction)
+    {
+        float total = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2));
+        gunDirection = new Vector2(direction.x / total, direction.y / total);
     }
 }

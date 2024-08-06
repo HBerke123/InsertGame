@@ -162,26 +162,54 @@ public class GunShot : MonoBehaviour
         cep.delayAmount = Mathf.Max(cep.delayAmount, delayTime);
         lastBombs.Add(SBox);
 
-        if (!sr.flipX)
+        if (gamepadControls.gunDirection == Vector2.zero)
         {
-            if ((distanceX / Mathf.Abs(distanceX)) == 1)
+            if (!sr.flipX)
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                if ((gamepadControls.gunDirection.x / Mathf.Abs(gamepadControls.gunDirection.x)) == 1)
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(gamepadControls.gunDirection.x, gamepadControls.gunDirection.y) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
+                else
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, gamepadControls.gunDirection.y) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
             }
             else
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                if ((distanceX / Mathf.Abs(distanceX)) == 1)
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, gamepadControls.gunDirection.y) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
+                else
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(gamepadControls.gunDirection.x, gamepadControls.gunDirection.y) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
             }
         }
         else
         {
-            if ((distanceX / Mathf.Abs(distanceX)) == 1)
+            if (!sr.flipX)
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                if ((distanceX / Mathf.Abs(distanceX)) == 1)
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
+                else
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
             }
             else
             {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                if ((distanceX / Mathf.Abs(distanceX)) == 1)
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
+                else
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
             }
         }
 

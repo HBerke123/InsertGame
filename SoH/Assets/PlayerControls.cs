@@ -152,6 +152,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GunRotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""3496c19c-7757-4478-a3eb-0f3e7dfbde62"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -330,6 +339,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b770bb3-07f5-46c3-b174-84a10301b806"",
+                    ""path"": ""<XInputController>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunRotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -352,6 +372,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_Scream = m_Gameplay.FindAction("Scream", throwIfNotFound: true);
         m_Gameplay_StopGame = m_Gameplay.FindAction("StopGame", throwIfNotFound: true);
         m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
+        m_Gameplay_GunRotate = m_Gameplay.FindAction("GunRotate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -425,6 +446,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Scream;
     private readonly InputAction m_Gameplay_StopGame;
     private readonly InputAction m_Gameplay_Map;
+    private readonly InputAction m_Gameplay_GunRotate;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -443,6 +465,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Scream => m_Wrapper.m_Gameplay_Scream;
         public InputAction @StopGame => m_Wrapper.m_Gameplay_StopGame;
         public InputAction @Map => m_Wrapper.m_Gameplay_Map;
+        public InputAction @GunRotate => m_Wrapper.m_Gameplay_GunRotate;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -494,6 +517,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Map.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMap;
                 @Map.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMap;
                 @Map.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMap;
+                @GunRotate.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnGunRotate;
+                @GunRotate.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnGunRotate;
+                @GunRotate.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnGunRotate;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -540,6 +566,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Map.started += instance.OnMap;
                 @Map.performed += instance.OnMap;
                 @Map.canceled += instance.OnMap;
+                @GunRotate.started += instance.OnGunRotate;
+                @GunRotate.performed += instance.OnGunRotate;
+                @GunRotate.canceled += instance.OnGunRotate;
             }
         }
     }
@@ -560,5 +589,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnScream(InputAction.CallbackContext context);
         void OnStopGame(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
+        void OnGunRotate(InputAction.CallbackContext context);
     }
 }
