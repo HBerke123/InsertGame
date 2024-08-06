@@ -146,8 +146,30 @@
                 },
                 {
                     "name": "",
+                    "id": "7c28531d-7c8b-4c6c-a09d-838a1d47e4cc",
+                    "path": "<XInputController>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "044ca987-32bf-4958-baea-55f7dcdb6a16",
                     "path": "<XInputController>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb5a703e-d0d7-42fb-8bf4-ba2afdd7b93b",
+                    "path": "<XInputController>/dpad/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

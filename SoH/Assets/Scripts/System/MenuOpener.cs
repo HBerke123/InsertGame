@@ -8,6 +8,11 @@ public class MenuOpener : MonoBehaviour
     GamepadControls gamepadControls;
     bool pressed;
 
+    private void Start()
+    {
+        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
+    }
+
     private void Update()
     {
         if ((Input.GetKey(KeyCode.Escape) || gamepadControls.pause) && !pressed)
