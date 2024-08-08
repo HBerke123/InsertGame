@@ -6,15 +6,32 @@ public class HealthDrainage : MonoBehaviour
     public Bar healthBar;
     public float health;
     public float maxHealth;
+    public float invisibleTime;
+    public float currentInvisible;
+    public bool isInvisible;
+    float th;
 
     public void Start()
     {
         UpdateHealthBar();
     }
 
+    private void FixedUpdate()
+    {
+        if ((th != 0) && (Time.time - th > currentInvisible))
+        {
+            currentInvisible = 0;
+            th = 0;
+            isInvisible = false;
+        }
+    }
+
     public void TakeDamage(float amount)
     {
+        currentInvisible = invisibleTime;
+        isInvisible = true;
         health -= amount;
+        th = Time.time;
 
         if (health <= 0)
         {

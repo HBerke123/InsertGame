@@ -41,9 +41,11 @@ public class GunShot : MonoBehaviour
     SpriteRenderer sr;
     CrouchingDetection cd;
     GamepadControls gamepadControls;
+    GroundDetection gd;
 
     private void Start()
     {
+        gd = this.transform.parent.GetComponentInChildren<GroundDetection>();
         gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         sr = this.GetComponentInParent<SpriteRenderer>();
         cep = this.GetComponentInParent<CEProduce>();
@@ -110,7 +112,7 @@ public class GunShot : MonoBehaviour
         {
             if (lastBombs.Count == 0)
             {
-                if ((Input.GetMouseButton(1) || gamepadControls.gunShot) && !shooted && (ammo > 0) && (th == 0) && !explosed && !su.started && !boo.isBlocked && !sa.ready && !c.isCrouching && !su2.screaming && !p.drinking && !started)
+                if ((Input.GetMouseButton(1) || gamepadControls.gunShot) && !shooted && (ammo > 0) && (th == 0) && !explosed && !su.started && !boo.isBlocked && !sa.ready && !c.isCrouching && !su2.screaming && !p.drinking && !started && gd.detected)
                 {
                     shooted = true;
                     started = true;
@@ -120,13 +122,13 @@ public class GunShot : MonoBehaviour
                     preBombShower.GetComponent<PreBombGroup>().ShowGroup();
                     preBombShower.GetComponent<ShowPreBombs>().ShowBombs();
                 }
-                else if ((Input.GetMouseButton(1) || gamepadControls.gunShot) && !shooted && (ammo > 0) && (th == 0) && !explosed && !su.started && !boo.isBlocked && !sa.ready && cd.isSafe && !su2.screaming && !p.drinking && !c.changing)
+                else if ((Input.GetMouseButton(1) || gamepadControls.gunShot) && !shooted && (ammo > 0) && (th == 0) && !explosed && !su.started && !boo.isBlocked && !sa.ready && cd.isSafe && !su2.screaming && !p.drinking && !c.changing && gd.detected)
                 {
                     c.Crouch();
                 }
             }
 
-            if ((Input.GetMouseButtonUp(1) || !gamepadControls.gunShot || (hth == 0)) && (ammo > 0) && (th == 0) && started)
+            if (((!Input.GetMouseButton(1) && !gamepadControls.gunShot) || (hth == 0)) && (ammo > 0) && (th == 0) && started)
             {
                 started = false;
                 ms.AddTime(soundTime);
@@ -146,7 +148,7 @@ public class GunShot : MonoBehaviour
                 hth = 0;
             }
 
-            if ((Input.GetMouseButtonUp(1) || !gamepadControls.gunShot) && shooted)
+            if (!Input.GetMouseButton(1) && !gamepadControls.gunShot && shooted)
             {
                 shooted = false;
             }
@@ -166,6 +168,31 @@ public class GunShot : MonoBehaviour
         {
             if (!sr.flipX)
             {
+                if ((distanceX / Mathf.Abs(distanceX)) == 1)
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
+                else
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
+            }
+            else
+            {
+                if ((distanceX / Mathf.Abs(distanceX)) == 1)
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
+                else
+                {
+                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
+                }
+            }
+        }
+        else
+        {
+            if (!sr.flipX)
+            {
                 if ((gamepadControls.gunDirection.x / Mathf.Abs(gamepadControls.gunDirection.x)) == 1)
                 {
                     SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(gamepadControls.gunDirection.x, gamepadControls.gunDirection.y) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
@@ -177,38 +204,13 @@ public class GunShot : MonoBehaviour
             }
             else
             {
-                if ((distanceX / Mathf.Abs(distanceX)) == 1)
+                if ((gamepadControls.gunDirection.x / Mathf.Abs(gamepadControls.gunDirection.x)) == 1)
                 {
                     SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, gamepadControls.gunDirection.y) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
                 }
                 else
                 {
                     SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(gamepadControls.gunDirection.x, gamepadControls.gunDirection.y) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
-                }
-            }
-        }
-        else
-        {
-            if (!sr.flipX)
-            {
-                if ((distanceX / Mathf.Abs(distanceX)) == 1)
-                {
-                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
-                }
-                else
-                {
-                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
-                }
-            }
-            else
-            {
-                if ((distanceX / Mathf.Abs(distanceX)) == 1)
-                {
-                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, distanceY / distanceY) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
-                }
-                else
-                {
-                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distanceX / distance, distanceY / distance) * (minbombforce + (maxbombforce - minbombforce) * bombForce);
                 }
             }
         }

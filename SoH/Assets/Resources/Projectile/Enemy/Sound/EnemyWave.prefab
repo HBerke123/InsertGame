@@ -181,6 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb866bd8edd9e524598a09d9b918ae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceAmount: 3
+  forceAmount: 6
   direction: 0
   weakToDash: 1

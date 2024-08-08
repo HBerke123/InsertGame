@@ -105,14 +105,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundWave: {fileID: 8983698874597435969, guid: 844421b539537c64ca2dfd650634be59, type: 3}
   screamWave: {fileID: 5083156048499161189, guid: 9c776926708d7394e87b182483a28a7c, type: 3}
-  soundDamage: 4
+  soundDamage: 2
   waveSpeed: 6
   speed: 3
-  moveRangex: 12
-  rangex: 15
-  shootFrequency: 2
-  screamFrequency: 4.5
+  moveRangeX: 0
+  rangeX: 0
+  screamRange: 0
+  attackFrequency: 0
   screamDamage: 8
+  noticeTime: 0
 --- !u!61 &7135500643959616275
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186,6 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8defe8a1429ec41af9055484ca72af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossFelled: {fileID: 0}
+  healPlayer: 0
   health: 100
   maxHealth: 100
   enemyNum: 0

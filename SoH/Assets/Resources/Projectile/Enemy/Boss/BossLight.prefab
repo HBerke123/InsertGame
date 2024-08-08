@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockTime: 0
-  reloadTime: 2
-  damageAmount: 5
+  reloadTime: 1
+  damageAmount: 3
   destroyOnDamage: 0
   destroyOnTouch: 0
   isReloadable: 1

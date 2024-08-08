@@ -20,6 +20,9 @@ public class GamepadControls : MonoBehaviour
     public bool map;
     public bool pause;
     public bool save;
+    public bool accept;
+    public bool back;
+    public int menuDirection;
 
     private void Awake()
     {
@@ -39,13 +42,13 @@ public class GamepadControls : MonoBehaviour
         controls.Gameplay.Map.performed += ctx => map = true;
         controls.Gameplay.StopGame.performed += ctx => pause = true;
         controls.Gameplay.Save.performed += ctx => save = true;
-        controls.Gameplay.Save.performed += ctx => SetDirection(ctx.ReadValue<Vector2>());
+        controls.Gameplay.GunRotate.performed += ctx => SetDirection(ctx.ReadValue<Vector2>());
         controls.Gameplay.MoveRight.canceled += ctx => ResetMovement(1);
         controls.Gameplay.MoveLeft.canceled += ctx => ResetMovement(-1);
         controls.Gameplay.Jump.canceled += ctx => jumping = false;
         controls.Gameplay.Crouch.canceled += ctx => crouching = false;
         controls.Gameplay.Dash.canceled += ctx => dashing = false;
-        controls.Gameplay.Scream.performed += ctx => screaming = false;
+        controls.Gameplay.Scream.canceled += ctx => screaming = false;
         controls.Gameplay.SoundDomain.canceled += ctx => soundDomain = false;
         controls.Gameplay.SoundInfluence.canceled += ctx => soundInfluence = false;
         controls.Gameplay.Potion.canceled += ctx => potion = false;
@@ -54,6 +57,18 @@ public class GamepadControls : MonoBehaviour
         controls.Gameplay.Map.canceled += ctx => map = false;
         controls.Gameplay.StopGame.canceled += ctx => pause = false;
         controls.Gameplay.Save.canceled += ctx => save = false;
+        controls.MenuControls.Accept.performed += ctx => accept = true;
+        controls.MenuControls.Back.performed += ctx => back = true;
+        controls.MenuControls.Up.performed += ctx => menuDirection = 1;
+        controls.MenuControls.Down.performed += ctx => menuDirection = 3;
+        controls.MenuControls.Right.performed += ctx => menuDirection = 2;
+        controls.MenuControls.Left.performed += ctx => menuDirection = 4;
+        controls.MenuControls.Accept.canceled += ctx => accept = false;
+        controls.MenuControls.Back.canceled += ctx => back = false;
+        controls.MenuControls.Up.canceled += ctx => SetMenuDirection(1);
+        controls.MenuControls.Down.canceled += ctx => SetMenuDirection(3);
+        controls.MenuControls.Right.canceled += ctx => SetMenuDirection(2);
+        controls.MenuControls.Left.canceled += ctx => SetMenuDirection(4);
     }
 
     private void OnEnable()
@@ -71,6 +86,14 @@ public class GamepadControls : MonoBehaviour
         if (moveDirection == direction)
         {
             moveDirection = 0;
+        }
+    }
+
+    private void SetMenuDirection(int direction)
+    {
+        if (menuDirection == direction)
+        {
+            menuDirection = 0;
         }
     }
 

@@ -8,6 +8,7 @@ public class ButtonEvents : MonoBehaviour
     public GameObject menu;
     public MenuOpener menuOpener;
     public TimeControlStop timeControlStop;
+    public MenuMovement menuMovement;
 
     public void Continue()
     {
@@ -34,13 +35,14 @@ public class ButtonEvents : MonoBehaviour
 
     public void NewGame()
     {
+        menuMovement.currentGroup = 1;
+        menuMovement.curCordinate = Vector2.zero;
         menu.SetActive(false);
         saves.SetActive(true);
     }
 
     public void MainMenu()
     {
-        Debug.Log(timeControlStop);
         timeControlStop.StopSlowMotion();
         SceneManager.LoadScene("MainMenu");
     }

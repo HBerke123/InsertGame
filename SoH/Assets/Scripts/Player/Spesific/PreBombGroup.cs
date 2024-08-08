@@ -24,7 +24,6 @@ public class PreBombGroup : MonoBehaviour
                 if (!this.GetComponentInParent<SpriteRenderer>().flipX)
                 {
                     this.transform.localScale = Vector3.one;
-                    this.transform.localRotation = Quaternion.Euler(0, 0, -arrow.transform.localRotation.eulerAngles.x);
                 }
                 else
                 {
@@ -44,7 +43,6 @@ public class PreBombGroup : MonoBehaviour
             else
             {
                 this.transform.localScale = Vector3.one - Vector3.right * 2;
-                this.transform.localRotation = Quaternion.Euler(0, 0, arrow.transform.localRotation.eulerAngles.x);
 
                 if (this.GetComponentInParent<SpriteRenderer>().flipX)
                 {
@@ -73,7 +71,15 @@ public class PreBombGroup : MonoBehaviour
                 if (!this.GetComponentInParent<SpriteRenderer>().flipX)
                 {
                     this.transform.localScale = Vector3.one;
-                    this.transform.localRotation = Quaternion.Euler(0, 0, -Mathf.Acos(gamepadControls.gunDirection.x) * Mathf.Rad2Deg);
+                    
+                    if ((gamepadControls.gunDirection.y / Mathf.Abs(gamepadControls.gunDirection.y)) == 1)
+                    {
+                        this.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Acos(gamepadControls.gunDirection.x) * Mathf.Rad2Deg);
+                    }
+                    else
+                    {
+                        this.transform.localRotation = Quaternion.Euler(0, 0, -Mathf.Acos(gamepadControls.gunDirection.x) * Mathf.Rad2Deg);
+                    }
                 }
                 else
                 {
@@ -81,11 +87,11 @@ public class PreBombGroup : MonoBehaviour
 
                     if ((gamepadControls.gunDirection.y / Mathf.Abs(gamepadControls.gunDirection.y)) == 1)
                     {
-                        this.transform.localRotation = Quaternion.Euler(0, 0, 90);
+                        this.transform.localRotation = Quaternion.Euler(0, 0, 270);
                     }
                     else
                     {
-                        this.transform.localRotation = Quaternion.Euler(0, 0, 270);
+                        this.transform.localRotation = Quaternion.Euler(0, 0, 90);
                     }
                 }
 
@@ -95,7 +101,15 @@ public class PreBombGroup : MonoBehaviour
                 if (this.GetComponentInParent<SpriteRenderer>().flipX)
                 {
                     this.transform.localScale = Vector3.one - Vector3.right * 2;
-                    this.transform.localRotation = Quaternion.Euler(0, 0, -Mathf.Acos(gamepadControls.gunDirection.x) * Mathf.Rad2Deg);
+
+                    if ((gamepadControls.gunDirection.y / Mathf.Abs(gamepadControls.gunDirection.y)) == 1)
+                    {
+                        this.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Acos(gamepadControls.gunDirection.x) * Mathf.Rad2Deg - 180);
+                    }
+                    else
+                    {
+                        this.transform.localRotation = Quaternion.Euler(0, 0, -Mathf.Acos(gamepadControls.gunDirection.x) * Mathf.Rad2Deg - 180);
+                    }
                 }
                 else
                 {

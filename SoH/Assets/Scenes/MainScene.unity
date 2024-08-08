@@ -236,6 +236,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6786363493814917261, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
+      propertyPath: runRange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786363493814917261, guid: 93c2ad5c34e69724b92f45c594c77343, type: 3}
       propertyPath: runSpeed
       value: 12
       objectReference: {fileID: 0}
@@ -1439,6 +1443,7 @@ GameObject:
   - component: {fileID: 381171093}
   - component: {fileID: 381171094}
   - component: {fileID: 381171095}
+  - component: {fileID: 381171096}
   m_Layer: 14
   m_Name: SceneManager
   m_TagString: GamepadController
@@ -1488,6 +1493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ff8a7e929a9fd49bf6d6320c79c367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunDirection: {x: 0, y: 0}
   moveDirection: 0
   jumping: 0
   crouching: 0
@@ -1501,6 +1507,29 @@ MonoBehaviour:
   map: 0
   pause: 0
   save: 0
+  accept: 0
+  back: 0
+  menuDirection: 0
+--- !u!114 &381171096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381171091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e68113ad418fe448429c6ffa003990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonCoordinates:
+  - {fileID: 651536761}
+  - {fileID: 1857591757}
+  - {fileID: 1201055319}
+  menuOpener: {fileID: 381171094}
+  curCordinate: {x: 0, y: 0}
+  waitTime: 0.3125
+  currentGroup: 0
 --- !u!1 &434400427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,6 +2413,7 @@ GameObject:
   - component: {fileID: 651536760}
   - component: {fileID: 651536759}
   - component: {fileID: 651536758}
+  - component: {fileID: 651536761}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -2506,6 +2536,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651536756}
   m_CullTransparentMesh: 1
+--- !u!114 &651536761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651536756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea24cee7eb9b824c917c18e86d8dd01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonCordinate: {x: 0, y: 0}
+  selected: 0
+  buttonGroup: 0
 --- !u!1 &682310932
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,6 +3443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7135500643959616273, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
+      propertyPath: resistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7135500643959616284, guid: 6a546a610f751c846b2f827171ba64f6, type: 3}
       propertyPath: rangeX
       value: 8
@@ -3837,6 +3886,7 @@ GameObject:
   - component: {fileID: 1201055318}
   - component: {fileID: 1201055317}
   - component: {fileID: 1201055316}
+  - component: {fileID: 1201055319}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -3959,6 +4009,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201055314}
   m_CullTransparentMesh: 1
+--- !u!114 &1201055319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201055314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea24cee7eb9b824c917c18e86d8dd01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonCordinate: {x: 0, y: -2}
+  selected: 0
+  buttonGroup: 0
 --- !u!1 &1211372693 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1389891591515866880, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
@@ -4885,11 +4950,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111135534365861719, guid: f8ffa63664daf12419b085ddb424aeee, type: 3}
       propertyPath: rangex
-      value: 7.5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1111135534365861719, guid: f8ffa63664daf12419b085ddb424aeee, type: 3}
       propertyPath: noticeTime
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1111135534365861719, guid: f8ffa63664daf12419b085ddb424aeee, type: 3}
+      propertyPath: attackRange
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1111135534365861725, guid: f8ffa63664daf12419b085ddb424aeee, type: 3}
       propertyPath: m_Name
@@ -49388,6 +49457,7 @@ GameObject:
   - component: {fileID: 1857591756}
   - component: {fileID: 1857591755}
   - component: {fileID: 1857591754}
+  - component: {fileID: 1857591757}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -49510,6 +49580,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857591752}
   m_CullTransparentMesh: 1
+--- !u!114 &1857591757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857591752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea24cee7eb9b824c917c18e86d8dd01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonCordinate: {x: 0, y: -1}
+  selected: 0
+  buttonGroup: 0
 --- !u!1001 &1863347290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49615,6 +49700,7 @@ MonoBehaviour:
   menu: {fileID: 0}
   menuOpener: {fileID: 381171094}
   timeControlStop: {fileID: 113443647}
+  menuMovement: {fileID: 0}
 --- !u!114 &1898268689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50430,6 +50516,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 350074447}
     - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: htime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244011, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: cECost
       value: 60
       objectReference: {fileID: 0}
@@ -50507,7 +50597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: attackTime
-      value: 0.8
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: bossCECost
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: menuOpener
@@ -50534,8 +50628,12 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: comboBreakTime
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: lastAttackTime
-      value: 1.6
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: skillDelayTime
@@ -50543,7 +50641,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: skillAttackTime
-      value: 1.6
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: bossCEReloadTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: lastAttackDamage
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592042244022, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: skillAttackDamage
@@ -50620,6 +50726,10 @@ PrefabInstance:
     - target: {fileID: 1389891592076107560, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: cost
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389891592076107560, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: speed
+      value: 9.6
       objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107560, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: cEDelay
@@ -50709,6 +50819,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 145442708}
+    - target: {fileID: 1389891592076107570, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
+      propertyPath: invisibleTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1389891592076107572, guid: aeda054ed7907d94a8d3014f3ed52f52, type: 3}
       propertyPath: cE
       value: 500
@@ -50825,6 +50939,10 @@ PrefabInstance:
     - target: {fileID: 1395232599140071510, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: flyTime
       value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395232599140071510, guid: f2f280678068785428c1307e174b1418, type: 3}
+      propertyPath: lightUp
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1395232599140071510, guid: f2f280678068785428c1307e174b1418, type: 3}
       propertyPath: attackTime

@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossHitBox : MonoBehaviour
 {
     GameObject player;
-    bool changable;
 
     private void Start()
     {

@@ -22,9 +22,11 @@ public class Potion : MonoBehaviour
     BlocksOnObject boo;
     Animator a;
     Crouching c;
+    MenuOpener mo;
 
     private void Start()
     {
+        mo = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<MenuOpener>();
         as1 = this.GetComponent<AudioSource>();
         gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         c = this.GetComponent<Crouching>();
@@ -49,19 +51,22 @@ public class Potion : MonoBehaviour
 
     private void Update()
     {
-        if (hasPotion && (Input.GetKey(KeyCode.F) || gamepadControls.potion) && !drinking && !sa.ready && !su.started && !su2.screaming && !gs.started && !boo.isBlocked && !c.isCrouching)
+        if (!mo.isMenuOpen)
         {
-            as1.PlayOneShot(drinkingSound);
-            a.SetBool("Drinking", true);
-            drinking = true;
-            ced.GainCE(cEAmount);
-            hd.Heal(healAmount);
-            hasPotion = false;
-            th = Time.time;
-        }
-        else if (hasPotion && (Input.GetKey(KeyCode.F) || gamepadControls.potion) && !drinking && !sa.ready && !su.started && !su2.screaming && !gs.started && !boo.isBlocked)
-        {
-            c.Crouch();
+            if (hasPotion && (Input.GetKey(KeyCode.F) || gamepadControls.potion) && !drinking && !sa.ready && !su.started && !su2.screaming && !gs.started && !boo.isBlocked && !c.isCrouching)
+            {
+                as1.PlayOneShot(drinkingSound);
+                a.SetBool("Drinking", true);
+                drinking = true;
+                ced.GainCE(cEAmount);
+                hd.Heal(healAmount);
+                hasPotion = false;
+                th = Time.time;
+            }
+            else if (hasPotion && (Input.GetKey(KeyCode.F) || gamepadControls.potion) && !drinking && !sa.ready && !su.started && !su2.screaming && !gs.started && !boo.isBlocked)
+            {
+                c.Crouch();
+            }
         }
     }
 }

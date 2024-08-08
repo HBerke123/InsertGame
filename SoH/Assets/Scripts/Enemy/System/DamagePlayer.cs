@@ -32,7 +32,7 @@ public class DamagePlayer : MonoBehaviour
             Destroy(this.gameObject);
         }
          
-        if (collision.CompareTag("Player") && !damaged && (!weakToDash || !collision.GetComponent<Dash>().dashing) && !canNotDamage)
+        if (collision.CompareTag("Player") && !collision.GetComponent<HealthDrainage>().isInvisible && !damaged && (!weakToDash || !collision.GetComponent<Dash>().dashing) && !canNotDamage)
         {
             rth = Time.time;
             damaged = true;

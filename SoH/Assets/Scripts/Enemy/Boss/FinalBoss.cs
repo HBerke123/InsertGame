@@ -24,6 +24,7 @@ public class FinalBoss : MonoBehaviour
     public float flyAmount;
     public float flySpeed;
     public float flyTime;
+    public float lightUp;
     public int maxMove;
     GameObject player;
     GameObject Light;
@@ -255,7 +256,7 @@ public class FinalBoss : MonoBehaviour
         SetDirection();
         mth = 0;
         this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GameObject SBox = Instantiate(lightWave, new Vector3(this.transform.position.x + lightWave.transform.localScale.x / 2, 1.5f + bottom + lightWave.GetComponent<BossLight>().bigScale / 2, 0), Quaternion.identity);
+        GameObject SBox = Instantiate(lightWave, new Vector3(this.transform.position.x + lightWave.transform.localScale.x / 2, lightUp + bottom + lightWave.GetComponent<BossLight>().bigScale / 2, 0), Quaternion.identity);
         Light = SBox;
     }
 

@@ -163,7 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockTime: 0
   reloadTime: 0
-  damageAmount: 10
+  damageAmount: 5
+  destroyOnDamage: 0
   destroyOnTouch: 0
   isReloadable: 0
   weakToDash: 1
@@ -180,6 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb866bd8edd9e524598a09d9b918ae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceAmount: 6
+  forceAmount: 12
   direction: 0
   weakToDash: 1
