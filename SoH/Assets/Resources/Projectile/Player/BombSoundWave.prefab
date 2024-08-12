@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -826906075601444156}
   m_Layer: 0
   m_Name: BombSoundWave
-  m_TagString: Untagged
+  m_TagString: BombSound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8ac23191ee58c45a9a243b7a8b3d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundForce: 1
   direction: 5
   forcePower: 5
   destroyOnTouch: 0
@@ -162,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcc90c7f583ac3459af5931eeb3c695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundDamage: 0
   destroyOnTouch: 0
   damageAmount: 0
   blockTime: 0

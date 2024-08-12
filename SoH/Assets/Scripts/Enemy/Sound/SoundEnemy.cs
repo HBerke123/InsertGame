@@ -54,6 +54,11 @@ public class SoundEnemy : MonoBehaviour
 
         if (((Mathf.Abs(distanceX) < moveRangeX) || this.GetComponent<Notice>().isNoticed || (player.GetComponent<MakeSound>().totalSoundTime > 0)) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && (Mathf.Abs(distanceX) > rangeX))
         {
+            if ((this.GetComponent<Notice>().isNoticed == false) && (screamHit == null))
+            {
+                Scream();
+            } 
+
             this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
 
             if ((player.GetComponent<MakeSound>().totalSoundTime > 0) && (this.GetComponent<ForcesOnObject>().Force.x == 0))

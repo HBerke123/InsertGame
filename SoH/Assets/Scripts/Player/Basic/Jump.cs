@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class Jump : MonoBehaviour
 {
     readonly List<float> reloadTimes = new();
-    public MenuOpener menuOpener;
     public bool screaming;
     public bool stick;
     public float soundTime;
@@ -17,27 +16,27 @@ public class Jump : MonoBehaviour
     bool jumped;
     float maxspeed;
     float stime;
+    MenuOpener menuOpener;
     GamepadControls gamepadControls;
     Rigidbody2D rb;
     CEDrainage ced;
     GroundDetection gd;
     ForcesOnObject foo;
-    CrouchingDetection cd;
     CEProduce cep;
-    MakeSound mk;
+    MakeSound ms;
     Crouching c;
     Animator a;
 
     private void Start()
     {
+        menuOpener = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<MenuOpener>();
         gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         rb = this.GetComponent<Rigidbody2D>();
         ced = this.GetComponent<CEDrainage>();
         gd = this.GetComponentInChildren<GroundDetection>();
         foo = this.GetComponent<ForcesOnObject>();
-        cd = this.GetComponentInChildren<CrouchingDetection>();
         cep = this.GetComponent<CEProduce>();
-        mk = this.GetComponent<MakeSound>();
+        ms = this.GetComponent<MakeSound>();
         c = this.GetComponent<Crouching>();
         a = this.GetComponent<Animator>();
     }
@@ -70,7 +69,7 @@ public class Jump : MonoBehaviour
                 jumping = true;
                 a.SetBool("Jumping", true);
                 ced.LoseCE(cost);
-                mk.AddTime(soundTime);
+                ms.AddTime(soundTime);
                 cep.delayAmount = Mathf.Max(cep.delayAmount, cEDelay);
                 stime = Time.time;
                 rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
@@ -95,13 +94,13 @@ public class Jump : MonoBehaviour
                     rb.velocity = new Vector2(rb.velocity.x, maxspeed * jumptime - (Time.time - stime));
                 }
             }
-            else if (!Input.GetKey(KeyCode.Space) || !gamepadControls.jumping || (Time.time - stime > jumptime))
+            else if ((!Input.GetKey(KeyCode.Space) && !gamepadControls.jumping) || (Time.time - stime > jumptime))
             {
                 a.SetBool("Jumping", false);
                 jumping = false;
             }
 
-            if ((!Input.GetKey(KeyCode.Space) || !gamepadControls.jumping) && gd.detected)
+            if (!Input.GetKey(KeyCode.Space) && !gamepadControls.jumping && gd.detected)
             {
                 jumped = false;
             }

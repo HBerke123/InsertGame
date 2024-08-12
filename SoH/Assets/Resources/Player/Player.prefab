@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &350074447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 350074448}
+  m_Layer: 3
+  m_Name: GunArrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &350074448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350074447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1389891592076107589}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1389891590101356886
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,8 +395,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545343bc1f61be24b941a66930923689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preBombs: []
-  arrow: {fileID: 0}
+  preBombs:
+  - {fileID: 1389891591354621827}
+  - {fileID: 1389891591515866880}
+  - {fileID: 1389891592009265444}
+  - {fileID: 1389891590241529334}
+  - {fileID: 1389891590817592570}
+  arrow: {fileID: 350074447}
   showing: 0
 --- !u!114 &1389891590717150446
 MonoBehaviour:
@@ -380,11 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GroupBombGroups:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1389891590101356886}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1389891590461313219}
   GroupNum: 0
 --- !u!1 &1389891590817592570
@@ -905,13 +937,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389891592042244018}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 1.0344825, y: 0}
+  m_Offset: {x: 2.293103, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -922,7 +954,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0689654, y: 1.3658407}
+  m_Size: {x: 2.5862062, y: 1.7073013}
   m_EdgeRadius: 0
 --- !u!114 &1389891592042244022
 MonoBehaviour:
@@ -936,28 +968,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ad961ad60fec6448fab24c6680aef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordSounds: []
+  swordSounds:
+  - {fileID: 8300000, guid: e0362766c38f9324b8b01adf4ce0a3c7, type: 3}
+  - {fileID: 8300000, guid: 3f6db023c0a664e4b8330b36907c39bf, type: 3}
+  - {fileID: 8300000, guid: 909f8642a9ae0d64b86da094ecced6ed, type: 3}
   menuOpener: {fileID: 0}
-  soundTime: 1
-  attackDamage: 0
-  skillAttackDamage: 0
-  attackCooldown: 0
-  skillAttackCooldown: 0
-  attackTime: 0
-  lastAttackTime: 0
-  skillAttackTime: 0
-  cERegainTime: 0
-  skillCERegainTime: 0
+  plant: {fileID: 0}
+  soundTime: 2
+  attackDamage: 10
+  skillAttackDamage: 20
+  attackCooldown: 0.5
+  lastAttackDamage: 15
+  skillAttackCooldown: 1
+  attackTime: 0.6
+  lastAttackTime: 1.2
+  skillAttackTime: 1.2
+  cERegainTime: 1
+  skillCERegainTime: 2
   skillholdtime: 0.5
-  noticeTime: 0
-  delayTime: 0
-  skillDelayTime: 0
-  cECost: 0
-  skillCECost: 0
+  noticeTime: 10
+  delayTime: 2
+  skillDelayTime: 3
+  bossCECost: 5
+  bossCEReloadTime: 1
+  comboBreakTime: 0.75
+  cECost: 10
+  skillCECost: 20
   ready: 0
   attacking: 0
-  totalTime: 0
-  th: 0
+  prepared: 0
 --- !u!114 &1389891592042244023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,14 +1030,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSlower: {fileID: 0}
   arrow: {fileID: 1389891590313818661}
-  maxCost: 0
-  minCost: 0
-  maxRegainTime: 0
-  minRegainTime: 0
+  maxCost: 20
+  minCost: 10
+  maxRegainTime: 4
+  minRegainTime: 2
   holdtime: 0.5
   cooldown: 1.5
-  maxDelayTime: 0
-  minDelayTime: 0
+  maxDelayTime: 30
+  minDelayTime: 15
   started: 0
 --- !u!114 &1389891592042244008
 MonoBehaviour:
@@ -1013,7 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSlower: {fileID: 0}
-  soundTime: 3
+  soundTime: 6
   smallForcePower: 2
   bigForcePower: 5
   totaltime: 1.5
@@ -1033,13 +1072,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScreamWave: {fileID: 2701501512958198272, guid: e779351f01348104e81f9ca381fd9913, type: 3}
-  soundTime: 2
-  damage: 5
+  soundTime: 4
+  damage: 15
   cooldown: 3
-  loseFrequency: 0
-  loseAmount: 0
-  delayTime: 0
-  cERegainTime: 0
+  loseFrequency: 0.1
+  loseAmount: 2
+  delayTime: 2
+  cERegainTime: 2
   screaming: 0
 --- !u!114 &1389891592042244011
 MonoBehaviour:
@@ -1054,22 +1093,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastBombs: []
-  preBombGroups: []
-  preBombShower: {fileID: 0}
-  preBomb: {fileID: 0}
-  bomb: {fileID: 0}
-  soundTime: 1.5
+  preBombGroups:
+  - {fileID: 1389891590101356886}
+  - {fileID: 1389891590461313219}
+  preBombShower: {fileID: 1389891590717150443}
+  preBomb: {fileID: 3566748559433347259, guid: 4807fda492157794bbfc62cfd8e08816, type: 3}
+  bomb: {fileID: 7227559544692314864, guid: d8ca3647b67654a41a047bed88e632bd, type: 3}
+  soundTime: 3
   damage: 10
   htime: 1
-  reloadTime: 0
-  cERegaintime: 0
+  reloadTime: 2
+  cERegaintime: 2
   minbombforce: 12
   maxbombforce: 18
   cooldown: 0.3
   minsize: 1
   maxsize: 3.125
-  delayTime: 0
-  cECost: 0
+  delayTime: 3
+  cECost: 60
   started: 0
 --- !u!114 &1389891592042244012
 MonoBehaviour:
@@ -1113,6 +1154,11 @@ GameObject:
   - component: {fileID: 1389891592076107567}
   - component: {fileID: 1389891592076107554}
   - component: {fileID: 1389891592076107555}
+  - component: {fileID: 1146122219}
+  - component: {fileID: 1146122181}
+  - component: {fileID: 1146122200}
+  - component: {fileID: 1146122240}
+  - component: {fileID: 1146122241}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1129,7 +1175,7 @@ Transform:
   m_GameObject: {fileID: 1389891592076107585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1389891590313818662}
@@ -1139,6 +1185,7 @@ Transform:
   - {fileID: 1389891590461313220}
   - {fileID: 1389891590717150444}
   - {fileID: 1389891590418362269}
+  - {fileID: 350074448}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1371,8 +1418,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testingTeleportation: {fileID: 1389891592076107555}
   healthBar: {fileID: 0}
-  health: 0
+  health: 50
   maxHealth: 100
+  invisibleTime: 1
+  currentInvisible: 0
+  isInvisible: 0
 --- !u!114 &1389891592076107572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1385,7 +1435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08f150adca66694e859686605aa4deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cE: 0
+  cE: 500
   maxCE: 1000
   cEBar: {fileID: 0}
 --- !u!114 &1389891592076107563
@@ -1401,8 +1451,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayAmount: 0
-  cEproduceCd: 0
-  cEproduceVa: 0
+  cEproduceCd: 2
+  cEproduceVa: 1
 --- !u!114 &1389891592076107573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,7 +1487,7 @@ MonoBehaviour:
   isCrouching: 0
   crouchingSpeed: 4
   crouchingAmount: 1.5
-  crouchTime: 0
+  crouchTime: 0.4
   changing: 0
 --- !u!114 &1389891592076107562
 MonoBehaviour:
@@ -1452,17 +1502,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadTimes: []
-  soundTime: 1
-  dashspeed: 63
+  soundTime: 2
+  dashspeed: 45
   dashcooldown: 0.32
-  dashtime: 0.04375
-  reloadTime: 0
-  cEDelay: 0
+  dashtime: 0.07
+  reloadTime: 3
+  cEDelay: 2
   dashable: 1
   stick: 0
   screaming: 0
   dashing: 0
-  cost: 0
+  cost: 50
 --- !u!114 &1389891592076107574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,13 +1542,13 @@ MonoBehaviour:
   Attackhbox: {fileID: 1389891592042244021}
   aiming: 0
   stick: 0
-  reloadTime: 0
-  soundTime: 0.5
-  speed: 8
+  reloadTime: 0.5
+  soundTime: 1
+  speed: 9.6
   dspeed: 0
-  stepFrequency: 0
-  cost: 0
-  cEDelay: 0
+  stepFrequency: 0.2
+  cost: 1
+  cEDelay: 1
   spawnParticles: 0
 --- !u!114 &1389891592076107561
 MonoBehaviour:
@@ -1515,12 +1565,12 @@ MonoBehaviour:
   menuOpener: {fileID: 0}
   screaming: 0
   stick: 0
-  soundTime: 0.75
+  soundTime: 1.5
   jumpforce: 360
-  jumptime: 0.2
-  cEDelay: 0
-  cost: 0
-  reloadTime: 0
+  jumptime: 0.24
+  cEDelay: 3
+  cost: 5
+  reloadTime: 1
 --- !u!114 &1389891592076107564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1534,7 +1584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Force: {x: 0, y: 0}
-  resistance: 0.2
+  resistance: 0.3125
 --- !u!114 &1389891592076107565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1629,3 +1679,161 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   menuOpener: {fileID: 0}
+--- !u!82 &1146122219
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1146122181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0374305f0e89e2d4ba68fa56dd2ccdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTime: 0
+  isBlocked: 0
+--- !u!114 &1146122200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d885bd5c2d18fc845bdd3beb0543934b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkTime: 0.8
+  healAmount: 50
+  cEAmount: 250
+  hasPotion: 1
+  drinking: 0
+  drinkingSound: {fileID: 8300000, guid: e90b185e1a23927458cf97c48244b687, type: 3}
+--- !u!114 &1146122240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d01cac7fdb0a1840a718e5db74971d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chimeLight: {fileID: 0}
+--- !u!114 &1146122241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be1fb6d00d550141b7c545bd544e157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conductTimes: []
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: 0, z: 0}
+  startedTime: 0
+  isPlayer: 1

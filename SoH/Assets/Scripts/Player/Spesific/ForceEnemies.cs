@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ForceEnemies : MonoBehaviour
 {
+    public bool soundForce;
     public int direction;
     public float forcePower;
     public bool destroyOnTouch;
@@ -77,6 +78,17 @@ public class ForceEnemies : MonoBehaviour
             {
                 Destroy(collision.gameObject);
                 Destroy(this.gameObject);
+            }
+        }
+        else if (collision.CompareTag("Ground"))
+        {
+            if ((collision.GetComponent<SoundBreakable>() != null) && soundForce)
+            {
+                collision.GetComponent<SoundBreakable>().Break();
+            }
+            else if ((collision.GetComponent<SoundLever>() != null) && soundForce)
+            {
+                collision.GetComponent<SoundLever>().ChangeStatment();
             }
         }
     }

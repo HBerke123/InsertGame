@@ -13,13 +13,20 @@ public class Notice : MonoBehaviour
         if ((Time.time - th > noticeTime) && (noticeTime > 0)) 
         {
             noticeTime = 0;
-            isNoticed = false;
         }
 
         if ((th == 0) && (noticeTime > 0))
         {
-            isNoticed = true;
             th = Time.time;
+        }
+
+        if (noticeTime == 0)
+        {
+            isNoticed = false;
+        }
+        else
+        {
+            isNoticed = true;
         }
     }
 }

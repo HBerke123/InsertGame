@@ -136,10 +136,6 @@ public class MenuMovement : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.Log(th);
-        }
    
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && (gamepadControls.menuDirection == 0))
         {

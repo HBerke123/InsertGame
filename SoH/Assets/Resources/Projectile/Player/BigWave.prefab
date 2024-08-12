@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -885579113149480447}
   - component: {fileID: -7377516349920939879}
   - component: {fileID: 4729149884450887696}
+  - component: {fileID: -3395952772832790220}
   m_Layer: 0
   m_Name: BigWave
   m_TagString: Sound
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8ac23191ee58c45a9a243b7a8b3d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundForce: 1
   direction: 0
   forcePower: 3
   destroyOnTouch: 0
@@ -177,7 +179,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcc90c7f583ac3459af5931eeb3c695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundDamage: 0
   destroyOnTouch: 0
   damageAmount: 0
   blockTime: 0
   noticeTime: 10
+--- !u!114 &-3395952772832790220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594184177369678583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be1fb6d00d550141b7c545bd544e157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conductTimes: []
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: 0, z: 0}
+  startedTime: 0
+  isPlayer: 0

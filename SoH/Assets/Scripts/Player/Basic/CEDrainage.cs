@@ -7,6 +7,7 @@ public class CEDrainage : MonoBehaviour
 
     public void Start()
     {
+        cEBar = GameObject.FindGameObjectWithTag("CEBar").GetComponent<Bar>();
         cE = 500;
         UpdateCEBar();
     }

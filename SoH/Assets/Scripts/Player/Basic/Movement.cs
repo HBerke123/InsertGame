@@ -120,19 +120,33 @@ public class Movement : MonoBehaviour
                 moveDirection = 0;
             }
 
-            if (gamepadControls.moveDirection == 0)
-            {
-                rb.velocity = rb.velocity = new Vector2(moveDirection * speed + foo.Force.x, rb.velocity.y + foo.Force.y);
-            }
-            else
-            {
-                rb.velocity = rb.velocity = new Vector2(gamepadControls.moveDirection * speed + foo.Force.x, rb.velocity.y + foo.Force.y);
-            }
-
             if ((moveDirection == 0) && (gamepadControls.moveDirection == 0))
             {
                 a.SetBool("Moving", false);
                 spawnParticles = false;
+
+                if (foo.Force.x != 0)
+                {
+                    if (foo.Force.y != 0)
+                    {
+                        rb.velocity = new Vector2(foo.Force.x, foo.Force.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(foo.Force.x, rb.velocity.y);
+                    }
+                }
+                else
+                {
+                    if (foo.Force.y != 0)
+                    {
+                        rb.velocity = new Vector2(0, foo.Force.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                    }
+                }
             }
             else
             {
@@ -151,9 +165,34 @@ public class Movement : MonoBehaviour
                     a.SetBool("Moving", false);
                     spawnParticles = false;
                 }
+
+                if (foo.Force.y != 0)
+                {
+                    if (gamepadControls.moveDirection == 0)
+                    {
+                        rb.velocity = rb.velocity = new Vector2(moveDirection * speed + foo.Force.x, foo.Force.y);
+                    }
+                    else
+                    {
+                        rb.velocity = rb.velocity = new Vector2(gamepadControls.moveDirection * speed + foo.Force.x, foo.Force.y);
+                    }
+                }
+                else
+                {
+                    if (gamepadControls.moveDirection == 0)
+                    {
+                        rb.velocity = rb.velocity = new Vector2(moveDirection * speed + foo.Force.x, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = rb.velocity = new Vector2(gamepadControls.moveDirection * speed + foo.Force.x, rb.velocity.y);
+                    }
+                }
+                
+
             }
         }
-        else if (!aiming && !su2.screaming && !stick && !c.changing && !sa.attacking && !p.drinking && !gs.started)
+        else if (!aiming && !su2.screaming && !stick && !c.changing && !sa.attacking && !p.drinking && !gs.started && !boo.isBlocked)
         {
             a.SetBool("Moving", false);
             rb.velocity = new Vector2(dspeed, rb.velocity.y);
@@ -176,10 +215,16 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                rb.velocity = new Vector2(rb.velocity.x, foo.Force.y);
+                if (foo.Force.y != 0)
+                {
+                    rb.velocity = new Vector2(0, foo.Force.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
             }
 
-            rb.velocity = foo.Force;
             spawnParticles = false;
         }
         else

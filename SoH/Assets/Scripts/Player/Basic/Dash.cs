@@ -47,13 +47,8 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-        if (dashable && (Input.GetKeyDown(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<Potion>().drinking && !dashed)
+        if (dashable && (Input.GetKey(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<Potion>().drinking && !dashed && !this.GetComponent<Crouching>().isCrouching)
         {
-            if (this.GetComponent<Crouching>().isCrouching)
-            {
-                this.GetComponent<Crouching>().Crouch();
-            }
-
             this.GetComponent<MakeSound>().totalSoundTime = Mathf.Max(soundTime, this.GetComponent<MakeSound>().totalSoundTime);
             this.GetComponent<CEDrainage>().LoseCE(cost);
             this.GetComponent<CEProduce>().delayAmount = Mathf.Max(this.GetComponent<CEProduce>().delayAmount, cEDelay);
@@ -72,7 +67,11 @@ public class Dash : MonoBehaviour
             StartCoroutine(Dashend());
             StartCoroutine(Cooldown());
         }
-        else if (Input.GetKeyUp(KeyCode.LeftControl) || !gamepadControls.dashing)
+        else if (dashable && (Input.GetKey(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<Potion>().drinking && !dashed && this.GetComponentInChildren<CrouchingDetection>().isSafe && this.GetComponent<Crouching>().isCrouching)
+        {
+            this.GetComponent<Crouching>().Crouch();
+        }
+        else if (!Input.GetKey(KeyCode.LeftControl) && !gamepadControls.dashing)
         {
             dashed = false;
         }

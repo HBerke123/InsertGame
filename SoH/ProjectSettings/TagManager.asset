@@ -9,8 +9,6 @@ TagManager:
   - SprintParticle
   - Orbitable
   - Enemy
-  - HP Orb
-  - STE Tube
   - Weapon
   - Sound
   - Scream
@@ -21,6 +19,11 @@ TagManager:
   - LaserTrigger
   - Ground
   - GamepadController
+  - BombSound
+  - Smoke
+  - CEBar
+  - HPBar
+  - Domain
   layers:
   - Default
   - TransparentFX

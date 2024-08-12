@@ -24,6 +24,7 @@ public class PreBombGroup : MonoBehaviour
                 if (!this.GetComponentInParent<SpriteRenderer>().flipX)
                 {
                     this.transform.localScale = Vector3.one;
+                    this.transform.localRotation = Quaternion.Euler(0, 0, -arrow.transform.localRotation.eulerAngles.x);
                 }
                 else
                 {
@@ -42,8 +43,6 @@ public class PreBombGroup : MonoBehaviour
             }
             else
             {
-                this.transform.localScale = Vector3.one - Vector3.right * 2;
-
                 if (this.GetComponentInParent<SpriteRenderer>().flipX)
                 {
                     this.transform.localScale = Vector3.one - Vector3.right * 2;

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class LightEnemy : MonoBehaviour
 {
+    public GroundDetection leftSide;
+    public GroundDetection rightSide;
+    public GroundDetection teleportCollider;
     public GameObject lightWave;
     public float lightUp;
     public float lightDamage;
@@ -52,7 +55,7 @@ public class LightEnemy : MonoBehaviour
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Abs(distancex) / distancex * speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
             }
         }
-        else if (beam == null && running)
+        else if ((beam == null) && running)
         {
             if (this.GetComponent<ForcesOnObject>().Force.y != 0)
             {
@@ -61,6 +64,25 @@ public class LightEnemy : MonoBehaviour
             else
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Abs(distancex) / distancex * runSpeed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
+            }
+
+            if ((Mathf.Abs(distancex) / distancex == 1) && rightSide.detected)
+            {
+                teleportCollider.transform.localPosition = Vector3.left * 2 * Mathf.Abs(distancex);
+
+                if (!teleportCollider.detected)
+                {
+                    this.transform.position += Vector3.left * 2 * Mathf.Abs(distancex);
+                }
+            }
+            else if ((Mathf.Abs(distancex) / distancex != 1) && leftSide.detected)
+            {
+                teleportCollider.transform.localPosition = Vector3.right * 2 * Mathf.Abs(distancex);
+
+                if (!teleportCollider.detected)
+                {
+                    this.transform.position += Vector3.right * 2 * Mathf.Abs(distancex);
+                }
             }
 
             if (Mathf.Abs(distancex) > rangeX - runRange)

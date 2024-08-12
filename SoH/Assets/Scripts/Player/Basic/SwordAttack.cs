@@ -6,7 +6,7 @@ public class SwordAttack : MonoBehaviour
 {
     readonly List<float> reloadTimes = new();
     public List<AudioClip> swordSounds = new();
-    public MenuOpener menuOpener;
+    public GameObject plant;
     public float soundTime;
     public float attackDamage;
     public float skillAttackDamage;
@@ -29,6 +29,7 @@ public class SwordAttack : MonoBehaviour
     public int skillCECost;
     public bool ready;
     public bool attacking;
+    public bool prepared;
     bool attackable = true;
     bool attacked;
     float cbth;
@@ -38,6 +39,7 @@ public class SwordAttack : MonoBehaviour
     float th;
     int attackNum;
     int comboNum;
+    MenuOpener menuOpener;
     GamepadControls gamepadControls;
     AudioSource as1;
     CEDrainage ced;
@@ -58,6 +60,7 @@ public class SwordAttack : MonoBehaviour
 
     private void Start()
     {
+        menuOpener = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<MenuOpener>();
         gd = this.transform.parent.GetComponentInChildren<GroundDetection>();
         gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         as1 = this.GetComponentInParent<AudioSource>();
@@ -97,8 +100,35 @@ public class SwordAttack : MonoBehaviour
             bc.enabled = false;
             attacking = false;
             ath = 0;
-            cth = Time.time;
             cbth = Time.time;
+
+            if (attackNum == 2)
+            {
+                cth = Time.time;
+                comboNum = 0;
+            }
+            else if (attackNum == 1)
+            {
+                attackable = true;
+                comboNum = 0;
+            }
+            else if (attackNum == 0)
+            {
+                attackable = true;
+                comboNum++;
+
+                if (comboNum > 2)
+                {
+                    comboNum = 0;
+                }
+            }
+        }
+        else if ((ath != 0) && (attackNum == 0) && (Time.time - ath < attackTime))
+        {
+            if (Input.GetMouseButton(0) || gamepadControls.swordAttack)
+            {
+                prepared = true;
+            }
         }
 
         if (Time.time - th > skillholdtime)
@@ -124,15 +154,15 @@ public class SwordAttack : MonoBehaviour
     {
         if (!menuOpener.isMenuOpen)
         {
-            if (attackable && !gs.started && !su.started && !su2.screaming && !boo.isBlocked && !c.isCrouching && !p.drinking && !attacking && gd.detected && !attacked)
+            if (attackable && !gs.started && !su.started && !su2.screaming && !boo.isBlocked && !c.isCrouching && !p.drinking && !attacking && gd.detected && !attacked && (plant == null))
             {
-                if ((Input.GetMouseButton(0) || gamepadControls.swordAttack) && (th == 0) && (totalTime == 0))
+                if ((Input.GetMouseButton(0) || gamepadControls.swordAttack) && (th == 0) && (totalTime == 0) && !prepared)
                 {
                     attacked = true;
                     ready = true;
                     th = Time.time;
                 }
-                else if (((th == 0) || (!Input.GetMouseButton(0) && !gamepadControls.swordAttack)) & ready)
+                else if (((th == 0) || (!Input.GetMouseButton(0) && !gamepadControls.swordAttack) || prepared) & (ready || prepared))
                 {
                     if (totalTime == 0)
                     {
@@ -142,19 +172,18 @@ public class SwordAttack : MonoBehaviour
                     attacking = true;
                     ready = false;
 
-                    if (totalTime < skillholdtime)
+                    if ((totalTime < skillholdtime) || prepared)
                     {
+                        prepared = false;
                         as1.PlayOneShot(swordSounds[comboNum]);
                         ms.AddTime(soundTime);
                         a.SetInteger("AttackNum", comboNum);
                         a.SetBool("Attacking", true);
-                        comboNum++;
                         attackable = false;
                         attackNum = 0;
 
-                        if (comboNum > 2)
+                        if (comboNum == 2)
                         {
-                            comboNum = 0;
                             attackNum = 2;
                         }
 
@@ -201,7 +230,7 @@ public class SwordAttack : MonoBehaviour
                     }
                 }
             }
-            else if (attackable && !gs.started && !su.started && !su2.screaming && !boo.isBlocked && cd.isSafe && !p.drinking && !attacking && gd.detected && !attacked)
+            else if (attackable && !gs.started && !su.started && !su2.screaming && !boo.isBlocked && cd.isSafe && !p.drinking && !attacking && gd.detected && !attacked && (plant == null))
             {
                 if ((Input.GetMouseButton(0) || gamepadControls.swordAttack) && (th == 0) && (totalTime == 0))
                 {
@@ -219,11 +248,20 @@ public class SwordAttack : MonoBehaviour
             {
                 attacked = false;
             }
+            else
+            {
+                attacked = true;
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Ground") && (collision.GetComponent<Breakable>() != null))
+        {
+            collision.GetComponent<Breakable>().Break();
+        }
+
         if (collision.CompareTag("Enemy"))
         {
             if (attackNum == 0)
@@ -235,11 +273,7 @@ public class SwordAttack : MonoBehaviour
                     ced.LoseCE(bossCECost);
                 }
             }
-            else if (attackNum == 1)
-            {
-                collision.GetComponent<HealthDrainageOnEnemy>().LoseHealth(skillAttackDamage);
-            }
-            else
+            else if (attackNum == 2)
             {
                 collision.GetComponent<HealthDrainageOnEnemy>().LoseHealth(lastAttackDamage);
 

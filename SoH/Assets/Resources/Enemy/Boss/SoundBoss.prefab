@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8741482463988856479}
   - component: {fileID: 4766522607120382392}
-  - component: {fileID: 2922984181746881590}
-  m_Layer: 0
+  - component: {fileID: 446430923}
+  - component: {fileID: 446430924}
+  m_Layer: 14
   m_Name: BossHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 196244797387990923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2410109213677025129}
@@ -43,7 +44,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.25}
@@ -59,7 +60,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &2922984181746881590
+--- !u!50 &446430923
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196244797387990923}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &446430924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,11 +90,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 196244797387990923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
+  m_Script: {fileID: 11500000, guid: a63dbde227de5a842988636160ce2d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 20
-  destroyOnTouch: 0
 --- !u!1 &2410109212045762945
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +180,9 @@ GameObject:
   - component: {fileID: 2410109213677025130}
   - component: {fileID: 2410109213677025132}
   - component: {fileID: 2410109213677025135}
+  - component: {fileID: 447303810}
+  - component: {fileID: 447303794}
+  - component: {fileID: 447303802}
   m_Layer: 10
   m_Name: SoundBoss
   m_TagString: Enemy
@@ -295,22 +318,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f798c916fb0144d9030bc2e3b94f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extraMove: 5
+  bottom: -122
+  moveSpeed: 2.5
+  blockTime: 2
   moveFrequency: 0.5
   rightPoint: -1.5
   leftPoint: -7.5
+  maxRight: 16
+  maxLeft: -25
   screamMaxScale: 36
   shakeTime: 1
-  shakeFrquency: 0.1
+  shakeFrequency: 0.1
   shakeForce: 10
   jumpForce: 8
-  rushSpeed: 12
-  rushTime: 1.2
+  rushSpeed: 9
+  rushTime: 1.6
   soundSpeed: 6
   screamTime: 3
+  multiplier: 1.5
   maxMove: 5
   rushBox: {fileID: 6613589284281779054, guid: 8781210c0f37cb345a4f9007cb338524, type: 3}
   soundWave: {fileID: 5605468270659284273, guid: be3bf2b0785fae14784c133900ad185b, type: 3}
   screamWave: {fileID: 7865267448388750547, guid: 65425ee4c8a470b4e85bf7346633179a, type: 3}
+  bossHit: {fileID: 196244797387990923}
 --- !u!114 &2410109213677025132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,10 +354,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8defe8a1429ec41af9055484ca72af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
-  maxHealth: 500
-  enemyNum: 9
+  bossFelled: {fileID: 8300000, guid: e3cc5d6d64815ca469e5eeadb8e1933e, type: 3}
+  healPlayer: 0
+  health: 270
+  maxHealth: 270
+  enemyNum: 7
   isBoss: 1
+  bossName: Ariesa, the first daeva
 --- !u!114 &2410109213677025135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,3 +375,127 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Force: {x: 0, y: 0}
   resistance: 1
+--- !u!82 &447303810
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2410109213677025127}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &447303794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2410109213677025127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0374305f0e89e2d4ba68fa56dd2ccdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTime: 0
+  isBlocked: 0
+--- !u!114 &447303802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2410109213677025127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f6776a82a55be43bbdb26fd5204c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noticeTime: 0
+  isNoticed: 0

@@ -8,22 +8,22 @@ public class ForcesOnObject : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > 0.1f))
+        if ((th != 0) && (Time.time - th > 0.1f / resistance))
         {
-            if ((Force.x > 0.1) || ((Force.x < -0.1)))
+            if ((Force.x > resistance) || (Force.x < -resistance))
             {
                 Force.x -= resistance * Force.x;
             }
-            else if ((Force.x < 0.1) || (Force.x > -0.1))
+            else if ((Force.x < resistance) || (Force.x > -resistance))
             {
                 Force.x = 0;
             }
 
-            if ((Force.y > 0.1) || ((Force.y < -0.1)))
+            if ((Force.y > resistance) || (Force.y < -resistance))
             {
                 Force.y -= resistance * Force.y;
             }
-            else if ((Force.y < 0.1) || (Force.y > -0.1))
+            else if ((Force.y < resistance) || (Force.y > -resistance))
             {
                 Force.y = 0;
             }

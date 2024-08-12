@@ -27,7 +27,6 @@ public class GamepadControls : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerControls();
-
         controls.Gameplay.MoveRight.performed += ctx => moveDirection = 1;
         controls.Gameplay.MoveLeft.performed += ctx => moveDirection = -1;
         controls.Gameplay.Jump.performed += ctx => jumping = true;

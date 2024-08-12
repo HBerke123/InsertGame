@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7909928963170001911}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: LaserTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 37.43478, y: 1.3604953}
+  m_Size: {x: 30, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7909928963170001911
 MonoBehaviour:

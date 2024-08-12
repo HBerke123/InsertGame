@@ -13,6 +13,7 @@ public class HealthDrainage : MonoBehaviour
 
     public void Start()
     {
+        healthBar = GameObject.FindGameObjectWithTag("HPBar").GetComponent<Bar>();
         UpdateHealthBar();
     }
 
@@ -29,6 +30,7 @@ public class HealthDrainage : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentInvisible = invisibleTime;
+        this.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(this.GetComponent<BlocksOnObject>().blockTime, invisibleTime / 2);
         isInvisible = true;
         health -= amount;
         th = Time.time;
@@ -69,6 +71,7 @@ public class HealthDrainage : MonoBehaviour
             }
         }
 
+        this.GetComponent<ForcesOnObject>().Force = Vector2.zero;
         this.GetComponent<BlocksOnObject>().blockTime = 0;
         this.GetComponent<PoisonEffectsOnPlayer>().goodEffectTime = 0;
         this.GetComponent<PoisonEffectsOnPlayer>().badEffectTime = 0;

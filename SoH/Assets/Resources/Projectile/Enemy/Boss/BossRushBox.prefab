@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4659204519270883072}
   - component: {fileID: 4929984213734663191}
   - component: {fileID: 6274501853902564624}
+  - component: {fileID: 7275334212020678892}
   m_Layer: 0
   m_Name: BossRushBox
   m_TagString: EnemyWeapon
@@ -71,8 +72,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockTime: 2
   reloadTime: 0
   damageAmount: 10
+  destroyOnDamage: 1
   destroyOnTouch: 0
   isReloadable: 0
+  weakToDash: 0
+  canNotDamage: 0
+--- !u!114 &7275334212020678892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613589284281779054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb866bd8edd9e524598a09d9b918ae30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceAmount: 2
+  direction: 0
   weakToDash: 0

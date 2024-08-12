@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SoundBoss : MonoBehaviour
 {
+    public float extraMove;
     public float bottom;
     public float moveSpeed;
     public float blockTime;
@@ -31,9 +32,11 @@ public class SoundBoss : MonoBehaviour
     bool onSecondPhase;
     bool rushing;
     bool rushingBack;
+    bool hitted;
     int lastDirection;
     int direction;
     int moveCounter;
+    float hitX;
     float mth;
     float scth;
 
@@ -71,7 +74,18 @@ public class SoundBoss : MonoBehaviour
 
         if (rushing)
         {
-            if ((this.transform.position.x < maxLeft + this.transform.localScale.x * 2) || (this.transform.position.x > maxRight - this.transform.localScale.x * 2))
+            if (((this.transform.position.x < maxLeft + this.transform.localScale.x * 2) || (this.transform.position.x > maxRight - this.transform.localScale.x * 2)) && (rushHit != null))
+            {
+                rushing = false;
+                GoBack();
+            }
+
+            if ((rushHit == null) && !hitted)
+            {
+                hitted = true;
+                hitX = this.transform.position.x;
+            }
+            else if ((rushHit == null) && ((this.transform.position.x < hitX - extraMove) || (this.transform.position.x > hitX + extraMove)))
             {
                 rushing = false;
                 GoBack();
@@ -197,6 +211,7 @@ public class SoundBoss : MonoBehaviour
     void Rush()
     {
         GameObject Sbox = Instantiate(rushBox, this.transform);
+        hitted = false;
         bossHit.SetActive(false);
         rushHit = Sbox;
         Sbox.transform.localPosition = Vector3.down * 0.25f;
@@ -205,7 +220,11 @@ public class SoundBoss : MonoBehaviour
 
     void GoBack()
     {
-        Destroy(rushHit);
+        if (rushHit != null)
+        {
+            Destroy(rushHit);
+        }
+        
         GameObject Sbox = Instantiate(rushBox, this.transform);
         bossHit.SetActive(false);
         rushHit = Sbox;

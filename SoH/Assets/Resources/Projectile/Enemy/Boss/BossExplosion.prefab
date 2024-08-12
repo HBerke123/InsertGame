@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2274879916379610858}
   - component: {fileID: -2697958232820312307}
   m_Layer: 0
-  m_Name: BossExplode
+  m_Name: BossExplosion
   m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
