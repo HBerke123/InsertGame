@@ -972,7 +972,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e0362766c38f9324b8b01adf4ce0a3c7, type: 3}
   - {fileID: 8300000, guid: 3f6db023c0a664e4b8330b36907c39bf, type: 3}
   - {fileID: 8300000, guid: 909f8642a9ae0d64b86da094ecced6ed, type: 3}
-  menuOpener: {fileID: 0}
   plant: {fileID: 0}
   soundTime: 2
   attackDamage: 10
@@ -1124,7 +1123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e628f752bee4f5144a75402dc19d3e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillObject: {fileID: 0}
 --- !u!1 &1389891592076107585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1140,6 @@ GameObject:
   - component: {fileID: 1389891592076107570}
   - component: {fileID: 1389891592076107572}
   - component: {fileID: 1389891592076107563}
-  - component: {fileID: 1389891592076107573}
   - component: {fileID: 1389891592076107552}
   - component: {fileID: 1389891592076107562}
   - component: {fileID: 1389891592076107574}
@@ -1453,25 +1450,6 @@ MonoBehaviour:
   delayAmount: 0
   cEproduceCd: 2
   cEproduceVa: 1
---- !u!114 &1389891592076107573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389891592076107585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4f226e38c365434a9ac885d6c43b8e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  healthDisplay: {fileID: 0}
-  playerCollider: {fileID: 0}
-  cEDrainage: {fileID: 0}
-  healCooldown: 0
-  healCooldownHolder: 0
-  hpdrain: {fileID: 0}
 --- !u!114 &1389891592076107552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1562,7 +1540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8873073227a913a42ab23a58ea93a83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuOpener: {fileID: 0}
   screaming: 0
   stick: 0
   soundTime: 1.5

@@ -280,8 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossFelled: {fileID: 0}
   healPlayer: 2
-  health: 200
-  maxHealth: 200
+  health: 50
+  maxHealth: 50
   enemyNum: 0
   isBoss: 0
   bossName: 
