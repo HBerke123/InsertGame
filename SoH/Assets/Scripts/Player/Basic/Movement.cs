@@ -7,6 +7,9 @@ public class Movement : MonoBehaviour
     readonly List<float> reloadTimes = new();
     public ParticleSystem groundParticles;
     public BoxCollider2D Attackhbox;
+    public GroundDetection climbUp;
+    public GroundDetection climbDown;
+    public GroundDetection gd;
     public bool aiming;
     public bool stick;
     public float reloadTime;
@@ -34,7 +37,6 @@ public class Movement : MonoBehaviour
     Potion p;
     ForcesOnObject foo;
     Animator a;
-    GroundDetection gd;
     MakeSound ms;
     GunShot gs;
 
@@ -159,6 +161,11 @@ public class Movement : MonoBehaviour
                     {
                         ms.AddTime(soundTime);
                     }
+
+                    if (!climbUp.detected && climbDown.detected)
+                    {
+                        this.transform.position += Vector3.up / 2;
+                    }
                 }
                 else
                 {
@@ -188,8 +195,6 @@ public class Movement : MonoBehaviour
                         rb.velocity = rb.velocity = new Vector2(gamepadControls.moveDirection * speed + foo.Force.x, rb.velocity.y);
                     }
                 }
-                
-
             }
         }
         else if (!aiming && !su2.screaming && !stick && !c.changing && !sa.attacking && !p.drinking && !gs.started && !boo.isBlocked)

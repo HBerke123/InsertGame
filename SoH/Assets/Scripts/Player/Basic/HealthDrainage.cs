@@ -63,11 +63,14 @@ public class HealthDrainage : MonoBehaviour
 
     public void Death()
     {
-        foreach (GameObject gameObject in testingTeleportation.enemies)
+        if (testingTeleportation != null)
         {
-            if (gameObject != null)
+            foreach (GameObject gameObject in testingTeleportation.enemies)
             {
-                gameObject.SetActive(false);
+                if (gameObject != null)
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
 

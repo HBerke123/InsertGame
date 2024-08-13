@@ -6,6 +6,8 @@ public class BlocksOnObject : MonoBehaviour
 {
     public float blockTime;
     public bool isBlocked;
+    public bool fallBlock;
+    public GroundDetection groundDetection;
     float th;
 
     private void FixedUpdate()
@@ -23,4 +25,19 @@ public class BlocksOnObject : MonoBehaviour
             isBlocked = false;
         }
      }
+
+    private void Update()
+    {
+        if (fallBlock)
+        {
+            if (groundDetection.detected)
+            {
+                fallBlock = false;
+            }
+            else
+            {
+                blockTime = Mathf.Max(0.1f, blockTime);
+            }
+        }
+    }
 }
