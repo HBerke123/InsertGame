@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ButtonTrigger : MonoBehaviour
 {
+    public GameObject platform;
+    public int buttonNum;
     float triggeredTime;
     float th;
 
@@ -26,6 +28,15 @@ public class ButtonTrigger : MonoBehaviour
         {
             triggeredTime = 0;
             th = 0;
+        }
+    }
+
+    private void Update()
+    {
+        if ((triggeredTime > 0) && (buttonNum == 0))
+        {
+            platform.GetComponent<InteractiveArea>().enabled = true;
+            Destroy(this);
         }
     }
 }

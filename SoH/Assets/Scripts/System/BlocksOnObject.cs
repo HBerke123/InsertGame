@@ -36,7 +36,7 @@ public class BlocksOnObject : MonoBehaviour
             }
             else
             {
-                blockTime = Mathf.Max(0.1f, blockTime);
+                blockTime = Mathf.Max(0.5f, blockTime);
             }
         }
     }

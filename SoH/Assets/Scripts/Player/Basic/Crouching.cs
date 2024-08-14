@@ -12,6 +12,7 @@ public class Crouching : MonoBehaviour
     float colliderSizeY;
     float colliderPositionY;
     public bool changing;
+    public GroundDetection gd;
     GamepadControls gamepadControls;
     Movement m;
     BoxCollider2D bc;
@@ -69,7 +70,7 @@ public class Crouching : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || gamepadControls.crouching) && !crouched && !d.dashing && !sa.attacking && !gs.started && !su.started && !su2.screaming)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || gamepadControls.crouching) && !crouched && !d.dashing && !sa.attacking && !gs.started && !su.started && !su2.screaming && gd.detected)
         {
             Crouch();
             crouched = true;

@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   speed: 3
-  attackSpeed: 6
+  attackSpeed: 9
   hitbox: {fileID: 845572179983672490}
 --- !u!50 &845572179655770038
 Rigidbody2D:
