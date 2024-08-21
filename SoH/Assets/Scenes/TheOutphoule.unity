@@ -85571,6 +85571,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1578840757}
     m_Modifications:
+    - target: {fileID: 845572179655770039, guid: 32d61fa3d10174947a5811df0d726398, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 845572179655770039, guid: 32d61fa3d10174947a5811df0d726398, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 845572179655770039, guid: 32d61fa3d10174947a5811df0d726398, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 845572179655770041, guid: 32d61fa3d10174947a5811df0d726398, type: 3}
       propertyPath: m_Name
       value: Crusher
@@ -85578,6 +85590,14 @@ PrefabInstance:
     - target: {fileID: 845572179655770043, guid: 32d61fa3d10174947a5811df0d726398, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 845572179655770043, guid: 32d61fa3d10174947a5811df0d726398, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 845572179655770043, guid: 32d61fa3d10174947a5811df0d726398, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 845572179655770043, guid: 32d61fa3d10174947a5811df0d726398, type: 3}
       propertyPath: m_LocalPosition.x
