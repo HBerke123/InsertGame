@@ -6,6 +6,8 @@ public class AreaEvent : MonoBehaviour
 {
     public int areaNum;
     public GameObject platform;
+    public GameObject secondPlatform;
+    public GameObject thirdPlatform;
     GameObject player;
 
     private void Start()
@@ -27,6 +29,25 @@ public class AreaEvent : MonoBehaviour
             {
                 Destroy(platform);
                 player.GetComponent<BlocksOnObject>().fallBlock = true;
+            }
+            else if (areaNum == 2)
+            {
+                player.GetComponent<BlocksOnObject>().fallBlock = true;
+            }
+            else if (areaNum == 3) 
+            {
+                Destroy(platform);
+                secondPlatform.SetActive(true);
+            }
+            else if (areaNum == 4)
+            {
+                Destroy(platform);
+                secondPlatform.SetActive(true);
+                thirdPlatform.SetActive(true);
+            }
+            else if (areaNum == 5)
+            {
+                platform.SetActive(true);
             }
 
             Destroy(this.gameObject);
