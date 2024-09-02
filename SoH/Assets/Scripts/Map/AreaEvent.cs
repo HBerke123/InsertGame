@@ -48,6 +48,7 @@ public class AreaEvent : MonoBehaviour
             else if (areaNum == 5)
             {
                 platform.SetActive(true);
+                secondPlatform.SetActive(true);
             }
 
             Destroy(this.gameObject);

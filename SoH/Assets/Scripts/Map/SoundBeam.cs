@@ -23,7 +23,7 @@ public class SoundBeam : MonoBehaviour
             Shoot();
         }
 
-        if((th == 0) && this.GetComponentInChildren<SoundTrigger>().isSoundTrigered)
+        if ((th == 0) && this.GetComponentInChildren<SoundTrigger>().isSoundTrigered)
         {
             th = Time.time;
         }
