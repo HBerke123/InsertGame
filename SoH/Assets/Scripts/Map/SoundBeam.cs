@@ -34,12 +34,22 @@ public class SoundBeam : MonoBehaviour
         GameObject SBox = Instantiate(soundWave, transform.position, Quaternion.identity);
         if (this.transform.rotation.eulerAngles.y == 90)
         {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * waveSpeed;
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad), 0) * waveSpeed;
         }
         else
         {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Cos(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * waveSpeed;
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Cos(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad),0) * waveSpeed;
         }
+
+        if (this.transform.rotation.eulerAngles.z > 180)
+        {
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(SBox.GetComponent<Rigidbody2D>().velocity.x, -Mathf.Sin(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * waveSpeed;
+        }
+        else
+        {
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(SBox.GetComponent<Rigidbody2D>().velocity.x, Mathf.Sin(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * waveSpeed;
+        }
+
         SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
         SBox.GetComponent<ForcePlayer>().direction = (int)(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x));
     }
