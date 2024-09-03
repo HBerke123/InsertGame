@@ -13,9 +13,9 @@ public class LaserBeam : MonoBehaviour
         hpdrain = player.GetComponent<HealthDrainage>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.CompareTag("Player") && !collider.GetComponent<Dash>().dashing)
         {
             hpdrain.TakeDamage(15);
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundBeam : MonoBehaviour
 {
     float th;
+    public float cooldown;
     public float soundDamage;
     public float waveSpeed;
     GameObject player;
@@ -17,7 +18,7 @@ public class SoundBeam : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > 3))
+        if ((th != 0) && (Time.time - th > cooldown))
         {
             th = 0;
             Shoot();
@@ -30,8 +31,15 @@ public class SoundBeam : MonoBehaviour
     }
     void Shoot()
     {
-        GameObject SBox = Instantiate(soundWave, transform.position, new Quaternion(0, 0, 0, 0));
-        SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x) * waveSpeed, 0);
+        GameObject SBox = Instantiate(soundWave, transform.position, Quaternion.identity);
+        if (this.transform.rotation.eulerAngles.y == 90)
+        {
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * waveSpeed;
+        }
+        else
+        {
+            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Cos(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * waveSpeed;
+        }
         SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
         SBox.GetComponent<ForcePlayer>().direction = (int)(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x));
     }

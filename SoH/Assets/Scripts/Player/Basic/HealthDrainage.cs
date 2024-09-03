@@ -27,10 +27,14 @@ public class HealthDrainage : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, int num = 0)
     {
+        if (num == 0)
+        {
+            this.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(this.GetComponent<BlocksOnObject>().blockTime, invisibleTime / 2);
+        }
+
         currentInvisible = invisibleTime;
-        this.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(this.GetComponent<BlocksOnObject>().blockTime, invisibleTime / 2);
         isInvisible = true;
         health -= amount;
         th = Time.time;

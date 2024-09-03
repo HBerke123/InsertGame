@@ -5,7 +5,6 @@ using UnityEngine;
 public class SoundUse : MonoBehaviour
 {
     readonly List<float> reloadTimes = new();
-    public TimeControlSlow timeSlower;
     public GameObject arrow;
     public float maxCost;
     public float minCost;
@@ -75,7 +74,6 @@ public class SoundUse : MonoBehaviour
 
             sounded = true;
             arrow.SetActive(false);
-            timeSlower.StartSlowMotion();
             this.GetComponentInParent<Movement>().aiming = true;
             started = true;
             ready = false;
@@ -85,7 +83,6 @@ public class SoundUse : MonoBehaviour
         if (((!Input.GetKey(KeyCode.Q) && !gamepadControls.soundInfluence) || (Time.time - th >= holdtime)) && (th > 0))
         {
             this.GetComponentInParent<Movement>().aiming = false;
-            timeSlower.StopSlowMotion();
             arrow.SetActive(true);
             started = false;
 

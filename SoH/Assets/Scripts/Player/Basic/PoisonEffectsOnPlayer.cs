@@ -22,7 +22,7 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
         if ((dth != 0) && (Time.time - dth > damageFrequency) && (badEffectTime > 0))
         {
             dth = Time.time;
-            this.GetComponent<HealthDrainage>().TakeDamage(damageAmount);
+            this.GetComponent<HealthDrainage>().TakeDamage(damageAmount, 1);
         }
 
         if ((dth == 0) && (badEffectTime > 0))
