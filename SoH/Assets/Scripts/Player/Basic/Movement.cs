@@ -232,10 +232,16 @@ public class Movement : MonoBehaviour
 
             spawnParticles = false;
         }
-        else
+        else if (!stick)
         {
             a.SetBool("Moving", false);
             rb.velocity = new Vector2(0, 0);
+            spawnParticles = false;
+        }
+        else
+        {
+            a.SetBool("Moving", false);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
             spawnParticles = false;
         }
 

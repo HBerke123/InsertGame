@@ -10,23 +10,33 @@ public class Notice : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((Time.time - th > noticeTime) && (noticeTime > 0)) 
+        if ((th != 0) && (Time.time - th > noticeTime) && (noticeTime > 0)) 
         {
             noticeTime = 0;
+            th = 0;
         }
 
         if ((th == 0) && (noticeTime > 0))
         {
             th = Time.time;
         }
+    }
 
-        if (noticeTime == 0)
+    public void AddTime(float amount)
+    {
+        noticeTime = Mathf.Max(amount, noticeTime);
+        th = 0;
+    }
+
+    private void Update()
+    {
+        if (noticeTime > 0)
         {
-            isNoticed = false;
+            isNoticed = true;
         }
         else
         {
-            isNoticed = true;
+            isNoticed = false;
         }
     }
 }

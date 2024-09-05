@@ -3,6 +3,8 @@ using UnityEngine;
 public class WalkableEnemy : MonoBehaviour
 {
     GameObject player;
+    public GroundDetection climbUp;
+    public GroundDetection climbDown;
     public float speed;
     public float rangex;
     public float attackDamage;
@@ -46,6 +48,11 @@ public class WalkableEnemy : MonoBehaviour
             else
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(-distancex / Mathf.Abs(distancex) * speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
+
+                if (climbDown.detected && !climbUp.detected)
+                {
+                    this.transform.position += Vector3.up / 2;
+                }
             }
         }
         else

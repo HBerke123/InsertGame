@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ReptileEnemy : MonoBehaviour
 {
+    public GroundDetection climbUp;
+    public GroundDetection climbDown;
     public float rangex;
     public float speed;
     public float attackDamage;
@@ -82,6 +84,11 @@ public class ReptileEnemy : MonoBehaviour
             else
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * -distancex / Mathf.Abs(distancex), this.GetComponent<Rigidbody2D>().velocity.y);
+                
+                if (climbDown.detected && !climbUp.detected)
+                {
+                    this.transform.position += Vector3.up / 2;
+                }
             }
         }
     }

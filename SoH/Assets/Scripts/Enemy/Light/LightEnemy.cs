@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class LightEnemy : MonoBehaviour
 {
+    public GroundDetection climbUp;
+    public GroundDetection climbDown;
     public GroundDetection leftSide;
     public GroundDetection rightSide;
     public GroundDetection teleportCollider;
@@ -53,6 +55,11 @@ public class LightEnemy : MonoBehaviour
             else
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Abs(distancex) / distancex * speed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
+            
+                if (climbDown.detected && !climbUp.detected)
+                {
+                    this.transform.position += Vector3.up / 2;
+                }
             }
         }
         else if ((beam == null) && running)
