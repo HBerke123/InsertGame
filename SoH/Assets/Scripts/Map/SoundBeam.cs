@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundBeam : MonoBehaviour
 {
+    GameObject directionObject;
     float th;
     public float cooldown;
     public float soundDamage;
@@ -13,6 +14,7 @@ public class SoundBeam : MonoBehaviour
 
     private void Start()
     {
+        directionObject = this.transform.GetChild(0).gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -29,27 +31,15 @@ public class SoundBeam : MonoBehaviour
             th = Time.time;
         }
     }
+
     void Shoot()
     {
-        GameObject SBox = Instantiate(soundWave, transform.position, Quaternion.identity);
-        if (this.transform.rotation.eulerAngles.y == 90)
-        {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad), 0) * waveSpeed;
-        }
-        else
-        {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-Mathf.Cos(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad),0) * waveSpeed;
-        }
-
-        if (this.transform.rotation.eulerAngles.z > 180)
-        {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(SBox.GetComponent<Rigidbody2D>().velocity.x, -Mathf.Sin(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * waveSpeed;
-        }
-        else
-        {
-            SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(SBox.GetComponent<Rigidbody2D>().velocity.x, Mathf.Sin(this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)) * waveSpeed;
-        }
-
+        float distancex = directionObject.transform.position.x - this.transform.position.x;
+        float distancey = directionObject.transform.position.y - this.transform.position.y;
+        float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
+        GameObject SBox = Instantiate(soundWave, transform.position + new Vector3(distancex / distance, distancey / distance, 0), Quaternion.identity);
+        SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distancex / distance, distancey / distance) * waveSpeed;
+        SBox.transform.rotation = Quaternion.Euler(0, 0, Mathf.Acos(distancex / distance) * Mathf.Rad2Deg);
         SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
         SBox.GetComponent<ForcePlayer>().direction = (int)(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x));
     }
