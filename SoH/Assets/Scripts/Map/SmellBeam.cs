@@ -8,10 +8,12 @@ public class SmellBeam : MonoBehaviour
     public GameObject badSmoke;
     public float range;
     public float cooldown;
+    public bool reloadable;
     float distance;
     float th;
     GameObject player;
     SpriteRenderer sr;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -29,10 +31,17 @@ public class SmellBeam : MonoBehaviour
 
     public void Smell()
     {
-        Instantiate(badSmoke, this.transform.position, new Quaternion(0, 0, 0, 0));
+        Instantiate(badSmoke, this.transform.position, Quaternion.identity);
+
+        if (!reloadable)
+        {
+            Destroy(this.gameObject);
+        }
+
         th = Time.time;
         sr.enabled = false;
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if ((distance <= range) && (th == 0) && collision.CompareTag("Player"))

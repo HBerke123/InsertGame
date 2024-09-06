@@ -546,7 +546,7 @@ Transform:
   m_GameObject: {fileID: 1389891591038707327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1389891592076107589}
@@ -1027,7 +1027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3d0c670681af24ab682c9f0ec931a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSlower: {fileID: 0}
   arrow: {fileID: 1389891590313818661}
   maxCost: 20
   minCost: 10
@@ -1155,6 +1154,7 @@ GameObject:
   - component: {fileID: 1146122200}
   - component: {fileID: 1146122240}
   - component: {fileID: 1146122241}
+  - component: {fileID: 1561427332}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1468,6 +1468,7 @@ MonoBehaviour:
   crouchingAmount: 1.5
   crouchTime: 0.4
   changing: 0
+  gd: {fileID: 1389891591038707314}
 --- !u!114 &1389891592076107562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,8 +1520,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundParticles: {fileID: 8453812108222428347, guid: 1c19c7f3a0465674db189cc5b9c46bbd, type: 3}
   Attackhbox: {fileID: 1389891592042244021}
-  climbUp: {fileID: 0}
-  climbDown: {fileID: 0}
+  climbUp: {fileID: 1194369776}
+  climbDown: {fileID: 1454428397}
+  gd: {fileID: 1389891591038707314}
   aiming: 0
   stick: 0
   reloadTime: 0.5
@@ -1735,6 +1737,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockTime: 0
   isBlocked: 0
+  fallBlock: 0
+  groundDetection: {fileID: 1389891591038707314}
 --- !u!114 &1146122200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,6 +1787,19 @@ MonoBehaviour:
   end: {x: 0, y: 0, z: 0}
   startedTime: 0
   isPlayer: 1
+--- !u!114 &1561427332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af829b3818be57f4789a71397f7bad9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveArea: {fileID: 0}
 --- !u!1 &5689295552291102139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,6 +1810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4549756903674943231}
   - component: {fileID: 3780016333682879331}
+  - component: {fileID: 1454428397}
   m_Layer: 3
   m_Name: ClimbDown
   m_TagString: Untagged
@@ -1808,8 +1826,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5689295552291102139}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: 0}
-  m_LocalScale: {x: 2.225, y: 0.4, z: 1}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
+  m_LocalScale: {x: 2.25, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1389891592076107589}
@@ -1825,7 +1843,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1841,6 +1859,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1454428397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689295552291102139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208168c79c5bafd4b9c2cdeb663bcb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detected: 0
 --- !u!1 &6776460579564514606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,6 +1882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8182015611443079736}
   - component: {fileID: 4203639370696769989}
+  - component: {fileID: 1194369776}
   m_Layer: 3
   m_Name: ClimbUp
   m_TagString: Untagged
@@ -1866,8 +1898,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6776460579564514606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.85, z: 0}
-  m_LocalScale: {x: 2.225, y: 0.4, z: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 2.25, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1389891592076107589}
@@ -1883,7 +1915,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1899,3 +1931,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1194369776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776460579564514606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208168c79c5bafd4b9c2cdeb663bcb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detected: 0

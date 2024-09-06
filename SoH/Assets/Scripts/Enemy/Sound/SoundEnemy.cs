@@ -83,7 +83,7 @@ public class SoundEnemy : MonoBehaviour
             } 
         }
 
-        if ((th == 0) && (screamHit == null) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && ((Mathf.Abs(distanceX) < rangeX) || this.GetComponent<Notice>().isNoticed || (player.GetComponent<MakeSound>().totalSoundTime > 0)))
+        if ((th == 0) && (screamHit == null) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && this.GetComponent<Notice>().isNoticed)
         {
             this.GetComponent<Notice>().AddTime(noticeTime);
             th = Time.time;
