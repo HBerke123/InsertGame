@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4822827400922171402}
   - component: {fileID: 4954881939629664892}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: FragranceTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
