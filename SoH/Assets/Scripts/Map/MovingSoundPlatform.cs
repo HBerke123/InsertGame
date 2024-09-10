@@ -13,22 +13,26 @@ public class MovingSoundPlatform : MonoBehaviour
 
     private void Update()
     {
+        float distancex = otherObject.transform.position.x - this.transform.position.x;
+        float distancey = otherObject.transform.position.y - this.transform.position.y;
+        float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
+
         if (hitted)
         {
-            if (Mathf.Abs(this.transform.position.y - otherObject.transform.position.y) >= startDistance)
+            if (distance >= startDistance)
             {
                 hitted = false;
             }
             else
             {
-                this.GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
-                otherObject.GetComponent<Rigidbody2D>().velocity = Vector2.down * speed;
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(distancex / distance, distancey / distance) * -speed;
+                otherObject.GetComponent<Rigidbody2D>().velocity = new Vector2(distancex / distance, distancey / distance) * speed;
             }
         }
         else
         {
-            this.GetComponent<Rigidbody2D>().velocity = Vector2.down * hittingSpeed;
-            otherObject.GetComponent<Rigidbody2D>().velocity = Vector2.up * hittingSpeed;
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(distancex / distance, distancey / distance) * hittingSpeed;
+            otherObject.GetComponent<Rigidbody2D>().velocity = new Vector2(distancex / distance, distancey / distance) * -hittingSpeed;
         }
     }
 

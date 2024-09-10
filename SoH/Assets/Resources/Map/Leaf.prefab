@@ -83,9 +83,9 @@ GameObject:
   - component: {fileID: 8107868470415357373}
   - component: {fileID: 6868849046607622499}
   - component: {fileID: 8789799882762692979}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Leaf
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
