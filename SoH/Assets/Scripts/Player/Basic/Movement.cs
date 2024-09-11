@@ -60,7 +60,7 @@ public class Movement : MonoBehaviour
         c = this.GetComponent<Crouching>();
         baseSpeed = speed;
         rb = this.GetComponent<Rigidbody2D>();
-        string path = Application.dataPath + "/Saves/";
+        //string path = Application.dataPath + "/Saves/";
         //this.transform.position = new Vector3(float.Parse(File.ReadAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt").Split("\n")[3].Split(" ")[0]), float.Parse(File.ReadAllText(path + File.ReadAllText(path + "GSave.txt").Split("\n")[0] + ".txt").Split("\n")[3].Split(" ")[1]), 0);
     }
 
@@ -105,7 +105,6 @@ public class Movement : MonoBehaviour
     }
 
     private void Update()
-
     {
         if (!aiming && !su.started && !su2.screaming && !d.dashing && !stick && !boo.isBlocked && !c.changing && !sa.attacking && !p.drinking && !gs.started)
         {
@@ -245,7 +244,7 @@ public class Movement : MonoBehaviour
             spawnParticles = false;
         }
 
-        if (!Attackhbox.enabled && !gs.started)
+        if (!Attackhbox.enabled && !gs.started && !boo.isBlocked)
         {
             if (Input.GetKey(KeyCode.A) || (gamepadControls.moveDirection == -1))
             {

@@ -581,6 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossFelled: {fileID: 0}
+  blockTime: 1
   healPlayer: 2
   health: 100
   maxHealth: 100

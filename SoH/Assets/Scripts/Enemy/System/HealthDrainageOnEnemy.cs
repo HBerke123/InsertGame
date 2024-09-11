@@ -3,6 +3,7 @@ using UnityEngine;
 public class HealthDrainageOnEnemy : MonoBehaviour
 {
     public AudioClip bossFelled;
+    public float blockTime;
     public float healPlayer;
     public float health;
     public float maxHealth;
@@ -30,6 +31,8 @@ public class HealthDrainageOnEnemy : MonoBehaviour
     {
         health -= amount;
         health = Mathf.Round(health);
+        this.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(this.GetComponent<BlocksOnObject>().blockTime, blockTime);
+
         if (health <= 0)
         {
             if (enemyNum == 1)
@@ -48,6 +51,7 @@ public class HealthDrainageOnEnemy : MonoBehaviour
             else if (enemyNum == 7)
             {
                 as1.PlayOneShot(bossFelled);
+                GameObject.FindGameObjectWithTag("Player").GetComponent<ObtainSkills>().obtainedSound = true;
             }
             else if (enemyNum == 8)
             {
@@ -55,7 +59,6 @@ public class HealthDrainageOnEnemy : MonoBehaviour
             }
 
             GameObject.FindGameObjectWithTag("Player").GetComponent<HealthDrainage>().Heal(healPlayer);
-
             Destroy(this.gameObject);
         }
     }

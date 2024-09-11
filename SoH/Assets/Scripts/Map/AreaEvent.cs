@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AreaEvent : MonoBehaviour
 {
+    public Vector3 location;
     public int areaNum;
     public GameObject platform;
     public GameObject secondPlatform;
@@ -24,6 +25,7 @@ public class AreaEvent : MonoBehaviour
                 platform.transform.position = new Vector3(101, 2, 0);
                 platform.transform.localScale = new Vector3(6, 8, 1);
                 platform.GetComponent<BoxCollider2D>().enabled = enabled;
+                collision.GetComponent<BlocksOnObject>().blockTime = 1;
             }
             else if (areaNum == 1)
             {
@@ -38,6 +40,7 @@ public class AreaEvent : MonoBehaviour
             {
                 Destroy(platform);
                 secondPlatform.SetActive(true);
+                GameObject.FindGameObjectWithTag("GamepadController").GetComponent<SpecialEvent>().eventStarted = true;
             }
             else if (areaNum == 4)
             {
@@ -49,6 +52,17 @@ public class AreaEvent : MonoBehaviour
             {
                 platform.SetActive(true);
                 secondPlatform.SetActive(true);
+            }
+            else if (areaNum == 6)
+            {
+                collision.GetComponent<CheckpointRecorder>().SaveCheckpoint(location);
+            }
+            else if (areaNum == 7)
+            {
+                collision.GetComponent<Movement>().enabled = false;
+                collision.GetComponent<Jump>().enabled = false;
+                this.GetComponentInParent<WalkableEnemy>().speed = 0;
+                this.GetComponentInParent<SpecialEvent>().eventStarted = true;
             }
 
             Destroy(this.gameObject);

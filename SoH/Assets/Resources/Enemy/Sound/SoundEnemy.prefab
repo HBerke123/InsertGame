@@ -286,6 +286,7 @@ MonoBehaviour:
   attackFrequency: 3
   screamDamage: 10
   noticeTime: 10
+  first: 0
 --- !u!61 &7135500643959616275
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -360,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossFelled: {fileID: 0}
+  blockTime: 1
   healPlayer: 2
   health: 100
   maxHealth: 100

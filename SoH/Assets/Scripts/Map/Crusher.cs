@@ -28,6 +28,7 @@ public class Crusher : MonoBehaviour
             if (!hitted && hitbox.IsTouching(GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>())) 
             {
                 hitted = true;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<CheckpointRecorder>().LoadCheckpoint();
                 GameObject.FindGameObjectWithTag("Player").GetComponent<HealthDrainage>().TakeDamage(damage);
             }
         }

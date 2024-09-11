@@ -37,7 +37,7 @@ public class WalkableEnemy : MonoBehaviour
         float distancey = this.transform.position.y - player.transform.position.y;
         float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
 
-        if (((Mathf.Abs(distancex) < rangex) || this.GetComponent<Notice>().isNoticed) && (attackRange < Mathf.Abs(distance)))
+        if (((Mathf.Abs(distancex) < rangex) || this.GetComponent<Notice>().isNoticed) && (attackRange < Mathf.Abs(distance)) && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
 

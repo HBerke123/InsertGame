@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossFelled: {fileID: 0}
+  blockTime: 1
   healPlayer: 2
   health: 20
   maxHealth: 20
@@ -325,6 +326,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockTime: 0
   isBlocked: 0
+  fallBlock: 0
+  groundDetection: {fileID: 0}
 --- !u!82 &179263075
 AudioSource:
   m_ObjectHideFlags: 0

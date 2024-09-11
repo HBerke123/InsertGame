@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Cutter : MonoBehaviour
 {
+    public float damage;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<HealthDrainage>().TakeDamage(collision.GetComponent<HealthDrainage>().maxHealth);
+            collision.GetComponent<CheckpointRecorder>().LoadCheckpoint();
+            collision.GetComponent<HealthDrainage>().TakeDamage(damage);
         }
     }
 }
