@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AreaEvent : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class AreaEvent : MonoBehaviour
             {
                 player.GetComponent<BlocksOnObject>().fallBlock = true;
             }
-            else if (areaNum == 3) 
+            else if (areaNum == 3)
             {
                 Destroy(platform);
                 secondPlatform.SetActive(true);
@@ -63,6 +64,10 @@ public class AreaEvent : MonoBehaviour
                 collision.GetComponent<Jump>().enabled = false;
                 this.GetComponentInParent<WalkableEnemy>().speed = 0;
                 this.GetComponentInParent<SpecialEvent>().eventStarted = true;
+            }
+            else if (areaNum == 8) 
+            {
+                SceneManager.LoadScene("Lysandra");
             }
 
             Destroy(this.gameObject);

@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ForcesOnObject : MonoBehaviour
 {
+
     public Vector2 Force;
     public float resistance;
     float th;
@@ -19,11 +21,11 @@ public class ForcesOnObject : MonoBehaviour
                 Force.x = 0;
             }
 
-            if ((Force.y > resistance) || (Force.y < -resistance))
+            if ((Force.y > resistance - Physics2D.gravity.y) || (Force.y < Physics2D.gravity.y - resistance))
             {
-                Force.y -= resistance * Force.y;
+                Force.y -= (resistance - Physics2D.gravity.y) * Force.y;
             }
-            else if ((Force.y < resistance) || (Force.y > -resistance))
+            else if ((Force.y < resistance - Physics2D.gravity.y) || (Force.y > Physics2D.gravity.y - resistance))
             {
                 Force.y = 0;
             }

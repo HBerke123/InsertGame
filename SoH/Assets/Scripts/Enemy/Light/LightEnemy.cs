@@ -43,7 +43,7 @@ public class LightEnemy : MonoBehaviour
     {
         float distancex = this.transform.position.x - player.transform.position.x;
 
-        if (((Mathf.Abs(distancex) < moveRangeX) || this.GetComponent<Notice>().isNoticed) && (Mathf.Abs(distancex) > rangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && beam == null && (!running))
+        if (((Mathf.Abs(distancex) < moveRangeX) || this.GetComponent<Notice>().isNoticed) && (Mathf.Abs(distancex) > rangeX) && (this.GetComponent<ForcesOnObject>().Force.x == 0) && beam == null && !running && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
             th = 0;
@@ -62,7 +62,7 @@ public class LightEnemy : MonoBehaviour
                 }
             }
         }
-        else if ((beam == null) && running)
+        else if ((beam == null) && running && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             if (this.GetComponent<ForcesOnObject>().Force.y != 0)
             {
@@ -75,20 +75,20 @@ public class LightEnemy : MonoBehaviour
 
             if ((Mathf.Abs(distancex) / distancex == 1) && rightSide.detected)
             {
-                teleportCollider.transform.localPosition = Vector3.left * 2 * Mathf.Abs(distancex);
+                teleportCollider.transform.localPosition = 2 * Mathf.Abs(distancex) * Vector3.left;
 
                 if (!teleportCollider.detected)
                 {
-                    this.transform.position += Vector3.left * 2 * Mathf.Abs(distancex);
+                    this.transform.position += 2 * Mathf.Abs(distancex) * Vector3.left;
                 }
             }
             else if ((Mathf.Abs(distancex) / distancex != 1) && leftSide.detected)
             {
-                teleportCollider.transform.localPosition = Vector3.right * 2 * Mathf.Abs(distancex);
+                teleportCollider.transform.localPosition = 2 * Mathf.Abs(distancex) * Vector3.right;
 
                 if (!teleportCollider.detected)
                 {
-                    this.transform.position += Vector3.right * 2 * Mathf.Abs(distancex);
+                    this.transform.position += 2 * Mathf.Abs(distancex) * Vector3.right;
                 }
             }
 
