@@ -15,12 +15,16 @@ public class SoundLever : MonoBehaviour
     {
         if (num == 0)
         {
-            if (isOn) 
+            if (isOn)
             {
                 platform.SetActive(false);
                 secondPlatform.SetActive(false);
                 thirdPlatform.SetActive(false);
             }
+        }
+        else if (isOn) 
+        {
+            platform.SetActive(false);
         }
     }
 
