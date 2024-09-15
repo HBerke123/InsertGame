@@ -33,24 +33,10 @@ public class ButtonTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (triggeredTime > 0)
+        if ((triggeredTime > 0) && (buttonNum == 0))
         {
-            if (buttonNum == 0)
-            {
-                platform.GetComponent<InteractiveArea>().enabled = true;
-                Destroy(this);
-            }
-            else if (buttonNum == 1) 
-            {
-                platform.SetActive(false);
-            }
-        }
-        else
-        {
-            if (buttonNum == 1)
-            {
-                platform.SetActive(true);
-            }
+            platform.GetComponent<InteractiveArea>().enabled = true;
+            Destroy(this);
         }
     }
 }

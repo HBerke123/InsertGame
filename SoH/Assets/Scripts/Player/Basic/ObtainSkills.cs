@@ -32,5 +32,14 @@ public class ObtainSkills : MonoBehaviour
         {
             this.GetComponentInChildren<GunShot>().enabled = false;
         }
+
+        if (obtainedSwordSkill)
+        {
+            this.GetComponentInChildren<SwordSkill>().enabled = true;
+        }
+        else 
+        {
+            this.GetComponentInChildren<SwordSkill>().enabled = false;
+        }
     }
 }

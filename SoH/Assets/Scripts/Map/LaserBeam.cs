@@ -18,7 +18,6 @@ public class LaserBeam : MonoBehaviour
         if (collider.CompareTag("Player") && !collider.GetComponent<Dash>().dashing)
         {
             hpdrain.TakeDamage(15);
-            player.GetComponent<CheckpointRecorder>().LoadCheckpoint();
         }
     }
 }

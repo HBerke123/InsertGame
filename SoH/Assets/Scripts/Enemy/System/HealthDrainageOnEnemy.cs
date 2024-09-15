@@ -31,7 +31,7 @@ public class HealthDrainageOnEnemy : MonoBehaviour
     {
         health -= amount;
         health = Mathf.Round(health);
-        this.GetComponent<BlocksOnObject>().AddTime(blockTime);
+        this.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(this.GetComponent<BlocksOnObject>().blockTime, blockTime);
 
         if (health <= 0)
         {
