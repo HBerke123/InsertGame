@@ -44,25 +44,15 @@ public class SoundUse : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxisRaw("Horizontal") == 1)
-        {
-            arrow.transform.localPosition = Vector3.right * 1.725f;
-            direction = 1;
-        }
-        else if (Input.GetAxisRaw("Horizontal") == -1)
+        if (this.GetComponentInParent<SpriteRenderer>().flipX)
         {
             arrow.transform.localPosition = Vector3.left * 1.725f;
             direction = 3;
         }
-        else if (Input.GetAxisRaw("Vertical") == 1)
+        else
         {
-            arrow.transform.localPosition = Vector3.up * 3.9f;
-            direction = 0;
-        }
-        else if (Input.GetAxisRaw("Vertical") == -1)
-        {
-            arrow.transform.localPosition = Vector3.down * 1;
-            direction = 2;
+            arrow.transform.localPosition = Vector3.right * 1.725f;
+            direction = 1;
         }
 
         if ((Input.GetKey(KeyCode.Q) || gamepadControls.soundInfluence) && !sounded && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponentInParent<Potion>().drinking)

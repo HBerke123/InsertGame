@@ -1155,6 +1155,8 @@ GameObject:
   - component: {fileID: 1146122240}
   - component: {fileID: 1146122241}
   - component: {fileID: 1561427332}
+  - component: {fileID: 2372245794591729179}
+  - component: {fileID: 755773469745759491}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1566,7 +1568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Force: {x: 0, y: 0}
-  resistance: 0.3125
+  resistance: 0.4
 --- !u!114 &1389891592076107565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1800,6 +1802,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactiveArea: {fileID: 0}
+--- !u!114 &2372245794591729179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f98333fe3c93c54491a745d517acee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &755773469745759491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036fed515aea77645a3db5bad1a06dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obtainedSound: 0
+  obtainedGun: 0
+  obtainedSwordSkill: 0
 --- !u!1 &5689295552291102139
 GameObject:
   m_ObjectHideFlags: 0

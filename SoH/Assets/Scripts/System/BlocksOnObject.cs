@@ -40,4 +40,10 @@ public class BlocksOnObject : MonoBehaviour
             }
         }
     }
+
+    public void AddTime(float time)
+    {
+        th = 0;
+        blockTime = Mathf.Max(time, blockTime);
+    }
 }
