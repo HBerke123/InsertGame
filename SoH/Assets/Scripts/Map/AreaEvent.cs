@@ -24,17 +24,20 @@ public class AreaEvent : MonoBehaviour
             {
                 platform.transform.position = new Vector3(101, 2, 0);
                 platform.transform.localScale = new Vector3(6, 8, 1);
+                secondPlatform.GetComponent<WalkableEnemy>().rangex = 12;
                 platform.GetComponent<BoxCollider2D>().enabled = enabled;
                 collision.GetComponent<BlocksOnObject>().blockTime = 1;
             }
             else if (areaNum == 1)
             {
-                Destroy(platform);
                 player.GetComponent<BlocksOnObject>().fallBlock = true;
+                Destroy(platform);
             }
             else if (areaNum == 2)
             {
-                player.GetComponent<BlocksOnObject>().fallBlock = true;
+                player.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(1, player.GetComponent<BlocksOnObject>().blockTime);
+                Destroy(platform);
+                secondPlatform.SetActive(true);
             }
             else if (areaNum == 3) 
             {

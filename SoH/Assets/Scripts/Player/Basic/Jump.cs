@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Jump : MonoBehaviour
 {
     readonly List<float> reloadTimes = new();
+    public GroundDetection jumbBox;
     public bool screaming;
     public bool stick;
     public float soundTime;
@@ -20,7 +21,6 @@ public class Jump : MonoBehaviour
     GamepadControls gamepadControls;
     Rigidbody2D rb;
     CEDrainage ced;
-    GroundDetection gd;
     ForcesOnObject foo;
     CEProduce cep;
     MakeSound ms;
@@ -33,7 +33,6 @@ public class Jump : MonoBehaviour
         gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
         rb = this.GetComponent<Rigidbody2D>();
         ced = this.GetComponent<CEDrainage>();
-        gd = this.GetComponentInChildren<GroundDetection>();
         foo = this.GetComponent<ForcesOnObject>();
         cep = this.GetComponent<CEProduce>();
         ms = this.GetComponent<MakeSound>();
@@ -61,9 +60,9 @@ public class Jump : MonoBehaviour
     {
         if (!menuOpener.isMenuOpen)
         {
-            a.SetBool("Grounded", gd.detected);
+            a.SetBool("Grounded", jumbBox.detected);
 
-            if ((Input.GetKey(KeyCode.Space) || gamepadControls.jumping) && gd.detected && !stick && (foo.Force == Vector2.zero) && !c.isCrouching && !jumping && !jumped)
+            if ((Input.GetKey(KeyCode.Space) || gamepadControls.jumping) && jumbBox.detected && !stick && (foo.Force == Vector2.zero) && !c.isCrouching && !jumping && !jumped)
             {
                 jumped = true;
                 jumping = true;
@@ -79,7 +78,7 @@ public class Jump : MonoBehaviour
                     reloadTimes.Add(Time.time + reloadTime / cost * i);
                 }
             }
-            else if ((Input.GetKey(KeyCode.Space) || gamepadControls.jumping) && gd.detected && !stick && (foo.Force == Vector2.zero) && !jumping && !jumped)
+            else if ((Input.GetKey(KeyCode.Space) || gamepadControls.jumping) && jumbBox.detected && !stick && (foo.Force == Vector2.zero) && !jumping && !jumped)
             {
                 c.Crouch();
             }
@@ -100,7 +99,7 @@ public class Jump : MonoBehaviour
                 jumping = false;
             }
 
-            if (!Input.GetKey(KeyCode.Space) && !gamepadControls.jumping && gd.detected)
+            if (!Input.GetKey(KeyCode.Space) && !gamepadControls.jumping && jumbBox.detected)
             {
                 jumped = false;
             }

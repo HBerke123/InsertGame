@@ -275,7 +275,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 23541027d12824e4c9c45362bad1383b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -289,7 +289,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2410109213677025127}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 23541027d12824e4c9c45362bad1383b, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossFelled: {fileID: 8300000, guid: e3cc5d6d64815ca469e5eeadb8e1933e, type: 3}
+  blockTime: 0
   healPlayer: 0
   health: 270
   maxHealth: 270
@@ -485,6 +486,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockTime: 0
   isBlocked: 0
+  fallBlock: 0
+  groundDetection: {fileID: 0}
 --- !u!114 &447303802
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,8 +7,10 @@ public class Movement : MonoBehaviour
     readonly List<float> reloadTimes = new();
     public ParticleSystem groundParticles;
     public BoxCollider2D Attackhbox;
-    public GroundDetection climbUp;
-    public GroundDetection climbDown;
+    public GroundDetection climbUpR;
+    public GroundDetection climbUpL;
+    public GroundDetection climbDownR;
+    public GroundDetection climbDownL;
     public GroundDetection gd;
     public bool aiming;
     public bool stick;
@@ -86,7 +88,7 @@ public class Movement : MonoBehaviour
             {
                 particles.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
-            
+
             th = Time.time;
         }
 
@@ -161,9 +163,39 @@ public class Movement : MonoBehaviour
                         ms.AddTime(soundTime);
                     }
 
-                    if (!climbUp.detected && climbDown.detected)
+                    if (gamepadControls.moveDirection == 0)
                     {
-                        this.transform.position += Vector3.up / 2;
+                        if (moveDirection == 1)
+                        {
+                            if (!climbUpR.detected && climbDownR.detected)
+                            {
+                                this.transform.position += Vector3.up / 2;
+                            }
+                        }
+                        else
+                        {
+                            if (!climbUpL.detected && climbDownL.detected)
+                            {
+                                this.transform.position += Vector3.up / 2;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (gamepadControls.moveDirection == 1)
+                        {
+                            if (!climbUpR.detected && climbDownR.detected)
+                            {
+                                this.transform.position += Vector3.up / 2;
+                            }
+                        }
+                        else
+                        {
+                            if (!climbUpL.detected && climbDownL.detected)
+                            {
+                                this.transform.position += Vector3.up / 2;
+                            }
+                        }
                     }
                 }
                 else
@@ -234,7 +266,7 @@ public class Movement : MonoBehaviour
         else if (!stick)
         {
             a.SetBool("Moving", false);
-            rb.velocity = new Vector2(0, 0);
+            rb.velocity = Vector2.zero;
             spawnParticles = false;
         }
         else

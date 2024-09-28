@@ -205,7 +205,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 23541027d12824e4c9c45362bad1383b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -219,7 +219,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1111135534365861725}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 23541027d12824e4c9c45362bad1383b, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c46169fa1431048b7f27bfe3f45e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitbox: {fileID: 26255542}
   climbUp: {fileID: 500839040732625431}
   climbDown: {fileID: 8757252073464831238}
   rangex: 9
@@ -286,8 +287,8 @@ MonoBehaviour:
   bossFelled: {fileID: 0}
   blockTime: 1
   healPlayer: 2
-  health: 100
-  maxHealth: 100
+  health: 50
+  maxHealth: 50
   enemyNum: 1
   isBoss: 0
   bossName: 
@@ -461,7 +462,7 @@ Transform:
   m_GameObject: {fileID: 7461058357012039778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.05, z: 0}
-  m_LocalScale: {x: 1.2, y: 0.8, z: 1}
+  m_LocalScale: {x: 1.1, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1111135534365861713}
@@ -533,7 +534,7 @@ Transform:
   m_GameObject: {fileID: 9100011810494536571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1.2, y: 0.8, z: 1}
+  m_LocalScale: {x: 1.1, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1111135534365861713}

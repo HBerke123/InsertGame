@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ReptileEnemy : MonoBehaviour
 {
+    public GameObject hitbox;
     public GroundDetection climbUp;
     public GroundDetection climbDown;
     public float rangex;
@@ -49,12 +50,13 @@ public class ReptileEnemy : MonoBehaviour
         float distancex = this.transform.position.x - player.transform.position.x;
         float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(this.transform.position.y - player.transform.position.y, 2));
 
-        if ((distance < rangex) || this.GetComponent<Notice>().isNoticed)
+        if (((distance < rangex) || this.GetComponent<Notice>().isNoticed) && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             this.GetComponent<Notice>().noticeTime = Mathf.Max(this.GetComponent<Notice>().noticeTime, noticeTime);
 
             if (distance < attackRange)
             {
+                hitbox.SetActive(false);
                 player.GetComponent<Movement>().stick = true;
                 player.GetComponent<Jump>().stick = true;
                 this.GetComponent<ForcesOnObject>().resistance = 1;
@@ -68,6 +70,7 @@ public class ReptileEnemy : MonoBehaviour
             }
             else
             {
+                hitbox.SetActive(true);
                 player.GetComponent<Movement>().stick = false;
                 player.GetComponent<Jump>().stick = false;
                 this.GetComponent<ForcesOnObject>().resistance = defaultResistance;
@@ -75,20 +78,32 @@ public class ReptileEnemy : MonoBehaviour
                 attackFrequency = maxAttackFrequency;
                 sth = 0;
                 th = 0;
+
+                if (this.GetComponent<ForcesOnObject>().Force != Vector2.zero)
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = this.GetComponent<ForcesOnObject>().Force;
+                }
+                else
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * -distancex / Mathf.Abs(distancex), this.GetComponent<Rigidbody2D>().velocity.y);
+
+                    if (climbDown.detected && !climbUp.detected)
+                    {
+                        this.transform.position += Vector3.up / 2;
+                    }
+                }
             }
 
+        }
+        else
+        {
             if (this.GetComponent<ForcesOnObject>().Force != Vector2.zero)
             {
                 this.GetComponent<Rigidbody2D>().velocity = this.GetComponent<ForcesOnObject>().Force;
             }
             else
             {
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * -distancex / Mathf.Abs(distancex), this.GetComponent<Rigidbody2D>().velocity.y);
-                
-                if (climbDown.detected && !climbUp.detected)
-                {
-                    this.transform.position += Vector3.up / 2;
-                }
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
         }
     }
