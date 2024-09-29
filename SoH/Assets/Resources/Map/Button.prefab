@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3863114690196072206}
   - component: {fileID: 3863114690196072207}
   - component: {fileID: 3863114690196072204}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Button
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 6444031293205885913}
   - component: {fileID: 6444031293205885912}
   - component: {fileID: 6444031293205885919}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,3 +205,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d780d50ed2dfb584fb1841b30d4e3fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platform: {fileID: 0}
+  buttonNum: 0

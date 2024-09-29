@@ -6,17 +6,13 @@ using UnityEngine;
 public class SmellBeam : MonoBehaviour
 {
     public GameObject badSmoke;
-    public float range;
     public float cooldown;
     public bool reloadable;
-    float distance;
     float th;
-    GameObject player;
     SpriteRenderer sr;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         sr = this.GetComponent<SpriteRenderer>();
     }
 
@@ -44,7 +40,7 @@ public class SmellBeam : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if ((distance <= range) && (th == 0) && collision.CompareTag("Player"))
+        if ((th == 0) && collision.CompareTag("Player"))
         {
             Smell();
         }

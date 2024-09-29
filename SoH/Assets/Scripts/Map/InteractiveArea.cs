@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractiveArea : MonoBehaviour
 {
+    public Vector3 location;
     public int areaNum;
     GameObject player;
 
@@ -16,7 +17,8 @@ public class InteractiveArea : MonoBehaviour
     {
         if (areaNum == 0)
         {
-            player.transform.position = new Vector3(-12.5f, 15, 0);
+            player.transform.position = location;
+            Camera.main.transform.position = location;
         }
     }
 }

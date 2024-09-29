@@ -3,7 +3,7 @@ using UnityEngine;
 public class HealthDrainage : MonoBehaviour
 {
     public TestingTeleportation testingTeleportation;
-    public Bar healthBar;
+    Bar healthBar;
     public float health;
     public float maxHealth;
     public float invisibleTime;
@@ -29,22 +29,25 @@ public class HealthDrainage : MonoBehaviour
 
     public void TakeDamage(float amount, int num = 0)
     {
-        if (num == 0)
+        if (!isInvisible)
         {
-            this.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(this.GetComponent<BlocksOnObject>().blockTime, invisibleTime / 2);
-        }
+            if (num == 0)
+            {
+                this.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(this.GetComponent<BlocksOnObject>().blockTime, invisibleTime / 2);
+            }
 
-        currentInvisible = invisibleTime;
-        isInvisible = true;
-        health -= amount;
-        th = Time.time;
+            currentInvisible = invisibleTime;
+            isInvisible = true;
+            health -= amount;
+            th = Time.time;
 
-        if (health <= 0)
-        {
-            Death();
+            if (health <= 0)
+            {
+                Death();
+            }
+
+            UpdateHealthBar();
         }
-        
-        UpdateHealthBar();
     }
 
     public void Heal(float amount)

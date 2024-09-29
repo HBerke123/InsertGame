@@ -24,6 +24,9 @@ TagManager:
   - CEBar
   - HPBar
   - Domain
+  - DamagedBar
+  - GoodBar
+  - BadBar
   layers:
   - Default
   - TransparentFX

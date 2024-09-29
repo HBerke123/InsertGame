@@ -11,7 +11,7 @@ public class Cutter : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<CheckpointRecorder>().LoadCheckpoint();
-            collision.GetComponent<HealthDrainage>().TakeDamage(damage);
+            collision.GetComponent<HealthDrainage>().TakeDamage(damage, 1);
         }
     }
 }

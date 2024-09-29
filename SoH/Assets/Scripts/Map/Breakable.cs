@@ -16,9 +16,7 @@ public class Breakable : MonoBehaviour
 
     private void Update()
     {
-        float distancex = this.transform.position.x - player.transform.position.x;
-        float distancey = this.transform.position.y - player.transform.position.y + player.transform.lossyScale.y / 2;
-        float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
+        float distance = this.GetComponent<BoxCollider2D>().Distance(player.GetComponent<BoxCollider2D>()).distance;
 
         if (player.GetComponent<Dash>().dashing && (distance < 4))
         {

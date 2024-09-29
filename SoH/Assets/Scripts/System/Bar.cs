@@ -15,7 +15,18 @@ public class Bar : MonoBehaviour
 
     private void Update()
     {
-        float percentage = curValue / maxValue;
+        
+        float percentage;
+
+        if (maxValue == 0)
+        {
+            percentage = 0;
+        }
+        else
+        {
+            percentage = curValue / maxValue;
+        }
+
         if (percentage < 0)
         {
             percentage = 0;
