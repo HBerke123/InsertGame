@@ -18,7 +18,7 @@ public class InteractiveArea : MonoBehaviour
         if (areaNum == 0)
         {
             player.transform.position = location;
-            Camera.main.transform.position = location;
+            Camera.main.transform.position = location + Vector3.back * 10;
         }
     }
 }

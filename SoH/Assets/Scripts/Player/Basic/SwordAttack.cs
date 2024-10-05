@@ -172,7 +172,7 @@ public class SwordAttack : MonoBehaviour
                     attacking = true;
                     ready = false;
 
-                    if ((totalTime < skillholdtime) || prepared)
+                    if ((totalTime < skillholdtime) || !this.GetComponentInParent<ObtainSkills>().obtainedSwordSkill || prepared)
                     {
                         prepared = false;
                         as1.PlayOneShot(swordSounds[comboNum]);

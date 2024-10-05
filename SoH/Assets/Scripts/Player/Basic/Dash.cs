@@ -47,7 +47,7 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-        if (dashable && (Input.GetKey(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<Potion>().drinking && !dashed && !this.GetComponent<Crouching>().isCrouching)
+        if (dashable && (Input.GetKey(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force.y == 0) && !this.GetComponent<Potion>().drinking && !dashed && !this.GetComponent<Crouching>().isCrouching && !this.GetComponent<BlocksOnObject>().isBlocked)
         {
             this.GetComponent<MakeSound>().totalSoundTime = Mathf.Max(soundTime, this.GetComponent<MakeSound>().totalSoundTime);
             this.GetComponent<CEDrainage>().LoseCE(cost);

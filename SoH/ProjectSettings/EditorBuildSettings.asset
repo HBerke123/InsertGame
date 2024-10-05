@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: f9f6ca29521e23e459096fb9ed3116ae
-  - enabled: 0
-    path: Assets/Scenes/MainScene.unity
-    guid: 64605c5f918cbf1488c9b9177a2b6c57
+  - enabled: 1
+    path: Assets/Scenes/TheOutphoule.unity
+    guid: f72596a9c5667c04b8802d11dd808192
+  - enabled: 1
+    path: Assets/Scenes/Lysandra.unity
+    guid: 04c39021235b4024cba35acf27b8ce77
+  - enabled: 1
+    path: Assets/Scenes/TheAncientTomb.unity
+    guid: 4c185c12af14d34459c57b6c5ef9fecb
   m_configObjects: {}

@@ -27,35 +27,44 @@ public class SpecialEvent : MonoBehaviour
 
     private void Update()
     {
-        if (eventNum == 0)
+        switch (eventNum)
         {
-            if (eventStarted)
-            {
-                if (player.GetComponentInChildren<SwordAttack>().attacking)
+            case 0:
+                if (eventStarted)
                 {
-                    player.GetComponent<Movement>().enabled = true;
-                    player.GetComponent<Jump>().enabled = true;
-                    Destroy(this);
+                    if (player.GetComponentInChildren<SwordAttack>().attacking)
+                    {
+                        player.GetComponent<Movement>().enabled = true;
+                        player.GetComponent<Jump>().enabled = true;
+                        Destroy(this);
+                    }
                 }
-            }
-        }
-        else if (eventNum == 1)
-        {
-            if (eventStarted)
-            {
-                if (enemy == null) 
+                break;
+            case 1:
+                if (eventStarted)
+                {
+                    if (enemy == null)
+                    {
+                        Destroy(platform);
+                        Destroy(this);
+                    }
+                }
+                break;
+            case 2:
+                if (eventStarted)
+                {
+                    if (th == 0)
+                    {
+                        th = Time.time;
+                    }
+                }
+                break;
+            case 3:
+                if (eventStarted)
                 {
                     Destroy(platform);
-                    Destroy(this);
                 }
-            }
-        }
-        else if (eventNum == 2)
-        {
-            if (eventStarted)
-            {
-                th = Time.time;
-            }
+                break;
         }
     }
 }

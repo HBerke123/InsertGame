@@ -62,7 +62,7 @@ public class Jump : MonoBehaviour
         {
             a.SetBool("Grounded", jumbBox.detected);
 
-            if ((Input.GetKey(KeyCode.Space) || gamepadControls.jumping) && jumbBox.detected && !stick && (foo.Force == Vector2.zero) && !c.isCrouching && !jumping && !jumped)
+            if ((Input.GetKey(KeyCode.Space) || gamepadControls.jumping) && jumbBox.detected && !stick && (foo.Force.y == 0) && !c.isCrouching && !jumping && !jumped)
             {
                 jumped = true;
                 jumping = true;

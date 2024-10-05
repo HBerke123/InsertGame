@@ -3,6 +3,7 @@ using UnityEngine;
 public class HealthDrainageOnEnemy : MonoBehaviour
 {
     public AudioClip bossFelled;
+    public GameObject platform;
     public float blockTime;
     public float healPlayer;
     public float health;
@@ -31,31 +32,30 @@ public class HealthDrainageOnEnemy : MonoBehaviour
     {
         health -= amount;
         health = Mathf.Round(health);
-        this.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(this.GetComponent<BlocksOnObject>().blockTime, blockTime);
+        this.GetComponent<BlocksOnObject>().AddBlock(blockTime);
 
         if (health <= 0)
         {
-            if (enemyNum == 1)
+            switch (enemyNum)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>().stick = false;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Jump>().stick = false;
-            }
-            else if (enemyNum == 5)
-            {
-                this.GetComponent<GoodSmellingFlower>().Smell();
-            }
-            else if (enemyNum == 6)
-            {
-                this.GetComponent<BadSmellingFlower>().Smell();
-            }
-            else if (enemyNum == 7)
-            {
-                as1.PlayOneShot(bossFelled);
-                GameObject.FindGameObjectWithTag("Player").GetComponent<ObtainSkills>().obtainedSound = true;
-            }
-            else if (enemyNum == 8)
-            {
-                as1.PlayOneShot(bossFelled);
+                case 1:
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>().stick = false;
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Jump>().stick = false;
+                    break;
+                case 5:
+                    this.GetComponent<GoodSmellingFlower>().Smell();
+                    break;
+                case 6:
+                    this.GetComponent<BadSmellingFlower>().Smell();
+                    break;
+                case 7:
+                    platform.GetComponent<SpecialEvent>().eventStarted = true;
+                    as1.PlayOneShot(bossFelled);
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<ObtainSkills>().obtainedSound = true;
+                    break;
+                case 8:
+                    as1.PlayOneShot(bossFelled);
+                    break;
             }
 
             GameObject.FindGameObjectWithTag("Player").GetComponent<HealthDrainage>().Heal(healPlayer);

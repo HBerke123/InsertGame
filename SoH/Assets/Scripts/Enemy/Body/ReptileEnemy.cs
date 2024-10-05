@@ -60,6 +60,7 @@ public class ReptileEnemy : MonoBehaviour
                 player.GetComponent<Movement>().stick = true;
                 player.GetComponent<Jump>().stick = true;
                 this.GetComponent<ForcesOnObject>().resistance = 1;
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 speed = 0;
 
                 if (th == 0)

@@ -9,7 +9,7 @@ public class BadEffectToObjects : MonoBehaviour
     {
         if (collision.CompareTag("Player") && (!weakToDash || !collision.GetComponent<Dash>().dashing))
         {
-            collision.GetComponent<PoisonEffectsOnPlayer>().badEffectTime = duration;
+            collision.GetComponent<PoisonEffectsOnPlayer>().AddBadTime(duration);
         }
     }
 }

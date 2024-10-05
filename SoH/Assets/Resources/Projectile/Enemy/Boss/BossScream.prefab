@@ -132,12 +132,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3729cad10a20e41907a1e1f5c1cedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockTime: 1
-  reloadTime: 2
-  damageAmount: 10
+  blockTime: 0.5
+  reloadTime: 1
+  damageAmount: 5
+  destroyOnDamage: 0
   destroyOnTouch: 0
   isReloadable: 1
   weakToDash: 0
+  canNotDamage: 0
 --- !u!58 &1083937267750939353
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class GoodEffectToObjects : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PoisonEffectsOnPlayer>().goodEffectTime = duration;
+            collision.GetComponent<PoisonEffectsOnPlayer>().AddGoodTime(duration);
         }
         else if (collision.CompareTag("Enemy"))
         {

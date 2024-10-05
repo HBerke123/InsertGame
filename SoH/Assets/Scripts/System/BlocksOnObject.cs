@@ -10,6 +10,12 @@ public class BlocksOnObject : MonoBehaviour
     public GroundDetection groundDetection;
     float th;
 
+    public void AddBlock(float amount)
+    {
+        blockTime = Mathf.Max(blockTime, amount);
+        th = 0;
+    }
+
     private void FixedUpdate()
     {
         if ((th == 0) && (blockTime > 0))
@@ -37,6 +43,7 @@ public class BlocksOnObject : MonoBehaviour
             else
             {
                 blockTime = Mathf.Max(0.5f, blockTime);
+                th = 0;
             }
         }
     }

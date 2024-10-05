@@ -13,5 +13,9 @@ public class Cutter : MonoBehaviour
             collision.GetComponent<CheckpointRecorder>().LoadCheckpoint();
             collision.GetComponent<HealthDrainage>().TakeDamage(damage, 1);
         }
+        else if (collision.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

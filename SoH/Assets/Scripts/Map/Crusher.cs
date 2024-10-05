@@ -24,13 +24,6 @@ public class Crusher : MonoBehaviour
         {
             attacking = true;
             this.GetComponent<Rigidbody2D>().velocity = Vector2.down * attackSpeed;
-
-            if (!hitted && hitbox.IsTouching(GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>())) 
-            {
-                hitted = true;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<CheckpointRecorder>().LoadCheckpoint();
-                GameObject.FindGameObjectWithTag("Player").GetComponent<HealthDrainage>().TakeDamage(damage);
-            }
         }
         else
         {
@@ -47,6 +40,13 @@ public class Crusher : MonoBehaviour
                 attacked = false;
                 this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
+        }
+
+        if (!hitted && hitbox.IsTouching(GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>()))
+        {
+            hitted = true;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<CheckpointRecorder>().LoadCheckpoint();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<HealthDrainage>().TakeDamage(damage);
         }
     }
 }

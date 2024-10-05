@@ -56,7 +56,7 @@ public class SoundBoss : MonoBehaviour
         }
         else if (!rushing && !rushingBack && (mth != 0) && (scth == 0))
         {
-            if ((this.transform.position.x > rightPoint) || (this.transform.position.x < leftPoint))
+            if (((this.transform.position.x > rightPoint) && (this.GetComponent<Rigidbody2D>().velocity.x > 0)) || ((this.transform.position.x < leftPoint) && (this.GetComponent<Rigidbody2D>().velocity.x < 0)))
             {
                 this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
@@ -74,7 +74,7 @@ public class SoundBoss : MonoBehaviour
 
         if (rushing)
         {
-            if (((this.transform.position.x < maxLeft + this.transform.localScale.x * 2) || (this.transform.position.x > maxRight - this.transform.localScale.x * 2)) && (rushHit != null))
+            if (((this.transform.position.x < maxLeft + this.transform.localScale.x * 4) || (this.transform.position.x > maxRight - this.transform.localScale.x * 4)) && (rushHit != null))
             {
                 rushing = false;
                 GoBack();
@@ -96,7 +96,7 @@ public class SoundBoss : MonoBehaviour
 
         if (rushingBack)
         {
-            if ((this.transform.position.x > (Mathf.Abs(maxLeft) + Mathf.Abs(maxRight)) / 2 + maxLeft - this.transform.localScale.x / 2) && (this.transform.position.x < (Mathf.Abs(maxLeft) + Mathf.Abs(maxRight)) / 2 + maxLeft + this.transform.localScale.x / 2))
+            if ((this.transform.position.x > leftPoint) && (this.transform.position.x < rightPoint))
             {
                 bossHit.SetActive(true);
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, this.GetComponent<Rigidbody2D>().velocity.y);
@@ -167,13 +167,24 @@ public class SoundBoss : MonoBehaviour
     {
         moveCounter++;
 
-        if (Random.Range(0, 2) == 0)
+        if (this.transform.position.x < leftPoint)
+        {
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, this.GetComponent<Rigidbody2D>().velocity.y);
+        }
+        else if (this.transform.position.y > rightPoint)
         {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, this.GetComponent<Rigidbody2D>().velocity.y);
         }
         else
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, this.GetComponent<Rigidbody2D>().velocity.y);
+            if (Random.Range(0, 2) == 0)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, this.GetComponent<Rigidbody2D>().velocity.y);
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, this.GetComponent<Rigidbody2D>().velocity.y);
+            }
         }
     }
 
