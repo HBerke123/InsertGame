@@ -27,6 +27,7 @@ TagManager:
   - DamagedBar
   - GoodBar
   - BadBar
+  - Detector
   layers:
   - Default
   - TransparentFX
@@ -43,7 +44,7 @@ TagManager:
   - Bomb
   - Haoma
   - BossHitBox
-  - 
+  - Platform
   - 
   - 
   - 

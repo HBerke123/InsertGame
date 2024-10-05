@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckpointRecorder : MonoBehaviour
 {
-    Vector3 saveLocation;
+    public Vector3 saveLocation;
 
     public void SaveCheckpoint(Vector3 location)
     {

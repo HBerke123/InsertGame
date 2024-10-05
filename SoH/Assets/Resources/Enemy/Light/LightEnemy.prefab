@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Force: {x: 0, y: 0}
-  resistance: 0.08
+  resistance: 0.125
 --- !u!114 &-3453385124682695363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossFelled: {fileID: 0}
+  platform: {fileID: 0}
   blockTime: 1
   healPlayer: 2
   health: 100

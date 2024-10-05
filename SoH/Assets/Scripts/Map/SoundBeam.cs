@@ -9,13 +9,11 @@ public class SoundBeam : MonoBehaviour
     public float cooldown;
     public float soundDamage;
     public float waveSpeed;
-    GameObject player;
     public GameObject soundWave;
 
     private void Start()
     {
         directionObject = this.transform.GetChild(0).gameObject;
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void FixedUpdate()
@@ -41,6 +39,14 @@ public class SoundBeam : MonoBehaviour
         SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(distancex / distance, distancey / distance) * waveSpeed;
         SBox.transform.rotation = Quaternion.Euler(0, 0, Mathf.Acos(distancex / distance) * Mathf.Rad2Deg);
         SBox.GetComponent<DamagePlayer>().damageAmount = soundDamage;
-        SBox.GetComponent<ForcePlayer>().direction = (int)(-(this.transform.position.x - player.transform.position.x) / Mathf.Abs(this.transform.position.x - player.transform.position.x));
+
+        if (Mathf.RoundToInt(distancex) == 0)
+        {
+            SBox.GetComponent<ForcePlayer>().direction = Mathf.RoundToInt(-distancey / Mathf.Abs(distancey)) + 1;
+        }
+        else
+        {
+            SBox.GetComponent<ForcePlayer>().direction = Mathf.RoundToInt(-distancex / Mathf.Abs(distancex)) + 2;
+        }
     }
 }

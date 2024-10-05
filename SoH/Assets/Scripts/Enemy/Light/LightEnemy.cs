@@ -73,22 +73,20 @@ public class LightEnemy : MonoBehaviour
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Abs(distancex) / distancex * runSpeed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
             }
 
+            teleportCollider.transform.localPosition = Vector3.left * 2 * Mathf.Pow(distancex, 2) / distancex;
+
             if ((Mathf.Abs(distancex) / distancex == 1) && rightSide.detected)
             {
-                teleportCollider.transform.localPosition = Vector3.left * 2 * Mathf.Abs(distancex);
-
                 if (!teleportCollider.detected)
                 {
-                    this.transform.position += Vector3.left * 2 * Mathf.Abs(distancex);
+                    this.transform.position = teleportCollider.transform.position;
                 }
             }
-            else if ((Mathf.Abs(distancex) / distancex != 1) && leftSide.detected)
+            else if ((Mathf.Abs(distancex) / distancex == -1) && leftSide.detected)
             {
-                teleportCollider.transform.localPosition = Vector3.right * 2 * Mathf.Abs(distancex);
-
                 if (!teleportCollider.detected)
                 {
-                    this.transform.position += Vector3.right * 2 * Mathf.Abs(distancex);
+                    this.transform.position = teleportCollider.transform.position;
                 }
             }
 

@@ -1642,7 +1642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Force: {x: 0, y: 0}
-  resistance: 0.3125
+  resistance: 0.4
 --- !u!114 &1389891592076107565
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,9 +14,17 @@ public class ForcePlayer : MonoBehaviour
             {
                 collision.GetComponent<ForcesOnObject>().Force = new Vector2(collision.GetComponent<ForcesOnObject>().Force.x, forceAmount);
             }
+            else if (direction == 1)
+            {
+                collision.GetComponent<ForcesOnObject>().Force = new Vector2(forceAmount, collision.GetComponent<ForcesOnObject>().Force.x);
+            }
             else if (direction == 2)
             {
                 collision.GetComponent<ForcesOnObject>().Force = new Vector2(collision.GetComponent<ForcesOnObject>().Force.x, -forceAmount);
+            }
+            else if (direction == 3)
+            {
+                collision.GetComponent<ForcesOnObject>().Force = new Vector2(-forceAmount, collision.GetComponent<ForcesOnObject>().Force.x);
             }
             else if (direction == 4)
             {
