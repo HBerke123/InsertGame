@@ -73,7 +73,7 @@ public class LightEnemy : MonoBehaviour
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Abs(distancex) / distancex * runSpeed + this.GetComponent<ForcesOnObject>().Force.x, this.GetComponent<Rigidbody2D>().velocity.y);
             }
 
-            teleportCollider.transform.localPosition = Vector3.left * 2 * Mathf.Pow(distancex, 2) / distancex;
+            teleportCollider.transform.localPosition = 2 * Mathf.Pow(distancex, 2) * Vector3.left / distancex;
 
             if ((Mathf.Abs(distancex) / distancex == 1) && rightSide.detected)
             {
@@ -130,6 +130,7 @@ public class LightEnemy : MonoBehaviour
     {
         GameObject SBox = Instantiate(lightWave, this.transform.position + (lightWave.transform.localScale.x + this.transform.localScale.x) / 2 * direction * Vector3.right + Vector3.up * lightUp, Quaternion.identity);
         SBox.GetComponent<DamagePlayer>().damageAmount = lightDamage;
+        SBox.GetComponent<SkillEnd>().parent = this.gameObject;
         beam = SBox;
     }
 }

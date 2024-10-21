@@ -4,10 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Hookable
-  - Changeable
   - SprintParticle
-  - Orbitable
   - Enemy
   - Weapon
   - Sound
@@ -35,10 +32,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - Hookables
-  - Changeable
+  - 
+  - 
   - SprintParticle
-  - Orbitables
+  - 
   - Enemy
   - Ground
   - Bomb

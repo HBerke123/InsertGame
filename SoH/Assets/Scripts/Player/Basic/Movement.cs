@@ -1,10 +1,12 @@
 using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Movement : MonoBehaviour
 {
     readonly List<float> reloadTimes = new();
+    public List<AudioClip> steps = new();
     public ParticleSystem groundParticles;
     public BoxCollider2D Attackhbox;
     public GroundDetection climbUpR;
@@ -25,6 +27,8 @@ public class Movement : MonoBehaviour
     float baseSpeed;
     float th;
     int moveDirection;
+    int counter;
+    public GameObject riding;
     GamepadControls gamepadControls;
     Rigidbody2D rb;
     CEDrainage ced;
@@ -73,11 +77,22 @@ public class Movement : MonoBehaviour
             th = Time.time - stepFrequency;
         }
 
-        if ((Time.time - th >= stepFrequency) && (spawnParticles))
+        if ((Time.time - th >= stepFrequency) && spawnParticles)
         {
             ced.LoseCE(cost);
             cep.delayAmount = Mathf.Max(cep.delayAmount, cEDelay);
             ParticleSystem particles = Instantiate(groundParticles, this.transform.position, Quaternion.identity);
+
+            if (counter == 1)
+            {
+                this.GetComponent<AudioSource>().PlayOneShot(steps[Random.Range(0, 50)]);
+                counter = 0;
+            }
+            else
+            {
+                counter++;
+            }
+            
 
             for (int i = 1; i < cost + 1; i++)
             {
@@ -128,6 +143,8 @@ public class Movement : MonoBehaviour
                 a.SetBool("Moving", false);
                 spawnParticles = false;
 
+                
+
                 if (foo.Force.x != 0)
                 {
                     if (foo.Force.y != 0)
@@ -148,6 +165,11 @@ public class Movement : MonoBehaviour
                     else
                     {
                         rb.velocity = new Vector2(0, rb.velocity.y);
+
+                        if (gd.grounds.Contains(riding))
+                        {
+                            rb.velocity = riding.GetComponent<Rigidbody2D>().velocity;
+                        }
                     }
                 }
             }

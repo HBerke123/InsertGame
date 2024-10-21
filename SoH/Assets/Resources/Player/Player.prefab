@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detected: 0
+  grounds: []
 --- !u!1 &1389891590101356886
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +619,7 @@ Transform:
   m_GameObject: {fileID: 1389891591038707327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.99, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1389891592076107589}
@@ -637,6 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detected: 0
+  grounds: []
 --- !u!61 &1389891591038707315
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -979,7 +981,6 @@ GameObject:
   - component: {fileID: 1389891592042244008}
   - component: {fileID: 1389891592042244010}
   - component: {fileID: 1389891592042244011}
-  - component: {fileID: 1389891592042244012}
   m_Layer: 0
   m_Name: AttackHitBox
   m_TagString: Weapon
@@ -1182,18 +1183,6 @@ MonoBehaviour:
   delayTime: 3
   cECost: 60
   started: 0
---- !u!114 &1389891592042244012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389891592042244018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e628f752bee4f5144a75402dc19d3e98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1389891592076107585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,6 +1580,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00bb59b2b378d6949a82caf4e701b502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  steps:
+  - {fileID: 8300000, guid: 2181ca3521cdbf542a693dadaa428b78, type: 3}
+  - {fileID: 8300000, guid: 0a82f99a342c6c74da578e3c3766e0e2, type: 3}
+  - {fileID: 8300000, guid: 83f04c983be95bb4abf02c7d75d51b5b, type: 3}
+  - {fileID: 8300000, guid: 34ff9922d3d13b8489cc28cdd49bf497, type: 3}
+  - {fileID: 8300000, guid: aa625df92bda7294b909c241b6156aa3, type: 3}
+  - {fileID: 8300000, guid: f624430df83fdef41a7605993059b5ef, type: 3}
+  - {fileID: 8300000, guid: dfca4004c4fc73f418ee6eab23c5ce5d, type: 3}
+  - {fileID: 8300000, guid: a6d2de988a32c4042b08155f22d573d0, type: 3}
+  - {fileID: 8300000, guid: 3e61beb2b6c96ed47bee86cf99aff8ad, type: 3}
+  - {fileID: 8300000, guid: 59d68880f0487a548b6032afc3189ad8, type: 3}
+  - {fileID: 8300000, guid: d38ec29bbb3fc5a4ead33fe5ed81eb4e, type: 3}
+  - {fileID: 8300000, guid: dab0e90a60f28b24fb51bb24fd3f336d, type: 3}
+  - {fileID: 8300000, guid: e10f2a98eeca18748b4f1b91005bae44, type: 3}
+  - {fileID: 8300000, guid: 95aade77f88162c4497e907910d0e46d, type: 3}
+  - {fileID: 8300000, guid: a43f0408327464346b090a5195ddc5e6, type: 3}
+  - {fileID: 8300000, guid: f4f73e34eb7020649a169b039e5b486c, type: 3}
+  - {fileID: 8300000, guid: 52388a97d216fe5479d0eaa00cfcad14, type: 3}
+  - {fileID: 8300000, guid: 614c4e89787553a458ca50c7758b79bf, type: 3}
+  - {fileID: 8300000, guid: e26129ac1219ee64b97cc2f58710f33e, type: 3}
+  - {fileID: 8300000, guid: f736fe0ba1ef95842852da30d55652ba, type: 3}
+  - {fileID: 8300000, guid: f8873cc202df6e2478fa6a46e51295d6, type: 3}
+  - {fileID: 8300000, guid: 5f7d55774c8a45d489d343a824f3b405, type: 3}
+  - {fileID: 8300000, guid: 6298a516940c2d54c88598084c93c523, type: 3}
+  - {fileID: 8300000, guid: 7a0ad99e51b601f4699ad85d423399ef, type: 3}
+  - {fileID: 8300000, guid: de219aecf2a4ee0468955dfc5d3024d3, type: 3}
+  - {fileID: 8300000, guid: a35416e3bdb3c4343a43c5282313ad38, type: 3}
+  - {fileID: 8300000, guid: 165c1153a94eb9649b8a6619e56bd111, type: 3}
+  - {fileID: 8300000, guid: 3d18fd136379b9449b37c9a70d390162, type: 3}
+  - {fileID: 8300000, guid: 53eadb18f004cd24687275e48217c3db, type: 3}
+  - {fileID: 8300000, guid: afb9c66961bc3454f9eb68ddc576f1e5, type: 3}
+  - {fileID: 8300000, guid: 474bcfac8bba86642b29b6e3387e3270, type: 3}
+  - {fileID: 8300000, guid: 0c6ddbb5231fffc45a2eb7b6dac66b5e, type: 3}
+  - {fileID: 8300000, guid: 80d5ba84246a11546ade8a4a6735d628, type: 3}
+  - {fileID: 8300000, guid: fc57558e95bbadf46864f1d97c165d10, type: 3}
+  - {fileID: 8300000, guid: 2b5229cd226e85c47abec52c52820208, type: 3}
+  - {fileID: 8300000, guid: 7fa397b5131626240a5a4dfd6d0454c2, type: 3}
+  - {fileID: 8300000, guid: 407b1d7595bcdd14594c9aa76bbcbfd6, type: 3}
+  - {fileID: 8300000, guid: 76c0f96336e4a9c4087bf6414b8a5c45, type: 3}
+  - {fileID: 8300000, guid: 0cbfb7c623daa7a43b9d9fbda1bc3456, type: 3}
+  - {fileID: 8300000, guid: 2c87e844c2d8c0b4899e59fab13faa8a, type: 3}
+  - {fileID: 8300000, guid: 0c1155fe7d2dcfb4e8c74d295df9e79c, type: 3}
+  - {fileID: 8300000, guid: 26d767755abcbfe41b15c441fe156570, type: 3}
+  - {fileID: 8300000, guid: e51d97ecdca11944ea85dcc2054c35b1, type: 3}
+  - {fileID: 8300000, guid: 500cadad7ad53f64a930729c1ccff62c, type: 3}
+  - {fileID: 8300000, guid: 30a5905174c54ff40a9758325d716d13, type: 3}
+  - {fileID: 8300000, guid: 669c78c393d2625448ad42c33bb75bda, type: 3}
+  - {fileID: 8300000, guid: 0f87ff24e5a16f744bc1fafd96e930a1, type: 3}
+  - {fileID: 8300000, guid: c7a2152c856162440839b5f60bf6ad0c, type: 3}
+  - {fileID: 8300000, guid: d2c3c077709bf7c48af14d28d1955830, type: 3}
+  - {fileID: 8300000, guid: 45cc037ff26d3c1469e652e550add6e3, type: 3}
   groundParticles: {fileID: 8453812108222428347, guid: 1c19c7f3a0465674db189cc5b9c46bbd, type: 3}
   Attackhbox: {fileID: 1389891592042244021}
   climbUpR: {fileID: 7969130284973379365}
@@ -1608,6 +1648,7 @@ MonoBehaviour:
   cost: 1
   cEDelay: 1
   spawnParticles: 0
+  riding: {fileID: 0}
 --- !u!114 &1389891592076107561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1624,7 +1665,7 @@ MonoBehaviour:
   screaming: 0
   stick: 0
   soundTime: 1.5
-  jumpforce: 400
+  jumpforce: 100
   jumptime: 0.2
   cEDelay: 3
   cost: 5
@@ -1950,6 +1991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detected: 0
+  grounds: []
 --- !u!1 &5689295552291102139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,6 +2064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detected: 0
+  grounds: []
 --- !u!1 &6929723455465456073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,3 +2137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detected: 0
+  grounds: []

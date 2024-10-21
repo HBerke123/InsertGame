@@ -18,7 +18,7 @@ public class SoundUse : MonoBehaviour
     float th;
     bool sounded;
     bool ready = true;
-    int direction;
+    int direction = 1;
     GamepadControls gamepadControls;
 
     private void Start()
@@ -53,16 +53,6 @@ public class SoundUse : MonoBehaviour
         {
             arrow.transform.localPosition = Vector3.left * 1.725f;
             direction = 3;
-        }
-        else if (Input.GetAxisRaw("Vertical") == 1)
-        {
-            arrow.transform.localPosition = Vector3.up * 3.9f;
-            direction = 0;
-        }
-        else if (Input.GetAxisRaw("Vertical") == -1)
-        {
-            arrow.transform.localPosition = Vector3.down * 1;
-            direction = 2;
         }
 
         if ((Input.GetKey(KeyCode.Q) || gamepadControls.soundInfluence) && !sounded && (th == 0) && ready && !this.GetComponent<GunShot>().started && !this.GetComponent<ScreamUse>().screaming && !this.GetComponent<SwordAttack>().ready && !this.GetComponentInParent<BlocksOnObject>().isBlocked && this.GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe && !this.GetComponentInParent<Potion>().drinking)

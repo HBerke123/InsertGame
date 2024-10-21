@@ -6,6 +6,14 @@ public class ForcesOnObject : MonoBehaviour
     public float resistance;
     float th;
 
+    private void Update()
+    {
+        if (CompareTag("Domain"))
+        {
+            GetComponent<Rigidbody2D>().velocity = Force;
+        }
+    }
+
     private void FixedUpdate()
     {
         if ((th != 0) && (Time.time - th > 0.1f / resistance))

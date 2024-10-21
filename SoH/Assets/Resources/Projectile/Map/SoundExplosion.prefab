@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb866bd8edd9e524598a09d9b918ae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceAmount: 5
+  forceAmount: 10
   direction: 4
   weakToDash: 0
 --- !u!58 &-3515440332588433132

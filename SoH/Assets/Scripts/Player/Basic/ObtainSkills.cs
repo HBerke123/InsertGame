@@ -13,13 +13,11 @@ public class ObtainSkills : MonoBehaviour
     {
         if (obtainedSound)
         {
-            this.GetComponentInChildren<SoundDomain>().enabled = true;
             this.GetComponentInChildren<SoundUse>().enabled = true;
             this.GetComponentInChildren<ScreamUse>().enabled = true;
         }
         else
         {
-            this.GetComponentInChildren<SoundDomain>().enabled = false;
             this.GetComponentInChildren<SoundUse>().enabled = false;
             this.GetComponentInChildren<ScreamUse>().enabled = false;
         }

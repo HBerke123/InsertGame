@@ -28,29 +28,10 @@ public class ForceEnemies : MonoBehaviour
         }
         else
         {
-            arrow.transform.LookAt(enemy.transform);
-            if (arrow.transform.localRotation.eulerAngles.y == 90)
-            {
-                if (arrow.transform.localRotation.eulerAngles.x > 180)
-                {
-                    enemy.GetComponent<ForcesOnObject>().Force = new Vector2(Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
-                }
-                else
-                {
-                    enemy.GetComponent<ForcesOnObject>().Force = new Vector2(Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, -Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
-                }
-            }
-            else
-            {
-                if (arrow.transform.localRotation.eulerAngles.x > 180)
-                {
-                    enemy.GetComponent<ForcesOnObject>().Force = new Vector2(-Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
-                }
-                else
-                {
-                    enemy.GetComponent<ForcesOnObject>().Force = new Vector2(-Mathf.Cos(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower, -Mathf.Sin(arrow.transform.localRotation.eulerAngles.x * Mathf.Deg2Rad) * forcePower);
-                }
-            }
+            float distancex = enemy.transform.position.x - transform.position.x;
+            float distancey = enemy.transform.rotation.y - transform.rotation.y;
+            float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
+            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(distancex / distance, distancey / distance) * forcePower;
         }
     }
 
@@ -59,6 +40,7 @@ public class ForceEnemies : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Force(collision.gameObject);
+
             if (destroyOnTouch)
             {
                 Destroy(this.gameObject);
@@ -79,6 +61,10 @@ public class ForceEnemies : MonoBehaviour
                 Destroy(collision.gameObject);
                 Destroy(this.gameObject);
             }
+        }
+        else if (collision.CompareTag("Domain"))
+        {
+            Force(collision.gameObject);
         }
         else if (collision.CompareTag("Ground"))
         {

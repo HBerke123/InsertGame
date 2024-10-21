@@ -21,4 +21,12 @@ public class PlayerDetection : MonoBehaviour
             detected = false;
         }
     }
+
+    private void Update()
+    {
+        if (detected)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>().riding = transform.parent.gameObject;
+        }
+    }
 }

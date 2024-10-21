@@ -32,30 +32,18 @@ public class SoundInfluence : MonoBehaviour
 
         if (isforce)
         {
-            SBox = Instantiate(BigWave, this.transform.position, new Quaternion(0, 0, 0, 0));
-
-            if ((direction == 0) || (direction == 2))
-            {
-                SBox.transform.localRotation = Quaternion.Euler(0, 0, 90);
-            }
-
+            SBox = Instantiate(BigWave, this.transform.position, Quaternion.identity);
             SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
-            if (direction == 0)
-            {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
-            }
-            else if (direction == 1)
+
+            if (direction == 1)
             {
                 SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
-            }
-            else if (direction == 2)
-            {
-                SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
             }
             else
             {
                 SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
             }
+
             SBox.GetComponent<ForceEnemies>().direction = direction;
             SBox.GetComponent<ForceEnemies>().forcePower = bigForcePower;
         }

@@ -82,17 +82,6 @@ public class Jump : MonoBehaviour
             {
                 c.Crouch();
             }
-            else if ((Input.GetKey(KeyCode.Space) || gamepadControls.jumping) && (Time.time - stime < jumptime) && !stick && !screaming)
-            {
-                if (rb.velocity.y > maxspeed)
-                {
-                    maxspeed = rb.velocity.y;
-                }
-                else
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, maxspeed * jumptime - (Time.time - stime));
-                }
-            }
             else if ((!Input.GetKey(KeyCode.Space) && !gamepadControls.jumping) || (Time.time - stime > jumptime))
             {
                 a.SetBool("Jumping", false);

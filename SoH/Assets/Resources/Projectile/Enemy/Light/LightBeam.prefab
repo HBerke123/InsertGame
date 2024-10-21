@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalTime: 3
+  parent: {fileID: 0}
+  isAttached: 1
 --- !u!114 &-8059878856620133967
 MonoBehaviour:
   m_ObjectHideFlags: 0
