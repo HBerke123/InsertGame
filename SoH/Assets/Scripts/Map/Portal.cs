@@ -15,147 +15,160 @@ public class Portal : MonoBehaviour
         {
             destination.GetComponent<Portal>().portalObjects.Add(collision.gameObject);
             collision.transform.position = destination.transform.position;
+            
+            switch (destination.GetComponent<Portal>().direction)
+            {
+                case 0:
+                    collision.transform.position = collision.transform.position + Vector3.up / 2;
+                    break;
+                case 1:
+                    collision.transform.position = collision.transform.position + Vector3.right / 2;
+                    break;
+                case 2:
+                    collision.transform.position = collision.transform.position + Vector3.down / 2;
+                    break;
+                case 3:
+                    collision.transform.position = collision.transform.position + Vector3.left / 2;
+                    break;
+            }
 
             if (collision.CompareTag("Sound"))
             {
-                if (direction == 0)
+                switch (direction) 
                 {
-                    if (destination.GetComponent<Portal>().direction == 0)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 1)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.y, 0);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 3)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, 0);
-                    }
-                }
-                else if (direction == 1)
-                {
-                    if (destination.GetComponent<Portal>().direction == 0)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 1)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.x, 0);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 2)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                }
-                else if (direction == 2)
-                {
-                    if (destination.GetComponent<Portal>().direction == 1)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, 0);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 2)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 3)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.y, 0);
-                    }
-                }
-                else
-                {
-                    if (destination.GetComponent<Portal>().direction == 0)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 2)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 3)
-                    {
-                        collision.GetComponent<Rigidbody2D>().velocity = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.x, 0);
-                    }
+                    case 0:
+                        if (direction == 0)
+                        {
+                            switch (destination.GetComponent<Portal>().direction)
+                            {
+                                case 0:
+                                    collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -collision.GetComponent<Rigidbody2D>().velocity.y);
+                                    break;
+                                case 1:
+                                    collision.GetComponent<Rigidbody2D>().velocity = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.y, 0);
+                                    break;
+                                case 3:
+                                    collision.GetComponent<Rigidbody2D>().velocity = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, 0);
+                                    break;
+                            }
+                        }
+                        break;
+                    case 1:
+                        switch (destination.GetComponent<Portal>().direction)
+                        {
+                            case 0:
+                                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                            case 1:
+                                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.x, 0);
+                                break;
+                            case 2:
+                                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (destination.GetComponent<Portal>().direction)
+                        {
+                            case 1:
+                                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, 0);
+                                break;
+                            case 2:
+                                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                            case 3:
+                                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.y, 0);
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (destination.GetComponent<Portal>().direction)
+                        {
+                            case 0:
+                                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                            case 2:
+                                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                            case 3:
+                                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.x, 0);
+                                break;
+                        }
+                        break;
                 }
             }
             else
             {
-                if (direction == 0)
+                switch (direction)
                 {
-                    if (destination.GetComponent<Portal>().direction == 0)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, -collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 1)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 2)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                }
-                else if (direction == 1)
-                {
-                    if (destination.GetComponent<Portal>().direction == 0)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 1)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 2)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                    else
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                }
-                else if (direction == 2)
-                {
-                    if (destination.GetComponent<Portal>().direction == 0)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, -collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 1)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, -collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 2)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
-                    }
-                }
-                else
-                {
-                    if (destination.GetComponent<Portal>().direction == 0)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 1)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else if (destination.GetComponent<Portal>().direction == 2)
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                    else
-                    {
-                        collision.GetComponent<ForcesOnObject>().Force = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
-                    }
+                    case 0:
+                        switch (destination.GetComponent<Portal>().direction)
+                        {
+                            case 0:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, -collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                            case 1:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                            case 2:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                            case 3:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (destination.GetComponent<Portal>().direction)
+                        {
+                            case 0:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                            case 1:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                            case 2:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                            case 3:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (destination.GetComponent<Portal>().direction)
+                        {
+                            case 0:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, -collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                            case 1:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.y, -collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                            case 2:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                            case 3:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.y, collision.GetComponent<Rigidbody2D>().velocity.x);
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (destination.GetComponent<Portal>().direction)
+                        {
+                            case 0:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                            case 1:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                            case 2:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                            case 3:
+                                collision.GetComponent<ForcesOnObject>().Force = new Vector3(-collision.GetComponent<Rigidbody2D>().velocity.x, collision.GetComponent<Rigidbody2D>().velocity.y);
+                                break;
+                        }
+                        break;
                 }
             }
         }

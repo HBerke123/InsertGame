@@ -66,6 +66,10 @@ public class ForceEnemies : MonoBehaviour
         {
             Force(collision.gameObject);
         }
+        else if (collision.CompareTag("TurningTrigger"))
+        {
+            collision.GetComponent<TurningTrigger>().Turn();
+        }
         else if (collision.CompareTag("Ground"))
         {
             if ((collision.GetComponent<SoundBreakable>() != null) && soundForce)

@@ -23,7 +23,6 @@ public class InfluencePlatform : MonoBehaviour
         {
             th = Time.time;
             GameObject SBox = Instantiate(sound, this.transform.position, Quaternion.identity);
-            SBox.GetComponent<ForcePlayer>().direction = direction;
             SBox.GetComponent<Rigidbody2D>().velocity = direction * soundSpeed * Vector2.right;
         }
     }

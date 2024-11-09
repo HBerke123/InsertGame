@@ -25,6 +25,7 @@ TagManager:
   - GoodBar
   - BadBar
   - Detector
+  - TurningTrigger
   layers:
   - Default
   - TransparentFX

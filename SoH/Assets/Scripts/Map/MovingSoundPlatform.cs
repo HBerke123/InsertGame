@@ -112,8 +112,6 @@ public class MovingSoundPlatform : MonoBehaviour
             }
         }
 
-
-
         if (!secondHit)
         {
             if ((distancex == 0) || lockX)
