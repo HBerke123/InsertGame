@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class CEDrainage : MonoBehaviour
 {
-    public float cE, maxCE;
-    public Bar cEBar;
+    public float cE;
+    public float maxCE;
+
+    [SerializeField] Bar cEBar;
 
     public void Start()
     {
@@ -26,10 +28,7 @@ public class CEDrainage : MonoBehaviour
 
     void Update()
     {
-        if ((cE <= 0) || (cE >= maxCE))
-        {
-            this.GetComponent<HealthDrainage>().Death();
-        }
+        if ((cE <= 0) || (cE >= maxCE)) GetComponent<HealthDrainage>().Death();
     }
 
     public void UpdateCEBar()

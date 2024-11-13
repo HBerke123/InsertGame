@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,14 +15,17 @@ public class Dash : MonoBehaviour
     public bool screaming;
     public bool dashing;
     public int cost;
+
+    float cth;
+    float deth;
     bool dashed;
     GamepadControls gamepadControls;
     Movement mv;
 
-    private void Start()
+    private void Awake()
     {
-        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
-        mv = this.GetComponent<Movement>();
+        gamepadControls = GetComponent<GamepadControls>();
+        mv = GetComponent<Movement>();
     }
 
     private void FixedUpdate()
@@ -36,57 +38,47 @@ public class Dash : MonoBehaviour
                 {
                     reloadTimes.RemoveAt(i);
                     
-                    if (this.GetComponent<CEDrainage>().cE < this.GetComponent<CEDrainage>().maxCE / 2)
-                    {
-                        this.GetComponent<CEDrainage>().GainCE(1);
-                    }
+                    if (GetComponent<CEDrainage>().cE < GetComponent<CEDrainage>().maxCE / 2) GetComponent<CEDrainage>().GainCE(1);
                 }
             }
+        }
+
+        if ((deth != 0) && (Time.time - deth > dashtime))
+        {
+            mv.dspeed = 0;
+            dashing = false;
+            deth = 0;
+        }
+
+        if ((cth != 0) && (Time.time - cth > dashcooldown))
+        {
+            dashable = true;
+            cth = 0;
         }
     }
 
     private void Update()
     {
-        if (dashable && (Input.GetKey(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force.y == 0) && !this.GetComponent<Potion>().drinking && !dashed && !this.GetComponent<Crouching>().isCrouching && !this.GetComponent<BlocksOnObject>().isBlocked)
+        if (dashable && (Input.GetKey(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (GetComponent<ForcesOnObject>().Force.y == 0) && !dashed && !GetComponent<Crouching>().isCrouching && !GetComponent<BlocksOnObject>().isBlocked)
         {
-            this.GetComponent<MakeSound>().totalSoundTime = Mathf.Max(soundTime, this.GetComponent<MakeSound>().totalSoundTime);
-            this.GetComponent<CEDrainage>().LoseCE(cost);
-            this.GetComponent<CEProduce>().delayAmount = Mathf.Max(this.GetComponent<CEProduce>().delayAmount, cEDelay);
+            GetComponent<MakeSound>().AddTime(soundTime);
+            GetComponent<CEDrainage>().LoseCE(cost);
+            GetComponent<CEProduce>().delayAmount = Mathf.Max(GetComponent<CEProduce>().delayAmount, cEDelay);
             dashable = false;
             dashing = true;
             dashed = true;
 
-            for (int i = 1; i < cost + 1; i++)
-            {
-                reloadTimes.Add(Time.time + reloadTime / cost * i);
-            }
+            for (int i = 1; i < cost + 1; i++) reloadTimes.Add(Time.time + reloadTime / cost * i);
 
             reloadTimes.Add(Time.time);
-            if (this.GetComponent<SpriteRenderer>().flipX) mv.dspeed = -dashspeed;
+
+            if (GetComponent<SpriteRenderer>().flipX) mv.dspeed = -dashspeed;
             else mv.dspeed = dashspeed;
-            StartCoroutine(Dashend());
-            StartCoroutine(Cooldown());
-        }
-        else if (dashable && (Input.GetKey(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (this.GetComponent<ForcesOnObject>().Force == Vector2.zero) && !this.GetComponent<Potion>().drinking && !dashed && this.GetComponentInChildren<CrouchingDetection>().isSafe && this.GetComponent<Crouching>().isCrouching)
-        {
-            this.GetComponent<Crouching>().Crouch();
-        }
-        else if (!Input.GetKey(KeyCode.LeftControl) && !gamepadControls.dashing)
-        {
-            dashed = false;
-        }
-    }
 
-    IEnumerator Dashend()
-    {
-        yield return new WaitForSecondsRealtime(dashtime);
-        mv.dspeed = 0;
-        dashing = false;
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSecondsRealtime(dashcooldown);
-        dashable = true;
+            deth = Time.time;
+            cth = Time.time;
+        }
+        else if (dashable && (Input.GetKey(KeyCode.LeftControl) || gamepadControls.dashing) && !stick && !screaming && (GetComponent<ForcesOnObject>().Force == Vector2.zero) && !GetComponent<Potion>().drinking && !dashed && GetComponentInChildren<CrouchingDetection>().isSafe && GetComponent<Crouching>().isCrouching) GetComponent<Crouching>().Crouch();
+        else if (!Input.GetKey(KeyCode.LeftControl) && !gamepadControls.dashing) dashed = false;
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class CEProduce : MonoBehaviour
@@ -6,6 +5,7 @@ public class CEProduce : MonoBehaviour
     public float delayAmount;
     public float cEproduceCd;
     public int cEproduceVa;
+
     float dth;
     float th;
 
@@ -13,14 +13,11 @@ public class CEProduce : MonoBehaviour
     {
         if ((Time.time - th > cEproduceCd) && (delayAmount == 0))
         {
-            this.GetComponent<CEDrainage>().GainCE(cEproduceVa);
+            GetComponent<CEDrainage>().GainCE(cEproduceVa);
             th = Time.time;
         }
 
-        if ((dth == 0) && (delayAmount > 0))
-        {
-            dth = Time.time;
-        }
+        if ((dth == 0) && (delayAmount > 0)) dth = Time.time;
         else if (Time.time - dth > delayAmount)
         {
             delayAmount = 0;

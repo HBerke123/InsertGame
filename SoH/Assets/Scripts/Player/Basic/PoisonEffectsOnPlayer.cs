@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PoisonEffectsOnPlayer : MonoBehaviour
 {
-    Bar goodBar;
-    Bar badBar;
     public float damageMultiplier;
     public float goodEffectTime;
     public float badEffectTime;
@@ -14,14 +12,17 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
     public float gainCeFrequency;
     public float gainCeAmount;
     public float updateFrequency;
+    public float th;
+
+    Bar goodBar;
+    Bar badBar;
     float gth;
     float bth;
     float dth;
     float hth;
     float gcth;
-    public float th;
 
-    private void Start()
+    private void Awake()
     {
         goodBar = GameObject.FindGameObjectWithTag("GoodBar").GetComponent<Bar>();
         badBar = GameObject.FindGameObjectWithTag("BadBar").GetComponent<Bar>();
@@ -32,24 +33,21 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
         if ((dth != 0) && (Time.time - dth > damageFrequency) && (badEffectTime > 0))
         {
             dth = Time.time;
-            this.GetComponent<HealthDrainage>().TakeDamage(damageAmount, 1);
+            GetComponent<HealthDrainage>().TakeDamage(damageAmount, 1);
         }
 
-        if ((dth == 0) && (badEffectTime > 0))
-        {
-            dth = Time.time;
-        }
+        if ((dth == 0) && (badEffectTime > 0)) dth = Time.time;
 
         if ((hth != 0) && (Time.time - hth > healFrequency) && (goodEffectTime > 0))
         {
             hth = Time.time;
-            this.GetComponent<HealthDrainage>().Heal(healAmount);
+            GetComponent<HealthDrainage>().Heal(healAmount);
         }
 
         if ((gcth != 0) && (Time.time - gcth > gainCeFrequency) && (goodEffectTime > 0))
         {
             gcth = Time.time;
-            this.GetComponent<CEDrainage>().GainCE(gainCeAmount);
+            GetComponent<CEDrainage>().GainCE(gainCeAmount);
         }
 
         if ((bth != 0) && (Time.time - bth > badEffectTime) && (badEffectTime > 0))
@@ -62,27 +60,20 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
 
         if ((gth != 0) && (Time.time - gth > goodEffectTime) && (goodEffectTime > 0))
         {
-            this.GetComponentInChildren<SwordAttack>().attackDamage /= damageMultiplier;
-            this.GetComponentInChildren<SwordAttack>().skillAttackDamage /= damageMultiplier;
-            this.GetComponentInChildren<SwordSkill>().damage /= damageMultiplier;
-            this.GetComponentInChildren<ScreamUse>().damage /= damageMultiplier;
-            this.GetComponentInChildren<GunShot>().damage /= damageMultiplier;
+            GetComponentInChildren<SwordAttack>().attackDamage /= damageMultiplier;
+            GetComponentInChildren<SwordAttack>().skillAttackDamage /= damageMultiplier;
+            GetComponentInChildren<SwordSkill>().damage /= damageMultiplier;
+            GetComponentInChildren<ScreamUse>().damage /= damageMultiplier;
+            GetComponentInChildren<GunShot>().damage /= damageMultiplier;
             goodBar.maxValue = 0;
             goodBar.curValue = 0;
             gth = 0;
             goodEffectTime = 0;
-
         }
 
-        if ((gcth == 0) && (goodEffectTime > 0))
-        {
-            gcth = Time.time;
-        }
+        if ((gcth == 0) && (goodEffectTime > 0)) gcth = Time.time;
 
-        if ((hth == 0) && (goodEffectTime > 0))
-        {
-            hth = Time.time;
-        }
+        if ((hth == 0) && (goodEffectTime > 0)) hth = Time.time;
 
         if ((gth == 0) && (goodEffectTime > 0))
         {
@@ -96,14 +87,8 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
             badBar.maxValue = badEffectTime;
         }
 
-        if (((badEffectTime > 0) || (goodEffectTime > 0)) && (th == 0))
-        {
-            th = Time.time;
-        }
-        else if ((badEffectTime == 0) && (goodEffectTime == 0))
-        {
-            th = 0;
-        }
+        if (((badEffectTime > 0) || (goodEffectTime > 0)) && (th == 0)) th = Time.time;
+        else if ((badEffectTime == 0) && (goodEffectTime == 0)) th = 0;
 
         if ((th != 0) && (Time.time - th > updateFrequency))
         {

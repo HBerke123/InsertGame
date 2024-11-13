@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BlocksOnObject : MonoBehaviour
@@ -8,6 +6,7 @@ public class BlocksOnObject : MonoBehaviour
     public bool isBlocked;
     public bool fallBlock;
     public GroundDetection groundDetection;
+
     float th;
 
     public void AddBlock(float amount)
@@ -34,17 +33,11 @@ public class BlocksOnObject : MonoBehaviour
 
     private void Update()
     {
-        if (fallBlock)
-        {
-            if (groundDetection.detected)
-            {
-                fallBlock = false;
-            }
+        if (fallBlock) if (groundDetection.detected) fallBlock = false;
             else
             {
                 blockTime = Mathf.Max(0.5f, blockTime);
                 th = 0;
             }
-        }
     }
 }

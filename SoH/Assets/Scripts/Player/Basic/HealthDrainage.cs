@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class HealthDrainage : MonoBehaviour
 {
-    public TestingTeleportation testingTeleportation;
-    Bar healthBar;
     public float health;
     public float maxHealth;
     public float invisibleTime;
     public float currentInvisible;
     public bool isInvisible;
+
+    Bar healthBar;
     float th;
 
     public void Start()
@@ -31,20 +31,14 @@ public class HealthDrainage : MonoBehaviour
     {
         if (!isInvisible)
         {
-            if (num == 0)
-            {
-                this.GetComponent<BlocksOnObject>().blockTime = Mathf.Max(this.GetComponent<BlocksOnObject>().blockTime, invisibleTime / 2);
-            }
+            if (num == 0) GetComponent<BlocksOnObject>().blockTime = Mathf.Max(GetComponent<BlocksOnObject>().blockTime, invisibleTime / 2);
 
             currentInvisible = invisibleTime;
             isInvisible = true;
             health -= amount;
             th = Time.time;
 
-            if (health <= 0)
-            {
-                Death();
-            }
+            if (health <= 0) Death();
 
             UpdateHealthBar();
         }
@@ -54,10 +48,7 @@ public class HealthDrainage : MonoBehaviour
     {
         health += amount;
 
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
+        if (health > maxHealth) health = maxHealth;
 
         UpdateHealthBar();
     }
@@ -70,26 +61,15 @@ public class HealthDrainage : MonoBehaviour
 
     public void Death()
     {
-        if (testingTeleportation != null)
-        {
-            foreach (GameObject gameObject in testingTeleportation.enemies)
-            {
-                if (gameObject != null)
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-        }
-
-        this.GetComponent<ForcesOnObject>().Force = Vector2.zero;
-        this.GetComponent<BlocksOnObject>().blockTime = 0;
-        this.GetComponent<PoisonEffectsOnPlayer>().goodEffectTime = 0;
-        this.GetComponent<PoisonEffectsOnPlayer>().badEffectTime = 0;
-        this.GetComponent<CEDrainage>().cE = this.GetComponent<CEDrainage>().maxCE / 2;
+        GetComponent<ForcesOnObject>().Force = Vector2.zero;
+        GetComponent<BlocksOnObject>().blockTime = 0;
+        GetComponent<PoisonEffectsOnPlayer>().goodEffectTime = 0;
+        GetComponent<PoisonEffectsOnPlayer>().badEffectTime = 0;
+        GetComponent<CEDrainage>().cE = GetComponent<CEDrainage>().maxCE / 2;
         health = maxHealth;
-        this.GetComponent<Movement>().stick = false;
-        this.GetComponent<Jump>().stick = false;
-        this.transform.position = Vector3.zero;
+        GetComponent<Movement>().stick = false;
+        GetComponent<Jump>().stick = false;
+        transform.position = Vector3.zero;
         UpdateHealthBar();
     }
 }

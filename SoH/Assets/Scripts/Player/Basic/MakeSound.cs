@@ -3,6 +3,7 @@ using UnityEngine;
 public class MakeSound : MonoBehaviour
 {
     public float totalSoundTime;
+
     float th;
 
     private void FixedUpdate()

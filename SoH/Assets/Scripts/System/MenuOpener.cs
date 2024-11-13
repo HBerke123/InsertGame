@@ -10,7 +10,7 @@ public class MenuOpener : MonoBehaviour
 
     private void Start()
     {
-        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
+        gamepadControls = GetComponent<GamepadControls>();
     }
 
     private void Update()

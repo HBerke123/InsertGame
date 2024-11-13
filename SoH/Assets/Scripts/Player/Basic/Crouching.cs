@@ -6,40 +6,37 @@ public class Crouching : MonoBehaviour
     public float crouchingSpeed;
     public float crouchingAmount;
     public float crouchTime;
+    public bool changing;
+
     bool crouched;
     float th;
     float speed;
     float colliderSizeY;
     float colliderPositionY;
-    public bool changing;
-    public GroundDetection gd;
+    
+
+    [SerializeField] GroundDetection gd;
+
     GamepadControls gamepadControls;
     Movement m;
     BoxCollider2D bc;
     CrouchingDetection cd;
     Animator a;
-    GunShot gs;
-    SwordAttack sa;
     SoundUse su;
-    ScreamUse su2;
     Dash d;
-    
 
-    private void Start()
+    private void Awake()
     {
-        d = this.GetComponent<Dash>();
-        su2 = this.GetComponentInChildren<ScreamUse>();
-        su = this.GetComponentInChildren<SoundUse>();
-        sa = this.GetComponentInChildren<SwordAttack>();
-        gs = this.GetComponentInChildren<GunShot>();
-        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
-        a = this.GetComponent<Animator>();
-        cd = this.GetComponentInChildren<CrouchingDetection>();
-        bc = this.GetComponent<BoxCollider2D>();
-        m = this.GetComponent<Movement>();
+        d = GetComponent<Dash>();
+        su = GetComponent<SoundUse>();
+        gamepadControls = GetComponent<GamepadControls>();
+        a = GetComponent<Animator>();
+        cd = GetComponentInChildren<CrouchingDetection>();
+        bc = GetComponent<BoxCollider2D>();
+        m = GetComponent<Movement>();
         speed = m.speed;
-        colliderPositionY = this.GetComponent<BoxCollider2D>().offset.y;
-        colliderSizeY = this.GetComponent<BoxCollider2D>().size.y;
+        colliderPositionY = GetComponent<BoxCollider2D>().offset.y;
+        colliderSizeY = GetComponent<BoxCollider2D>().size.y;
     }
 
     private void FixedUpdate()
@@ -70,29 +67,20 @@ public class Crouching : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || gamepadControls.crouching) && !crouched && !d.dashing && !sa.attacking && !gs.started && !su.started && !su2.screaming && gd.detected)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || gamepadControls.crouching) && !crouched && !d.dashing && !su.started && gd.detected)
         {
             Crouch();
             crouched = true;
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift) || !gamepadControls.crouching)
-        {
-            crouched = false;
-        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift) || !gamepadControls.crouching) crouched = false;
     }
 
     public void Crouch()
     {
         if (cd.isSafe && !changing)
         {
-            if (isCrouching)
-            {
-                a.SetBool("Crouching", false);
-            }
-            else
-            {
-                a.SetBool("Crouching", true);
-            }
+            if (isCrouching) a.SetBool("Crouching", false);
+            else a.SetBool("Crouching", true);
 
             changing = true;
             th = Time.time;
