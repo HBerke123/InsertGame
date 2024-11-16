@@ -5,7 +5,8 @@ public class Jump : MonoBehaviour
 {
     readonly List<float> reloadTimes = new();
 
-    public GroundDetection jumbBox;
+    [SerializeField] GroundDetection jumpBox;
+
     public bool screaming;
     public bool stick;
     public float soundTime;
@@ -58,9 +59,9 @@ public class Jump : MonoBehaviour
     {
         if (!menuOpener.isMenuOpen)
         {
-            a.SetBool("Grounded", jumbBox.detected || GetComponentInChildren<PlatformDetection>().detected);
+            a.SetBool("Grounded", jumpBox.detected || GetComponentInChildren<PlatformDetection>().detected);
 
-            if ((Input.GetKey(KeyCode.Space) || gamepadControls.jumping) && (jumbBox.detected || GetComponentInChildren<PlatformDetection>().detected) && !stick && (foo.Force.y == 0) && !c.isCrouching && !jumping && !jumped)
+            if (gamepadControls.jumping.IsPressed() && (jumpBox.detected || GetComponentInChildren<PlatformDetection>().detected) && !stick && (foo.Force.y == 0) && !c.isCrouching && !jumping && !jumped)
             {
                 jumped = true;
                 jumping = true;
@@ -73,14 +74,14 @@ public class Jump : MonoBehaviour
 
                 for (int i = 1; i < cost + 1; i++) reloadTimes.Add(Time.time + reloadTime / cost * i);
             }
-            else if ((Input.GetKey(KeyCode.Space) || gamepadControls.jumping) && (jumbBox.detected || GetComponentInChildren<PlatformDetection>().detected) && !stick && (foo.Force == Vector2.zero) && !jumping && !jumped) c.Crouch();
-            else if ((!Input.GetKey(KeyCode.Space) && !gamepadControls.jumping) || (Time.time - stime > jumptime))
+            else if (gamepadControls.jumping.IsPressed() && (jumpBox.detected || GetComponentInChildren<PlatformDetection>().detected) && !stick && (foo.Force == Vector2.zero) && !jumping && !jumped) c.Crouch();
+            else if (!gamepadControls.jumping.IsPressed() || (Time.time - stime > jumptime))
             {
                 a.SetBool("Jumping", false);
                 jumping = false;
             }
 
-            if (!Input.GetKey(KeyCode.Space) && !gamepadControls.jumping && (jumbBox.detected || GetComponentInChildren<PlatformDetection>().detected)) jumped = false;
+            if (!gamepadControls.jumping.IsPressed() && (jumpBox.detected || GetComponentInChildren<PlatformDetection>().detected)) jumped = false;
         }
     }
 }

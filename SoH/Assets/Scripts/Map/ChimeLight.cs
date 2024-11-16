@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChimeLight : MonoBehaviour
 {
-    public GameObject explosion;
+    /*public GameObject explosion;
     public float explodeTime;
+
     GameObject player;
     float th;
 
@@ -32,5 +31,5 @@ public class ChimeLight : MonoBehaviour
             explodeTime -= Time.time - th;
             th = 0;
         }
-    }
+    }*/
 }

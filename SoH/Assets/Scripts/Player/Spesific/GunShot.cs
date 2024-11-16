@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GunShot : MonoBehaviour
 {
-    readonly List<float> reloadTimes = new();
+    /*readonly List<float> reloadTimes = new();
+
     public List<GameObject> lastBombs = new();
     public GameObject[] preBombGroups;
     public GameObject preBombShower;
@@ -23,6 +24,7 @@ public class GunShot : MonoBehaviour
     public float delayTime;
     public int cECost;
     public bool started;
+
     int ammo = 3;
     bool shooted;
     bool explosed;
@@ -247,5 +249,5 @@ public class GunShot : MonoBehaviour
         yield return new WaitForSecondsRealtime(reloadTime);
         reloading = false;
         ammo = 3;
-    }
+    }*/
 }

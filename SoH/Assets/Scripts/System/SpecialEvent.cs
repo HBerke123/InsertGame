@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpecialEvent : MonoBehaviour
@@ -8,13 +6,8 @@ public class SpecialEvent : MonoBehaviour
     public bool eventStarted;
     public GameObject enemy;
     public GameObject platform;
-    GameObject player;
-    float th;
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
+    float th;
 
     private void FixedUpdate()
     {
@@ -30,7 +23,7 @@ public class SpecialEvent : MonoBehaviour
         switch (eventNum)
         {
             case 0:
-                if (eventStarted)
+                /*if (eventStarted)
                 {
                     if (player.GetComponentInChildren<SwordAttack>().attacking)
                     {
@@ -38,32 +31,20 @@ public class SpecialEvent : MonoBehaviour
                         player.GetComponent<Jump>().enabled = true;
                         Destroy(this);
                     }
-                }
+                }*/
                 break;
             case 1:
-                if (eventStarted)
+                if (eventStarted && (enemy == null))
                 {
-                    if (enemy == null)
-                    {
-                        Destroy(platform);
-                        Destroy(this);
-                    }
+                    Destroy(platform);
+                    Destroy(this);
                 }
                 break;
             case 2:
-                if (eventStarted)
-                {
-                    if (th == 0)
-                    {
-                        th = Time.time;
-                    }
-                }
+                if (eventStarted && (th == 0)) th = Time.time;
                 break;
             case 3:
-                if (eventStarted)
-                {
-                    Destroy(platform);
-                }
+                if (eventStarted) Destroy(platform);
                 break;
         }
     }

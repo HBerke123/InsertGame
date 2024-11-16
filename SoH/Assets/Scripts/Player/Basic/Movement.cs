@@ -1,18 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class Movement : MonoBehaviour
 {
     readonly List<float> reloadTimes = new();
 
-    public List<AudioClip> steps = new();
-    public ParticleSystem groundParticles;
-    public BoxCollider2D Attackhbox;
-    public GroundDetection climbUpR;
-    public GroundDetection climbUpL;
-    public GroundDetection climbDownR;
-    public GroundDetection climbDownL;
-    public GroundDetection gd;
+    [SerializeField] List<AudioClip> steps = new();
+    [SerializeField] ParticleSystem groundParticles;
+    [SerializeField] GroundDetection climbUpR;
+    [SerializeField] GroundDetection climbUpL;
+    [SerializeField] GroundDetection climbDownR;
+    [SerializeField] GroundDetection climbDownL;
+    [SerializeField] GroundDetection gd;
+
     public bool aiming;
     public bool stick;
     public float reloadTime;
@@ -25,7 +26,8 @@ public class Movement : MonoBehaviour
     public bool spawnParticles;
     public GameObject riding;
 
-
+    bool pressedLeft;
+    bool pressedRight;
     float baseSpeed;
     float th;
     int moveDirection;
@@ -99,15 +101,50 @@ public class Movement : MonoBehaviour
         }
     }
 
+    void SetDirection(int direction)
+    {
+        switch (direction)
+        {
+            case 1:
+                moveDirection = 1;
+                break;
+            case -1:
+                moveDirection = -1;
+                break;
+        }
+    }
+
     private void Update()
     {
+        if (gamepadControls.moveRight.IsPressed() && !pressedRight)
+        {
+            SetDirection(1);
+            pressedRight = true;
+        }
+        else if (gamepadControls.moveLeft.IsPressed() && !pressedLeft)
+        {
+            SetDirection(-1);
+            pressedLeft = true;
+        }
+        else if (!gamepadControls.moveLeft.IsPressed() && !gamepadControls.moveRight.IsPressed()) moveDirection = 0;
+
+        if (!gamepadControls.moveRight.IsPressed())
+        {
+            if (gamepadControls.moveLeft.IsPressed()) SetDirection(-1);
+
+            pressedRight = false;
+        }
+
+        if (!gamepadControls.moveLeft.IsPressed())
+        {
+            if (gamepadControls.moveRight.IsPressed()) SetDirection(1);
+
+            pressedLeft = false;
+        }
+
         if (!aiming && !su.started && !d.dashing && !stick && !boo.isBlocked && !c.changing)
         {
-            if (Input.GetKey(KeyCode.A)) moveDirection = -1;
-            else if (Input.GetKey(KeyCode.D)) moveDirection = 1;
-            else moveDirection = 0;
-
-            if ((moveDirection == 0) && (gamepadControls.moveDirection == 0))
+            if (moveDirection == 0)
             {
                 a.SetBool("Moving", false);
                 spawnParticles = false;
@@ -134,14 +171,14 @@ public class Movement : MonoBehaviour
 
                     if (speed == baseSpeed) ms.AddTime(soundTime);
 
-                    if (gamepadControls.moveDirection == 0)
+                    if (moveDirection == 0)
                     {
-                        if ((moveDirection == 1) && !climbUpR.detected && climbDownR.detected) transform.position += Vector3.up / 2;
+                        if (!climbUpR.detected && climbDownR.detected) transform.position += Vector3.up / 2;
                         else if (!climbUpL.detected && climbDownL.detected) transform.position += Vector3.up / 2;
                     }
                     else
                     {
-                        if ((gamepadControls.moveDirection == 1) && (!climbUpR.detected && climbDownR.detected)) transform.position += Vector3.up / 2;
+                        if ((moveDirection == 1) && !climbUpR.detected && climbDownR.detected) transform.position += Vector3.up / 2;
                         else if (!climbUpL.detected && climbDownL.detected) transform.position += Vector3.up / 2;
                     }
                 }
@@ -151,16 +188,8 @@ public class Movement : MonoBehaviour
                     spawnParticles = false;
                 }
 
-                if (foo.Force.y != 0)
-                {
-                    if (gamepadControls.moveDirection == 0) rb.velocity = rb.velocity = new Vector2(moveDirection * speed + foo.Force.x, foo.Force.y);
-                    else rb.velocity = rb.velocity = new Vector2(gamepadControls.moveDirection * speed + foo.Force.x, foo.Force.y);
-                }
-                else
-                {
-                    if (gamepadControls.moveDirection == 0) rb.velocity = rb.velocity = new Vector2(moveDirection * speed + foo.Force.x, rb.velocity.y);
-                    else rb.velocity = rb.velocity = new Vector2(gamepadControls.moveDirection * speed + foo.Force.x, rb.velocity.y);
-                }
+                if (foo.Force.y != 0) rb.velocity = rb.velocity = new Vector2(moveDirection * speed + foo.Force.x, foo.Force.y);
+                else rb.velocity = rb.velocity = new Vector2(moveDirection * speed + foo.Force.x, rb.velocity.y);
             }
         }
         else if (!aiming && !stick && !c.changing && !boo.isBlocked)
@@ -201,8 +230,8 @@ public class Movement : MonoBehaviour
 
         if (!boo.isBlocked)
         {
-            if (Input.GetKey(KeyCode.A) || (gamepadControls.moveDirection == -1)) sr.flipX = true;
-            else if (Input.GetKey(KeyCode.D) || (gamepadControls.moveDirection == 1)) sr.flipX = false;
+            if (moveDirection == -1) sr.flipX = true;
+            else if (moveDirection == 1) sr.flipX = false;
         }
     }
 }

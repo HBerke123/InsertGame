@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundPlant : MonoBehaviour
 {
-    public float soundTime;
+    /*public float soundTime;
+
     GameObject player;
     GamepadControls gamepadControls;
 
@@ -32,10 +31,10 @@ public class SoundPlant : MonoBehaviour
         {
             player.GetComponentInChildren<SwordAttack>().plant = this.gameObject;
 
-            if (Input.GetMouseButton(0) || gamepadControls.swordAttack)
+            if (gamepadControls.swordAttack)
             {
                 Destroy(this.gameObject);
             }
         }
-    }
+    }*/
 }

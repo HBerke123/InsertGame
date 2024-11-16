@@ -11,13 +11,13 @@ public class Interact : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetKey(KeyCode.O) || gamepadControls.save) && !interacted && (interactiveArea != null))
+        if (gamepadControls.save.IsPressed() && !interacted && (interactiveArea != null))
         {
             interacted = true;
             interactiveArea.InteractObject();
         }
 
-        if (!Input.GetKey(KeyCode.O) && !gamepadControls.save) interacted = !false;
+        if (!gamepadControls.save.IsPressed()) interacted = !false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +27,6 @@ public class Interact : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<InteractiveArea>() == interactiveArea)
-            interactiveArea = null;
+        if (collision.GetComponent<InteractiveArea>() == interactiveArea) interactiveArea = null;
     }
 }

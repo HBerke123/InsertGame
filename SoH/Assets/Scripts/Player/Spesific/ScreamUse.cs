@@ -1,9 +1,9 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class ScreamUse : MonoBehaviour
 {
-    readonly List<float> reloadTimes = new();
+    /*readonly List<float> reloadTimes = new();
+
     public GameObject ScreamWave;
     public float soundTime;
     public float damage;
@@ -13,6 +13,7 @@ public class ScreamUse : MonoBehaviour
     public float delayTime;
     public float cERegainTime;
     public bool screaming;
+
     GamepadControls gamepadControls;
     GameObject screamHit;
     bool screamed;
@@ -94,5 +95,5 @@ public class ScreamUse : MonoBehaviour
         screamHit = SBox;
         screamed = true;
         th = Time.time;
-    }
+    }*/
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PreBombStop : MonoBehaviour
 {
-    public GameObject owningGroup;
+    /*public GameObject owningGroup;
     public float totalTime;
     float th;
 
@@ -22,5 +22,5 @@ public class PreBombStop : MonoBehaviour
             owningGroup.GetComponent<PreBombGroup>().SetBomb(this.gameObject);
             Destroy(this);
         }
-    }
+    }*/
 }

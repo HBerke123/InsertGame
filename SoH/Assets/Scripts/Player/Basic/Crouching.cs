@@ -67,12 +67,12 @@ public class Crouching : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || gamepadControls.crouching) && !crouched && !d.dashing && !su.started && gd.detected)
+        if (gamepadControls.crouching.IsPressed() && !crouched && !d.dashing && !su.started && gd.detected)
         {
             Crouch();
             crouched = true;
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift) || !gamepadControls.crouching) crouched = false;
+        else if (!gamepadControls.crouching.IsPressed()) crouched = false;
     }
 
     public void Crouch()

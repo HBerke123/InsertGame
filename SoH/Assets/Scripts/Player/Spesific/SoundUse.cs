@@ -45,7 +45,7 @@ public class SoundUse : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") == 1) direction = 1;
         else if (Input.GetAxisRaw("Horizontal") == -1) direction = 3;
 
-        if ((Input.GetKey(KeyCode.Q) || gamepadControls.soundInfluence) && !sounded && (th == 0) && ready && !GetComponent<GunShot>().started && !GetComponentInParent<BlocksOnObject>().isBlocked && GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe)
+        if (gamepadControls.soundInfluence.IsPressed() && !sounded && (th == 0) && ready && !GetComponentInParent<BlocksOnObject>().isBlocked && GetComponentInParent<Crouching>().GetComponentInChildren<CrouchingDetection>().isSafe)
         {
             if (GetComponentInParent<Crouching>().isCrouching) GetComponentInParent<Crouching>().Crouch();
 
@@ -56,7 +56,7 @@ public class SoundUse : MonoBehaviour
             th = Time.time;
         }
 
-        if (((!Input.GetKey(KeyCode.Q) && !gamepadControls.soundInfluence) || (Time.time - th >= holdtime)) && (th > 0))
+        if ((!gamepadControls.soundInfluence.IsPressed() || (Time.time - th >= holdtime)) && (th > 0))
         {
             GetComponentInParent<Movement>().aiming = false;
             started = false;
@@ -82,6 +82,6 @@ public class SoundUse : MonoBehaviour
             cth = Time.time;
         }
 
-        if (!Input.GetKey(KeyCode.Q) && !gamepadControls.soundInfluence) sounded = false;
+        if (!gamepadControls.soundInfluence.IsPressed()) sounded = false;
     }
 }

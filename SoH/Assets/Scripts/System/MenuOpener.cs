@@ -5,24 +5,19 @@ public class MenuOpener : MonoBehaviour
     public bool isMenuOpen;
     public GameObject menu;
     public TimeControlStop timeControlStop;
+
     GamepadControls gamepadControls;
     bool pressed;
 
-    private void Start()
-    {
-        gamepadControls = GetComponent<GamepadControls>();
-    }
+    private void Start() => gamepadControls = GetComponent<GamepadControls>();
 
     private void Update()
     {
-        if ((Input.GetKey(KeyCode.Escape) || gamepadControls.pause) && !pressed)
+        if (gamepadControls.pause.IsPressed() && !pressed)
         {
             pressed = true;
 
-            if (isMenuOpen)
-            {
-                Resume();
-            }
+            if (isMenuOpen) Resume();
             else
             {
                 timeControlStop.StartSlowMotion();
@@ -31,10 +26,7 @@ public class MenuOpener : MonoBehaviour
             }
         }
 
-        if (!Input.GetKey(KeyCode.Escape) && !gamepadControls.pause)
-        {
-            pressed = false;
-        }
+        if (!gamepadControls.pause.IsPressed()) pressed = false;
     }
 
     public void Resume()

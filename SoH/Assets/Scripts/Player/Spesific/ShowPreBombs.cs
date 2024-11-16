@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ShowPreBombs : MonoBehaviour
 {
-    public GameObject[] GroupBombGroups;
+    /*public GameObject[] GroupBombGroups;
     public int GroupNum;
 
     public void ShowBombs()
@@ -20,5 +20,5 @@ public class ShowPreBombs : MonoBehaviour
         {
             this.GetComponent<PreBombGroup>().preBombs[i].SetActive(false);
         }
-    }
+    }*/
 }

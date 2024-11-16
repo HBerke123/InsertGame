@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class SwordAttack : MonoBehaviour
 {
-    readonly List<float> reloadTimes = new();
+    /*readonly List<float> reloadTimes = new();
+
     public List<AudioClip> swordSounds = new();
     public GameObject plant;
     public float soundTime;
@@ -30,6 +31,7 @@ public class SwordAttack : MonoBehaviour
     public bool ready;
     public bool attacking;
     public bool prepared;
+
     bool attackable = true;
     bool attacked;
     float cbth;
@@ -125,7 +127,7 @@ public class SwordAttack : MonoBehaviour
         }
         else if ((ath != 0) && (attackNum == 0) && (Time.time - ath < attackTime))
         {
-            if (Input.GetMouseButton(0) || gamepadControls.swordAttack)
+            if (Input.GetMouseButton(0) || gamepadControls.)
             {
                 prepared = true;
             }
@@ -290,5 +292,5 @@ public class SwordAttack : MonoBehaviour
 
             collision.GetComponent<Notice>().noticeTime = Mathf.Max(collision.GetComponent<Notice>().noticeTime, noticeTime);
         }
-    }
+    }*/
 }

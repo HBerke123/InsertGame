@@ -6,154 +6,78 @@ using UnityEngine.UI;
 public class MenuMovement : MonoBehaviour
 {
     public List<ButtonSelected> buttonCoordinates = new();
-    GamepadControls gamepadControls;
     public MenuOpener menuOpener;
     public Vector2 curCordinate;
+    public float waitTime;
+    public int currentGroup;
+
+    GamepadControls gamepadControls;
     float th;
     bool pressed;
     bool openable;
-    public float waitTime;
-    public int currentGroup;
-    
-    private void Start()
-    {
-        gamepadControls = GameObject.FindGameObjectWithTag("GamepadController").GetComponent<GamepadControls>();
-    }
+
+    private void Start() => gamepadControls = GetComponent<GamepadControls>();
 
     private void FixedUpdate()
     {
-        if ((th != 0) && (Time.time - th > waitTime))
-        {
-            th = 0;
-        }
+        if ((th != 0) && (Time.time - th > waitTime)) th = 0;
     }
 
     private void Update()
     {
-        if (menuOpener == null)
-        {
-            openable = true;
-        }
-        else if (menuOpener.isMenuOpen)
-        {
-            openable = true;
-        }
-        else
-        {
-            openable = false;
-        }
+        if (menuOpener == null) openable = true;
+        else if (menuOpener.isMenuOpen) openable = true;
+        else openable = false;
 
         for (int i = 0; i < buttonCoordinates.Count; i++)
         {
-            if ((buttonCoordinates[i].buttonCordinate == curCordinate) && (buttonCoordinates[i].buttonGroup == currentGroup))
-            {
-                buttonCoordinates[i].selected = true;
-            }
-            else
-            {
-                buttonCoordinates[i].selected = false;
-            }
+            if ((buttonCoordinates[i].buttonCordinate == curCordinate) && (buttonCoordinates[i].buttonGroup == currentGroup)) buttonCoordinates[i].selected = true;
+            else buttonCoordinates[i].selected = false;
         }
 
         if ((th == 0) && openable)
         {
             th = Time.time;
 
-            if (gamepadControls.menuDirection == 0)
+            for (int i = 0; i < buttonCoordinates.Count; i++)
             {
-                for (int i = 0; i < buttonCoordinates.Count; i++)
+                if (buttonCoordinates[i].buttonGroup == currentGroup)
                 {
-                    if (Input.GetKey(KeyCode.W))
+                    if ((gamepadControls.menuDirection == 0) && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.up))
                     {
-                        if ((buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.up) && (buttonCoordinates[i].buttonGroup == currentGroup))
-                        {
-                            curCordinate = curCordinate + Vector2.up;
-                            break;
-                        }
+                        curCordinate += Vector2.up;
+                        break;
                     }
-                    else if (Input.GetKey(KeyCode.A))
+                    else if ((gamepadControls.menuDirection == 1) && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.right))
                     {
-                        if ((buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.left) && (buttonCoordinates[i].buttonGroup == currentGroup))
-                        {
-                            curCordinate = curCordinate + Vector2.left;
-                            break;
-                        }
+                        curCordinate += Vector2.right;
+                        break;
                     }
-                    else if (Input.GetKey(KeyCode.S))
+                    else if ((gamepadControls.menuDirection == 2) && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.down))
                     {
-                        if ((buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.down) && (buttonCoordinates[i].buttonGroup == currentGroup))
-                        {
-                            curCordinate = curCordinate + Vector2.down;
-                            break;
-                        }
+                        curCordinate += Vector2.down;
+                        break;
                     }
-                    else if (Input.GetKey(KeyCode.D))
+                    else if ((gamepadControls.menuDirection == 3) && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.left))
                     {
-                        if ((buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.right) && (buttonCoordinates[i].buttonGroup == currentGroup))
-                        {
-                            curCordinate = curCordinate + Vector2.right;
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < buttonCoordinates.Count; i++)
-                {
-                    if (gamepadControls.menuDirection == 0)
-                    {
-                        if ((buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.up) && (buttonCoordinates[i].buttonGroup == currentGroup))
-                        {
-                            curCordinate = curCordinate + Vector2.up;
-                            break;
-                        }
-                    }
-                    else if (gamepadControls.menuDirection == 1)
-                    {
-                        if ((buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.right) && (buttonCoordinates[i].buttonGroup == currentGroup))
-                        {
-                            curCordinate = curCordinate + Vector2.right;
-                            break;
-                        }
-                    }
-                    else if (gamepadControls.menuDirection == 2)
-                    {
-                        if ((buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.down) && (buttonCoordinates[i].buttonGroup == currentGroup))
-                        {
-                            curCordinate = curCordinate + Vector2.down;
-                            break;
-                        }
-                    }
-                    else if (gamepadControls.menuDirection == 3)
-                    {
-                        if ((buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.left) && (buttonCoordinates[i].buttonGroup == currentGroup))
-                        {
-                            curCordinate = curCordinate + Vector2.left;
-                            break;
-                        }
+                        curCordinate += Vector2.left;
+                        break;
                     }
                 }
             }
         }
    
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && (gamepadControls.menuDirection == 0))
-        {
-            th = 0;
-        }
+        if (gamepadControls.menuDirection == 0) th = 0;
 
         for (int i = 0; i < buttonCoordinates.Count; i++)
         {
-            if ((Input.GetKey(KeyCode.Return) || gamepadControls.accept) && !pressed && buttonCoordinates[i].selected)
+            if (gamepadControls.accept.IsPressed() && !pressed && buttonCoordinates[i].selected)
             {
                 pressed = true;
                 buttonCoordinates[i].GetComponent<Button>().onClick.Invoke();
             }
 
-            if (!Input.GetKey(KeyCode.Return) && !gamepadControls.accept)
-            {
-                pressed = false;
-            }
+            if (!gamepadControls.accept.IsPressed()) pressed = false;
         }
     }
 }

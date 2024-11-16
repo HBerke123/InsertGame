@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Potion : MonoBehaviour
 {
-    public float drinkTime;
+    /*public float drinkTime;
     public float healAmount;
     public float cEAmount;
     public bool hasPotion;
     public bool drinking;
-    float th;
     public AudioClip drinkingSound;
+
+    float th;
     AudioSource as1;
     GamepadControls gamepadControls;
     HealthDrainage hd;
@@ -68,5 +67,5 @@ public class Potion : MonoBehaviour
                 c.Crouch();
             }
         }
-    }
+    }*/
 }

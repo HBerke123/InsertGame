@@ -185,8 +185,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1389891591038707312}
-  - component: {fileID: 1389891591038707314}
   - component: {fileID: 1389891591038707315}
+  - component: {fileID: 1389891591038707314}
   - component: {fileID: 2749281512846127320}
   m_Layer: 3
   m_Name: Jumpbox
@@ -210,20 +210,6 @@ Transform:
   m_Father: {fileID: 1389891592076107589}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1389891591038707314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389891591038707327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 208168c79c5bafd4b9c2cdeb663bcb95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detected: 0
-  grounds: []
 --- !u!61 &1389891591038707315
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -250,6 +236,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1389891591038707314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891591038707327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208168c79c5bafd4b9c2cdeb663bcb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detected: 0
+  grounds: []
 --- !u!114 &2749281512846127320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 505769358053948193}
   - component: {fileID: 1459897340311603451}
   - component: {fileID: 6690333768440873089}
+  - component: {fileID: 7506721460281494785}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -628,7 +629,6 @@ MonoBehaviour:
   cEDelay: 2
   dashable: 1
   stick: 0
-  screaming: 0
   dashing: 0
   cost: 50
 --- !u!114 &1389891592076107560
@@ -695,7 +695,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d2c3c077709bf7c48af14d28d1955830, type: 3}
   - {fileID: 8300000, guid: 45cc037ff26d3c1469e652e550add6e3, type: 3}
   groundParticles: {fileID: 8453812108222428347, guid: 1c19c7f3a0465674db189cc5b9c46bbd, type: 3}
-  Attackhbox: {fileID: 0}
   climbUpR: {fileID: 7969130284973379365}
   climbUpL: {fileID: 3600443005650495504}
   climbDownR: {fileID: 1454428397}
@@ -724,7 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8873073227a913a42ab23a58ea93a83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumbBox: {fileID: 1389891591038707314}
+  jumpBox: {fileID: 1389891591038707314}
   screaming: 0
   stick: 0
   soundTime: 1.5
@@ -908,21 +907,105 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunDirection: {x: 0, y: 0}
-  moveDirection: 0
-  jumping: 0
-  crouching: 0
-  dashing: 0
-  screaming: 0
-  soundDomain: 0
-  soundInfluence: 0
-  potion: 0
-  swordAttack: 0
-  gunShot: 0
-  map: 0
-  pause: 0
-  save: 0
-  accept: 0
-  back: 0
+  moveRight:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 08c0c38d-6ab8-46c5-a989-96d889e292fc
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  moveLeft:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9d5eed0a-c27b-4014-adae-59e0b0f861e0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  jumping:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0a03c1dd-9ad3-4316-82ed-51a1f53c2851
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  crouching:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 89a6570b-c507-4275-81b6-a4981c6a18b4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  dashing:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 959d7b6b-6611-455e-9bee-ffcc2b2e0e4c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  soundInfluence:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 291dc777-f07c-46ef-b42f-0b6d559cbd23
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  map:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 40668c7d-14f3-4e18-9aa6-dd783f322e03
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  pause:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e434c2ae-9668-46e6-9a2d-372bd8a534e7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  save:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8eb779fc-5185-40c5-80fd-c18541cd2e3a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  accept:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 99a15c13-4cfa-467d-9854-283f0239b92a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  back:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3f385d5d-093a-4740-8201-d6e5a10238c3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   menuDirection: 0
 --- !u!114 &505769358053948193
 MonoBehaviour:
@@ -965,6 +1048,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 5361889609066649402, guid: dd9975e320fcb1d4f96535bb8975eba3, type: 3}
+--- !u!114 &7506721460281494785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ac4daa9232bf4fa468f7c5ff83e8db63, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &4837326634813091820
 GameObject:
   m_ObjectHideFlags: 0

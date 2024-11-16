@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BombExplode : MonoBehaviour
 {
-    public float damageAmount;
+    /*public float damageAmount;
     public float TotalTime;
     public GameObject SoundWave;
     GameObject player;
@@ -41,5 +41,5 @@ public class BombExplode : MonoBehaviour
         {
             Explode();
         }
-    }
+    }*/
 }

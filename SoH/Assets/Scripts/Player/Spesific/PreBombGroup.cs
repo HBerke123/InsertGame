@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class PreBombGroup : MonoBehaviour
 {
-    public List<GameObject> preBombs = new();
+    /*public List<GameObject> preBombs = new();
     public GameObject arrow;
     public bool showing;
+
     GamepadControls gamepadControls;
 
     private void Start()
@@ -138,5 +139,5 @@ public class PreBombGroup : MonoBehaviour
         {
             ShowGroup();
         }
-    }
+    }*/
 }

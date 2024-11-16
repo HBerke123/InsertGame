@@ -60,11 +60,6 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
 
         if ((gth != 0) && (Time.time - gth > goodEffectTime) && (goodEffectTime > 0))
         {
-            GetComponentInChildren<SwordAttack>().attackDamage /= damageMultiplier;
-            GetComponentInChildren<SwordAttack>().skillAttackDamage /= damageMultiplier;
-            GetComponentInChildren<SwordSkill>().damage /= damageMultiplier;
-            GetComponentInChildren<ScreamUse>().damage /= damageMultiplier;
-            GetComponentInChildren<GunShot>().damage /= damageMultiplier;
             goodBar.maxValue = 0;
             goodBar.curValue = 0;
             gth = 0;
@@ -100,15 +95,6 @@ public class PoisonEffectsOnPlayer : MonoBehaviour
 
     public void AddGoodTime(float amount)
     {
-        if (goodEffectTime == 0)
-        {
-            this.GetComponentInChildren<SwordAttack>().attackDamage *= damageMultiplier;
-            this.GetComponentInChildren<SwordAttack>().skillAttackDamage *= damageMultiplier;
-            this.GetComponentInChildren<SwordSkill>().damage *= damageMultiplier;
-            this.GetComponentInChildren<ScreamUse>().damage *= damageMultiplier;
-            this.GetComponentInChildren<GunShot>().damage *= damageMultiplier;
-        }
-
         gth = 0;
         goodEffectTime = Mathf.Max(amount, goodEffectTime);
     }
