@@ -13,7 +13,7 @@ public class GroundDetection : MonoBehaviour
         {
             detected = true;
 
-            if (!grounds.Contains(collision.gameObject)) 
+            if (!grounds.Contains(collision.gameObject) && !collision.gameObject.GetComponent<Collider2D>().isTrigger) 
             {
                 grounds.Add(collision.gameObject);
 

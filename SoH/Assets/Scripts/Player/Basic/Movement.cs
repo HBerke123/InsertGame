@@ -151,7 +151,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                if (gd.detected || GetComponentInChildren<PlatformDetection>().detected)
+                if ((gd.detected || GetComponentInChildren<PlatformDetection>().detected) && (Mathf.Round(rb.velocity.y) == 0))
                 {
                     a.SetBool("Moving", true);
                     spawnParticles = true;
@@ -161,7 +161,7 @@ public class Movement : MonoBehaviour
                     if ((moveDirection == 1) && !climbUpR.detected && climbDownR.detected && climbDownR.climbable) transform.position += Vector3.up / 2;
                     else if ((moveDirection == -1) && !climbUpL.detected && climbDownL.detected && climbDownL.climbable) transform.position += Vector3.up / 2;
                 }
-                else if (rb.velocity.y == 0)
+                else
                 {
                     a.SetBool("Moving", false);
                     spawnParticles = false;
