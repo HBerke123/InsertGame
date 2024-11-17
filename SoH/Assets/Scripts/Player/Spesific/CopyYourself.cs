@@ -12,6 +12,7 @@ public class CopyYourself : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.V) && !pressed)
         {
+            Debug.Log("sa");
             pressed = true;
 
             if (clone != null) Destroy(clone);
@@ -20,9 +21,6 @@ public class CopyYourself : MonoBehaviour
 
             if (GetComponent<Crouching>().isCrouching) clone.transform.localScale = new(clone.transform.localScale.x, 1.2f, 0);
         }
-        else if (!Input.GetKey(KeyCode.V)) 
-        {
-            pressed = false;
-        }
+        else if (!Input.GetKey(KeyCode.V))  pressed = false;
     }
 }
