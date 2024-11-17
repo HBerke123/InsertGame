@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class GroundDetection : MonoBehaviour
 {
-    public bool detected = false;
+    public bool climbable;
+    public bool detected;
     public List<GameObject> grounds = new();
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -15,6 +16,8 @@ public class GroundDetection : MonoBehaviour
             if (!grounds.Contains(collision.gameObject)) 
             {
                 grounds.Add(collision.gameObject);
+
+                if (collision.gameObject.GetComponent<SemiSolidPlatform>() == null) climbable = true;
             }
         }
     }

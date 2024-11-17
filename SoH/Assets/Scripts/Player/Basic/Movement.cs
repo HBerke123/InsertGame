@@ -101,43 +101,30 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void SetDirection(int direction)
-    {
-        switch (direction)
-        {
-            case 1:
-                moveDirection = 1;
-                break;
-            case -1:
-                moveDirection = -1;
-                break;
-        }
-    }
-
     private void Update()
     {
         if (gamepadControls.moveRight.IsPressed() && !pressedRight)
         {
-            SetDirection(1);
+            moveDirection = 1;
             pressedRight = true;
         }
         else if (gamepadControls.moveLeft.IsPressed() && !pressedLeft)
         {
-            SetDirection(-1);
+            moveDirection = -1;
             pressedLeft = true;
         }
         else if (!gamepadControls.moveLeft.IsPressed() && !gamepadControls.moveRight.IsPressed()) moveDirection = 0;
 
         if (!gamepadControls.moveRight.IsPressed())
         {
-            if (gamepadControls.moveLeft.IsPressed()) SetDirection(-1);
+            if (gamepadControls.moveLeft.IsPressed()) moveDirection = -1;
 
             pressedRight = false;
         }
 
         if (!gamepadControls.moveLeft.IsPressed())
         {
-            if (gamepadControls.moveRight.IsPressed()) SetDirection(1);
+            if (gamepadControls.moveRight.IsPressed()) moveDirection = 1;
 
             pressedLeft = false;
         }
@@ -171,18 +158,10 @@ public class Movement : MonoBehaviour
 
                     if (speed == baseSpeed) ms.AddTime(soundTime);
 
-                    if (moveDirection == 0)
-                    {
-                        if (!climbUpR.detected && climbDownR.detected) transform.position += Vector3.up / 2;
-                        else if (!climbUpL.detected && climbDownL.detected) transform.position += Vector3.up / 2;
-                    }
-                    else
-                    {
-                        if ((moveDirection == 1) && !climbUpR.detected && climbDownR.detected) transform.position += Vector3.up / 2;
-                        else if (!climbUpL.detected && climbDownL.detected) transform.position += Vector3.up / 2;
-                    }
+                    if ((moveDirection == 1) && !climbUpR.detected && climbDownR.detected && climbDownR.climbable) transform.position += Vector3.up / 2;
+                    else if ((moveDirection == -1) && !climbUpL.detected && climbDownL.detected && climbDownL.climbable) transform.position += Vector3.up / 2;
                 }
-                else
+                else if (rb.velocity.y == 0)
                 {
                     a.SetBool("Moving", false);
                     spawnParticles = false;
