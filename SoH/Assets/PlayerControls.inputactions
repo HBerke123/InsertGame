@@ -51,24 +51,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwordAttack",
-                    "type": "Button",
-                    "id": "cb7c57eb-f7ab-42af-9115-d6bd8372421a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "GunShot",
-                    "type": "Button",
-                    "id": "2c25a983-d7ff-40a5-ba85-bcbf40f5e1d7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Potion",
                     "type": "Button",
                     "id": "943b8920-eb44-4b6f-babb-57e860eb30f8",
@@ -96,24 +78,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SoundDomain",
-                    "type": "Button",
-                    "id": "637d504a-6224-44df-8655-e293d21862dc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Scream",
-                    "type": "Button",
-                    "id": "2410e3d9-db40-42a0-93b4-739f289d418b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "StopGame",
                     "type": "Button",
                     "id": "8948d8cb-c51a-43f8-bff9-bb22900a0bc1",
@@ -132,13 +96,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GunRotate",
-                    "type": "Value",
-                    "id": "3496c19c-7757-4478-a3eb-0f3e7dfbde62",
-                    "expectedControlType": "",
+                    "name": "Copy",
+                    "type": "Button",
+                    "id": "e8b8bb82-531a-4c7a-b067-2fd21ab16898",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -276,28 +240,6 @@
                 },
                 {
                     "name": "",
-                    "id": "8b7d6b9c-2425-4314-8907-951c78eec0a7",
-                    "path": "<XInputController>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwordAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "88e9c50d-ebb2-481a-a7e2-3f5144e42c5e",
-                    "path": "<XInputController>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GunShot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "94157752-cfb1-44cd-9bd3-0ea37f1878df",
                     "path": "<XInputController>/dpad/up",
                     "interactions": "",
@@ -353,28 +295,6 @@
                 },
                 {
                     "name": "",
-                    "id": "8dd2985f-3036-4bc6-aefd-4ebeacb4f30d",
-                    "path": "<XInputController>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SoundDomain",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a89856e0-2ba1-423c-a765-3bb3879aed76",
-                    "path": "<XInputController>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Scream",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "7a6140c0-1b7f-4b12-9d21-b97b4789d15e",
                     "path": "<XInputController>/start",
                     "interactions": "",
@@ -419,12 +339,23 @@
                 },
                 {
                     "name": "",
-                    "id": "1b770bb3-07f5-46c3-b174-84a10301b806",
-                    "path": "<XInputController>/leftStick",
+                    "id": "ac67869f-dcb0-4df8-ad97-f24289e841eb",
+                    "path": "<XInputController>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GunRotate",
+                    "action": "Copy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a1c5f0c-a406-4c16-9845-73e04989cdc7",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Copy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,18 +1,19 @@
-using Unity.Mathematics;
 using UnityEngine;
 
 public class CopyYourself : MonoBehaviour
 {
     [SerializeField] GameObject stone;
 
+    GamepadControls gamepadControls;
     GameObject clone;
     bool pressed;
 
+    private void Start() => gamepadControls = GetComponent<GamepadControls>();
+
     private void Update()
     {
-        if (Input.GetKey(KeyCode.V) && !pressed)
+        if (gamepadControls.copy.IsPressed() && !pressed)
         {
-            Debug.Log("sa");
             pressed = true;
 
             if (clone != null) Destroy(clone);
@@ -21,6 +22,6 @@ public class CopyYourself : MonoBehaviour
 
             if (GetComponent<Crouching>().isCrouching) clone.transform.localScale = new(clone.transform.localScale.x, 1.2f, 0);
         }
-        else if (!Input.GetKey(KeyCode.V))  pressed = false;
+        else if (!gamepadControls.copy.IsPressed())  pressed = false;
     }
 }

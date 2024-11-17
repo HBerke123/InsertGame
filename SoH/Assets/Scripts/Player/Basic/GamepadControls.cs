@@ -14,6 +14,7 @@ public class GamepadControls : MonoBehaviour
     public InputAction save;
     public InputAction accept;
     public InputAction back;
+    public InputAction copy;
     public int menuDirection;
 
     private void Awake()
@@ -26,5 +27,6 @@ public class GamepadControls : MonoBehaviour
         dashing = controls["Dash"];
         soundInfluence = controls["SoundInfluence"];
         pause = controls["StopGame"];
+        copy = controls["Copy"];
     }
 }

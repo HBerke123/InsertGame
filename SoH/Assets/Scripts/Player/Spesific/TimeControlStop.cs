@@ -15,20 +15,6 @@ public class TimeControlStop : MonoBehaviour
         StartFixedDeltaTime = Time.fixedDeltaTime;
     }
 
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            StartSlowMotion();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Y))
-        {
-            StopSlowMotion();
-        }
-    }
-
     public void StartSlowMotion()
     {
         Time.timeScale = TimeScale;
