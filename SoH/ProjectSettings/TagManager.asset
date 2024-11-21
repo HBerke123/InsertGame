@@ -4,14 +4,28 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Hookable
-  - Changeable
   - SprintParticle
-  - Orbitable
-  - player
   - Enemy
-  - HP Orb
-  - STE Tube
+  - Weapon
+  - Sound
+  - Scream
+  - EnemySound
+  - EnemyScream
+  - BossHPBar
+  - EnemyWeapon
+  - LaserTrigger
+  - Ground
+  - GamepadController
+  - BombSound
+  - Smoke
+  - CEBar
+  - HPBar
+  - Domain
+  - DamagedBar
+  - GoodBar
+  - BadBar
+  - Detector
+  - TurningTrigger
   layers:
   - Default
   - TransparentFX
@@ -19,16 +33,16 @@ TagManager:
   - Player
   - Water
   - UI
-  - Hookables
-  - Changeable
+  - 
+  - 
   - SprintParticle
-  - Orbitables
+  - 
   - Enemy
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - Bomb
+  - PlayerIgnore
+  - HitBox
+  - Platform
   - 
   - 
   - 
