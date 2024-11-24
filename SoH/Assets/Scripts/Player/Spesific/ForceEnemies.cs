@@ -10,76 +10,66 @@ public class ForceEnemies : MonoBehaviour
 
     public void Force(GameObject enemy)
     {
-        if (direction == 0)
+        switch (direction)
         {
-            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(0, forcePower);
-        }
-        else if (direction == 1)
-        {
-            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(forcePower, 0);
-        }
-        else if (direction == 2)
-        {
-            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(0, -forcePower);
-        }
-        else if (direction == 3)
-        {
-            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(-forcePower, 0);
-        }
-        else
-        {
-            float distancex = enemy.transform.position.x - transform.position.x;
-            float distancey = enemy.transform.rotation.y - transform.rotation.y;
-            float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
-            enemy.GetComponent<ForcesOnObject>().Force = new Vector2(distancex / distance, distancey / distance) * forcePower;
+            case 0:
+                enemy.GetComponent<ForcesOnObject>().Force = forcePower * Vector2.up;
+                break;
+            case 1:
+                enemy.GetComponent<ForcesOnObject>().Force = forcePower * Vector2.right;
+                break;
+            case 2:
+                enemy.GetComponent<ForcesOnObject>().Force = forcePower * Vector2.down;
+                break;
+            case 3:
+                enemy.GetComponent<ForcesOnObject>().Force = forcePower * Vector2.left;
+                break;
+            default:
+                float distancex = enemy.transform.position.x - transform.position.x;
+                float distancey = enemy.transform.rotation.y - transform.rotation.y;
+                float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
+                enemy.GetComponent<ForcesOnObject>().Force = new Vector2(distancex / distance, distancey / distance) * forcePower;
+                break;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        switch (collision.tag)
         {
-            Force(collision.gameObject);
+            case "Enemy":
+                Force(collision.gameObject);
 
-            if (destroyOnTouch)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-        else if (collision.CompareTag("EnemySound"))
-        {
-            if (this.CompareTag("Sound"))
-            {
-                Destroy(collision.gameObject);
-                Destroy(this.gameObject);
-            }
-        }
-        else if (collision.CompareTag("EnemyScream"))
-        {
-            if (this.CompareTag("Scream"))
-            {
-                Destroy(collision.gameObject);
-                Destroy(this.gameObject);
-            }
-        }
-        else if (collision.CompareTag("Domain"))
-        {
-            Force(collision.gameObject);
-        }
-        else if (collision.CompareTag("TurningTrigger"))
-        {
-            collision.GetComponent<TurningTrigger>().Turn();
-        }
-        else if (collision.CompareTag("Ground"))
-        {
-            if ((collision.GetComponent<SoundBreakable>() != null) && soundForce)
-            {
-                collision.GetComponent<SoundBreakable>().Break();
-            }
-            else if ((collision.GetComponent<SoundLever>() != null) && soundForce)
-            {
-                collision.GetComponent<SoundLever>().ChangeStatment();
-            }
+                if (destroyOnTouch) Destroy(gameObject);
+
+                break;
+            case "EnemySound":
+                if (CompareTag("Sound"))
+                {
+                    Destroy(collision.gameObject);
+                    Destroy(gameObject);
+                }
+
+                break;
+            case "EnemyScream":
+                if (CompareTag("Scream"))
+                {
+                    Destroy(collision.gameObject);
+                    Destroy(gameObject);
+                }
+
+                break;
+            case "Domain":
+                Force(collision.gameObject);
+                break;
+            case "TurningTrigger":
+                if ((!collision.GetComponentInParent<TurningManager>().isHorizontal && ((direction == 1) || (direction == 3))) || (collision.GetComponentInParent<TurningManager>().isHorizontal && ((direction == 0) || (direction == 2)))) collision.GetComponent<TurningTrigger>().Turn(gameObject);               
+                break;
+            case "Ground":
+                if ((collision.GetComponent<SoundBreakable>() != null) && soundForce) collision.GetComponent<SoundBreakable>().Break();
+                else if ((collision.GetComponent<SoundLever>() != null) && soundForce) collision.GetComponent<SoundLever>().ChangeStatment();
+
+                break;
         }
     }
 }

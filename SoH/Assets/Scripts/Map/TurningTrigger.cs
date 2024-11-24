@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurningTrigger : MonoBehaviour
 {
-    public void Turn()
+    public void Turn(GameObject Wave)
     {
-        this.transform.parent.eulerAngles = this.transform.parent.eulerAngles + Vector3.forward * 90;
+        if (!GetComponentInParent<TurningManager>().waves.Contains(Wave))
+        {
+            transform.parent.eulerAngles = transform.parent.eulerAngles + Vector3.forward * 90;
+            GetComponentInParent<TurningManager>().waves.Add(Wave);
+            GetComponentInParent<TurningManager>().isHorizontal = !GetComponentInParent<TurningManager>().isHorizontal;
+        }
     }
 }

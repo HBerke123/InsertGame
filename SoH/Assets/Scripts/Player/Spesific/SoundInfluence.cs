@@ -25,23 +25,23 @@ public class SoundInfluence : MonoBehaviour
 
     public void SendWave(int direction, bool isforce)
     {
-        this.GetComponentInParent<MakeSound>().AddTime(soundTime);
+        GetComponentInParent<MakeSound>().AddTime(soundTime);
         th = Time.time;
 
         if (isforce)
         {
-            SBox = Instantiate(BigWave, this.transform.position, Quaternion.identity);
+            SBox = Instantiate(BigWave, GetComponent<BoxCollider2D>().bounds.center, Quaternion.identity);
             SBox.GetComponent<SkillEnd>().TotalTime = totaltime;
 
-            if (direction == 1) SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
-            else SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
+            if (direction == 1) SBox.GetComponent<Rigidbody2D>().velocity = speed * Vector2.right;
+            else SBox.GetComponent<Rigidbody2D>().velocity = speed * Vector2.left;
 
             SBox.GetComponent<ForceEnemies>().direction = direction;
             SBox.GetComponent<ForceEnemies>().forcePower = bigForcePower;
         }
         else
         {
-            SBox = Instantiate(SmallWave, this.transform.position, Quaternion.identity);
+            SBox = Instantiate(SmallWave, GetComponent<BoxCollider2D>().bounds.center, Quaternion.identity);
         
             if ((direction == 0) || (direction == 2)) SBox.transform.localRotation = new Quaternion(0, 0, Mathf.Sqrt(50), Mathf.Sqrt(50));
 
@@ -50,16 +50,16 @@ public class SoundInfluence : MonoBehaviour
             switch (direction)
             {
                 case 0:
-                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
+                    SBox.GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
                     break;
                 case 1:
-                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
+                    SBox.GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
                     break;
                 case 2:
-                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
+                    SBox.GetComponent<Rigidbody2D>().velocity = Vector2.down * speed;
                     break;
                 case 3:
-                    SBox.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
+                    SBox.GetComponent<Rigidbody2D>().velocity = Vector2.left * speed;
                     break;
             }
 

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,22 +42,22 @@ public class MenuMovement : MonoBehaviour
             {
                 if (buttonCoordinates[i].buttonGroup == currentGroup)
                 {
-                    if ((gamepadControls.menuDirection == 0) && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.up))
+                    if (gamepadControls.up.IsPressed() && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.up))
                     {
                         curCordinate += Vector2.up;
                         break;
                     }
-                    else if ((gamepadControls.menuDirection == 1) && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.right))
+                    else if (gamepadControls.right.IsPressed() && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.right))
                     {
                         curCordinate += Vector2.right;
                         break;
                     }
-                    else if ((gamepadControls.menuDirection == 2) && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.down))
+                    else if (gamepadControls.down.IsPressed() && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.down))
                     {
                         curCordinate += Vector2.down;
                         break;
                     }
-                    else if ((gamepadControls.menuDirection == 3) && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.left))
+                    else if (gamepadControls.left.IsPressed() && (buttonCoordinates[i].buttonCordinate == curCordinate + Vector2.left))
                     {
                         curCordinate += Vector2.left;
                         break;
@@ -67,8 +66,6 @@ public class MenuMovement : MonoBehaviour
             }
         }
    
-        if (gamepadControls.menuDirection == 0) th = 0;
-
         for (int i = 0; i < buttonCoordinates.Count; i++)
         {
             if (gamepadControls.accept.IsPressed() && !pressed && buttonCoordinates[i].selected)

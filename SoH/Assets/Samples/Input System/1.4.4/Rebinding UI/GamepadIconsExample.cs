@@ -80,33 +80,33 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             public Sprite leftStickPress;
             public Sprite rightStickPress;
 
-            public Sprite GetSprite(string controlPath)
+            readonly public Sprite GetSprite(string controlPath)
             {
                 // From the input system, we get the path of the control on device. So we can just
                 // map from that to the sprites we have for gamepads.
-                switch (controlPath)
+                return controlPath switch
                 {
-                    case "buttonSouth": return buttonSouth;
-                    case "buttonNorth": return buttonNorth;
-                    case "buttonEast": return buttonEast;
-                    case "buttonWest": return buttonWest;
-                    case "start": return startButton;
-                    case "select": return selectButton;
-                    case "leftTrigger": return leftTrigger;
-                    case "rightTrigger": return rightTrigger;
-                    case "leftShoulder": return leftShoulder;
-                    case "rightShoulder": return rightShoulder;
-                    case "dpad": return dpad;
-                    case "dpad/up": return dpadUp;
-                    case "dpad/down": return dpadDown;
-                    case "dpad/left": return dpadLeft;
-                    case "dpad/right": return dpadRight;
-                    case "leftStick": return leftStick;
-                    case "rightStick": return rightStick;
-                    case "leftStickPress": return leftStickPress;
-                    case "rightStickPress": return rightStickPress;
-                }
-                return null;
+                    "buttonSouth" => buttonSouth,
+                    "buttonNorth" => buttonNorth,
+                    "buttonEast" => buttonEast,
+                    "buttonWest" => buttonWest,
+                    "start" => startButton,
+                    "select" => selectButton,
+                    "leftTrigger" => leftTrigger,
+                    "rightTrigger" => rightTrigger,
+                    "leftShoulder" => leftShoulder,
+                    "rightShoulder" => rightShoulder,
+                    "dpad" => dpad,
+                    "dpad/up" => dpadUp,
+                    "dpad/down" => dpadDown,
+                    "dpad/left" => dpadLeft,
+                    "dpad/right" => dpadRight,
+                    "leftStick" => leftStick,
+                    "rightStick" => rightStick,
+                    "leftStickPress" => leftStickPress,
+                    "rightStickPress" => rightStickPress,
+                    _ => null,
+                };
             }
         }
     }

@@ -14,8 +14,11 @@ public class GamepadControls : MonoBehaviour
     public InputAction save;
     public InputAction accept;
     public InputAction back;
+    public InputAction up;
+    public InputAction down;
+    public InputAction left;
+    public InputAction right;
     public InputAction copy;
-    public int menuDirection;
 
     private void Awake()
     {
@@ -28,5 +31,11 @@ public class GamepadControls : MonoBehaviour
         soundInfluence = controls["SoundInfluence"];
         pause = controls["StopGame"];
         copy = controls["Copy"];
+        up = controls["Up"];
+        down = controls["Down"];
+        left = controls["Left"];
+        right = controls["Right"];
+        accept = controls["Accept"];
+        back = controls["Back"];
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3455597591798288679}
   - component: {fileID: 3455597591798288676}
   - component: {fileID: 3455597591798288677}
+  - component: {fileID: 7070792493818122704}
   m_Layer: 11
   m_Name: TurningDomainPlatform
   m_TagString: Domain
@@ -152,6 +153,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7070792493818122704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455597591798288682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d477f83e8ec15574dbc7eaa8781167d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves: []
+  isHorizontal: 0
 --- !u!1 &6089367453145391125
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +179,7 @@ GameObject:
   - component: {fileID: 6089367453145391127}
   - component: {fileID: 6089367453145391126}
   m_Layer: 11
-  m_Name: TurningTriggers
+  m_Name: TurningTriggersC
   m_TagString: TurningTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,8 +193,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6089367453145391125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -0.4, z: 0}
-  m_LocalScale: {x: 1, y: 0.2, z: 1}
+  m_LocalPosition: {x: -0.75, y: -0.4, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3455597591798288673}
@@ -235,7 +250,7 @@ GameObject:
   - component: {fileID: 6089367453230804361}
   - component: {fileID: 6089367453230804360}
   m_Layer: 11
-  m_Name: TurningTriggers
+  m_Name: TurningTriggersD
   m_TagString: TurningTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,8 +264,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6089367453230804375}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -0.4, z: 0}
-  m_LocalScale: {x: 1, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0.75, y: -0.4, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3455597591798288673}
@@ -306,7 +321,7 @@ GameObject:
   - component: {fileID: 6089367454422191505}
   - component: {fileID: 6089367454422191504}
   m_Layer: 11
-  m_Name: TurningTriggers
+  m_Name: TurningTriggersB
   m_TagString: TurningTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,8 +335,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6089367454422191519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.4, z: 0}
-  m_LocalScale: {x: 1, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0.75, y: 0.4, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3455597591798288673}
@@ -377,7 +392,7 @@ GameObject:
   - component: {fileID: 6089367454788328033}
   - component: {fileID: 6089367454788328032}
   m_Layer: 11
-  m_Name: TurningTriggers
+  m_Name: TurningTriggersA
   m_TagString: TurningTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,8 +406,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6089367454788328047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.4, z: 0}
-  m_LocalScale: {x: 1, y: 0.2, z: 1}
+  m_LocalPosition: {x: -0.75, y: 0.4, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3455597591798288673}

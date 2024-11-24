@@ -3,6 +3,7 @@ using UnityEngine;
 public class CopyYourself : MonoBehaviour
 {
     [SerializeField] GameObject stone;
+    [SerializeField] GroundDetection jumpBox;
 
     GamepadControls gamepadControls;
     GameObject clone;
@@ -12,7 +13,7 @@ public class CopyYourself : MonoBehaviour
 
     private void Update()
     {
-        if (gamepadControls.copy.IsPressed() && !pressed)
+        if (gamepadControls.copy.IsPressed() && !pressed && jumpBox.detected)
         {
             pressed = true;
 
