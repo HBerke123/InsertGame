@@ -37,5 +37,6 @@ public class GamepadControls : MonoBehaviour
         right = controls["Right"];
         accept = controls["Accept"];
         back = controls["Back"];
+        save = controls["Save"];
     }
 }

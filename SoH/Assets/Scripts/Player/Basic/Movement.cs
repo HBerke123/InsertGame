@@ -129,7 +129,7 @@ public class Movement : MonoBehaviour
             pressedLeft = false;
         }
 
-        if (!aiming && !su.started && !d.dashing && !stick && !boo.isBlocked && !c.changing)
+        if (!aiming && !su.started && !d.dashing && !stick && !boo.isBlocked && !c.changing && !Camera.main.GetComponent<CamFollow>().isScoping)
         {
             if (moveDirection == 0)
             {
@@ -171,7 +171,7 @@ public class Movement : MonoBehaviour
                 else rb.velocity = rb.velocity = new Vector2(moveDirection * speed + foo.Force.x, rb.velocity.y);
             }
         }
-        else if (!aiming && !stick && !c.changing && !boo.isBlocked)
+        else if (!aiming && !stick && !c.changing && !boo.isBlocked && !Camera.main.GetComponent<CamFollow>().isScoping)
         {
             a.SetBool("Moving", false);
             rb.velocity = new (dspeed, rb.velocity.y);

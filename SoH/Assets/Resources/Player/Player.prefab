@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 1459897340311603451}
   - component: {fileID: 6690333768440873089}
   - component: {fileID: 7506721460281494785}
+  - component: {fileID: 8196911727171591464}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1093,7 +1094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stone: {fileID: 5361889609066649402, guid: dd9975e320fcb1d4f96535bb8975eba3, type: 3}
-  jumpboX: {fileID: 1389891591038707314}
+  jumpBox: {fileID: 0}
 --- !u!114 &7506721460281494785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,6 +1125,23 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8196911727171591464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389891592076107585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e68113ad418fe448429c6ffa003990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonCoordinates: []
+  menuOpener: {fileID: 0}
+  curCordinate: {x: 0, y: 0}
+  waitTime: 0
+  currentGroup: 0
 --- !u!1 &4837326634813091820
 GameObject:
   m_ObjectHideFlags: 0
