@@ -3,20 +3,14 @@ using UnityEngine;
 public class SkillEnd : MonoBehaviour
 {
     public float TotalTime;
+    public float th;
     public GameObject parent;
     public bool isAttached;
-    float th;
 
-    private void Start()
-    {
-        th = Time.time;
-    }
+    private void Start() => th = Time.time;
 
     private void Update()
     {
-        if ((Time.time - th > TotalTime) || (isAttached && (parent == null)))
-        {
-            Destroy(this.gameObject);
-        }
+        if ((Time.time - th > TotalTime) || (isAttached && (parent == null))) Destroy(this.gameObject);
     }
 }

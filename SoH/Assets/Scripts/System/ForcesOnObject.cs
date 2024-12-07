@@ -9,7 +9,7 @@ public class ForcesOnObject : MonoBehaviour
 
     private void Update()
     {
-        if (CompareTag("Domain")) GetComponent<Rigidbody2D>().velocity = Force;
+        if (CompareTag("Domain") || CompareTag("StonePlayer")) GetComponent<Rigidbody2D>().velocity = Force;
     }
 
     private void FixedUpdate()

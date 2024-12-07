@@ -123,7 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b2b4abb9b00e44abfe46e9361a146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalTime: 0
+  TotalTime: 8
+  th: 0
+  parent: {fileID: 0}
+  isAttached: 0
 --- !u!114 &3495909859935800856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,10 +140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundForce: 1
+  destroyOnTouch: 0
   direction: 0
   forcePower: 6
-  destroyOnTouch: 0
-  arrow: {fileID: 0}
+  breakPerc: 0.2
 --- !u!61 &1980875249604747701
 BoxCollider2D:
   m_ObjectHideFlags: 0

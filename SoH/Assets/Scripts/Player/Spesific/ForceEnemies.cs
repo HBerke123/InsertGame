@@ -3,10 +3,15 @@ using UnityEngine;
 public class ForceEnemies : MonoBehaviour
 {
     public bool soundForce;
+    public bool destroyOnTouch;
     public int direction;
     public float forcePower;
-    public bool destroyOnTouch;
-    public GameObject arrow;
+    public float breakPerc;
+
+    bool onPlayer = true;
+    GameObject Player;
+
+    private void Start() => Player = GameObject.FindGameObjectWithTag("Player");
 
     public void Force(GameObject enemy)
     {
@@ -30,6 +35,14 @@ public class ForceEnemies : MonoBehaviour
                 float distance = Mathf.Sqrt(Mathf.Pow(distancex, 2) + Mathf.Pow(distancey, 2));
                 enemy.GetComponent<ForcesOnObject>().Force = new Vector2(distancex / distance, distancey / distance) * forcePower;
                 break;
+        }
+    }
+
+    private void Update()
+    {
+        if (!GetComponent<Collider2D>().IsTouching(Player.GetComponent<Collider2D>()))
+        {
+            onPlayer = false;
         }
     }
 
@@ -69,6 +82,15 @@ public class ForceEnemies : MonoBehaviour
                 if ((collision.GetComponent<SoundBreakable>() != null) && soundForce) collision.GetComponent<SoundBreakable>().Break();
                 else if ((collision.GetComponent<SoundLever>() != null) && soundForce) collision.GetComponent<SoundLever>().ChangeStatment();
 
+                Destroy(gameObject);
+                break;
+            case "StonePlayer":
+                Force(collision.gameObject);
+                collision.gameObject.GetComponent<SkillEnd>().TotalTime -= collision.gameObject.GetComponent<SkillEnd>().TotalTime * breakPerc;
+                break;
+            case "Player":
+                if (!onPlayer) Force(collision.gameObject);
+                
                 break;
         }
     }
