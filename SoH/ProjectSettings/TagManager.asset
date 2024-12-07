@@ -6,9 +6,7 @@ TagManager:
   tags:
   - SprintParticle
   - Enemy
-  - Weapon
   - Sound
-  - Scream
   - EnemySound
   - EnemyScream
   - BossHPBar
@@ -26,6 +24,7 @@ TagManager:
   - BadBar
   - Detector
   - TurningTrigger
+  - StonePlayer
   layers:
   - Default
   - TransparentFX
@@ -33,10 +32,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
+  - CameraMove
+  - Camera
   - SprintParticle
-  - 
+  - StonePlayer
   - Enemy
   - Ground
   - Bomb
